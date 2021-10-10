@@ -7,24 +7,26 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
 
     [Header("Movement Variables")]
-    [SerializeField] float movementAcceleration;
-    [SerializeField] private float maxMoveSpeed;
-    [SerializeField] private float groundLinearDrag;
+    [SerializeField] float movementAcceleration = 65;
+    [SerializeField] private float maxMoveSpeed = 8;
+    [SerializeField] private float groundLinearDrag = 25;
     private float horizontalDirection;
     private bool facingRight = true;
     private bool changingDirection => (rb.velocity.x > 0f && horizontalDirection < 0f) ||
                                       (rb.velocity.x < 0f && horizontalDirection > 0f);
 
     [Header("Jump Variables")]
-    [SerializeField] private float jumpForce;
-    [SerializeField] private float airLinearDrag;
-    [SerializeField] private float fallMultiplier;
-    [SerializeField] private float lowJumpFallMultiplier;
+    [SerializeField] private float jumpForce = 25;
+    [SerializeField] private float airLinearDrag = 10;
+    [SerializeField] private float fallMultiplier = 10;
+    [SerializeField] private float lowJumpFallMultiplier = 12.5f;
+    [SerializeField] private int maxJumpInputBuffer = 4;
     private int jumpInputBuffer = 0;
 
     [Header("Ground Collision Variables")]
     [SerializeField] private Transform groundCheck;
-    [SerializeField] private float checkRadius;
+    [SerializeField] private float checkRadius = 0.25f;
+    [SerializeField] private int maxGroundedBuffer = 4;
     private bool isGrounded;
     private int groundedBuffer = 0;
     
@@ -40,7 +42,7 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer); // schaut ob ein circle mit dem Radius checkRadius, an der Position vom Objekt GroundCheck mit Objekten collided vom layer ground
         if (isGrounded)
         {
-            groundedBuffer = 5; // 5 fixedupdates nachdem man nich mehr grounded is kann man trotzdem noch springen falls man knapp zu spät jump drückt
+            groundedBuffer = maxGroundedBuffer; // ... fixedupdates nachdem man nich mehr grounded is kann man trotzdem noch springen falls man knapp zu spät jump drückt
         }
         groundedBuffer--;
         jumpInputBuffer--;
@@ -74,9 +76,9 @@ public class PlayerController : MonoBehaviour
         {
             Jump();
         }
-        else if (Input.GetButtonDown("Jump")) // wenn man in der luft jump drückt wird das für 7 fixed updates gespeichert falls man kurz davor is den boden zu berühren
+        else if (Input.GetButtonDown("Jump")) // wenn man in der luft jump drückt wird das für ... fixed updates gespeichert falls man kurz davor is den boden zu berühren
         {
-            jumpInputBuffer = 7;
+            jumpInputBuffer = maxJumpInputBuffer;
         }
         if (isGrounded && jumpInputBuffer > 0) // wenn man den boden berührt und kurz davor jump gedrückt hat
         {
