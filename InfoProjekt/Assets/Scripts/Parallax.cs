@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
-
-    [Header("Variables")]
     [SerializeField] private Camera cam;
     [SerializeField] private Transform player;
     private Vector2 startPosition;
@@ -19,7 +17,7 @@ public class Parallax : MonoBehaviour
 
     public void Start()
     {
-        startPosition = transform.position; // beim start des programms die start position festlegen
+        startPosition = transform.position;
         startZ = transform.position.z;
     }
 
@@ -28,5 +26,5 @@ public class Parallax : MonoBehaviour
         Vector2 newPos = startPosition + travel * parallaxFactor; // neue position des objekts
         transform.position = new Vector3(newPos.x, transform.position.y, startZ);
     }
-
+    
 }
