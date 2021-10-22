@@ -1,32 +1,22 @@
-using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Layer Masks")]
-    [SerializeField] private LayerMask groundLayer;
-
     [Header("Movement Variables")]
-    [SerializeField] float movementAcceleration = 65;
-    [SerializeField] private float maxMoveSpeed = 8;
-    [SerializeField] private float groundLinearDrag = 25;
+    [SerializeField] private float speed = 8;
     private float horizontalDirection;
     private bool facingRight = true;
-    private bool changingDirection => (rb.velocity.x > 0f && horizontalDirection < 0f) ||
-                                      (rb.velocity.x < 0f && horizontalDirection > 0f);
 
     [Header("Jump Variables")]
     [SerializeField] private float jumpForce = 25;
-    [SerializeField] private float airLinearDrag = 10;
-    [SerializeField] private float fallMultiplier = 10;
-    [SerializeField] private float lowJumpFallMultiplier = 12.5f;
     [SerializeField] private int maxJumpInputBuffer = 4;
     private int jumpInputBuffer = 0;
 
-    [Header("Ground Collision Variables")]
+    [Header("Ground Variables")]
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float checkRadius = 0.25f;
     [SerializeField] private int maxGroundedBuffer = 4;
+    [SerializeField] private LayerMask groundLayer;
     private bool isGrounded;
     private int groundedBuffer = 0;
     
@@ -39,26 +29,17 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer); // schaut ob ein circle mit dem Radius checkRadius, an der Position vom Objekt GroundCheck mit Objekten collided vom layer ground
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
         if (isGrounded)
         {
-            groundedBuffer = maxGroundedBuffer; // ... fixedupdates nachdem man nich mehr grounded is kann man trotzdem noch springen falls man knapp zu spät jump drückt
+            groundedBuffer = 5;
         }
         groundedBuffer--;
         jumpInputBuffer--;
 
-        MoveCharacter();
+        Move();
 
-        if (isGrounded)
-        {
-            ApplyGroundLinearDrag();
-        }
-        else
-        {
-            ApplyAirLinearDrag();
-            FallMultiplier();
-        }
-
+        //vorübergehend während der spieler noch ein quadrat mit augen ist
         if (facingRight == false && horizontalDirection < 0)
         {
             Flip();
@@ -71,68 +52,30 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        horizontalDirection = Input.GetAxisRaw("Horizontal"); // returned -1 für links und 1 für rechts 0 für weder noch
-        if (Input.GetButtonDown("Jump") && (isGrounded || groundedBuffer > 0))// im normalen update weil fixedUpdate nich jeden frame läuft und deswegen manchmal der input nich detected wird
+        horizontalDirection = Input.GetAxisRaw("Horizontal");
+        if (Input.GetButtonDown("Jump") && (isGrounded || groundedBuffer > 0)) // ich glaub hier gibts nen buq wo doppelt force applyed wird weil man als erstes grounded is und danach aber noch grounded buffer hat oder so
         {
             Jump();
         }
-        else if (Input.GetButtonDown("Jump")) // wenn man in der luft jump drückt wird das für ... fixed updates gespeichert falls man kurz davor is den boden zu berühren
+        else if (Input.GetButtonDown("Jump"))
         {
-            jumpInputBuffer = maxJumpInputBuffer;
+            jumpInputBuffer = 7;
         }
-        if (isGrounded && jumpInputBuffer > 0) // wenn man den boden berührt und kurz davor jump gedrückt hat
+        if (isGrounded && jumpInputBuffer > 0)
         {
             Jump();
+            jumpInputBuffer = 0;
         }
     }
 
-    private void MoveCharacter()
+    private void Move()
     {
-        rb.AddForce(new Vector2(horizontalDirection, 0f) * movementAcceleration); // beschleunigungs force hinzufügen
-
-        if (Math.Abs(rb.velocity.x) > maxMoveSpeed) // wenn absoluter(plus also egal in welche richtung) x-geschwindigkeits wert grösser ist als maxMoveSpeed
-        {
-            rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * maxMoveSpeed, rb.velocity.y); // x velocity auf maxMoveSpeed setzen aber in die richtige richtung(Sign) y bleibt gleich
-        }
-    }
-
-    private void ApplyGroundLinearDrag()
-    {
-        if (Math.Abs(horizontalDirection) == 0 || changingDirection) // bei keinem input oder bei richtungswechsel
-        {
-            rb.drag = groundLinearDrag; // linear drag zum rigidbody applyen damit der boden sich nich wie eis anfühlt
-        }
-        else
-        {
-            rb.drag = 0f;
-        }
-    }
-
-    private void ApplyAirLinearDrag()
-    {
-        rb.drag = airLinearDrag;
+        rb.velocity = new Vector2(horizontalDirection * speed, rb.velocity.y);
     }
 
     private void Jump()
     {
-        rb.velocity = new Vector2(rb.velocity.x, 0f); // y geschwindigkeit auf 0 setzen
-        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); // jumpforce richtung +y hinzufügen
-    }
-
-    private void FallMultiplier()
-    {
-        if (rb.velocity.y < 0) // wenn die y geschwindigkeit negativ is also nach unten gravity auf fallmultiplier setzen
-        {
-            rb.gravityScale = fallMultiplier;
-        }
-        else if (rb.velocity.y > 0 && !Input.GetButton("Jump")) // wenn man jump loslässt mehr gravity damit man nich so hoch springt
-        {
-            rb.gravityScale = lowJumpFallMultiplier;
-        }
-        else
-        {
-            rb.gravityScale = 1f;
-        }
+        rb.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
     }
 
     void Flip()
