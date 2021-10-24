@@ -32,14 +32,14 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
         if (isGrounded)
         {
-            groundedBuffer = 5;
+            groundedBuffer = maxGroundedBuffer;
         }
         groundedBuffer--;
         jumpInputBuffer--;
 
         Move();
 
-        //vorübergehend während der spieler noch ein quadrat mit augen ist
+        //vorübergehend während der spieler noch ein quadrat mit augen ist weil danach die ganze animation geflippt ist
         if (facingRight == false && horizontalDirection < 0)
         {
             Flip();
@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetButtonDown("Jump"))
         {
-            jumpInputBuffer = 7;
+            jumpInputBuffer = maxJumpInputBuffer;
         }
         if (isGrounded && jumpInputBuffer > 0)
         {

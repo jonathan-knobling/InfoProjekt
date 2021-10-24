@@ -14,14 +14,14 @@ public class Parallax : MonoBehaviour
         startPosition = transform.position;
         camStartX = cam.transform.position.x;
         float clipFar = cam.farClipPlane;
-        parallaxFactor = transform.position.z / clipFar;
+        parallaxFactor = -transform.position.z / clipFar;
         if (parallaxFactor > clipFar)
             parallaxFactor = clipFar;
     }
 
     public void Update()
     {
-        float newPosX = startPosition.x + camTravel * -parallaxFactor; 
+        float newPosX = startPosition.x + camTravel * parallaxFactor; 
         transform.position = new Vector3(newPosX, transform.position.y, startPosition.z);
     }
     
