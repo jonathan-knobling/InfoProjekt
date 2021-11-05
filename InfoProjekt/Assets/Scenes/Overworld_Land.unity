@@ -2044,7 +2044,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 542478179}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -40.509018, y: 4.648066, z: -25}
+  m_LocalPosition: {x: -40.509018, y: 4.718056, z: -25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1795130469}
@@ -3291,6 +3291,10 @@ PrefabInstance:
     - target: {fileID: 367506263313124096, guid: 1e6918e5cba64c346950b76af083fd71, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 367506263313124097, guid: 1e6918e5cba64c346950b76af083fd71, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 367506263313124106, guid: 1e6918e5cba64c346950b76af083fd71, type: 3}
       propertyPath: speed
@@ -7143,6 +7147,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skills:
   - {fileID: 11400000, guid: b13d4542969522045a099996b5cf3959, type: 2}
+--- !u!4 &1473672437 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 367506263313124108, guid: 1e6918e5cba64c346950b76af083fd71, type: 3}
+  m_PrefabInstance: {fileID: 785897067}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1492503321
 GameObject:
   m_ObjectHideFlags: 0
@@ -8508,7 +8517,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795130468}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.358982, y: -0.000052928925, z: 0}
+  m_LocalPosition: {x: -5.6739807, y: -0.000056743622, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 66396745}
@@ -8534,7 +8543,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 1473672437}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 6

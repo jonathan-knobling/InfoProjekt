@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SkillManager : MonoBehaviour
 {
-    [SerializeField] private Skill[] skills;
+    [SerializeField] private ActiveSkill[] skills;
     private float cooldownTime;
     private float activeTime;
 
@@ -12,35 +12,35 @@ public class SkillManager : MonoBehaviour
         {
             switch (skills[i].state)
             {
-                case Skill.Skillstate.ready:
+                case ActiveSkill.Skillstate.ready:
                     if (Input.GetKeyDown(KeyCode.E))
                     {
                         skills[i].Activate(gameObject);
-                        skills[i].state = Skill.Skillstate.active;
+                        skills[i].state = ActiveSkill.Skillstate.active;
                         activeTime = skills[i].activeTime;
                     }
                     break;
 
-                case Skill.Skillstate.active:
+                case ActiveSkill.Skillstate.active:
                     if (activeTime > 0)
                     {
                         activeTime -= Time.deltaTime;
                     }
                     else
                     {
-                        skills[i].state = Skill.Skillstate.cooldown;
+                        skills[i].state = ActiveSkill.Skillstate.cooldown;
                         cooldownTime = skills[i].cooldown;
                     }
                     break;
 
-                case Skill.Skillstate.cooldown:
+                case ActiveSkill.Skillstate.cooldown:
                     if (cooldownTime > 0)
                     {
                         cooldownTime -= Time.deltaTime;
                     }
                     else
                     {
-                        skills[i].state = Skill.Skillstate.ready;
+                        skills[i].state = ActiveSkill.Skillstate.ready;
                     }
                     break;
             }

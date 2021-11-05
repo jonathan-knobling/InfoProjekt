@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Skill : ScriptableObject
+public class ActiveSkill : ScriptableObject
 {
 
     public new string name;

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Dash", menuName = "Skills/Dash")]
-public class DashSkill : Skill
+public class DashSkill : ActiveSkill
 {
 
     public float dashDistance;
