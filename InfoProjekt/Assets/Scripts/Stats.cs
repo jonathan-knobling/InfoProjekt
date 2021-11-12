@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using UnityEngine;
 
 public class Stats : MonoBehaviour
@@ -13,8 +14,10 @@ public class Stats : MonoBehaviour
     private const float baseHealthMultiplier = 4.5f; // für jeden der stats hat
     private const float baseattackMultiplier = 1;
     
-    private float health => mp * baseHealthMultiplier * healthMultiplier; // lambdas sind op
+    private float maxHealth => mp * baseHealthMultiplier * healthMultiplier; // lambdas sind op
     private float attack => mp * baseattackMultiplier* attackMultiplier;
+
+    private float currentHealth;
 
     enum Rank
     {
@@ -24,6 +27,16 @@ public class Stats : MonoBehaviour
     void Start()
     {
         evaluateRank();
+        currentHealth = maxHealth;
+    }
+
+    void takeDamage(float damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            GetComponent<Entity>().die();
+        }
     }
 
     void addMP(int mp)
@@ -66,6 +79,7 @@ public class Stats : MonoBehaviour
         {
             rank = Rank.Aplus;
         }
+        Debug.Log(gameObject.name + ": Rank " + rank);
     }
 }
 /*Aus Tensei shitara slime datta ken :)

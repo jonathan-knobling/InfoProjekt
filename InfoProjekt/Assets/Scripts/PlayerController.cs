@@ -39,7 +39,6 @@ public class PlayerController : MonoBehaviour
 
         Move();
 
-        //vorübergehend während der spieler noch ein quadrat mit augen ist weil danach die ganze animation geflippt ist
         if (facingRight == false && horizontalDirection < 0)
         {
             Flip();
@@ -81,8 +80,8 @@ public class PlayerController : MonoBehaviour
     void Flip()
     {
         facingRight = !facingRight;
-        Vector3 Scaler = transform.localScale;
-        Scaler.x *= -1;
-        transform.localScale = Scaler;
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
     }
 }
