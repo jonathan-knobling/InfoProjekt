@@ -49,3 +49,10 @@
     border-top-color: rgba(114, 193, 242, 255);
     border-bottom-color: rgba(114, 193, 242, 255);
 }
+
+.header {
+    font-size: 70px;
+    -unity-font-style: bold;
+    position: absolute;
+    top: 25px;
+}
