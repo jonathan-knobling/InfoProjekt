@@ -79,7 +79,6 @@ public class Stats : MonoBehaviour
         {
             rank = Rank.Aplus;
         }
-        Debug.Log(gameObject.name + ": Rank " + rank);
     }
 }
 /*Aus Tensei shitara slime datta ken :)

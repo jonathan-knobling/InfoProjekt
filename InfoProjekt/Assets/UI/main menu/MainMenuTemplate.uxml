@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="MainMenuStyle.uss" />
-    <ui:VisualElement name="background" style="height: 1087px; width: 1924px; align-items: center; justify-content: center; margin-top: 0; background-image: url(&apos;/Assets/UI/main menu.jpg#main menu&apos;);">
+    <ui:VisualElement name="background" style="height: 1087px; width: 1924px; align-items: center; justify-content: center; margin-top: 0; background-image: url(&apos;/Assets/UI/main menu/main menu.jpg#main menu&apos;);">
         <ui:VisualElement name="main_menu" style="align-items: center; justify-content: center; width: 1924px; height: 1087px; display: flex;">
             <ui:Button text="PLAY" display-tooltip-when-elided="true" name="play_button" class="button-style" style="margin-top: 100px;" />
             <ui:Button text="SETTINGS" display-tooltip-when-elided="true" name="settings_button" class="button-style" />
