@@ -1,92 +1,130 @@
-using System.Linq.Expressions;
+using System;
 using UnityEngine;
 
 public class Stats : MonoBehaviour
 {
+    //stats nach danmachi system
 
-    [Header("Ranking")]
-    [SerializeField] private int mp = 1_000;
-    private Rank rank;
+    private int level = 1;
+    private const float levelMultiplier = 0.7f;                           //over
+    private int[] xpThreshold = { 4, 8, 15, 16, 23, 42, 69, 420, 911, 1337, 9000, 69420 };
 
-    [Header("Stats Multiplier")]
-    [SerializeField] private float healthMultiplier = 1;// für diese person / monster was auch immer spezifisch
-    [SerializeField] private float attackMultiplier = 1;
-    private const float baseHealthMultiplier = 4.5f; // für jeden der stats hat
-    private const float baseattackMultiplier = 1;
-    
-    private float maxHealth => mp * baseHealthMultiplier * healthMultiplier; // lambdas sind op
-    private float attack => mp * baseattackMultiplier* attackMultiplier;
+    private int xp = 0;
+    private int strengthXP = 0;
+    private int enduranceXP = 0;
+    private int dexterityXP = 0;
+    private int agilityXP = 0;
+    private int magicXP = 0;
 
-    private float currentHealth;
+    [Header("Current Status")]
+    private int currentStrength = 10;
+    private int currentEndurance = 10;
+    private int currentDexterity = 10;
+    private int currentAgility = 10;
+    private int currentMagic = 10;
 
-    enum Rank
-    {
-        E, D, C, B, Bplus, Aminus, A, Aplus
-    }
+    [Header("Hidden Status")]
+    private int hiddenStrength = 0;
+    private int hiddenEndurance = 0;
+    private int hiddenDexterity = 0;
+    private int hiddenAgility = 0;
+    private int hiddenMagic = 0;
+
+    //Total Status
+    private float strength => (currentStrength + hiddenStrength) * level * levelMultiplier;
+    private float endurance => (currentEndurance + hiddenEndurance) * level * levelMultiplier;
+    private float dexterity => (currentDexterity + hiddenDexterity) * level * levelMultiplier;
+    private float agility => (currentAgility + hiddenAgility) * level * levelMultiplier;
+    private float magic => (currentMagic + hiddenMagic) * level * levelMultiplier;
+
+    private bool levelUpPossible => (currentStrength >= 600 || currentEndurance >= 600 || currentDexterity >= 600
+                                    || currentAgility >= 600 || currentMagic >= 600) && xp > xpThreshold[level-1];
+
+    //Stats
+    private float maxHP => endurance * 0.69420f; // balancen    
+    private float hp;
+    private float damage => strength * 0.69420f; // balancen
 
     void Start()
     {
-        evaluateRank();
-        currentHealth = maxHealth;
+        hp = maxHP;
     }
 
-    void takeDamage(float damage)
+    public void LevelUp()
     {
-        currentHealth -= damage;
-        if (currentHealth <= 0)
+        if (!levelUpPossible) return;
+        level++;
+        hiddenStrength += currentStrength;
+        currentStrength = 10;
+        hiddenEndurance += currentEndurance;
+        currentEndurance = 10;
+        hiddenDexterity += currentDexterity;
+        currentDexterity = 10;
+        hiddenAgility += currentAgility;
+        currentAgility = 10;
+        hiddenMagic += currentMagic;
+        currentMagic = 10;
+    }
+
+    public void addXP(int amount, Enemy enemy)
+    {
+        xp += (int) (amount * Mathf.Pow(10, enemy.GetLevel() - level)); 
+        // gleiches level -> *10^0 = 1 | enemy level eins kleiner -> *10^-1 | grösser *10^1 etc. // bin ich schon bissl stolz drauf :)
+    }
+
+    public void addStrengthXP(float damage) //gegner durch meele attack zugefügtes damage vor att multiplier
+    {
+        strengthXP += (int)(damage * 0.69420f); // balancen
+    }
+
+    public void addEnduranceXP(float damage) //receivetes damage von egal welcher attacke vor def multiplier
+    {
+        enduranceXP += (int)(damage * 0.69420f); // balancen
+    }
+
+    public void addDexterityXP(float damage) //geblocktes damage vor att multiplier (evtl auch noch andere möglichkeiten die was mit geschicklichkeit zum tun haben)
+    {
+        dexterityXP += (int)(damage * 0.69420f); // balancen
+    }
+
+    public void addMagicXP(float damage) //gegner durch magic attack zugefügtes damage vor att multiplier
+    {
+        magicXP += (int)(damage * 0.69420f); // balancen
+    }
+
+    public void addAgilityXP(float distance) //distance die man gelaufen is vllt oder was anderes keine ahnung wie man des machen kann
+    {
+        agilityXP += (int)(distance * 0.69420f); // balancen
+    }
+
+    public void dealDamage(float damage)
+    {
+        this.hp -= damage; // hier noch def multiplier vllt
+        if (hp <= 0)
         {
-            GetComponent<Entity>().die();
+            Die();
         }
     }
 
-    void addMP(int mp)
+    private void Die()
     {
-        this.mp += mp;
-        evaluateRank();
+        //death animation
+        //vllt death screen oder so
+        //löschen
     }
 
-    private void evaluateRank()
+    public float getAttDmg()
     {
-        if (mp < 1_000)
-        {
-            rank = Rank.E;
-        }
-        else if (mp < 3_000)
-        {
-            rank = Rank.D;
-        }
-        else if (mp < 6_000)
-        {
-            rank = Rank.C;
-        }
-        else if (mp < 8_000)
-        {
-            rank = Rank.B;
-        }
-        else if (mp < 9_000)
-        {
-            rank = Rank.Bplus;
-        }
-        else if (mp < 10_000)
-        {
-            rank = Rank.Aminus;
-        }
-        else if (mp > 10_000 && mp < 100_000)
-        {
-            rank = Rank.A;
-        }
-        else if (mp > 100_000)
-        {
-            rank = Rank.Aplus;
-        }
+        return damage;
+    }
+
+    public float getMaxHP()
+    {
+        return maxHP;
+    }
+
+    public int getLevel()
+    {
+        return level;
     }
 }
-/*Aus Tensei shitara slime datta ken :)
-E  class <1,000
-D  class 1,000 - <3,000
-C  class 3,000 - <6,000
-B  class 6,000 - <8,000
-B+ class 8,000 - <9,000
-A- class 9,000 - <10,000
-A  class >10,000: Hazard class
-Special A class >100,000: Calamity class*/

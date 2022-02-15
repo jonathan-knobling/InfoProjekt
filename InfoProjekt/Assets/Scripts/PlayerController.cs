@@ -3,12 +3,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement Variables")]
-    [SerializeField] private float speed = 8;
+    [SerializeField] private float speed = 10;
     private float horizontalDirection;
     private bool facingRight = true;
 
     [Header("Jump Variables")]
-    [SerializeField] private float jumpForce = 25;
+    [SerializeField] private float jumpForce = 20;
     [SerializeField] private int maxJumpInputBuffer = 4;
     private int jumpInputBuffer = 0;
 
