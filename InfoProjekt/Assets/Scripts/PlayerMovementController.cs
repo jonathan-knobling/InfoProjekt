@@ -7,7 +7,7 @@ public class PlayerMovementController : MonoBehaviour
     [Header("Movement Variables")]
     [SerializeField] private float speed = 10;
     private float horizontalDirection;
-    private bool facingRight = true;
+    private bool facingRight => Mathf.Sign(transform.localScale.x) == 1;
 
     [Header("Jump Variables")]
     [SerializeField] private float jumpForce = 20;
@@ -81,12 +81,10 @@ public class PlayerMovementController : MonoBehaviour
     {
         rb.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
         animator.SetTrigger("jump");
-        Debug.Log("davidsmom");
     }
 
     void Flip()
     {
-        facingRight = !facingRight;
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
