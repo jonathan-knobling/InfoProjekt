@@ -6,12 +6,12 @@ public class Enemy : MonoBehaviour
 
     [Header("Stats")]
     [SerializeField] public int level = 1;
-    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private float maxHealth = 100;
     [SerializeField] private float attackDamage = 30;
     private float levelMultiplier = 2.5f;
-    private int hiddenMaxHealth => (int)(levelMultiplier * level * maxHealth);
+    private float hiddenMaxHealth => (levelMultiplier * level * maxHealth);
     private float hiddenAttackDamage => (int)(levelMultiplier * level * attackDamage);
-    private int health;
+    private float health;
 
     private void Start()
     {
@@ -23,9 +23,9 @@ public class Enemy : MonoBehaviour
 
     }
 
-    public void Hit(int damage)
+    public void Hit(float damage)
     {
-        animator.SetTrigger("hit");
+        //animator.SetTrigger("hit");
         health -= damage;
         if (health <= 0)
         {
@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
 
     public void Die()
     {
-        animator.SetTrigger("die");
+        //animator.SetTrigger("die");
         Destroy(gameObject);
     }
 
