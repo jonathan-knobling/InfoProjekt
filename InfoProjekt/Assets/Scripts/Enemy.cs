@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
 
     public void Hit(float damage)
     {
-        //animator.SetTrigger("hit");
+        animator.SetTrigger("hit");
         health -= damage;
         if (health <= 0)
         {
@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
 
     public void Die()
     {
-        //animator.SetTrigger("die");
+        animator.SetTrigger("death");
         Destroy(gameObject);
     }
 
