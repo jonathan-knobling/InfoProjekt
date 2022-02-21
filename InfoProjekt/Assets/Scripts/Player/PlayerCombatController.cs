@@ -41,6 +41,11 @@ public class PlayerCombatController: MonoBehaviour
         foreach(Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<Enemy>().Hit(stats.getAttDmg());
+            if(enemy.GetComponent<Enemy>().isDead())
+            {
+                stats.addXP(enemy.GetComponent<Enemy>());
+            }
+            stats.addStrengthXP(stats.getAttDmg());
             Debug.Log("Hit Enemy: " + enemy.name);
         }
     }

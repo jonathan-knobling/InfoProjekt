@@ -1,0 +1,26 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="player UI.uss" />
+    <ui:VisualElement name="screen" style="width: 1920px; height: 1080px; align-items: auto;">
+        <ui:VisualElement name="stats_screen" style="width: 300px; background-color: rgb(46, 46, 46); padding-right: 10px; padding-left: 10px; max-height: none; padding-bottom: 10px;">
+            <ui:VisualElement name="stats">
+                <ui:Label text="LEVEL: 1" display-tooltip-when-elided="true" name="level" enable-rich-text="true" class="text_box" />
+                <ui:Label text="STATS" display-tooltip-when-elided="true" name="stats_heading" class="text_heading" />
+                <ui:Label text="STRENGTH: 10" display-tooltip-when-elided="true" name="strength_stat" enable-rich-text="true" class="text_box" />
+                <ui:Label text="ENDURANCE: 10" display-tooltip-when-elided="true" name="endurance_stat" enable-rich-text="true" class="text_box" />
+                <ui:Label text="DEXTERITY: 10" display-tooltip-when-elided="true" name="dexterity_stat" enable-rich-text="true" class="text_box" />
+                <ui:Label text="AGILITY: 10" display-tooltip-when-elided="true" name="agility_stat" enable-rich-text="true" class="text_box" />
+                <ui:Label text="MAGIC: 10" display-tooltip-when-elided="true" name="magic_stat" enable-rich-text="true" class="text_box" />
+            </ui:VisualElement>
+            <ui:VisualElement name="experience" style="width: auto; background-color: rgb(46, 46, 46); padding-right: 0; padding-left: 0; max-height: none; padding-bottom: 0; padding-top: 0;">
+                <ui:Label text="EXPERIENCE" display-tooltip-when-elided="true" name="experience" class="text_heading" />
+                <ui:Label text="STRENGTH XP: 10" display-tooltip-when-elided="true" name="strength_experience" enable-rich-text="true" class="text_box" />
+                <ui:Label text="ENDURANCE XP: 10" display-tooltip-when-elided="true" name="endurance_experience" enable-rich-text="true" class="text_box" />
+                <ui:Label text="DEXTERITY XP: 10" display-tooltip-when-elided="true" name="dexterity_experience" enable-rich-text="true" class="text_box" />
+                <ui:Label text="AGILITY XP: 10" display-tooltip-when-elided="true" name="agility_experience" enable-rich-text="true" class="text_box" />
+                <ui:Label text="MAGIC XP: 10" display-tooltip-when-elided="true" name="magic_experience" enable-rich-text="true" class="text_box" />
+            </ui:VisualElement>
+            <ui:Button text="LEVEL UP" display-tooltip-when-elided="true" name="levelup" class="button" style="display: none;" />
+            <ui:Button text="STATUS UPDATE" display-tooltip-when-elided="true" name="status_update" class="button" style="display: none;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

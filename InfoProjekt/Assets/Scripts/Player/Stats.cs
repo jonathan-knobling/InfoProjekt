@@ -40,6 +40,8 @@ public class Stats : MonoBehaviour
     private bool levelUpPossible => (currentStrength >= 600 || currentEndurance >= 600 || currentDexterity >= 600
                                     || currentAgility >= 600 || currentMagic >= 600) && xp > xpThreshold[level-1];
 
+    private bool statusUpdatePossible => strengthXP > 0 || enduranceXP > 0 || dexterityXP > 0 || agilityXP > 0 || magicXP > 0;
+
     //Stats
     private float maxHP => endurance * 0.69420f; // balancen    
     private float hp;
@@ -53,6 +55,8 @@ public class Stats : MonoBehaviour
     public void LevelUp()
     {
         if (!levelUpPossible) return;
+        statusUpdate();
+
         level++;
         hiddenStrength += currentStrength;
         currentStrength = 10;
@@ -66,9 +70,25 @@ public class Stats : MonoBehaviour
         currentMagic = 10;
     }
 
-    public void addXP(int amount, Enemy enemy)
+    public void statusUpdate()
     {
-        xp += (int) (amount * Mathf.Pow(10, enemy.GetLevel() - level)); 
+        if (!statusUpdatePossible) return;
+
+        currentStrength += strengthXP;
+        strengthXP = 0;
+        currentEndurance += enduranceXP;
+        enduranceXP = 0;
+        currentDexterity += dexterityXP;
+        dexterityXP = 0;
+        currentAgility += agilityXP;
+        agilityXP = 0;
+        currentMagic += magicXP;
+        magicXP = 0;
+    }
+
+    public void addXP(Enemy enemy)
+    {
+        xp += (int) (enemy.getXPAmount() * Mathf.Pow(10, enemy.GetLevel() - level)); 
         // gleiches level -> *10^0 = 1 | enemy level eins kleiner -> *10^-1 | grösser *10^1 etc. // bin ich schon bissl stolz drauf :)
     }
 
@@ -126,5 +146,40 @@ public class Stats : MonoBehaviour
     public int getLevel()
     {
         return level;
+    }
+
+    public int[] getCurrentStats()
+    {
+        return new int[] {currentStrength, currentEndurance, currentDexterity, currentAgility, currentMagic};
+    }
+
+    public int[] getCurrentXP()
+    {
+        return new int[] { strengthXP, enduranceXP, dexterityXP, agilityXP, magicXP };
+    }
+
+    public int getLevelXP()
+    {
+        return xp;
+    }
+
+    public int[] getHiddenStats()
+    {
+        return new int[] { hiddenStrength, hiddenEndurance, hiddenDexterity, hiddenAgility, hiddenMagic };
+    }
+
+    public float[] getTotalStats()
+    {
+        return new float[] { strength, endurance, dexterity, agility, magic};
+    }
+
+    public bool getLevelUpPossible()
+    {
+        return levelUpPossible;
+    }
+
+    public bool getStatusUpdatePossible()
+    {
+        return statusUpdatePossible;
     }
 }

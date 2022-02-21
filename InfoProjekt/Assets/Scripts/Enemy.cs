@@ -6,12 +6,14 @@ public class Enemy : MonoBehaviour
 
     [Header("Stats")]
     [SerializeField] public int level = 1;
-    [SerializeField] private float maxHealth = 100;
-    [SerializeField] private float attackDamage = 30;
+    [SerializeField] private float maxHealth = 10;
+    [SerializeField] private float attackDamage = 3;
+    [SerializeField] private int xpAmount = 2;
     private float levelMultiplier = 2.5f;
     private float hiddenMaxHealth => (levelMultiplier * level * maxHealth);
     private float hiddenAttackDamage => (int)(levelMultiplier * level * attackDamage);
     private float health;
+    
 
     private void Start()
     {
@@ -43,5 +45,15 @@ public class Enemy : MonoBehaviour
     public int GetLevel()
     {
         return level;
+    }
+
+    public bool isDead()
+    {
+        return health > 0;
+    }
+
+    public int getXPAmount()
+    {
+        return xpAmount;
     }
 }
