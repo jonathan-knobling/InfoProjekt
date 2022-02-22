@@ -7,7 +7,7 @@ public class Stats : MonoBehaviour
 
     private int level = 1;
     private const float levelMultiplier = 0.7f;                           //over
-    private int[] xpThreshold = { 4, 8, 15, 16, 23, 42, 69, 420, 911, 1337, 9000, 69420 };
+    private int[] xpThreshold = { 0, 4, 8, 15, 16, 23, 42, 69, 420, 911, 1337, 9000, 69420 };
 
     private int xp = 0;
     private int strengthXP = 0;
@@ -38,7 +38,7 @@ public class Stats : MonoBehaviour
     private float magic => (currentMagic + hiddenMagic) * level * levelMultiplier;
 
     private bool levelUpPossible => (currentStrength >= 600 || currentEndurance >= 600 || currentDexterity >= 600
-                                    || currentAgility >= 600 || currentMagic >= 600) && xp > xpThreshold[level-1];
+                                    || currentAgility >= 600 || currentMagic >= 600) && xp > xpThreshold[level];
 
     private bool statusUpdatePossible => strengthXP > 0 || enduranceXP > 0 || dexterityXP > 0 || agilityXP > 0 || magicXP > 0;
 
@@ -57,6 +57,7 @@ public class Stats : MonoBehaviour
         if (!levelUpPossible) return;
         statusUpdate();
 
+        xp -= xpThreshold[level];
         level++;
         hiddenStrength += currentStrength;
         currentStrength = 10;

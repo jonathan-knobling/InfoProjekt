@@ -11,7 +11,7 @@
                 <ui:Label text="AGILITY: 10" display-tooltip-when-elided="true" name="agility_stat" enable-rich-text="true" class="text_box" />
                 <ui:Label text="MAGIC: 10" display-tooltip-when-elided="true" name="magic_stat" enable-rich-text="true" class="text_box" />
             </ui:VisualElement>
-            <ui:VisualElement name="experience" style="width: auto; background-color: rgb(46, 46, 46); padding-right: 0; padding-left: 0; max-height: none; padding-bottom: 0; padding-top: 0;">
+            <ui:VisualElement name="experience" style="width: auto; background-color: rgb(46, 46, 46); padding-right: 0; padding-left: 0; max-height: none; padding-bottom: 0; padding-top: 0; display: flex;">
                 <ui:Label text="EXPERIENCE" display-tooltip-when-elided="true" name="experience" class="text_heading" />
                 <ui:Label text="STRENGTH XP: 10" display-tooltip-when-elided="true" name="strength_experience" enable-rich-text="true" class="text_box" />
                 <ui:Label text="ENDURANCE XP: 10" display-tooltip-when-elided="true" name="endurance_experience" enable-rich-text="true" class="text_box" />

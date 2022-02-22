@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
 
     public bool isDead()
     {
-        return health > 0;
+        return health < 0;
     }
 
     public int getXPAmount()
