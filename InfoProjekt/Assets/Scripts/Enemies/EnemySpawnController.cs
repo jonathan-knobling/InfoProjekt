@@ -4,24 +4,34 @@ public class EnemySpawnController : MonoBehaviour
 {
 
     [SerializeField] private GameObject enemy;
-    [SerializeField] private Transform spawnPoint;
+    [SerializeField] private int numberOfEnemies;
+    [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private LayerMask nonHostile;
     private BoxCollider2D spawnArea;
-    private GameObject enemyInstance;
+    private GameObject[] enemyInstances;
 
     void Start()
     {
-        enemyInstance = Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
+        enemyInstances = new GameObject[numberOfEnemies];
+        for (int i = 0; i < enemyInstances.Length; i++)
+        {
+            Transform spawnPoint = spawnPoints[(int)(Random.value * spawnPoints.Length)];
+            enemyInstances[i] = Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
+        }
         spawnArea = GetComponent<BoxCollider2D>();
     }
 
     void Update()
     {
-        if (enemyInstance == null)
+        for (int i = 0; i < enemyInstances.Length; i++)
         {
-            if (!spawnArea.IsTouchingLayers(nonHostile)) 
+            if (enemyInstances[i] == null)
             {
-                enemyInstance = Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
+                if (!spawnArea.IsTouchingLayers(nonHostile))
+                {
+                    Transform spawnPoint = spawnPoints[(int)(Random.value * spawnPoints.Length)];
+                    enemyInstances[i] = Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
+                }
             }
         }
     }
