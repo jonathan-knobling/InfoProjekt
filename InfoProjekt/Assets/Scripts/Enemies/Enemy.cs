@@ -56,4 +56,9 @@ public class Enemy : MonoBehaviour
     {
         return xpAmount;
     }
+
+    public float getAttackDamage()
+    {
+        return hiddenAttackDamage;
+    }
 }
