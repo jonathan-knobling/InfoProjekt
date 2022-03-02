@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="player UI.uss" />
-    <ui:VisualElement name="screen" style="width: 1920px; height: 1080px; align-items: auto;">
+    <ui:VisualElement name="screen" style="align-items: flex-end;">
         <ui:VisualElement name="stats_screen" style="width: 300px; background-color: rgb(46, 46, 46); padding-right: 10px; padding-left: 10px; max-height: none; padding-bottom: 10px;">
             <ui:VisualElement name="stats">
                 <ui:Label text="LEVEL: 1" display-tooltip-when-elided="true" name="level" enable-rich-text="true" class="text_box" />
