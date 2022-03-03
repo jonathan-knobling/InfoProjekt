@@ -1,5 +1,8 @@
-public abstract class EnemyState
+namespace Enemies.EnemyAI
 {
-    public abstract void Update(EnemyAI enemyAI, Enemy stats);
-    public abstract void EnterState(EnemyAI enemyAI, Enemy stats);
+    public abstract class EnemyState
+    {
+        public abstract void Update(EnemyAI enemyAI, EnemyStats stats);
+        public abstract void EnterState(EnemyAI enemyAI, EnemyStats stats);
+    }
 }

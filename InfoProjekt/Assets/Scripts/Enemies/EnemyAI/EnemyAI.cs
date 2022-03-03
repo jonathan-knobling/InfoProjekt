@@ -1,64 +1,78 @@
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+namespace Enemies.EnemyAI
 {
+    public class EnemyAI : MonoBehaviour
+    {
 
-    [SerializeField] private LayerMask targetLayer;
-    [SerializeField] private Transform viewPoint;
-    [SerializeField] private float viewRadius = 5;
-    private GameObject target;
-    private Enemy stats;
-    private Vector3 startingPosition;
+        [SerializeField] private LayerMask targetLayer;
+        [SerializeField] private Transform viewPoint;
+        [SerializeField] private float viewRadius = 5;
+        [SerializeField] private float roamingRadius = 20;
+        private GameObject target;
+        private EnemyStats stats;
+        private Vector2 startingPosition;
 
-    EnemyState state;
-    EnemyRoamingState roamingState;
-    EnemyChasingState chasingState;
+        EnemyState state;
+        EnemyRoamingState roamingState;
+        EnemyChasingState chasingState;
     
 
-    private void Awake()
-    {
-        roamingState = new EnemyRoamingState();
-        chasingState = new EnemyChasingState();
-        state = roamingState;
-    }
-
-    void Start()
-    {
-        startingPosition = transform.position;
-        stats = GetComponent<Enemy>();
-    }
-
-    void Update()
-    {
-        state.Update(this, stats);
-    }
-
-    public Collider2D checkView()
-    {
-        Collider2D collider = Physics2D.OverlapCircle(viewPoint.position, viewRadius, targetLayer);
-        if(collider == null)
+        private void Awake()
         {
+            roamingState = new EnemyRoamingState();
+            chasingState = new EnemyChasingState();
+            state = roamingState;
+        }
+
+        void Start()
+        {
+            startingPosition = transform.position;
+            stats = GetComponent<EnemyStats>();
+        }
+
+        void Update()
+        {
+            state.Update(this, stats);
+        }
+
+        public Collider2D checkView()
+        {
+            Collider2D collider = Physics2D.OverlapCircle(viewPoint.position, viewRadius, targetLayer);
+            if(collider == null)
+            {
+                return null;
+            }
+            if((collider.transform.position.x - transform.position.x) * transform.localScale.x < 0)
+            {
+                return collider;
+            }
             return null;
         }
-        if((collider.transform.position.x - transform.position.x) * transform.localScale.x < 0)
+
+        public void changeState()
         {
-            return collider;
+
         }
-        return null;
-    }
 
-    public void changeState()
-    {
+        public void setTarget(GameObject target)
+        {
+            this.target = target;
+        }
 
-    }
+        public Vector2 getStartingPosition()
+        {
+            return startingPosition;
+        }
 
-    public void setTarget(GameObject target)
-    {
-        this.target = target;
-    }
+        public float GetRoamingRadius()
+        {
+            return roamingRadius;
+        }
 
-    public Vector3 getStartingPosition()
-    {
-        return startingPosition;
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.DrawWireSphere(startingPosition, roamingRadius);
+        }
     }
 }
