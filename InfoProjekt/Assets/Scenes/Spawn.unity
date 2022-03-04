@@ -3468,6 +3468,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1800960057157052434, guid: 1e6918e5cba64c346950b76af083fd71, type: 3}
+      propertyPath: quests.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800960057157052434, guid: 1e6918e5cba64c346950b76af083fd71, type: 3}
+      propertyPath: quests.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: e263de35a4e3c2743ac548d13e899875, type: 2}
     - target: {fileID: 6085662826217529318, guid: 1e6918e5cba64c346950b76af083fd71, type: 3}
       propertyPath: camTransform
       value: 
@@ -8663,7 +8671,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7102396, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

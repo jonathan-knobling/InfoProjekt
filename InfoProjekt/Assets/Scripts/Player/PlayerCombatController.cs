@@ -1,22 +1,27 @@
+using System;
 using Enemies;
 using UnityEngine;
+using Util;
 
 namespace Player
 {
     public class PlayerCombatController: MonoBehaviour
     {
-
+        public static PlayerCombatController Instance;
+        
         [SerializeField] private Animator animator;
         [SerializeField] private Transform camTransform;
         [SerializeField] private Transform attackPoint;
         [SerializeField] private float attackRange = 0.5f;
         [SerializeField] private LayerMask enemyLayers;
+        public event EventHandler<StringEventArgs> OnEnemyKilled;
 
         private Stats stats;
 
         private void Start()
         {
             stats = GetComponent<Stats>();
+            Instance = this;
         }
 
         void Update()
@@ -47,9 +52,10 @@ namespace Player
                 if(enemy.GetComponent<EnemyStats>().IsDead())
                 {
                     stats.addXP(enemy.GetComponent<EnemyStats>());
+                    //event on enemy killed wird invoked und der name als eventarg gepassed
+                    OnEnemyKilled?.Invoke(this, new StringEventArgs(enemy.GetComponent<EnemyStats>().enemyID));
                 }
                 stats.addStrengthXP(stats.getAttDmg());
-                Debug.Log("Hit Enemy: " + enemy.name);
             }
         }
 

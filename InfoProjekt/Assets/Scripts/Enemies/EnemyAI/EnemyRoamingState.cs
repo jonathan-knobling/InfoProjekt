@@ -1,7 +1,5 @@
-using Unity.Mathematics;
 using UnityEngine;
 using Util;
-using Random = UnityEngine.Random;
 
 namespace Enemies.EnemyAI
 {

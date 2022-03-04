@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b301418aa50ab048af9c837d076e794, type: 3}
+  m_Name: Kill Enemies
+  m_EditorClassIdentifier: 
+  goals:
+  - {fileID: 11400000, guid: e39545a6eb0a45b44915b8d7cdd1142c, type: 2}
+  questName: Davids Mom Slayer
+  description: Kill the Enemies
+  completed: 0

@@ -1,30 +1,28 @@
+using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Enemies
 {
     public class EnemyStats : MonoBehaviour
     {
         [SerializeField] public Animator animator;
-
-        [Header("Stats")]
+        
+        [Header("Stats")] 
+        [SerializeField] public string enemyID;
         [SerializeField] public int level = 1;
         [SerializeField] private float maxHealth = 10;
         [SerializeField] private float attackDamage = 3;
         [SerializeField] private int xpAmount = 2;
-        private float levelMultiplier = 2.5f;
-        private float hiddenMaxHealth => (levelMultiplier * level * maxHealth);
-        private float hiddenAttackDamage => (int)(levelMultiplier * level * attackDamage);
+        private const float LevelMultiplier = 2.5f;
+        private float hiddenMaxHealth => (LevelMultiplier * level * maxHealth);
+        private float hiddenAttackDamage => (int)(LevelMultiplier * level * attackDamage);
         private float health;
     
 
         private void Start()
         {
             health = hiddenMaxHealth;
-        }
-
-        void Update()
-        {
-
         }
 
         public void Hit(float damage)
@@ -35,7 +33,6 @@ namespace Enemies
             {
                 Die();
             }
-            Debug.Log(name + " " + health);
         }
 
         public void Die()
