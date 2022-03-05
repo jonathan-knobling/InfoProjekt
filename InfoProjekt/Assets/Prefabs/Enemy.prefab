@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 4459712548062227213}
-  name: wizard
+  enemyID: wizard
   level: 1
   maxHealth: 10
   attackDamage: 3

@@ -9,6 +9,8 @@ namespace Quests
         public int currentAmount;
         public int requiredAmount;
 
+        public abstract void Init();
+
         protected QuestGoal(string description, int currentAmount, int requiredAmount)
         {
             this.description = description;

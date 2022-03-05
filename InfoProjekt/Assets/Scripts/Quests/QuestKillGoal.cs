@@ -14,19 +14,23 @@ namespace Quests
             this.enemyID = enemyID;
         }
 
-        public override void Update()
+        public override void Init()
         {
             PlayerCombatController.Instance.OnEnemyKilled += EnemyKilledListener;
+        }
+
+        public override void Update()
+        {
             completed = currentAmount >= requiredAmount;
         }
 
         private void EnemyKilledListener(object sender, StringEventArgs e)
         {
-            string enemyID = e.Data;
+            string enemyID = e.data;
             if (this.enemyID == enemyID)
             {
                 currentAmount++;
-                Debug.Log("Enemy Killed");
+                Debug.Log(currentAmount);
             }
         }
     }

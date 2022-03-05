@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,17 +8,28 @@ namespace Quests
     {
         [SerializeField] private List<Quest> quests;
 
+        private void Start()
+        {
+            quests.ForEach(quest => quest.Init());
+        }
+
         void Update()
         {
+            if (quests == null) return;
+            
+            quests.ForEach(quest => quest.Update());
+            List<Quest> remove = new List<Quest>();
             quests.ForEach(quest =>
             {
-                quest.Update();
-                // nicht final
                 if (quest.completed)
                 {
-                    quests.Remove(quest);
+                    remove.Add(quest);
                 }
             });
+            if (remove.Count > 0)
+            {
+                remove.ForEach(quest => quests.Remove(quest));
+            }
         }
 
         public void addQuest(Quest quest)

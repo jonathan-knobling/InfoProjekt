@@ -4,11 +4,11 @@ namespace Util
 {
     public class StringEventArgs: EventArgs
     {
-        public string Data { get; set; }
+        public string data { get; set; }
 
         public StringEventArgs(string data)
         {
-            Data = data;
+            this.data = data;
         }
     }
 }

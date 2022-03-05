@@ -21,6 +21,10 @@ namespace Player
         private void Start()
         {
             stats = GetComponent<Stats>();
+        }
+
+        private void Awake()
+        {
             Instance = this;
         }
 
