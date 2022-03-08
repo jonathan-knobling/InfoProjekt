@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Util
@@ -7,6 +8,7 @@ namespace Util
 
         private float time;
         private float elapsedTime;
+        public event EventHandler OnElapsed;
         public bool elapsed;
         private bool paused;
 
@@ -24,6 +26,7 @@ namespace Util
                 if (elapsedTime >= time)
                 {
                     elapsed = true;
+                    OnElapsed?.Invoke(this, System.EventArgs.Empty);
                 }   
             }
         }

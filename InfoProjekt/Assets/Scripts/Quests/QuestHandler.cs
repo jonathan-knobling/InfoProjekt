@@ -1,12 +1,20 @@
 using System;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 
 namespace Quests
 {
     public class QuestHandler : MonoBehaviour
     {
+        public static QuestHandler Instance;
+        
         [SerializeField] private List<Quest> quests;
+
+        private void Awake()
+        {
+            Instance = this;
+        }
 
         private void Start()
         {

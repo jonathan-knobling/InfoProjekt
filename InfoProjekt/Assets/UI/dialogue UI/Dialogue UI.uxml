@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="dialogue ui.uss" />
+    <ui:VisualElement name="screen" style="align-items: center; width: 1920px; height: 1080px; display: none;">
+        <ui:VisualElement name="dialogue_box" style="height: 300px; width: 1000px; position: absolute; background-color: rgb(43, 43, 43); top: 25px;">
+            <ui:VisualElement name="buttons" style="flex-direction: row; align-items: flex-start; height: 75px; width: 1000px; justify-content: center; display: flex;">
+                <ui:Button name="button1" class="button" />
+                <ui:Button name="button2" class="button" />
+                <ui:Button name="button3" class="button" />
+            </ui:VisualElement>
+            <ui:Label name="text" text="davids MOM Gay 91169420" style="font-size: 32px; color: rgb(255, 255, 255); height: 210px; width: 970px; margin-bottom: 0; margin-top: 15px; margin-left: 15px; margin-right: 15px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; -unity-font-style: bold;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

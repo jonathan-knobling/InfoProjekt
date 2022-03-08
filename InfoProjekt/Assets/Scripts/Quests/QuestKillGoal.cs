@@ -1,6 +1,7 @@
 using Player;
 using UnityEngine;
 using Util;
+using Util.EventArgs;
 
 namespace Quests
 {

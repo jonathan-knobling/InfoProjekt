@@ -47,8 +47,8 @@ namespace UI
             levelUpButton = root.Q<Button>("levelup");
             statusUpdateButton = root.Q<Button>("status_update");
 
-            levelUpButton.clicked += levelUpButtonPressed;
-            statusUpdateButton.clicked += statusUpdateButtonPressed;
+            levelUpButton.clicked += LevelUpButtonPressed;
+            statusUpdateButton.clicked += StatusUpdateButtonPressed;
         }
 
         private void Update()
@@ -85,12 +85,12 @@ namespace UI
             }
         }
 
-        void levelUpButtonPressed()
+        void LevelUpButtonPressed()
         {
             stats.LevelUp();
         }
 
-        void statusUpdateButtonPressed()
+        void StatusUpdateButtonPressed()
         {
             stats.statusUpdate();
         }

@@ -2,6 +2,7 @@ using System;
 using Enemies;
 using UnityEngine;
 using Util;
+using Util.EventArgs;
 
 namespace Player
 {
@@ -30,7 +31,7 @@ namespace Player
 
         void Update()
         {
-            if(Input.GetKeyDown(KeyCode.Mouse0))
+            if(Input.GetButtonDown("Hit"))
             {
                 Vector2 mousePos = Input.mousePosition;
                 if((mousePos.x/240 - 4 > transform.position.x - camTransform.position.x && Mathf.Sign(transform.localScale.x) != -1) || (mousePos.x/240 - 4 < transform.position.x - camTransform.position.x && Mathf.Sign(transform.localScale.x) != 1))
