@@ -9,11 +9,6 @@ namespace Quests
     public class QuestKillGoal: QuestGoal
     {
         public string enemyID;
-        
-        public QuestKillGoal(string description, int currentAmount, int requiredAmount, string enemyID) : base(description, currentAmount, requiredAmount)
-        {
-            this.enemyID = enemyID;
-        }
 
         public override void Init()
         {

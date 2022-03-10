@@ -1,5 +1,6 @@
 using System;
-using JetBrains.Annotations;
+using Flow;
+using Flow.States;
 using NPCs.Dialogue.Nodes;
 using UnityEngine;
 
@@ -28,6 +29,7 @@ namespace NPCs.Dialogue
                 StartDialogueNode(dialogue.startNode);
                 //event invoken dass ein dialog gestartet hat
                 OnStartDialogue?.Invoke(dialogue);
+                FlowStateManager.Instance.ChangeState(new FlowStateDialogue());
             }
             else
             {
@@ -43,6 +45,7 @@ namespace NPCs.Dialogue
                 currentDialogue = null;
                 //event invoken dass der dialog geendet hat
                 OnEndDialogue?.Invoke(dialogue);
+                FlowStateManager.Instance.ChangeState(new FlowStateDefault());
             }
         }
 

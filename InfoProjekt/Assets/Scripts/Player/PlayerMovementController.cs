@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 namespace Player
 {
     public class PlayerMovementController : MonoBehaviour
     {
+        public static PlayerMovementController Instance;
+        
         [SerializeField] private Animator animator;
 
         [Header("Movement Variables")]
@@ -25,6 +28,11 @@ namespace Player
         private int groundedBuffer = 0;
     
         private Rigidbody2D rb;
+
+        private void Awake()
+        {
+            Instance = this;
+        }
 
         void Start()
         {
@@ -85,11 +93,17 @@ namespace Player
             animator.SetTrigger("jump");
         }
 
-        void Flip()
+        private void Flip()
         {
             Vector3 scale = transform.localScale;
             scale.x *= -1;
             transform.localScale = scale;
+        }
+
+        public void SetIdle()
+        {
+            animator.SetFloat("speed", 0);
+            animator.SetBool("grounded", true);
         }
     }
 }

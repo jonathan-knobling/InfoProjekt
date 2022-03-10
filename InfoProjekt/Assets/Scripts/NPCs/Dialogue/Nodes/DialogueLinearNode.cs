@@ -6,6 +6,7 @@ namespace NPCs.Dialogue.Nodes
     public class DialogueLinearNode: DialogueNode
     {
         [SerializeField] public DialogueNode nextNode;
+        [SerializeField] public string confirmButtonText = "OK";
         public override bool CanBeFollowedByNode(DialogueNode node)
         {
             return node == nextNode;

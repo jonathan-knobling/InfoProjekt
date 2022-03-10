@@ -11,14 +11,12 @@ namespace Quests
 
         public abstract void Init();
 
-        protected QuestGoal(string description, int currentAmount, int requiredAmount)
+        public QuestGoal()
         {
-            this.description = description;
-            this.currentAmount = currentAmount;
-            this.requiredAmount = requiredAmount;
+            currentAmount = 0;
             completed = false;
         }
-
+        
         public abstract void Update();
     }
 }

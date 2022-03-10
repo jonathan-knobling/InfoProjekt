@@ -1,3 +1,5 @@
+using Flow;
+using Flow.States;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -32,11 +34,11 @@ namespace UI
 
             optionsBackButton = root.Q<Button>("back_button");
 
-            resumeButton.clicked += resumeButtonPressed;
-            optionsButton.clicked += optionsButtonPressed;
-            quitButton.clicked += quitButtonPressed;
+            resumeButton.clicked += ResumeButtonPressed;
+            optionsButton.clicked += OptionsButtonPressed;
+            quitButton.clicked += QuitButtonPressed;
 
-            optionsBackButton.clicked += optionsBackButtonPressed;
+            optionsBackButton.clicked += OptionsBackButtonPressed;
         }
 
         void Update()
@@ -44,39 +46,38 @@ namespace UI
             //pause menu aktivieren und deaktivieren wenn input esc
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                Debug.Log(screen.style.display);
                 if (!screen.style.display.Equals(DisplayStyle.Flex))
                 {
-                    Time.timeScale = 0;
+                    FlowStateManager.Instance.ChangeState(new FlowStatePaused());
                     screen.style.display = DisplayStyle.Flex;
                 }
                 else
                 {
-                    resumeButtonPressed();
+                    ResumeButtonPressed();
                 }
             }
         }
 
-        void resumeButtonPressed()
+        void ResumeButtonPressed()
         {
-            Time.timeScale = 1;
+            FlowStateManager.Instance.ChangeState(new FlowStateDefault());
             screen.style.display = DisplayStyle.None;
-            optionsBackButtonPressed(); // falls man während man im options menu is esc drückt
+            OptionsBackButtonPressed(); // falls man während man im options menu is esc drückt
         }
 
-        void optionsButtonPressed()
+        void OptionsButtonPressed()
         {
             optionsMenu.style.display = DisplayStyle.Flex;
             pauseMenu.style.display = DisplayStyle.None;
         }
 
-        void optionsBackButtonPressed()
+        void OptionsBackButtonPressed()
         {
             optionsMenu.style.display = DisplayStyle.None;
             pauseMenu.style.display = DisplayStyle.Flex;
         }
 
-        void quitButtonPressed()
+        void QuitButtonPressed()
         {
             Application.Quit();
         }
