@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using NPCs.Dialogue.Nodes;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -15,7 +16,7 @@ namespace NPCs.Dialogue.UI
         private Button[] buttons;
         private Label text;
 
-        private DialogueChoiceNodeUI[] buttonUIs;
+        private List<DialogueChoiceNodeUI> choiceNodeUIs;
 
         private DialogueSequencer sequencer;
         [SerializeField] private DialogueChannelSO dialogueChannel;
@@ -32,7 +33,7 @@ namespace NPCs.Dialogue.UI
             buttons[2] = root.Q<Button>("button3");
             text = root.Q<Label>("text");
 
-            buttonUIs = new DialogueChoiceNodeUI[3];
+            choiceNodeUIs = new List<DialogueChoiceNodeUI>(3);
             
             sequencer = new DialogueSequencer();
             dialogueChannel.OnRequestDialogue += OnDialogueRequested;
@@ -48,16 +49,23 @@ namespace NPCs.Dialogue.UI
             {
                 node.dialogueEvent.Invoke();
             }
+            
             //alle buttons unsichtbar
-            Array.ForEach(buttons, button => button.style.display = DisplayStyle.None);
+            foreach (var button in buttons)
+            {
+                button.style.display = DisplayStyle.None;
+                Debug.Log("dadasdasdasd");
+            }
             //einen button zum confirmen wieder sichtbar machen und text setzen
             buttons[0].style.display = DisplayStyle.Flex;
-            buttons[0].text = node.confirmButtonText;
-            
+            buttons[0].text = node.nextButtonText;
+
+            //alle choicenodeuis aus der liste entfernen
+            choiceNodeUIs.Clear();
             //choicenode ui erstellen und die onbuttonclicked funktion dem button hinzufügen und alle anderen gecleared
-            buttonUIs[0] = new DialogueChoiceNodeUI(sequencer, node);
+            choiceNodeUIs.Add(new DialogueChoiceNodeUI(sequencer, node));
             Debug.Log("onbuttonclickedhinzufügen");
-            buttons[0].clicked += buttonUIs[0].OnButtonClicked;
+            buttons[0].clicked += choiceNodeUIs[0].OnButtonClicked;
             
             //text und speaker auf das label anwenden
             text.text =  node.line.speaker.characterName + ": " + node.line.line;
@@ -75,6 +83,8 @@ namespace NPCs.Dialogue.UI
             {
                 throw new Exception("too many choice nodes (max 3)");
             }
+            //alle choicenodeuis aus der liste entfernen
+            choiceNodeUIs.Clear();
             //für jede option die man anklicken kann (max 3)
             for (int i = 0; i < node.choices.Count; i++)
             {
@@ -83,8 +93,8 @@ namespace NPCs.Dialogue.UI
                 buttons[i].text = node.choices[i].choiceNodeButtonText;
                 
                 //choicenode uis erstellen und onbuttonclicked funktion dem button hinzufügen und alle anderen gecleared
-                buttonUIs[i] = new DialogueChoiceNodeUI(sequencer, node.choices[i]);
-                buttons[i].clicked += buttonUIs[i].OnButtonClicked;
+                choiceNodeUIs[i] = new DialogueChoiceNodeUI(sequencer, node.choices[i]);
+                buttons[i].clicked += choiceNodeUIs[i].OnButtonClicked;
             }
             //text und speaker auf das label anwenden
             text.text =  node.line.speaker.characterName + ": " + node.line.line;

@@ -6,6 +6,7 @@ namespace Enemies.EnemyAI
     public class EnemyRoamingState : EnemyState
     {
 
+        private EnemyMovementController movementController;
         private Vector2 startPosition;
         private Timer actionTimer;
 
@@ -15,30 +16,31 @@ namespace Enemies.EnemyAI
             actionTimer = new Timer(1.5f);
         }
     
-        public override void EnterState(EnemyAI enemyAI, EnemyStats stats)
+        public override void EnterState(EnemyAI enemyAI)
         {
-            this.startPosition = enemyAI.getStartingPosition();
+            startPosition = enemyAI.startingPosition;
+            movementController = enemyAI.GetComponent<EnemyMovementController>();
         }
 
-        public override void Update(EnemyAI enemyAI, EnemyStats stats)
+        public override void Update(EnemyAI enemyAI)
         {
             //change enemy actions with random timer
-            if (actionTimer == null || actionTimer.elapsed == true)
+            if (actionTimer == null || actionTimer.elapsed)
             {
                 actionTimer = new Timer(Random.Range(1.5f, 0.3f));
-                PerformRandomAction(enemyAI, stats);
+                PerformRandomMovement(enemyAI);
             }
             actionTimer.Update();
         
-            Collider2D collider = enemyAI.checkView();
+            Collider2D collider = enemyAI.CheckView();
             if (collider != null)
             {
-                enemyAI.changeState();
-                enemyAI.setTarget(collider.GetComponent<GameObject>());
+                enemyAI.SwitchState();
+                enemyAI.target = collider.GetComponent<GameObject>();
             }
         }
 
-        private void PerformRandomAction(EnemyAI enemyAI, EnemyStats stats)
+        private void PerformRandomMovement(EnemyAI enemyAI)
         {
             if (Random.value > 0.5f) //idle action
             {
@@ -46,15 +48,14 @@ namespace Enemies.EnemyAI
             }
             else
             {
-                EnemyMovementController movementController = enemyAI.GetComponent<EnemyMovementController>();
-                float roamingRadius = enemyAI.GetRoamingRadius();
+                /*float roamingRadius = enemyAI.GetRoamingRadius();
                 float relativeX = enemyAI.transform.position.x - startPosition.x;
-                if (false /*math.abs(relativeX) >= roamingRadius*/)
+                if (math.abs(relativeX) >= roamingRadius)
                 {
-                    // speed in entgegengesetzte richtung vom relativen x
-                    //enemyAI.GetComponent<Rigidbody2D>().velocity = new Vector2(-math.sign(relativeX) * speed, 0);
+                    //speed in entgegengesetzte richtung vom relativen x
+                    enemyAI.GetComponent<Rigidbody2D>().velocity = new Vector2(-math.sign(relativeX) * speed, 0);
                 }
-                else
+                else*/
                 {
                     if (Random.value > 0.5f)
                     {

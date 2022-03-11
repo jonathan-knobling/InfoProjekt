@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b77ccf772a44df288c6237bedfc317f, type: 3}
   m_Name: Line 1
   m_EditorClassIdentifier: 
-  speaker: {fileID: 0}
+  speaker: {fileID: 11400000, guid: 7b6479b4cb59789479bdbdfd6bb34747, type: 2}
   line: Fuck You!

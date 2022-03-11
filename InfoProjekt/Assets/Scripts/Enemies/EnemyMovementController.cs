@@ -1,3 +1,4 @@
+using System;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -9,7 +10,9 @@ namespace Enemies
         [SerializeField] private Animator animator;
         private EnemyStats stats;
         private Rigidbody2D rb;
-        private bool facingRight => Mathf.Sign(transform.localScale.x) == 1;
+        //animator trigger
+        private static readonly int Speed = Animator.StringToHash("speed");
+        private bool facingRight => Math.Abs(Mathf.Sign(transform.localScale.x) - 1) < 0.01f; // basically sign(x) == 1
     
         void Start()
         {
@@ -19,7 +22,7 @@ namespace Enemies
 
         private void Update()
         {
-            animator.SetFloat("speed", math.abs(rb.velocity.x));
+            animator.SetFloat(Speed, math.abs(rb.velocity.x));
         }
 
         public void MoveRight()
@@ -47,9 +50,10 @@ namespace Enemies
 
         private void Flip()
         {
-            Vector3 scale = transform.localScale;
+            var transform1 = transform;
+            Vector3 scale = transform1.localScale;
             scale.x *= -1;
-            transform.localScale = scale;
+            transform1.localScale = scale;
         }
     }
 }

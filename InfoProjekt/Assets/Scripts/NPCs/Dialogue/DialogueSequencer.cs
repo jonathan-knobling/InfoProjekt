@@ -1,4 +1,3 @@
-using System;
 using Flow;
 using Flow.States;
 using NPCs.Dialogue.Nodes;
@@ -33,7 +32,7 @@ namespace NPCs.Dialogue
             }
             else
             {
-                throw new ArgumentNullException("dialogue.startNode", "Parameter Null or there is already a Dialogue active");
+                Debug.Log("dialogue is null oder is schon n dialog am laufen");
             }
         }
 

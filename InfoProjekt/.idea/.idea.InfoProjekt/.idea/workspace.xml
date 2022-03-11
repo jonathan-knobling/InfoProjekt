@@ -6,36 +6,34 @@
   <component name="ChangeListManager">
     <list default="true" id="1d77c255-15bf-42b2-a430-981d6749a3ce" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.InfoProjekt/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.InfoProjekt/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Dialogue Channel.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Dialogue Channel.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/test dialogue.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/test dialogue/line 2.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/test dialogue/line 2.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/test dialogue/line 3.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/test dialogue/line 3.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/test dialogue/line 4.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/test dialogue/line 4.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/test dialogue/line1.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/test dialogue/line1.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/test dialogue/node 2.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/test dialogue/node 2.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/test dialogue/node 3.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/test dialogue/node 3.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/test dialogue/node 4.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/test dialogue/node 4.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/test dialogue/node1.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/test dialogue/node1.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/test dialogue/test dialogue.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/test dialogue/test dialogue.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Spawn.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Spawn.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NPCs/Dialogue/DialogueChannelSO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/NPCs/Dialogue/DialogueChannelSO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NPCs/Dialogue/Events/DialogueEventAcceptQuest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/NPCs/Dialogue/Events/DialogueEventAcceptQuest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyAI/EnemyAI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyAI/EnemyAI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyAI/EnemyChasingState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyAI/EnemyChasingState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyAI/EnemyRoamingState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyAI/EnemyRoamingState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyAI/EnemyState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyAI/EnemyState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyMovementController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyMovementController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyStats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyStats.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NPCs/Dialogue/DialogueSequencer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/NPCs/Dialogue/DialogueSequencer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NPCs/Dialogue/Nodes/DialogueLinearNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/NPCs/Dialogue/Nodes/DialogueLinearNode.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/NPCs/Dialogue/UI/DialogueUIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/NPCs/Dialogue/UI/DialogueUIController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NPCs/Interactable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/NPCs/Interactable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NPCs/NPC.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/NPCs/NPC.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/PauseMenuController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/PauseMenuController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Skills/SkillManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Skills/SkillManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/InputManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/InputManager.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Quests/QuestKillGoal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Quests/QuestKillGoal.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker0-prev.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker0-prev.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker0.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-AssetImportWorker0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-AssetImportWorker0.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe0.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe1.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe1.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe10.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe10.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe11.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe11.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe12.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe12.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe13.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe13.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe14.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe14.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe15.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe15.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe2.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe2.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe4.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe4.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe5.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe5.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe6.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe6.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe7.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe7.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe8.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe8.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe9.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe9.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,6 +131,7 @@
       <workItem from="1646766357704" duration="9420000" />
       <workItem from="1646854704982" duration="4811000" />
       <workItem from="1646914717872" duration="8674000" />
+      <workItem from="1647020326439" duration="5520000" />
     </task>
     <servers />
   </component>

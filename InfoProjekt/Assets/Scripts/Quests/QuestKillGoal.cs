@@ -1,6 +1,5 @@
 using Player;
 using UnityEngine;
-using Util;
 using Util.EventArgs;
 
 namespace Quests
@@ -22,8 +21,8 @@ namespace Quests
 
         private void EnemyKilledListener(object sender, StringEventArgs e)
         {
-            string enemyID = e.data;
-            if (this.enemyID == enemyID)
+            string data = e.data;
+            if (enemyID == data)
             {
                 currentAmount++;
                 Debug.Log(currentAmount);

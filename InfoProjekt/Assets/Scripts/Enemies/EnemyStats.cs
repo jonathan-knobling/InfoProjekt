@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Enemies
 {
@@ -18,7 +16,10 @@ namespace Enemies
         private float hiddenMaxHealth => (LevelMultiplier * level * maxHealth);
         private float hiddenAttackDamage => (int)(LevelMultiplier * level * attackDamage);
         private float health;
-    
+        //animator triggers
+        private static readonly int AnimatorHit = Animator.StringToHash("hit");
+        private static readonly int Death = Animator.StringToHash("death");
+
 
         private void Start()
         {
@@ -27,7 +28,7 @@ namespace Enemies
 
         public void Hit(float damage)
         {
-            animator.SetTrigger("hit");
+            animator.SetTrigger(AnimatorHit);
             health -= damage;
             if (health <= 0)
             {
@@ -37,7 +38,7 @@ namespace Enemies
 
         public void Die()
         {
-            animator.SetTrigger("death");
+            animator.SetTrigger(Death);
             Destroy(gameObject);
         }
 

@@ -7,15 +7,15 @@ namespace Enemies.EnemyAI
 
         [SerializeField] private LayerMask targetLayer;
         [SerializeField] private Transform viewPoint;
-        [SerializeField] private float viewRadius = 5;
-        [SerializeField] private float roamingRadius = 20;
-        private GameObject target;
+        [SerializeField] public float viewRadius = 5;
+        [SerializeField] public float roamingRadius = 20;
+        public GameObject target { get; set; }
         private EnemyStats stats;
-        private Vector2 startingPosition;
+        public Vector2 startingPosition { get; set; }
 
-        EnemyState state;
-        EnemyRoamingState roamingState;
-        EnemyChasingState chasingState;
+        private EnemyState state;
+        private EnemyRoamingState roamingState;
+        private EnemyChasingState chasingState;
     
 
         private void Awake()
@@ -23,6 +23,7 @@ namespace Enemies.EnemyAI
             roamingState = new EnemyRoamingState();
             chasingState = new EnemyChasingState();
             state = roamingState;
+            state.EnterState(this);
         }
 
         void Start()
@@ -33,41 +34,36 @@ namespace Enemies.EnemyAI
 
         void Update()
         {
-            state.Update(this, stats);
+            state.Update(this);
         }
 
-        public Collider2D checkView()
+        public Collider2D CheckView()
         {
-            Collider2D collider = Physics2D.OverlapCircle(viewPoint.position, viewRadius, targetLayer);
-            if(collider == null)
+            Collider2D overlapCircle = Physics2D.OverlapCircle(viewPoint.position, viewRadius, targetLayer);
+            if(overlapCircle == null)
             {
                 return null;
             }
-            if((collider.transform.position.x - transform.position.x) * transform.localScale.x < 0)
+            if((overlapCircle.transform.position.x - transform.position.x) * transform.localScale.x < 0)
             {
-                return collider;
+                Debug.Log("overlap lloooooll");
+                return overlapCircle;
             }
             return null;
         }
 
-        public void changeState()
+        public void SwitchState()
         {
-
-        }
-
-        public void setTarget(GameObject target)
-        {
-            this.target = target;
-        }
-
-        public Vector2 getStartingPosition()
-        {
-            return startingPosition;
-        }
-
-        public float GetRoamingRadius()
-        {
-            return roamingRadius;
+            if (state == chasingState)
+            {
+                state = roamingState;
+                state.EnterState(this);
+            }
+            else
+            {
+                state = chasingState;
+                state.EnterState(this);
+            }
         }
 
         private void OnDrawGizmosSelected()

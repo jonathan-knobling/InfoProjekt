@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3862a63db66d467198c2bdd8e6f441b6, type: 3}
   m_Name: Greet Dialogue
   m_EditorClassIdentifier: 
-  startNode: {fileID: 0}
+  startNode: {fileID: 11400000, guid: 1af3979e6f3f6f44582416df39f7d968, type: 2}
