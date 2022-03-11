@@ -13,7 +13,7 @@ public class SkillManager : MonoBehaviour
             switch (skills[i].state)
             {
                 case ActiveSkill.Skillstate.ready:
-                    if (Input.GetKeyDown(KeyCode.E))
+                    if (Input.GetButtonDown($"Skill1"))
                     {
                         skills[i].Activate(gameObject);
                         skills[i].state = ActiveSkill.Skillstate.active;

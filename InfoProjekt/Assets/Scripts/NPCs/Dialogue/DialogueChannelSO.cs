@@ -13,16 +13,5 @@ namespace NPCs.Dialogue
         {
             OnRequestDialogue?.Invoke(this, new DialogueEventArgs(dialogue));
         }
-        
-        [SerializeField] private Util.Dialogue test;
-        public void Test(object sender, EventArgs eventArgs)
-        {
-            if (test == null)
-            {
-                Debug.Log("Dialogue Test == null");
-                return;
-            }
-            OnRequestDialogue?.Invoke(this, new DialogueEventArgs(test));
-        }
     }
 }

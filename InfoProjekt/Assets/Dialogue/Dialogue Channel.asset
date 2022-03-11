@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 727e551b6deb4e758c65a36137124873, type: 3}
   m_Name: Dialogue Channel
   m_EditorClassIdentifier: 
-  test: {fileID: 11400000, guid: 5182aacb7b217454db5a717b21f8b6b0, type: 2}
+  test: {fileID: 0}

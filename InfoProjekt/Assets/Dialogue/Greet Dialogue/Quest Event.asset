@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47caa9968ae94245b075613f977c7d6b, type: 3}
-  m_Name: node 3
+  m_Script: {fileID: 11500000, guid: 6bed29916000416bb6ae612e5ec11efb, type: 3}
+  m_Name: Quest Event
   m_EditorClassIdentifier: 
-  choiceNodeButtonText: ok sorry
-  line: {fileID: 11400000, guid: 968e82cb5873d6f418ddb57df2cae1ed, type: 2}
-  dialogueEvent: {fileID: 0}
-  nextNode: {fileID: 0}
+  eventName: Accept Quest
+  quest: {fileID: 11400000, guid: e263de35a4e3c2743ac548d13e899875, type: 2}

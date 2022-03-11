@@ -5,6 +5,7 @@ namespace NPCs
     public abstract class Interactable: MonoBehaviour
     {
         [SerializeField] protected int interactionRadius;
+        [SerializeField] protected LayerMask playerMask;
 
         public abstract void Interact();
 

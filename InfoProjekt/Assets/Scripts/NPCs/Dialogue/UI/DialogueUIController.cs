@@ -2,7 +2,6 @@ using System;
 using NPCs.Dialogue.Nodes;
 using UnityEngine;
 using UnityEngine.UIElements;
-using Util;
 using Util.EventArgs;
 using Button = UnityEngine.UIElements.Button;
 
@@ -21,19 +20,8 @@ namespace NPCs.Dialogue.UI
         private DialogueSequencer sequencer;
         [SerializeField] private DialogueChannelSO dialogueChannel;
 
-        //TEST
-        private Timer timer;
-        private void Update()
-        {
-            timer.Update();
-            if (timer.elapsed) timer.OnElapsed -= dialogueChannel.Test;
-        }
-
         private void Start()
         {
-            //TEST
-            timer = new Timer(2.5f);
-            timer.OnElapsed += dialogueChannel.Test;
             
             root = GetComponent<UIDocument>().rootVisualElement;
             

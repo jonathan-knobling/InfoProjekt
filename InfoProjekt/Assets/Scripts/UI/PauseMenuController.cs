@@ -44,7 +44,7 @@ namespace UI
         void Update()
         {
             //pause menu aktivieren und deaktivieren wenn input esc
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetButtonDown("Pause"))
             {
                 if (!screen.style.display.Equals(DisplayStyle.Flex))
                 {

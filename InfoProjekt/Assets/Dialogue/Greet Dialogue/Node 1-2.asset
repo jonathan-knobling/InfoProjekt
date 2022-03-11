@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47caa9968ae94245b075613f977c7d6b, type: 3}
-  m_Name: node 4
+  m_Name: Node 1-2
   m_EditorClassIdentifier: 
-  choiceNodeButtonText: 
-  line: {fileID: 0}
-  dialogueEvent: {fileID: 0}
+  choiceNodeButtonText: OK
+  line: {fileID: 11400000, guid: 266a6aa22831a224cbdf3a1361a8297f, type: 2}
+  dialogueEvent: {fileID: 11400000, guid: 2a37338f16a30a447a47c801610e0c25, type: 2}
   nextNode: {fileID: 0}
+  confirmButtonText: OK

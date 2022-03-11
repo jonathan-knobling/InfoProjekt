@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47caa9968ae94245b075613f977c7d6b, type: 3}
-  m_Name: node1
+  m_Name: Node 1-1
   m_EditorClassIdentifier: 
-  choiceNodeButtonText: 
-  line: {fileID: 11400000, guid: 3cb913bc7a6459e4cb758af1349697ca, type: 2}
-  dialogueEvent: {fileID: 0}
-  nextNode: {fileID: 11400000, guid: 0f9307788cb16c6459ce3886262368b8, type: 2}
+  choiceNodeButtonText: Fuck You Too!
+  line: {fileID: 11400000, guid: 64974ef871699b64ab974d2c53285c11, type: 2}
+  dialogueEvent: {fileID: 11400000, guid: 2a37338f16a30a447a47c801610e0c25, type: 2}
+  nextNode: {fileID: 0}
+  confirmButtonText: OK
