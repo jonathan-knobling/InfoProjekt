@@ -1,7 +1,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Quests
+namespace NPCs.Quests
 {
     [CreateAssetMenu(menuName = "Quests/Quest")]
     public class Quest: ScriptableObject

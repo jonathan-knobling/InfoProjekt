@@ -18,7 +18,7 @@ namespace Enemies.EnemyAI
     
         public override void EnterState(EnemyAI enemyAI)
         {
-            startPosition = enemyAI.startingPosition;
+            startPosition = enemyAI.StartingPosition;
             movementController = enemyAI.GetComponent<EnemyMovementController>();
         }
 
@@ -31,12 +31,12 @@ namespace Enemies.EnemyAI
                 PerformRandomMovement(enemyAI);
             }
             actionTimer.Update();
-        
+            
             Collider2D collider = enemyAI.CheckView();
             if (collider != null)
             {
                 enemyAI.SwitchState();
-                enemyAI.target = collider.GetComponent<GameObject>();
+                enemyAI.Target = collider.GetComponent<GameObject>();
             }
         }
 
@@ -48,7 +48,7 @@ namespace Enemies.EnemyAI
             }
             else
             {
-                /*float roamingRadius = enemyAI.GetRoamingRadius();
+                /*float roamingRadius = enemyAI.RoamingRadius;
                 float relativeX = enemyAI.transform.position.x - startPosition.x;
                 if (math.abs(relativeX) >= roamingRadius)
                 {
@@ -59,11 +59,11 @@ namespace Enemies.EnemyAI
                 {
                     if (Random.value > 0.5f)
                     {
-                        movementController.MoveRight();
+                        movementController.MoveRight(enemyAI.Stats.RoamingSpeed);
                     }
                     else
                     {
-                        movementController.MoveLeft();
+                        movementController.MoveLeft(enemyAI.Stats.RoamingSpeed);
                     }
                 }
             }

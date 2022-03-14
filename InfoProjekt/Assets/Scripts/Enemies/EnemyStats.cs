@@ -4,6 +4,9 @@ namespace Enemies
 {
     public class EnemyStats : MonoBehaviour
     {
+        [Header("Animator")]
+        private static readonly int AnimatorHit = Animator.StringToHash("hit");
+        private static readonly int Death = Animator.StringToHash("death");
         [SerializeField] public Animator animator;
         
         [Header("Stats")] 
@@ -16,10 +19,14 @@ namespace Enemies
         private float hiddenMaxHealth => (LevelMultiplier * level * maxHealth);
         private float hiddenAttackDamage => (int)(LevelMultiplier * level * attackDamage);
         private float health;
-        //animator triggers
-        private static readonly int AnimatorHit = Animator.StringToHash("hit");
-        private static readonly int Death = Animator.StringToHash("death");
 
+        //getters
+        public int Level => level;
+        public bool IsDead => health <= 0;
+        public int XPAmount => xpAmount;
+        public float AttackDamage => attackDamage;
+        public float Speed => (float) ((1 + 0.25 * level) * 5);
+        public float RoamingSpeed => (float) ((1 + 0.15 * level) * 5);
 
         private void Start()
         {
@@ -40,36 +47,6 @@ namespace Enemies
         {
             animator.SetTrigger(Death);
             Destroy(gameObject);
-        }
-
-        public int GetLevel()
-        {
-            return level;
-        }
-
-        public bool IsDead()
-        {
-            return health < 0;
-        }
-
-        public int GetXpAmount()
-        {
-            return xpAmount;
-        }
-
-        public float GetAttackDamage()
-        {
-            return hiddenAttackDamage;
-        }
-
-        public float GetSpeed()
-        {
-            return (float) ((1 + 0.25 * level) * 5);
-        }
-
-        public float GetRoamingSpeed()
-        {
-            return (float) ((1 + 0.15 * level) * 5);
         }
     }
 }

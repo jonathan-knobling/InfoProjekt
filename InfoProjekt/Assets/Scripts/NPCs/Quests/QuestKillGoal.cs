@@ -2,7 +2,7 @@ using Player;
 using UnityEngine;
 using Util.EventArgs;
 
-namespace Quests
+namespace NPCs.Quests
 {
     [CreateAssetMenu(menuName = "Quests/Kill Goal")]
     public class QuestKillGoal: QuestGoal

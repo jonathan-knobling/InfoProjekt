@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Quests
+namespace NPCs.Quests
 {
     public abstract class QuestGoal : ScriptableObject
     {

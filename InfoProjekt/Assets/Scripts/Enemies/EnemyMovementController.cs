@@ -10,8 +10,7 @@ namespace Enemies
         [SerializeField] private Animator animator;
         private EnemyStats stats;
         private Rigidbody2D rb;
-        //animator trigger
-        private static readonly int Speed = Animator.StringToHash("speed");
+        private static readonly int Speed = Animator.StringToHash("speed"); // cached property
         private bool facingRight => Math.Abs(Mathf.Sign(transform.localScale.x) - 1) < 0.01f; // basically sign(x) == 1
     
         void Start()
@@ -25,18 +24,18 @@ namespace Enemies
             animator.SetFloat(Speed, math.abs(rb.velocity.x));
         }
 
-        public void MoveRight()
+        public void MoveRight(float speed)
         {
-            rb.velocity = new Vector2(stats.GetSpeed(), rb.velocity.y);
+            rb.velocity = new Vector2(speed, rb.velocity.y);
             if (!facingRight)
             {
                 Flip();
             }
         }
 
-        public void MoveLeft()
+        public void MoveLeft(float speed)
         {
-            rb.velocity = new Vector2(-stats.GetSpeed(), rb.velocity.y);
+            rb.velocity = new Vector2(-speed, rb.velocity.y);
             if (facingRight)
             {
                 Flip();

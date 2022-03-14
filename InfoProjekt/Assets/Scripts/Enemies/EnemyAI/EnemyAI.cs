@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using UnityEngine;
 
 namespace Enemies.EnemyAI
@@ -7,15 +8,28 @@ namespace Enemies.EnemyAI
 
         [SerializeField] private LayerMask targetLayer;
         [SerializeField] private Transform viewPoint;
-        [SerializeField] public float viewRadius = 5;
-        [SerializeField] public float roamingRadius = 20;
-        public GameObject target { get; set; }
+        [SerializeField] private float viewRadius = 5;
+        [SerializeField] private float roamingRadius = 20;
+        [SerializeField] private float minTargetDistance = 0.3f;
+        [SerializeField] private float hitRadius = 0.7f;
+        private Animator animator;
         private EnemyStats stats;
-        public Vector2 startingPosition { get; set; }
+        private Vector2 startingPosition;
 
         private EnemyState state;
         private EnemyRoamingState roamingState;
         private EnemyChasingState chasingState;
+
+        //getter und setter
+        public float ViewRadius => viewRadius;
+        public float RoamingRadius => roamingRadius;
+        [Description("mindestabstand zum target")]public float MinTargetDistance => minTargetDistance;
+        public float HitRadius => hitRadius;
+        public Animator Animator => animator;
+        public EnemyStats Stats => stats;
+        public GameObject Target { set; get; }
+        public Vector2 StartingPosition => startingPosition;
+        
     
 
         private void Awake()
@@ -30,6 +44,7 @@ namespace Enemies.EnemyAI
         {
             startingPosition = transform.position;
             stats = GetComponent<EnemyStats>();
+            animator = GetComponent<Animator>();
         }
 
         void Update()
@@ -39,7 +54,7 @@ namespace Enemies.EnemyAI
 
         public Collider2D CheckView()
         {
-            Collider2D overlapCircle = Physics2D.OverlapCircle(viewPoint.position, viewRadius, targetLayer);
+            Collider2D overlapCircle = Physics2D.OverlapCircle(viewPoint.position, ViewRadius, targetLayer);
             if(overlapCircle == null)
             {
                 return null;
@@ -64,11 +79,15 @@ namespace Enemies.EnemyAI
                 state = chasingState;
                 state.EnterState(this);
             }
+            Debug.Log("Switch State");
         }
 
         private void OnDrawGizmosSelected()
         {
             Gizmos.DrawWireSphere(startingPosition, roamingRadius);
+            Gizmos.DrawWireSphere(transform.position, viewRadius);
+            Gizmos.DrawWireSphere(transform.position, hitRadius);
+            
         }
     }
 }

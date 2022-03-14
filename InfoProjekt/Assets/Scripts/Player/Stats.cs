@@ -6,7 +6,6 @@ namespace Player
     public class Stats : MonoBehaviour
     {
         //stats nach danmachi system
-
         private int level = 1;
         private const float levelMultiplier = 0.7f;                           //over
         private int[] xpThreshold = { 0, 4, 8, 15, 16, 23, 42, 69, 420, 911, 1337, 9000, 69420 };
@@ -48,6 +47,18 @@ namespace Player
         private float maxHP => endurance * 0.69420f; // balancen    
         private float hp;
         private float damage => strength * 0.69420f; // balancen
+        
+        //getter
+        public float AttackDamage => damage;
+        public float MaxHP => maxHP;
+        public int Level => level;
+        public int[] CurrentStats => new int[] {currentStrength, currentEndurance, currentDexterity, currentAgility, currentMagic};
+        public int[] CurrentXP => new int[] { strengthXP, enduranceXP, dexterityXP, agilityXP, magicXP };
+        public int LevelXP => xp;
+        public int[] HiddenStats => new int[] { hiddenStrength, hiddenEndurance, hiddenDexterity, hiddenAgility, hiddenMagic };
+        public float[] TotalStats => new float[] { strength, endurance, dexterity, agility, magic};
+        public bool LevelUpPossible => levelUpPossible;
+        public bool StatusUpdatePossible => statusUpdatePossible;
 
         void Start()
         {
@@ -89,38 +100,38 @@ namespace Player
             magicXP = 0;
         }
 
-        public void addXP(EnemyStats enemy)
+        public void AddXp(EnemyStats enemy)
         {
-            xp += (int) (enemy.GetXpAmount() * Mathf.Pow(10, enemy.GetLevel() - level)); 
+            xp += (int) (enemy.XPAmount * Mathf.Pow(10, enemy.Level - level)); 
             // gleiches level -> *10^0 = 1 | enemy level eins kleiner -> *10^-1 | grösser *10^1 etc. // bin ich schon bissl stolz drauf :)
         }
 
-        public void addStrengthXP(float damage) //gegner durch meele attack zugefügtes damage vor att multiplier
+        public void AddStrengthXp(float damage) //gegner durch meele attack zugefügtes damage vor att multiplier
         {
             strengthXP += (int)(damage * 0.69420f); // balancen
         }
 
-        public void addEnduranceXP(float damage) //receivetes damage von egal welcher attacke vor def multiplier
+        public void AddEnduranceXp(float damage) //receivetes damage von egal welcher attacke vor def multiplier
         {
             enduranceXP += (int)(damage * 0.69420f); // balancen
         }
 
-        public void addDexterityXP(float damage) //geblocktes damage vor att multiplier (evtl auch noch andere möglichkeiten die was mit geschicklichkeit zum tun haben)
+        public void AddDexterityXp(float damage) //geblocktes damage vor att multiplier (evtl auch noch andere möglichkeiten die was mit geschicklichkeit zum tun haben)
         {
             dexterityXP += (int)(damage * 0.69420f); // balancen
         }
 
-        public void addMagicXP(float damage) //gegner durch magic attack zugefügtes damage vor att multiplier
+        public void AddMagicXp(float damage) //gegner durch magic attack zugefügtes damage vor att multiplier
         {
             magicXP += (int)(damage * 0.69420f); // balancen
         }
 
-        public void addAgilityXP(float distance) //distance die man gelaufen is vllt oder was anderes keine ahnung wie man des machen kann
+        public void AddAgilityXp(float distance) //distance die man gelaufen is vllt oder was anderes keine ahnung wie man des machen kann
         {
             agilityXP += (int)(distance * 0.69420f); // balancen
         }
 
-        public void dealDamage(float damage)
+        public void DealDamage(float damage)
         {
             this.hp -= damage; // hier noch def multiplier vllt
             if (hp <= 0)
@@ -134,56 +145,6 @@ namespace Player
             //death animation
             //vllt death screen oder so
             //löschen
-        }
-
-        public float getAttDmg()
-        {
-            return damage;
-        }
-
-        public float getMaxHP()
-        {
-            return maxHP;
-        }
-
-        public int getLevel()
-        {
-            return level;
-        }
-
-        public int[] getCurrentStats()
-        {
-            return new int[] {currentStrength, currentEndurance, currentDexterity, currentAgility, currentMagic};
-        }
-
-        public int[] getCurrentXP()
-        {
-            return new int[] { strengthXP, enduranceXP, dexterityXP, agilityXP, magicXP };
-        }
-
-        public int getLevelXP()
-        {
-            return xp;
-        }
-
-        public int[] getHiddenStats()
-        {
-            return new int[] { hiddenStrength, hiddenEndurance, hiddenDexterity, hiddenAgility, hiddenMagic };
-        }
-
-        public float[] getTotalStats()
-        {
-            return new float[] { strength, endurance, dexterity, agility, magic};
-        }
-
-        public bool getLevelUpPossible()
-        {
-            return levelUpPossible;
-        }
-
-        public bool getStatusUpdatePossible()
-        {
-            return statusUpdatePossible;
         }
     }
 }

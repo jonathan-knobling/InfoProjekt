@@ -2,46 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4915006e-b130-4a1e-9499-1b278f5d1bea" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Assets/Imports/Bandits - Pixel Art/Sprites/EnvironmentTiles.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/InfoProjekt/Assets/Imports/Bandits - Pixel Art/Sprites/EnvironmentTiles.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Assets/Imports/Bandits - Pixel Art/Sprites/HeavyBandit.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/InfoProjekt/Assets/Imports/Bandits - Pixel Art/Sprites/HeavyBandit.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Assets/Imports/Bandits - Pixel Art/Sprites/LightBandit.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/InfoProjekt/Assets/Imports/Bandits - Pixel Art/Sprites/LightBandit.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Assets/Imports/Cainos/Pixel Art Platformer - Village Props/Texture/TX Chest Animation.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/InfoProjekt/Assets/Imports/Cainos/Pixel Art Platformer - Village Props/Texture/TX Chest Animation.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Assets/Imports/Cainos/Pixel Art Platformer - Village Props/Texture/TX Tileset Ground.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/InfoProjekt/Assets/Imports/Cainos/Pixel Art Platformer - Village Props/Texture/TX Tileset Ground.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Assets/Imports/Cainos/Pixel Art Platformer - Village Props/Texture/TX Village Props.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/InfoProjekt/Assets/Imports/Cainos/Pixel Art Platformer - Village Props/Texture/TX Village Props.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Assets/Imports/EVil Wizard/Sprites/Attack.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/InfoProjekt/Assets/Imports/EVil Wizard/Sprites/Attack.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Assets/Imports/EVil Wizard/Sprites/Death.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/InfoProjekt/Assets/Imports/EVil Wizard/Sprites/Death.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Assets/Imports/EVil Wizard/Sprites/Idle.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/InfoProjekt/Assets/Imports/EVil Wizard/Sprites/Idle.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Assets/Imports/EVil Wizard/Sprites/Move.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/InfoProjekt/Assets/Imports/EVil Wizard/Sprites/Move.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Assets/Imports/EVil Wizard/Sprites/Take Hit.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/InfoProjekt/Assets/Imports/EVil Wizard/Sprites/Take Hit.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Assets/Sprites/Player/animation testing.psb.meta" beforeDir="false" afterPath="$PROJECT_DIR$/InfoProjekt/Assets/Sprites/Player/animation testing.psb.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Assets/UI/player UI/Player UI.uxml.meta" beforeDir="false" afterPath="$PROJECT_DIR$/InfoProjekt/Assets/UI/player UI/Player UI.uxml.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Assets/UI/player UI/player UI.uss.meta" beforeDir="false" afterPath="$PROJECT_DIR$/InfoProjekt/Assets/UI/player UI/player UI.uss.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Logs/AssetImportWorker0-prev.log" beforeDir="false" afterPath="$PROJECT_DIR$/InfoProjekt/Logs/AssetImportWorker0-prev.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InfoProjekt/.idea/.idea.InfoProjekt/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/InfoProjekt/.idea/.idea.InfoProjekt/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InfoProjekt/Logs/AssetImportWorker0.log" beforeDir="false" afterPath="$PROJECT_DIR$/InfoProjekt/Logs/AssetImportWorker0.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Logs/Packages-Update.log" beforeDir="false" afterPath="$PROJECT_DIR$/InfoProjekt/Logs/Packages-Update.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Logs/shadercompiler-AssetImportWorker0.log" beforeDir="false" afterPath="$PROJECT_DIR$/InfoProjekt/Logs/shadercompiler-AssetImportWorker0.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Logs/shadercompiler-UnityShaderCompiler.exe0.log" beforeDir="false" afterPath="$PROJECT_DIR$/InfoProjekt/Logs/shadercompiler-UnityShaderCompiler.exe0.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Logs/shadercompiler-UnityShaderCompiler.exe1.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Logs/shadercompiler-UnityShaderCompiler.exe10.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Logs/shadercompiler-UnityShaderCompiler.exe11.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Logs/shadercompiler-UnityShaderCompiler.exe12.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Logs/shadercompiler-UnityShaderCompiler.exe13.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Logs/shadercompiler-UnityShaderCompiler.exe14.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Logs/shadercompiler-UnityShaderCompiler.exe15.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Logs/shadercompiler-UnityShaderCompiler.exe2.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Logs/shadercompiler-UnityShaderCompiler.exe3.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Logs/shadercompiler-UnityShaderCompiler.exe4.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Logs/shadercompiler-UnityShaderCompiler.exe5.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Logs/shadercompiler-UnityShaderCompiler.exe6.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Logs/shadercompiler-UnityShaderCompiler.exe7.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Logs/shadercompiler-UnityShaderCompiler.exe8.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Logs/shadercompiler-UnityShaderCompiler.exe9.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/InfoProjekt/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/InfoProjekt/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/InfoProjekt/ProjectSettings/ProjectSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/InfoProjekt/ProjectSettings/ProjectVersion.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/InfoProjekt/UserSettings/EditorUserSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoProjekt/UserSettings/Search.settings" beforeDir="false" afterPath="$PROJECT_DIR$/InfoProjekt/UserSettings/Search.settings" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,11 +19,20 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/InfoProjekt/Assets/Scripts/Enemies/EnemyAI/EnemyChasingState.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/InfoProjekt/Assets/Scripts/Enemies/EnemyAI/EnemyState.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/InfoProjekt/Assets/Scripts/Environment/Parallax.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/InfoProjekt/Assets/Scripts/UI/MainMenuController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/InfoProjekt/Assets/Scripts/Player/PlayerMovementController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/InfoProjekt/Assets/Scripts/UI/PlayerUIController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/InfoProjekt/Assets/Scripts/Player/Stats.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/InfoProjekt/Assets/Scripts/Player/PlayerCombatController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/InfoProjekt/Assets/Scripts/Enemies/Enemy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/InfoProjekt/Assets/Scripts/Parallax.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/InfoProjekt/Assets/Scripts/UI/PauseMenuController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/InfoProjekt/Assets/Scripts/Enemies/EnemyStats.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/InfoProjekt/Assets/Scripts/Util/Timer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/InfoProjekt/Assets/Scripts/Enemies/EnemySpawnController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/InfoProjekt/Assets/Scripts/Enemies/EnemyAI/EnemyAI.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/InfoProjekt/Assets/Scripts/Enemies/EnemyAI/EnemyRoamingState.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -87,6 +58,7 @@
       <option name="presentableId" value="Default" />
       <updated>1646218987863</updated>
       <workItem from="1646218990507" duration="744000" />
+      <workItem from="1646340008988" duration="228000" />
     </task>
     <servers />
   </component>
@@ -94,7 +66,7 @@
     <option name="version" value="3" />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
-  <component name="UnityProjectConfiguration" hasMinimizedUI="null" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

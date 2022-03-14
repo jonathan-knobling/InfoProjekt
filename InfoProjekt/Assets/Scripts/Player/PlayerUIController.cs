@@ -1,8 +1,7 @@
-using Player;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace UI
+namespace Player
 {
     public class PlayerUIController : MonoBehaviour
     {
@@ -53,22 +52,22 @@ namespace UI
 
         private void Update()
         {
-            levelText.text = "LEVEL: " + stats.getLevel() + " (" + stats.getLevelXP() + ")";
+            levelText.text = "LEVEL: " + stats.Level + " (" + stats.LevelXP + ")";
 
-            strengthStatText.text = "STRENGTH: " + stats.getCurrentStats()[0] + " | " + stats.getHiddenStats()[0] + " | " + stats.getTotalStats()[0];
-            enduranceStatText.text = "ENDURANCE: " + stats.getCurrentStats()[1] + " | " + stats.getHiddenStats()[1] + " | " + stats.getTotalStats()[1];
-            dexterityStatText.text = "DEXTERITY: " + stats.getCurrentStats()[2] + " | " + stats.getHiddenStats()[2] + " | " + stats.getTotalStats()[2];
-            agilityStatText.text = "AGILITY: " + stats.getCurrentStats()[3] + " | " + stats.getHiddenStats()[3] + " | " + stats.getTotalStats()[3];
-            magicStatText.text = "MAGIC: " + stats.getCurrentStats()[4] + " | " + stats.getHiddenStats()[4] + " | " + stats.getTotalStats()[4];
+            strengthStatText.text = "STRENGTH: " + stats.CurrentStats[0] + " | " + stats.HiddenStats[0] + " | " + stats.TotalStats[0];
+            enduranceStatText.text = "ENDURANCE: " + stats.CurrentStats[1] + " | " + stats.HiddenStats[1] + " | " + stats.TotalStats[1];
+            dexterityStatText.text = "DEXTERITY: " + stats.CurrentStats[2] + " | " + stats.HiddenStats[2] + " | " + stats.TotalStats[2];
+            agilityStatText.text = "AGILITY: " + stats.CurrentStats[3] + " | " + stats.HiddenStats[3] + " | " + stats.TotalStats[3];
+            magicStatText.text = "MAGIC: " + stats.CurrentStats[4] + " | " + stats.HiddenStats[4] + " | " + stats.TotalStats[4];
 
-            strengthXPText.text = "STRENGTH XP: " + stats.getCurrentXP()[0];
-            enduranceXPText.text = "ENDURANCE XP: " + stats.getCurrentXP()[1];
-            dexterityXPText.text = "DEXTERITY XP: " + stats.getCurrentXP()[2];
-            agilityXPText.text = "AGILITY XP: " + stats.getCurrentXP()[3];
-            magicXPText.text = "MAGIC XP: " + stats.getCurrentXP()[4];
+            strengthXPText.text = "STRENGTH XP: " + stats.CurrentXP[0];
+            enduranceXPText.text = "ENDURANCE XP: " + stats.CurrentXP[1];
+            dexterityXPText.text = "DEXTERITY XP: " + stats.CurrentXP[2];
+            agilityXPText.text = "AGILITY XP: " + stats.CurrentXP[3];
+            magicXPText.text = "MAGIC XP: " + stats.CurrentXP[4];
 
 
-            if (stats.getLevelUpPossible()) 
+            if (stats.LevelUpPossible) 
             {
                 levelUpButton.style.display = DisplayStyle.Flex;
             } else
@@ -76,7 +75,7 @@ namespace UI
                 levelUpButton.style.display = DisplayStyle.None;
             }
 
-            if(stats.getStatusUpdatePossible())
+            if(stats.StatusUpdatePossible)
             {
                 statusUpdateButton.style.display = DisplayStyle.Flex;
             } else

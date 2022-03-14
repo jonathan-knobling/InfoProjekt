@@ -1,4 +1,4 @@
-using Quests;
+using NPCs.Quests;
 using UnityEngine;
 
 namespace NPCs.Dialogue.Events

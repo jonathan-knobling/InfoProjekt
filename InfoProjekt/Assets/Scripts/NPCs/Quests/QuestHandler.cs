@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
-using System.Net.NetworkInformation;
 using UnityEngine;
 
-namespace Quests
+namespace NPCs.Quests
 {
     public class QuestHandler : MonoBehaviour
     {

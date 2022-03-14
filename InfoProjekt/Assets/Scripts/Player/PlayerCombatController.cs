@@ -53,14 +53,14 @@ namespace Player
         
             foreach(Collider2D enemy in hitEnemies)
             {
-                enemy.GetComponent<EnemyStats>().Hit(stats.getAttDmg());
-                if(enemy.GetComponent<EnemyStats>().IsDead())
+                enemy.GetComponent<EnemyStats>().Hit(stats.AttackDamage);
+                if(enemy.GetComponent<EnemyStats>().IsDead)
                 {
-                    stats.addXP(enemy.GetComponent<EnemyStats>());
+                    stats.AddXp(enemy.GetComponent<EnemyStats>());
                     //event on enemy killed wird invoked und der name als eventarg gepassed
                     OnEnemyKilled?.Invoke(this, new StringEventArgs(enemy.GetComponent<EnemyStats>().enemyID));
                 }
-                stats.addStrengthXP(stats.getAttDmg());
+                stats.AddStrengthXp(stats.AttackDamage);
             }
         }
 
