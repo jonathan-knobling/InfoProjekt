@@ -61,7 +61,7 @@ namespace Enemies.EnemyAI
             }
             if((overlapCircle.transform.position.x - transform.position.x) * transform.localScale.x < 0)
             {
-                Debug.Log("overlap lloooooll");
+                Debug.Log("overlap");
                 return overlapCircle;
             }
             return null;

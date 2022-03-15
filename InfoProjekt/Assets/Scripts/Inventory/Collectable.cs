@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Inventory
 {
+    [RequireComponent(typeof(SpriteRenderer))]
     public class Collectable: MonoBehaviour
     {
         [SerializeField] public Item item;

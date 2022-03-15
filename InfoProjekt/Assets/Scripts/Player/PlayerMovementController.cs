@@ -1,4 +1,5 @@
 using System;
+using IO;
 using UnityEngine;
 
 namespace Player
@@ -8,16 +9,17 @@ namespace Player
         public static PlayerMovementController Instance;
         
         [SerializeField] private Animator animator;
+        [SerializeField] private InputChannelSO inputChannel;
 
         [Header("Movement Variables")]
         [SerializeField] private float speed = 10;
         private float horizontalDirection;
-        private bool facingRight => Mathf.Sign(transform.localScale.x) == 1;
+        private bool facingRight => Math.Abs(Mathf.Sign(transform.localScale.x) - 1) < 0.01f; // basically sign(x) == 1
 
         [Header("Jump Variables")]
         [SerializeField] private float jumpForce = 20;
         [SerializeField] private int maxJumpInputBuffer = 4;
-        private int jumpInputBuffer = 0;
+        private int jumpInputBuffer;
 
         [Header("Ground Variables")]
         [SerializeField] private Transform groundCheck;
@@ -25,9 +27,13 @@ namespace Player
         [SerializeField] private int maxGroundedBuffer = 4;
         [SerializeField] private LayerMask groundLayer;
         private bool isGrounded;
-        private int groundedBuffer = 0;
+        private int groundedBuffer;
     
         private Rigidbody2D rb;
+        
+        private static readonly int Speed = Animator.StringToHash("speed");
+        private static readonly int Grounded = Animator.StringToHash("grounded");
+        private static readonly int AnimatorJump = Animator.StringToHash("jump");
 
         private void Awake()
         {
@@ -37,6 +43,7 @@ namespace Player
         void Start()
         {
             rb = GetComponent<Rigidbody2D>();
+            inputChannel.JumpButtonPressed += OnJumpButtonPressed;
         }
 
         void FixedUpdate()
@@ -55,26 +62,32 @@ namespace Player
             {
                 Flip();
             }
-            else if(facingRight == true && horizontalDirection > 0)
+            else if(facingRight && horizontalDirection > 0)
             {
                 Flip();
             }
 
-            animator.SetFloat("speed", Mathf.Abs(rb.velocity.x));
-            animator.SetBool("grounded", isGrounded);
+            animator.SetFloat(Speed, Mathf.Abs(rb.velocity.x));
+            animator.SetBool(Grounded, isGrounded);
         }
 
-        void Update()
+        private void OnJumpButtonPressed()
         {
-            horizontalDirection = Input.GetAxisRaw("Horizontal");
-            if (Input.GetButtonDown("Jump") && (isGrounded || groundedBuffer > 0)) // ich glaub hier gibts nen buq wo doppelt force applyed wird weil man als erstes grounded is und danach aber noch grounded buffer hat oder so
+            // ich glaub hier gibts nen buq wo doppelt force applyed wird
+            // weil man als erstes grounded is und danach aber noch grounded buffer hat oder so
+            if (isGrounded || groundedBuffer > 0) 
             {
                 Jump();
             }
-            else if (Input.GetButtonDown("Jump"))
+            else
             {
                 jumpInputBuffer = maxJumpInputBuffer;
             }
+        }
+        
+        void Update()
+        {
+            horizontalDirection = inputChannel.horizontalDirection;
             if (isGrounded && jumpInputBuffer > 0)
             {
                 Jump();
@@ -90,20 +103,21 @@ namespace Player
         private void Jump()
         {
             rb.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
-            animator.SetTrigger("jump");
+            animator.SetTrigger(AnimatorJump);
         }
 
         private void Flip()
         {
-            Vector3 scale = transform.localScale;
+            var transformers = transform;
+            Vector3 scale = transformers.localScale;
             scale.x *= -1;
-            transform.localScale = scale;
+            transformers.localScale = scale;
         }
 
         public void SetIdle()
         {
-            animator.SetFloat("speed", 0);
-            animator.SetBool("grounded", true);
+            animator.SetFloat(Speed, 0);
+            animator.SetBool(Grounded, true);
         }
     }
 }

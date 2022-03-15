@@ -5,43 +5,49 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d77c255-15bf-42b2-a430-981d6749a3ce" name="Changes" comment="">
-<<<<<<< Updated upstream
+      <change afterPath="$PROJECT_DIR$/Assets/SO Channels.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/SO Channels/Dialogue Channel.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/SO Channels/Dialogue Channel.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/SO Channels/Input Channel.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/SO Channels/Input Channel.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/IO.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/IO/InputChannelSO.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/IO/InputChannelSO.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/IO/PlayerInput.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/IO/PlayerInput.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Skills.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Skills/ActiveSkillSO.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Skills/SkillManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Skills/Skills/DashSkillSO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.InfoProjekt/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.InfoProjekt/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Dialogue Channel.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Dialogue Channel.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Spawn.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Spawn.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyAI/EnemyAI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyAI/EnemyAI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyAI/EnemyChasingState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyAI/EnemyChasingState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyAI/EnemyRoamingState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyAI/EnemyRoamingState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyAI/EnemyState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyAI/EnemyState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyMovementController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyMovementController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyStats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyStats.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NPCs/Dialogue/DialogueSequencer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/NPCs/Dialogue/DialogueSequencer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NPCs/Dialogue/Nodes/DialogueLinearNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/NPCs/Dialogue/Nodes/DialogueLinearNode.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NPCs/Dialogue/UI/DialogueUIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/NPCs/Dialogue/UI/DialogueUIController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Quests/QuestKillGoal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Quests/QuestKillGoal.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker0-prev.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker0-prev.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker0.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-AssetImportWorker0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-AssetImportWorker0.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe0.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe1.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe1.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe10.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe10.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe11.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe11.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe12.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe12.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe13.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe13.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe14.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe14.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe15.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe15.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe2.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe2.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Inventory/Collectable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Inventory/Collectable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NPCs/Dialogue/Events/DialogueEventAcceptQuest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/NPCs/Dialogue/Events/DialogueEventAcceptQuest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NPCs/Interactable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/NPCs/Interactable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NPCs/NPC.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/NPCs/NPC.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerCombatController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerCombatController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovementController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovementController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Stats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Stats.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/PauseMenuController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/PauseMenuController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Skills.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Skills.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Skills/ActiveSkill.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Skills/ActiveSkill.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Skills/ActiveSkillSO.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Skills/SkillManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Skills/SkillManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Skills/SkillManager.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Skills/Skills.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Skills/Skills.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Skills/Skills/Dash.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Skills/Dash.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Skills/Skills/Dash.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Skills/Dash.asset.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Skills/Skills/DashSkill.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Skills/Skills/DashSkill.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Skills/Skills/DashSkillSO.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe3.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe3.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe4.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe4.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe5.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe5.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe6.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe6.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe7.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe7.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe8.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe8.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe9.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe9.log" afterDir="false" />
-=======
-      <change afterPath="$PROJECT_DIR$/../.idea/.idea.InfoProjekt.dir/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/.idea.InfoProjekt.dir/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/.idea.InfoProjekt.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/.idea.InfoProjekt.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.InfoProjekt/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.InfoProjekt/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker0.log" afterDir="false" />
->>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,21 +63,18 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/bc59ae27474a4789ad37030d212eb1fa52e978/0f/588c983a/EventArgs.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5406a456cf734443b3d02a7d123287f1299290/8c/60e9928f/MulticastDelegate.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ui@1.0.0-preview.18/Core/StyleSheets/StyleComplexSelector.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyStats.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ui@1.0.0-preview.18/Core/VisualElementHierarchy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quests/QuestKillGoal.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ui@1.0.0-preview.18/Core/Controls/Button.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/963c3a1707f0469aac8b8356a8d18b5d6e00/1f/c748d349/Input.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ui@1.0.0-preview.18/Core/MouseManipulator.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5406a456cf734443b3d02a7d123287f1299290/14/e381ca11/List`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5406a456cf734443b3d02a7d123287f1299290/45/9b44e6b5/EventArgs.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerCombatController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ui@1.0.0-preview.18/Core/Clickable.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/bc59ae27474a4789ad37030d212eb1fa52e978/0f/588c983a/EventArgs.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5406a456cf734443b3d02a7d123287f1299290/8c/60e9928f/MulticastDelegate.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyStats.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ui@1.0.0-preview.18/Core/Controls/Button.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/963c3a1707f0469aac8b8356a8d18b5d6e00/1f/c748d349/Input.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quests/Quest.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quests/QuestGoal.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ui@1.0.0-preview.18/Core/MouseManipulator.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5406a456cf734443b3d02a7d123287f1299290/14/e381ca11/List`1.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -132,7 +135,6 @@
       <updated>1646219741961</updated>
       <workItem from="1646219760360" duration="2770000" />
       <workItem from="1646234991799" duration="10004000" />
-<<<<<<< Updated upstream
       <workItem from="1646331723937" duration="3040000" />
       <workItem from="1646403395536" duration="9410000" />
       <workItem from="1646433418195" duration="8000" />
@@ -141,9 +143,9 @@
       <workItem from="1646854704982" duration="4811000" />
       <workItem from="1646914717872" duration="8674000" />
       <workItem from="1647020326439" duration="5520000" />
-=======
       <workItem from="1646331723937" duration="5078000" />
->>>>>>> Stashed changes
+      <workItem from="1647275380309" duration="425000" />
+      <workItem from="1647367153899" duration="5838000" />
     </task>
     <servers />
   </component>

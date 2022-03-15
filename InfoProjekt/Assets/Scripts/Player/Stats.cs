@@ -133,7 +133,7 @@ namespace Player
 
         public void DealDamage(float damage)
         {
-            this.hp -= damage; // hier noch def multiplier vllt
+            hp -= damage; // hier noch def multiplier vllt
             if (hp <= 0)
             {
                 Die();

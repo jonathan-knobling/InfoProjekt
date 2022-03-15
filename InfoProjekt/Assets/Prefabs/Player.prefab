@@ -157,6 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 4408689453333150550}
+  inputChannel: {fileID: 11400000, guid: 089b2dbb73bd38745996825d79789973, type: 2}
   speed: 10
   jumpForce: 20
   maxJumpInputBuffer: 4
@@ -250,6 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 4408689453333150550}
+  inputChannel: {fileID: 11400000, guid: 089b2dbb73bd38745996825d79789973, type: 2}
   camTransform: {fileID: 0}
   attackPoint: {fileID: 7327532978053073105}
   attackRange: 0.5

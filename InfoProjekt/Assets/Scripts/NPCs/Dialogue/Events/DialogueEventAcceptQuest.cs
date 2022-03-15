@@ -7,7 +7,7 @@ namespace NPCs.Dialogue.Events
     public class DialogueEventAcceptQuest: DialogueEvent
     {
         [SerializeField] public string eventName;
-        [SerializeField] public Quest quest;
+        [SerializeField] private Quest quest;
         
         public override void Invoke()
         {

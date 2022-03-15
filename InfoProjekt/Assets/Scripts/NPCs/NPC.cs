@@ -13,15 +13,17 @@ namespace NPCs
             dialogueChannel.RequestDialog(greetDialogue);
         }
 
-        protected override void Update()
+        public override void Init()
+        {
+            inputChannel.InteractButtonPressed += OnInteractButtonPressed;
+        }
+        
+        private void OnInteractButtonPressed()
         {
             if (Physics2D.OverlapCircle(transform.position, interactionRadius, playerMask))
             {
-                if (Input.GetButtonDown("Interact"))
-                {
-                    Interact();
-                    Debug.Log("interact");
-                }
+                Interact();
+                Debug.Log("interact");
                 //show "press f to interact" oder so ähnlich :)
             }
         }

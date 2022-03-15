@@ -1,5 +1,6 @@
 using Flow;
 using Flow.States;
+using IO;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -8,6 +9,8 @@ namespace UI
     public class PauseMenuController : MonoBehaviour
     {
 
+        [SerializeField] private InputChannelSO inputChannel;
+        
         private VisualElement root;
 
         private VisualElement screen;
@@ -39,22 +42,20 @@ namespace UI
             quitButton.clicked += QuitButtonPressed;
 
             optionsBackButton.clicked += OptionsBackButtonPressed;
+
+            inputChannel.PauseButtonPressed += OnPauseButtonPressed;
         }
 
-        void Update()
+        private void OnPauseButtonPressed()
         {
-            //pause menu aktivieren und deaktivieren wenn input esc
-            if (Input.GetButtonDown("Pause"))
+            if (!screen.style.display.Equals(DisplayStyle.Flex))
             {
-                if (!screen.style.display.Equals(DisplayStyle.Flex))
-                {
-                    FlowStateManager.Instance.ChangeState(new FlowStatePaused());
-                    screen.style.display = DisplayStyle.Flex;
-                }
-                else
-                {
-                    ResumeButtonPressed();
-                }
+                FlowStateManager.Instance.ChangeState(new FlowStatePaused());
+                screen.style.display = DisplayStyle.Flex;
+            }
+            else
+            {
+                ResumeButtonPressed();
             }
         }
 
