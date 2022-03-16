@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
+using Inventory.Items;
 using UnityEngine;
 
 namespace Inventory
@@ -17,79 +18,79 @@ namespace Inventory
 
         public void AddItem(Item item)
         {
+            foreach (var i in items)
+            {
+                if (i.name.Equals(item.Name))
+                {
+                    i.AddItemAmount(item.Amount);
+                    return;
+                }
+            }
             items.Add(item);
         }
 
         [Description("Returned ob es ein gespeichertes Item mit dem Namen dieses Items gibt")]
         public bool HasItem(Item item)
         {
-            foreach (var i in items)
-            {
-                if (i.Name.Equals(item.Name))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return HasItem(item.Name);
         }
         
         [Description("Returned ob es ein gespeichertes Item mit dem Name gibt")]
         public bool HasItem(string itemName)
         {
+            return HasItem(itemName, 0);
+        }
+
+        [Description("Returned ob es minAmount von item gibt")]
+        public bool HasItem(Item item, float minAmount)
+        {
+            return HasItem(item.Name, minAmount);
+        }
+
+        [Description("Returned ob es minAmount vom itemName gibt")]
+        public bool HasItem(string itemName, float minAmount)
+        {
             foreach (var i in items)
             {
                 if (i.Name.Equals(itemName))
                 {
-                    return true;
+                    if (i.Amount >= minAmount)
+                    {
+                        return true;
+                    }
                 }
             }
             return false;
         }
 
-        [Description("Removed eine bestimmte Anzahl von Items | returned false wenn es " +
-                     "nicht so viele items gegeben hat wie removed werden sollten und/oder " +
-                     "keine Items removed wurden. Bei erfolgreichem Removen returned die Funktion true")]
+        [Description("Removed einen bestimmten amount von einem Item | " +
+                     "returned als bool ob das removen erfolgreich war")]
         public bool RemoveItem(Item item, int amount)
         {
             if (amount == 0)
             {
                 return false;
             }
-            else
+
+            //list von hinten iteraten damit ich evtl items[i] sicher removen kann
+            for (int i = items.Count - 1; i >= 0; i--)
             {
-                int removed = 0;
-                //gespeicherte items in einen neuen temporären array kopieren
-                Item[] tempItems = {};
-                items.CopyTo(tempItems);
-                //tempItems loopen und items removen
-                for(int i = 0; i < tempItems.Length; i++)
+                if (items[i].Name.Equals(item.Name))
                 {
-                    if (removed >= amount)
+                    if (items[i].Amount > amount)
                     {
-                        continue;
+                        items[i].RemoveItemAmount(amount);
+                        return true;
                     }
-                    if (tempItems[i].Name.Equals(item.name))
+                    else if (items[i].Amount.Equals(amount))
                     {
-                        tempItems[i] = null;
-                        removed++;
+                        items.RemoveAt(i);
+                        return true;
                     }
                 }
-                //wenn es nicht so viele items gab wie removed werden sollten
-                if (removed < amount)
-                {
-                    return false;
-                }
-                //copy items back from temp array
-                items.Clear();
-                foreach (var i in tempItems)
-                {
-                    if (i != null)
-                    {
-                        items.Add(i);
-                    }
-                }
-                return true;
             }
+
+            return false;
         }
     }
 }
