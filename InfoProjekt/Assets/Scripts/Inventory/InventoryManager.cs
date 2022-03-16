@@ -16,16 +16,26 @@ namespace Inventory
             Instance = this;
         }
 
+        [Description("Add Item to the Inventory")]
         public void AddItem(Item item)
         {
-            foreach (var i in items)
+            //wenn das item stackable ist
+            if (item is StackableItem)
             {
-                if (i.name.Equals(item.Name))
+                foreach (var i in items)
                 {
-                    i.AddItemAmount(item.Amount);
-                    return;
+                    //wenn es das item schon gibt
+                    if (i.name.Equals(item.Name))
+                    {
+                        StackableItem s1 = (StackableItem) i;
+                        StackableItem s2 = (StackableItem) item;
+                        //den amount erhöhen
+                        s1.AddItemAmount(s2.Amount);
+                        return;
+                    }
                 }
             }
+            //wenn es das item noch nicht gibt oder es nicht stackable ist
             items.Add(item);
         }
 
@@ -38,25 +48,30 @@ namespace Inventory
         [Description("Returned ob es ein gespeichertes Item mit dem Name gibt")]
         public bool HasItem(string itemName)
         {
-            return HasItem(itemName, 0);
-        }
-
-        [Description("Returned ob es minAmount von item gibt")]
-        public bool HasItem(Item item, float minAmount)
-        {
-            return HasItem(item.Name, minAmount);
-        }
-
-        [Description("Returned ob es minAmount vom itemName gibt")]
-        public bool HasItem(string itemName, float minAmount)
-        {
             foreach (var i in items)
             {
                 if (i.Name.Equals(itemName))
                 {
-                    if (i.Amount >= minAmount)
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        [Description("Returned ob es minAmount von stackableItem gibt")]
+        public bool HasItem(Item item, float minAmount)
+        {
+            if (item is StackableItem)
+            {
+                foreach (var i in items)
+                {
+                    if (i.Name.Equals(item.Name))
                     {
-                        return true;
+                        StackableItem stackableItem = (StackableItem) i;
+                        if (stackableItem.Amount >= minAmount)
+                        {
+                            return true;
+                        }
                     }
                 }
             }
@@ -77,19 +92,27 @@ namespace Inventory
             {
                 if (items[i].Name.Equals(item.Name))
                 {
-                    if (items[i].Amount > amount)
+                    if (item is StackableItem)
                     {
-                        items[i].RemoveItemAmount(amount);
-                        return true;
+                        StackableItem stackableItem = (StackableItem) items[i];
+                        if (stackableItem.Amount > amount)
+                        {
+                            stackableItem.RemoveItemAmount(amount);
+                            return true;
+                        }
+                        else if (stackableItem.Amount.Equals(amount))
+                        {
+                            items.RemoveAt(i);
+                            return true;
+                        }
                     }
-                    else if (items[i].Amount.Equals(amount))
+                    else
                     {
                         items.RemoveAt(i);
-                        return true;
                     }
                 }
             }
-
+            
             return false;
         }
     }
