@@ -29,23 +29,23 @@ namespace UI
             mainMenuScreen = root.Q<VisualElement>("main_menu");
 
             //die Funktionen den Buttons hinzufügen
-            playButton.clicked += playButtonPressed;
-            settingsButton.clicked += settingsButtonPressed;
-            settingsBackButton.clicked += settingsBackButtonPressed;
+            playButton.clicked += PlayButtonPressed;
+            settingsButton.clicked += SettingsButtonPressed;
+            settingsBackButton.clicked += SettingsBackButtonPressed;
         }
 
-        void playButtonPressed()
+        void PlayButtonPressed()
         {
             SceneManager.LoadScene("Spawn");
         }
 
-        void settingsButtonPressed()
+        void SettingsButtonPressed()
         {
             settingsScreen.style.display = DisplayStyle.Flex;
             mainMenuScreen.style.display = DisplayStyle.None;
         }
 
-        void settingsBackButtonPressed()
+        void SettingsBackButtonPressed()
         {
             settingsScreen.style.display = DisplayStyle.None;
             mainMenuScreen.style.display = DisplayStyle.Flex;

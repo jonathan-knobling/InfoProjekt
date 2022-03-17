@@ -192,6 +192,8 @@ MonoBehaviour:
   viewPoint: {fileID: 8901363210908633297}
   viewRadius: 5
   roamingRadius: 20
+  minTargetDistance: 0.3
+  hitRadius: 1.3
 --- !u!114 &560471374
 MonoBehaviour:
   m_ObjectHideFlags: 0

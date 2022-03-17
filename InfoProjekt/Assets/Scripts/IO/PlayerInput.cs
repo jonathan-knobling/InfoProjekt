@@ -1,10 +1,18 @@
+using System;
 using UnityEngine;
 
 namespace IO
 {
     public class PlayerInput: MonoBehaviour
     {
+        public static PlayerInput Instance;
+        
         [SerializeField] public InputChannelSO inputChannel;
+
+        private void Start()
+        {
+            Instance = this;
+        }
 
         private void Update()
         {

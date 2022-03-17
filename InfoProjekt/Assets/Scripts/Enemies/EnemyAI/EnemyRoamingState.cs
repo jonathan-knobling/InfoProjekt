@@ -25,7 +25,7 @@ namespace Enemies.EnemyAI
         public override void Update(EnemyAI enemyAI)
         {
             //change enemy actions with random timer
-            if (actionTimer == null || actionTimer.elapsed)
+            if (actionTimer == null || actionTimer.Elapsed)
             {
                 actionTimer = new Timer(Random.Range(1.5f, 0.3f));
                 PerformRandomMovement(enemyAI);

@@ -22,6 +22,10 @@ namespace Player
 
         private void Start()
         {
+            //player und enemy layers ignoren collision
+            Physics2D.IgnoreLayerCollision(7,8);
+            //enemies untereinander ignoren collision
+            Physics2D.IgnoreLayerCollision(7,7);
             stats = GetComponent<Stats>();
             inputChannel.HitButtonPressed += OnHitButtonPressed;
         }

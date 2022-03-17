@@ -5,17 +5,31 @@ namespace Util
 {
     public class Timer
     {
-
         private float time;
         private float elapsedTime;
-        public event EventHandler OnElapsed;
-        public bool elapsed;
+        private bool elapsed;
         private bool paused;
+        private bool repeat;
+        
+        public event Action OnElapsed;
 
+        //getter
+        public bool Elapsed => elapsed;
+        public bool Paused => paused;
+        public bool Repeat => repeat;
+
+        public Timer(float time, bool repeat)
+        {
+            this.repeat = repeat;
+            elapsed = false;
+            this.time = time;
+        }
+        
         public Timer(float time)
         {
-            this.time = time;
+            repeat = false;
             elapsed = false;
+            this.time = time;
         }
 
         public void Update()
@@ -25,21 +39,36 @@ namespace Util
                 elapsedTime += Time.deltaTime;
                 if (elapsedTime >= time)
                 {
+                    if (!repeat)
+                    {
+                        paused = true;
+                    }
                     elapsed = true;
-                    OnElapsed?.Invoke(this, System.EventArgs.Empty);
+                    OnElapsed?.Invoke();
                 }   
             }
         }
 
-        private void Reset()
+        public void Pause()
+        {
+            paused = true;
+        }
+
+        public void Resume()
+        {
+            paused = false;
+        }
+
+        public void Start()
         {
             elapsedTime = 0;
             elapsed = false;
+            paused = false;
         }
 
-        private void Pause()
+        public void SetRepeat(bool b)
         {
-            paused = true;
+            repeat = b;
         }
     }
 }

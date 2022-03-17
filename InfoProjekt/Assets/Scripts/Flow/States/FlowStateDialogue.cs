@@ -1,3 +1,4 @@
+using IO;
 using Player;
 
 namespace Flow.States
@@ -9,6 +10,7 @@ namespace Flow.States
             PlayerMovementController.Instance.SetIdle();
             PlayerMovementController.Instance.enabled = false;
             PlayerCombatController.Instance.enabled = false;
+            PlayerInput.Instance.enabled = false;
         }
 
         public void Update()
@@ -20,6 +22,7 @@ namespace Flow.States
         {
             PlayerCombatController.Instance.enabled = true;
             PlayerMovementController.Instance.enabled = true;
+            PlayerInput.Instance.enabled = true;
         }
     }
 }
