@@ -200,6 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skills:
   - {fileID: 11400000, guid: b13d4542969522045a099996b5cf3959, type: 2}
+  inputChannel: {fileID: 11400000, guid: 089b2dbb73bd38745996825d79789973, type: 2}
 --- !u!114 &6883077913904807541
 MonoBehaviour:
   m_ObjectHideFlags: 0

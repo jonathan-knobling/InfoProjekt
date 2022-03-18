@@ -7,16 +7,35 @@ namespace Skills.Skills
     public class DashSkill : ActiveSkill
     {
 
-        [SerializeField] private float dashDistance = 10;
+        [SerializeField] private float dashForce = 10;
 
-        public override void Update(InputChannelSO inputChannelSO, GameObject parent)
+        public override void Init(InputChannelSO inputChannel, GameObject parent)
         {
-            Rigidbody2D rb = parent.GetComponent<Rigidbody2D>();
-            Vector2 position = parent.transform.position;
-            float direction = Mathf.Sign(rb.velocity.x); // x-direction in die sich der Rigidbody bewegt (-1/0/+1) damit die distanz nicht von der momentären geschwindigkeit abhängig ist
-            direction *= dashDistance; // direction mit der distanz multiplizieren
-            position.x += direction; // dash zur position addieren
-            parent.transform.position = position; // position updaten
+            inputChannel.Skill1ButtonPressed += OnSkillButtonPressed;
+            Parent = parent;
+        }
+
+        public override void Update()
+        {
+            State.Update();
+        }
+
+        public override void OnSkillButtonPressed()
+        {
+            if (State.Equals(ReadyState))
+            {
+                Rigidbody2D rb = Parent.GetComponent<Rigidbody2D>();
+                //bewegungsrichtung getten
+                Vector2 direction = rb.velocity;
+                // vector = 1
+                direction.Normalize();
+                // mit dashforce multiplizieren
+                direction *= dashForce;
+                // force adden
+                rb.AddForce(direction, ForceMode2D.Impulse);
+                State = CooldownState;
+                CooldownState.Activate(this);
+            }
         }
     }
 }

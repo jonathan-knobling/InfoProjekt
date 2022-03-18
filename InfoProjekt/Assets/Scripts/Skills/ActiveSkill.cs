@@ -8,17 +8,18 @@ namespace Skills
     {
 
         [SerializeField] protected new string name;
-        [SerializeField] protected float cooldown;
+        [SerializeField] protected float cooldownTime;
         [SerializeField] protected float activeTime;
+        protected GameObject Parent;
         
-        public SkillState State { get; private set; }
+        public SkillState State { get; internal set; }
         public SkillStateReady ReadyState { get; private set; }
         public SkillStateActive ActiveState { get; private set; }
         public SkillStateCooldown CooldownState { get; private set; }
 
         //getter
         public string Name => name;
-        public float Cooldown => cooldown;
+        public float CooldownTime => cooldownTime;
         public float ActiveTime => activeTime;
 
         protected ActiveSkill()
@@ -27,9 +28,12 @@ namespace Skills
             ActiveState = new SkillStateActive();
             CooldownState = new SkillStateCooldown();
             State = ReadyState;
+            ReadyState.Activate(this);
         }
 
-        public abstract void Update(InputChannelSO inputChannelSO, GameObject parent);
+        public abstract void Init(InputChannelSO inputChannel, GameObject parent);
+        public abstract void Update();
+        public abstract void OnSkillButtonPressed();
 
     }
 }

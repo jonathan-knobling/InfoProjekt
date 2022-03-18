@@ -90,3 +90,6 @@ fabric.properties
 # modules.xml
 InfoProjekt/.idea/.idea.InfoProjekt/.idea/
 # modules.xml
+*.xml
+
+.idea/.idea.InfoProjekt.dir/.idea/

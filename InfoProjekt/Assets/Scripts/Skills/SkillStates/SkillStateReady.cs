@@ -2,7 +2,7 @@ namespace Skills.SkillStates
 {
     public class SkillStateReady: SkillState
     {
-        public override void Update(ActiveSkill skill)
+        public override void Update()
         {
             
         }
