@@ -1,51 +1,18 @@
+using IO;
 using UnityEngine;
 
 namespace Skills
 {
     public class SkillManager : MonoBehaviour
     {
-        [SerializeField] private ActiveSkillSO[] skills;
-        private float cooldownTime;
-        private float activeTime;
+        [SerializeField] private ActiveSkill[] skills;
+        [SerializeField] private InputChannelSO inputChannel;
 
         void Update()
         {
-            for (int i = 0; i < skills.Length; i++)
+            foreach (var skill in skills)
             {
-                switch (skills[i].state)
-                {
-                    case ActiveSkillSO.Skillstate.Ready:
-                        if (Input.GetButtonDown($"Skill1"))
-                        {
-                            skills[i].Activate(gameObject);
-                            skills[i].state = ActiveSkillSO.Skillstate.Active;
-                            activeTime = skills[i].activeTime;
-                        }
-                        break;
-
-                    case ActiveSkillSO.Skillstate.Active:
-                        if (activeTime > 0)
-                        {
-                            activeTime -= Time.deltaTime;
-                        }
-                        else
-                        {
-                            skills[i].state = ActiveSkillSO.Skillstate.Cooldown;
-                            cooldownTime = skills[i].cooldown;
-                        }
-                        break;
-
-                    case ActiveSkillSO.Skillstate.Cooldown:
-                        if (cooldownTime > 0)
-                        {
-                            cooldownTime -= Time.deltaTime;
-                        }
-                        else
-                        {
-                            skills[i].state = ActiveSkillSO.Skillstate.Ready;
-                        }
-                        break;
-                }
+                skill.Update(inputChannel, gameObject);
             }
         }
     }

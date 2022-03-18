@@ -1,14 +1,15 @@
+using IO;
 using UnityEngine;
 
 namespace Skills.Skills
 {
     [CreateAssetMenu(fileName = "Dash", menuName = "Skills/Dash")]
-    public class DashSkillSO : ActiveSkillSO
+    public class DashSkill : ActiveSkill
     {
 
-        public float dashDistance;
+        [SerializeField] private float dashDistance = 10;
 
-        public override void Activate(GameObject parent)
+        public override void Update(InputChannelSO inputChannelSO, GameObject parent)
         {
             Rigidbody2D rb = parent.GetComponent<Rigidbody2D>();
             Vector2 position = parent.transform.position;
