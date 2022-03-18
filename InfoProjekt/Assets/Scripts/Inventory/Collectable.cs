@@ -4,6 +4,7 @@ using UnityEngine;
 namespace Inventory
 {
     [RequireComponent(typeof(SpriteRenderer))]
+    [RequireComponent(typeof(CircleCollider2D))]
     public class Collectable: MonoBehaviour
     {
         [SerializeField] public Item item;
