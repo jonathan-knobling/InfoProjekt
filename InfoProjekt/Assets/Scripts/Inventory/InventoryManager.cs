@@ -1,51 +1,60 @@
 using System.Collections.Generic;
-using System.ComponentModel;
 using Inventory.Items;
 using UnityEngine;
 
 namespace Inventory
 {
-    public class InventoryManager: MonoBehaviour
+    public class InventoryManager: MonoBehaviour, IItemContainer
     {
         public static InventoryManager Instance;
         
-        private List<Item> items;
+        [SerializeField] private List<Item> items;
 
         private void Awake()
         {
             Instance = this;
         }
 
-        [Description("Add Item to the Inventory")]
+        private void Start()
+        {
+            if (items == null)
+            {
+                items = new List<Item>();
+            }
+        }
+
         public void AddItem(Item item)
         {
-            //wenn das item stackable ist
-            if (item is StackableItem)
-            {
-                foreach (var i in items)
-                {
-                    //wenn es das item schon gibt
-                    if (i.name.Equals(item.Name))
-                    {
-                        StackableItem s1 = (StackableItem) i;
-                        StackableItem s2 = (StackableItem) item;
-                        //den amount erhöhen
-                        s1.AddItemAmount(s2.Amount);
-                        return;
-                    }
-                }
-            }
-            //wenn es das item noch nicht gibt oder es nicht stackable ist
+            item.RequestAddItem(this);
+        }
+
+        public void AddItem(NonStackableItem item)
+        {
             items.Add(item);
         }
 
-        [Description("Returned ob es ein gespeichertes Item mit dem Namen dieses Items gibt")]
-        public bool HasItem(Item item)
+        public void AddItem(StackableItem item)
+        {
+            foreach (var i in items)
+            {
+                //wenn es das item schon gibt
+                if (i.name.Equals(item.Name))
+                {
+                    //kann sein das es nicht funktioniert wegen dem casten
+                    StackableItem stackableItem = (StackableItem) i;
+                    //den amount erhöhen
+                    stackableItem.AddItemAmount(item.Amount);
+                    return;
+                }
+            }
+            items.Add(item);
+        }
+
+        public bool HasItem(NonStackableItem item)
         {
             return HasItem(item.Name);
         }
         
-        [Description("Returned ob es ein gespeichertes Item mit dem Name gibt")]
         public bool HasItem(string itemName)
         {
             foreach (var i in items)
@@ -58,29 +67,25 @@ namespace Inventory
             return false;
         }
 
-        [Description("Returned ob es minAmount von stackableItem gibt")]
-        public bool HasItem(Item item, float minAmount)
+        public bool HasItem(StackableItem item, float minAmount)
         {
-            if (item is StackableItem)
+            foreach (var i in items)
             {
-                foreach (var i in items)
+                if (i.Name.Equals(item.Name))
                 {
-                    if (i.Name.Equals(item.Name))
+                    //Item zu Stackable item casten
+                    StackableItem stackableItem = (StackableItem) i;
+                    if (stackableItem.Amount >= minAmount)
                     {
-                        StackableItem stackableItem = (StackableItem) i;
-                        if (stackableItem.Amount >= minAmount)
-                        {
-                            return true;
-                        }
+                        return true;
                     }
                 }
             }
+            
             return false;
         }
 
-        [Description("Removed einen bestimmten amount von einem Item | " +
-                     "returned als bool ob das removen erfolgreich war")]
-        public bool RemoveItem(Item item, int amount)
+        public bool RemoveItem(StackableItem item, float amount)
         {
             if (amount == 0)
             {
@@ -92,28 +97,60 @@ namespace Inventory
             {
                 if (items[i].Name.Equals(item.Name))
                 {
-                    if (item is StackableItem)
+                    //Item zu Stackable item casten
+                    StackableItem stackableItem = (StackableItem) items[i];
+                    if (stackableItem.Amount > amount)
                     {
-                        StackableItem stackableItem = (StackableItem) items[i];
-                        if (stackableItem.Amount > amount)
-                        {
                             stackableItem.RemoveItemAmount(amount);
                             return true;
-                        }
-                        else if (stackableItem.Amount.Equals(amount))
-                        {
-                            items.RemoveAt(i);
-                            return true;
-                        }
                     }
-                    else
+                    else if (stackableItem.Amount.Equals(amount))
                     {
                         items.RemoveAt(i);
+                        return true;
                     }
                 }
+                else
+                {
+                    items.RemoveAt(i);
+                }
             }
-            
+
             return false;
         }
+
+        public bool RemoveItem(NonStackableItem item)
+        {
+            for (int i = items.Count - 1; i >= 0; i--)
+            {
+                if (items[i].Name.Equals(item.Name))
+                {
+                    items.RemoveAt(i);
+                }
+            }
+
+            return false;
+        }
+
+        public void DropItem(Item item)
+        {
+            item.RequestDropItem(this);
+        }
+
+        public void DropItem(NonStackableItem item)
+        {
+            RemoveItem(item);
+            //anscheinend effizienter
+            var transform1 = transform;
+            Instantiate(item.DropItem, transform1.position, transform1.rotation);
+        }
+
+        //overloaden = op
+        public void DropItem(StackableItem item, float amount)
+        {
+            RemoveItem(item, amount);
+            var transform1 = transform;
+            Instantiate(item.DropItem, transform1.position, transform1.rotation);
+        } 
     }
 }

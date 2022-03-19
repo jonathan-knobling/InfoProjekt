@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Inventory
 {
+    [CreateAssetMenu(menuName = "Items/Rarity")]
     public class Rarity: ScriptableObject
     {
         [SerializeField] private Color color;

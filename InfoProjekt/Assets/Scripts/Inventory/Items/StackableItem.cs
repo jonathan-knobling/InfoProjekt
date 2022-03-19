@@ -19,5 +19,15 @@ namespace Inventory.Items
         {
             amount -= removeAmount;
         }
+
+        public override void RequestAddItem(IItemContainer container)
+        {
+            container.AddItem(this);
+        }
+
+        public override void RequestDropItem(IItemContainer container)
+        {
+            container.DropItem(this, amount);
+        }
     }
 }
