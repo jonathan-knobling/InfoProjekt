@@ -1,4 +1,4 @@
-namespace Skills.SkillStates
+namespace Skills.Active.SkillStates
 {
     public abstract class SkillState
     {

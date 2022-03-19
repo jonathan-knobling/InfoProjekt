@@ -1,13 +1,19 @@
 using IO;
 using UnityEngine;
 
-namespace Skills.Skills
+namespace Skills.Active.Skills
 {
-    [CreateAssetMenu(fileName = "Dash", menuName = "Skills/Dash")]
+    [CreateAssetMenu(menuName = "Skills/Active/Dash", fileName = "Dash")]
     public class DashSkill : ActiveSkill
     {
+        private float dashForce;
 
-        [SerializeField] private float dashForce = 10;
+        public DashSkill()
+        {
+            name = "dash";
+            cooldownTime = 7.5f;
+            activeTime = 0f;
+        }
 
         public override void Init(InputChannelSO inputChannel, GameObject parent)
         {
@@ -20,10 +26,12 @@ namespace Skills.Skills
             State.Update();
         }
 
-        public override void OnSkillButtonPressed()
+        private void OnSkillButtonPressed()
         {
             if (State.Equals(ReadyState))
             {
+                State = ActiveState;
+                ActiveState.Activate(this);
                 Rigidbody2D rb = Parent.GetComponent<Rigidbody2D>();
                 //bewegungsrichtung getten
                 Vector2 direction = rb.velocity;
@@ -33,8 +41,6 @@ namespace Skills.Skills
                 direction *= dashForce;
                 // force adden
                 rb.AddForce(direction, ForceMode2D.Impulse);
-                State = CooldownState;
-                CooldownState.Activate(this);
             }
         }
     }

@@ -1,9 +1,8 @@
-using System;
 using Util;
 
-namespace Skills.SkillStates
+namespace Skills.Active.SkillStates
 {
-    public class SkillStateActive: SkillState
+    public class SkillStateCooldown: SkillState
     {
         private Timer timer;
         private ActiveSkill parentSkill;
@@ -15,15 +14,15 @@ namespace Skills.SkillStates
 
         public override void Activate(ActiveSkill skill)
         {
-            timer = new Timer(skill.ActiveTime);
             parentSkill = skill;
+            timer = new Timer(skill.CooldownTime);
             timer.OnElapsed += NextState;
         }
 
-        private void NextState()
+        public void NextState()
         {
-            parentSkill.State = parentSkill.CooldownState;
-            parentSkill.CooldownState.Activate(parentSkill);
+            parentSkill.State = parentSkill.ReadyState;
+            parentSkill.ReadyState.Activate(parentSkill);
         }
     }
 }

@@ -1,21 +1,21 @@
 using IO;
-using Skills.SkillStates;
+using Skills.Active.SkillStates;
 using UnityEngine;
 
-namespace Skills
+namespace Skills.Active
 {
-    public abstract class ActiveSkill : ScriptableObject
+    public abstract class ActiveSkill: ScriptableObject
     {
 
-        [SerializeField] protected new string name;
-        [SerializeField] protected float cooldownTime;
-        [SerializeField] protected float activeTime;
+        protected new string name;
+        protected float cooldownTime;
+        protected float activeTime;
         protected GameObject Parent;
         
-        public SkillState State { get; internal set; }
-        public SkillStateReady ReadyState { get; private set; }
-        public SkillStateActive ActiveState { get; private set; }
-        public SkillStateCooldown CooldownState { get; private set; }
+        protected internal SkillState State { get; set; }
+        protected internal SkillStateReady ReadyState { get; }
+        protected internal SkillStateCooldown CooldownState { get; }
+        protected SkillStateActive ActiveState { get; }
 
         //getter
         public string Name => name;
@@ -33,7 +33,5 @@ namespace Skills
 
         public abstract void Init(InputChannelSO inputChannel, GameObject parent);
         public abstract void Update();
-        public abstract void OnSkillButtonPressed();
-
     }
 }
