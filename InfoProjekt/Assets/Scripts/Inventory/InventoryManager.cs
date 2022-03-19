@@ -139,18 +139,18 @@ namespace Inventory
 
         public void DropItem(NonStackableItem item)
         {
-            RemoveItem(item);
+            //RemoveItem(item);
             //anscheinend effizienter
-            var transform1 = transform;
-            Instantiate(item.DropItem, transform1.position, transform1.rotation);
+            //var transform1 = transform;
+            //Instantiate(item.DropItem, transform1.position, transform1.rotation);
         }
 
         //overloaden = op
         public void DropItem(StackableItem item, float amount)
         {
-            RemoveItem(item, amount);
-            var transform1 = transform;
-            Instantiate(item.DropItem, transform1.position, transform1.rotation);
+            //RemoveItem(item, amount);
+            //var transform1 = transform;
+            // Instantiate(item.DropItem, transform1.position, transform1.rotation);
         } 
     }
 }

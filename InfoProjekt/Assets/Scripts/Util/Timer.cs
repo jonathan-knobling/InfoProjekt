@@ -5,7 +5,7 @@ namespace Util
 {
     public class Timer
     {
-        private float time;
+        private readonly float time;
         private float elapsedTime;
         private bool elapsed;
         private bool paused;

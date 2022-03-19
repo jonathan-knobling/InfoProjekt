@@ -6,6 +6,7 @@ using Util.EventArgs;
 
 namespace Player
 {
+    [RequireComponent(typeof(Stats))]
     public class PlayerCombatController: MonoBehaviour
     {
         public static PlayerCombatController Instance;
@@ -16,9 +17,12 @@ namespace Player
         [SerializeField] private Transform attackPoint;
         [SerializeField] private float attackRange = 0.5f;
         [SerializeField] private LayerMask enemyLayers;
+        
         public event EventHandler<StringEventArgs> OnEnemyKilled;
+        
         private Stats stats;
-        private static readonly int AnimatorAttack = Animator.StringToHash("attack");
+        
+        private static readonly int CPAttack = Animator.StringToHash("attack");
 
         private void Start()
         {
@@ -51,7 +55,7 @@ namespace Player
 
         private void Attack()
         {
-            animator.SetTrigger(AnimatorAttack);
+            animator.SetTrigger(CPAttack);
         
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
         
@@ -60,11 +64,11 @@ namespace Player
                 enemy.GetComponent<EnemyStats>().Hit(stats.AttackDamage);
                 if(enemy.GetComponent<EnemyStats>().IsDead)
                 {
-                    stats.AddXp(enemy.GetComponent<EnemyStats>());
+                    stats.AddXP(enemy.GetComponent<EnemyStats>());
                     //event on enemy killed wird invoked und der name als eventarg gepassed
                     OnEnemyKilled?.Invoke(this, new StringEventArgs(enemy.GetComponent<EnemyStats>().enemyID));
                 }
-                stats.AddStrengthXp(stats.AttackDamage);
+                stats.XPManager.AddDealtDamage(stats.AttackDamage);
             }
         }
 

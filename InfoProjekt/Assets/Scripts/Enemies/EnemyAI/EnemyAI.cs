@@ -85,8 +85,9 @@ namespace Enemies.EnemyAI
         private void OnDrawGizmosSelected()
         {
             Gizmos.DrawWireSphere(startingPosition, roamingRadius);
-            Gizmos.DrawWireSphere(transform.position, viewRadius);
-            Gizmos.DrawWireSphere(transform.position, hitRadius);
+            var position = transform.position;
+            Gizmos.DrawWireSphere(position, viewRadius);
+            Gizmos.DrawWireSphere(position, hitRadius);
             
         }
     }

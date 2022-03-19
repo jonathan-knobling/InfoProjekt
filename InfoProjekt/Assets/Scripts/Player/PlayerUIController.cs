@@ -91,7 +91,7 @@ namespace Player
 
         void StatusUpdateButtonPressed()
         {
-            stats.statusUpdate();
+            stats.StatusUpdate();
         }
     }
 }

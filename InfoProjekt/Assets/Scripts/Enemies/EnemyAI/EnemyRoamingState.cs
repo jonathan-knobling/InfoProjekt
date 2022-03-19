@@ -1,5 +1,7 @@
+using Unity.Mathematics;
 using UnityEngine;
 using Util;
+using Random = UnityEngine.Random;
 
 namespace Enemies.EnemyAI
 {
@@ -27,7 +29,8 @@ namespace Enemies.EnemyAI
             //change enemy actions with random timer
             if (actionTimer == null || actionTimer.Elapsed)
             {
-                actionTimer = new Timer(Random.Range(1.5f, 0.3f));
+                //neue timer der sagt wie lange die bewegung dauert
+                actionTimer = new Timer(Random.Range(5f, 0.6f));
                 PerformRandomMovement(enemyAI);
             }
             actionTimer.Update();
@@ -48,14 +51,14 @@ namespace Enemies.EnemyAI
             }
             else
             {
-                /*float roamingRadius = enemyAI.RoamingRadius;
+                float roamingRadius = enemyAI.RoamingRadius;
                 float relativeX = enemyAI.transform.position.x - startPosition.x;
                 if (math.abs(relativeX) >= roamingRadius)
                 {
-                    //speed in entgegengesetzte richtung vom relativen x
-                    enemyAI.GetComponent<Rigidbody2D>().velocity = new Vector2(-math.sign(relativeX) * speed, 0);
+                    //moven in entgegengesetzte richtung vom relativen x
+                    movementController.MoveRight(-math.sign(relativeX));
                 }
-                else*/
+                else
                 {
                     if (Random.value > 0.5f)
                     {

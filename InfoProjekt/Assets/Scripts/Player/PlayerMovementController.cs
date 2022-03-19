@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace Player
 {
+    [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(Stats))]
     public class PlayerMovementController : MonoBehaviour
     {
         public static PlayerMovementController Instance;
@@ -11,14 +13,14 @@ namespace Player
         [SerializeField] private Animator animator;
         [SerializeField] private InputChannelSO inputChannel;
 
-        [Header("Movement Variables")]
-        [SerializeField] private float speed = 10;
+        //Movement Variables
+        private float Speed => stats.Speed;
         private float horizontalDirection;
-        private bool facingRight => Math.Abs(Mathf.Sign(transform.localScale.x) - 1) < 0.01f; // basically sign(x) == 1
+        private bool FacingRight => Math.Abs(Mathf.Sign(transform.localScale.x) - 1) < 0.01f; // basically sign(x) == 1
 
         [Header("Jump Variables")]
-        [SerializeField] private float jumpForce = 20;
         [SerializeField] private int maxJumpInputBuffer = 4;
+        private float JumpForce => stats.JumpForce;
         private int jumpInputBuffer;
 
         [Header("Ground Variables")]
@@ -30,10 +32,12 @@ namespace Player
         private int groundedBuffer;
     
         private Rigidbody2D rb;
+        private Stats stats;
         
-        private static readonly int Speed = Animator.StringToHash("speed");
-        private static readonly int Grounded = Animator.StringToHash("grounded");
-        private static readonly int AnimatorJump = Animator.StringToHash("jump");
+        //Cached Properties
+        private static readonly int CPSpeed = Animator.StringToHash("speed");
+        private static readonly int CPGrounded = Animator.StringToHash("grounded");
+        private static readonly int CPJump = Animator.StringToHash("jump");
 
         private void Awake()
         {
@@ -43,6 +47,7 @@ namespace Player
         void Start()
         {
             rb = GetComponent<Rigidbody2D>();
+            stats = GetComponent<Stats>();
             inputChannel.JumpButtonPressed += OnJumpButtonPressed;
         }
 
@@ -58,17 +63,17 @@ namespace Player
 
             Move();
 
-            if (facingRight == false && horizontalDirection < 0)
+            if (FacingRight == false && horizontalDirection < 0)
             {
                 Flip();
             }
-            else if(facingRight && horizontalDirection > 0)
+            else if(FacingRight && horizontalDirection > 0)
             {
                 Flip();
             }
 
-            animator.SetFloat(Speed, Mathf.Abs(rb.velocity.x));
-            animator.SetBool(Grounded, isGrounded);
+            animator.SetFloat(CPSpeed, Mathf.Abs(rb.velocity.x));
+            animator.SetBool(CPGrounded, isGrounded);
         }
 
         private void OnJumpButtonPressed()
@@ -97,13 +102,18 @@ namespace Player
 
         private void Move()
         {
-            rb.velocity = new Vector2(horizontalDirection * speed, rb.velocity.y);
+            rb.velocity = new Vector2(horizontalDirection * Speed, rb.velocity.y);
+            //wenn geschwindigkeit > 0
+            if (rb.velocity.magnitude > 0)
+            {
+                stats.XPManager.AddWalkTime(Time.deltaTime);
+            }
         }
 
         private void Jump()
         {
-            rb.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
-            animator.SetTrigger(AnimatorJump);
+            rb.AddForce(new Vector2(0,JumpForce),ForceMode2D.Impulse);
+            animator.SetTrigger(CPJump);
         }
 
         private void Flip()
@@ -116,8 +126,8 @@ namespace Player
 
         public void SetIdle()
         {
-            animator.SetFloat(Speed, 0);
-            animator.SetBool(Grounded, true);
+            animator.SetFloat(CPSpeed, 0);
+            animator.SetBool(CPGrounded, true);
         }
     }
 }
