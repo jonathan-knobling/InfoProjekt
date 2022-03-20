@@ -1,11 +1,17 @@
-namespace Player
+namespace Player.Stats
 {
     public class StatsXPManager
     {
         private readonly Stats stats;
 
+        public StatsXPManager(Stats stats)
+        {
+            this.stats = stats;
+            UniversalXPMultiplier = 1f;
+        }
+
         public float UniversalXPMultiplier { get; set; }
-        
+
         //Multiplier
         //durch level teilen damit es mit jedem level schwerer wird
         private float WalkTimeMultiplier => UniversalXPMultiplier * 0.2f / stats.Level;
@@ -13,12 +19,6 @@ namespace Player
         private float DealtDamageMultiplier => UniversalXPMultiplier * 0.02f / stats.Level;
         private float MagicDamageMultiplier => UniversalXPMultiplier * 0.3f / stats.Level;
         private float BlockedDamageMultiplier => UniversalXPMultiplier * 0.2f / stats.Level;
-
-        public StatsXPManager(Stats stats)
-        {
-            this.stats = stats;
-            UniversalXPMultiplier = 1f;
-        }
 
         public void AddWalkTime(float deltaTime)
         {

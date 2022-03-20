@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    [RequireComponent(typeof(Stats))]
+    [RequireComponent(typeof(Stats.Stats))]
     public class PlayerMovementController : MonoBehaviour
     {
         public static PlayerMovementController Instance;
@@ -32,7 +32,7 @@ namespace Player
         private int groundedBuffer;
     
         private Rigidbody2D rb;
-        private Stats stats;
+        private Stats.Stats stats;
         
         //Cached Properties
         private static readonly int CPSpeed = Animator.StringToHash("speed");
@@ -47,7 +47,7 @@ namespace Player
         void Start()
         {
             rb = GetComponent<Rigidbody2D>();
-            stats = GetComponent<Stats>();
+            stats = GetComponent<Stats.Stats>();
             inputChannel.JumpButtonPressed += OnJumpButtonPressed;
         }
 

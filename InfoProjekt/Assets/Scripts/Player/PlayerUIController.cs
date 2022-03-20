@@ -6,7 +6,7 @@ namespace Player
     public class PlayerUIController : MonoBehaviour
     {
 
-        [SerializeField] private Stats stats;
+        [SerializeField] private Stats.Stats stats;
 
         private Label levelText;
 
