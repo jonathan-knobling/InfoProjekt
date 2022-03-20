@@ -6,7 +6,7 @@ using Util.EventArgs;
 
 namespace Player
 {
-    [RequireComponent(typeof(Stats))]
+    [RequireComponent(typeof(Stats.Stats))]
     public class PlayerCombatController: MonoBehaviour
     {
         public static PlayerCombatController Instance;
@@ -20,7 +20,7 @@ namespace Player
         
         public event EventHandler<StringEventArgs> OnEnemyKilled;
         
-        private Stats stats;
+        private Stats.Stats stats;
         
         private static readonly int CPAttack = Animator.StringToHash("attack");
 
@@ -30,7 +30,7 @@ namespace Player
             Physics2D.IgnoreLayerCollision(7,8);
             //enemies untereinander ignoren collision
             Physics2D.IgnoreLayerCollision(7,7);
-            stats = GetComponent<Stats>();
+            stats = GetComponent<Stats.Stats>();
             inputChannel.HitButtonPressed += OnHitButtonPressed;
         }
 
