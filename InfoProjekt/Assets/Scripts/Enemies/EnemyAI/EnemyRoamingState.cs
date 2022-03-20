@@ -14,8 +14,9 @@ namespace Enemies.EnemyAI
 
         public EnemyRoamingState()
         {
+            name = "roamingstate";
             // idle time after spawn
-            actionTimer = new Timer(1.5f);
+            actionTimer = new Timer(1f);
         }
     
         public override void EnterState(EnemyAI enemyAI)
@@ -30,7 +31,7 @@ namespace Enemies.EnemyAI
             if (actionTimer == null || actionTimer.Elapsed)
             {
                 //neue timer der sagt wie lange die bewegung dauert
-                actionTimer = new Timer(Random.Range(5f, 0.6f));
+                actionTimer = new Timer(Random.Range(1.8f, 0.5f));
                 PerformRandomMovement(enemyAI);
             }
             actionTimer.Update();
@@ -38,8 +39,8 @@ namespace Enemies.EnemyAI
             Collider2D collider = enemyAI.CheckView();
             if (collider != null)
             {
+                enemyAI.Target = collider.gameObject;
                 enemyAI.SwitchState();
-                enemyAI.Target = collider.GetComponent<GameObject>();
             }
         }
 
@@ -47,7 +48,7 @@ namespace Enemies.EnemyAI
         {
             if (Random.value > 0.5f) //idle action
             {
-                enemyAI.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+                movementController.StopMoving();
             }
             else
             {
@@ -56,7 +57,7 @@ namespace Enemies.EnemyAI
                 if (math.abs(relativeX) >= roamingRadius)
                 {
                     //moven in entgegengesetzte richtung vom relativen x
-                    movementController.MoveRight(-math.sign(relativeX));
+                    movementController.Move(-math.sign(relativeX));
                 }
                 else
                 {

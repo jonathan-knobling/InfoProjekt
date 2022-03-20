@@ -1,20 +1,23 @@
-using System;
 using Enemies;
 using UnityEngine;
 
 namespace Player
 {
+    [RequireComponent(typeof(Animator))]
     public class Stats : MonoBehaviour
     {
+        private static readonly int CPDeath = Animator.StringToHash("death");
+        private Animator animator;
+
         private StatsXPManager xpManager;
         public StatsXPManager XPManager => xpManager;
-        
+
         //Movement Variables
-        [SerializeField] private float speed = 10;        
+        [SerializeField] private float speed = 10;
         [SerializeField] private float jumpForce = 20;
         public float Speed => speed;
         public float JumpForce => jumpForce;
-
+        
         //stats nach danmachi system
         private int level = 1;
         private const float LevelMultiplier = 0.7f;                                       //over
@@ -69,6 +72,7 @@ namespace Player
         {
             hp = MaxHP;
             xpManager = new StatsXPManager(this);
+            animator = GetComponent<Animator>();
         }
 
         public void LevelUp()
@@ -152,13 +156,18 @@ namespace Player
             hp -= damageAmount; // hier noch def multiplier vllt
             if (hp <= 0)
             {
+                xpManager.AddReceivedDamage(damageAmount+hp);
+                hp = 0;
                 Die();
+                return;
             }
+            xpManager.AddReceivedDamage(damageAmount);
         }
 
         private void Die()
         {
-            //death animation
+            animator.SetTrigger(CPDeath);
+            Debug.Log("DIE");
             //vllt death screen oder so
             //löschen
         }

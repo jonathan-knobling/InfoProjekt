@@ -48,10 +48,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 4459712548062227219, guid: 7dc45234e14d7ab4897a9313a1eccfec, type: 3}
+  numberOfEnemies: 1
   spawnPoints:
   - {fileID: 877459163903295759}
-  - {fileID: 5205616747523458846}
-  - {fileID: 5097822290111380141}
+  - {fileID: 877459163903295759}
+  - {fileID: 877459163903295759}
   nonHostile:
     serializedVersion: 2
     m_Bits: 256

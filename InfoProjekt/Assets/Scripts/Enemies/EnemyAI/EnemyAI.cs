@@ -7,7 +7,6 @@ namespace Enemies.EnemyAI
     {
 
         [SerializeField] private LayerMask targetLayer;
-        [SerializeField] private Transform viewPoint;
         [SerializeField] private float viewRadius = 5;
         [SerializeField] private float roamingRadius = 20;
         [SerializeField] private float minTargetDistance = 0.3f;
@@ -21,9 +20,11 @@ namespace Enemies.EnemyAI
         private EnemyChasingState chasingState;
 
         //getter und setter
+        [Description("mindestabstand zum target")]
+        public float MinTargetDistance => minTargetDistance;
+        
         public float ViewRadius => viewRadius;
         public float RoamingRadius => roamingRadius;
-        [Description("mindestabstand zum target")]public float MinTargetDistance => minTargetDistance;
         public float HitRadius => hitRadius;
         public Animator Animator => animator;
         public EnemyStats Stats => stats;
@@ -50,18 +51,19 @@ namespace Enemies.EnemyAI
         void Update()
         {
             state.Update(this);
+            Debug.Log(state.name);
         }
 
         public Collider2D CheckView()
         {
-            Collider2D overlapCircle = Physics2D.OverlapCircle(viewPoint.position, ViewRadius, targetLayer);
+            Collider2D overlapCircle = Physics2D.OverlapCircle(transform.position, ViewRadius, targetLayer);
             if(overlapCircle == null)
             {
                 return null;
             }
-            if((overlapCircle.transform.position.x - transform.position.x) * transform.localScale.x < 0)
+            //Wenn der Player vor dem Enemy ist (enemy hat keine augen im hinterkopf) weiss nich ob ich des keepen will aber
+            if((overlapCircle.transform.position.x - transform.position.x) * -transform.localScale.x < 0)
             {
-                Debug.Log("overlap");
                 return overlapCircle;
             }
             return null;
@@ -82,13 +84,12 @@ namespace Enemies.EnemyAI
             Debug.Log("Switch State");
         }
 
-        private void OnDrawGizmosSelected()
+        private void OnDrawGizmos()
         {
-            Gizmos.DrawWireSphere(startingPosition, roamingRadius);
+            //Gizmos.DrawWireSphere(startingPosition, roamingRadius);
             var position = transform.position;
             Gizmos.DrawWireSphere(position, viewRadius);
-            Gizmos.DrawWireSphere(position, hitRadius);
-            
+            //Gizmos.DrawWireSphere(position, hitRadius);
         }
     }
 }
