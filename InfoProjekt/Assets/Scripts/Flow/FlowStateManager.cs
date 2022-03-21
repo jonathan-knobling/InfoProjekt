@@ -1,11 +1,17 @@
 using Flow.States;
+using Sound;
 using UnityEngine;
+using Util.EventArgs;
 
 namespace Flow
 {
     public class FlowStateManager: MonoBehaviour
     {
         public static FlowStateManager Instance;
+        
+        //test
+        [SerializeField] private AudioRequestArgs startMusicArgs;
+        [SerializeField] private AudioRequestChannelSO audioRequestChannel;
         
         private IFlowState state;
 
@@ -18,6 +24,9 @@ namespace Flow
         {
             state = new FlowStateDefault();
             state.EnterState();
+            
+            //test
+            audioRequestChannel.RequestAudio(startMusicArgs);
         }
 
         private void Update()
@@ -25,12 +34,12 @@ namespace Flow
             state.Update();
         }
 
-        public void ChangeState(IFlowState state)
+        public void ChangeState(IFlowState flowState)
         {
-            if (state == null) return;
-            this.state.LeaveState();
-            this.state = state;
-            this.state.EnterState();
+            if (flowState == null) return;
+            state.LeaveState();
+            state = flowState;
+            state.EnterState();
         }
     }
 }

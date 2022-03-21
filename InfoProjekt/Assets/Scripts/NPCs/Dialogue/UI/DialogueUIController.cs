@@ -97,7 +97,7 @@ namespace NPCs.Dialogue.UI
 
         public void OnDialogueRequested(object o, DialogueEventArgs e)
         {
-            sequencer.StartDialogue(e.dialogue);
+            sequencer.StartDialogue(e.Dialogue);
         }
 
         public void OnStartDialogue(Util.Dialogue dialogue)

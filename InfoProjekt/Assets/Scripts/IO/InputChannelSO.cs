@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace IO
 {
-    [CreateAssetMenu(menuName = "InputChannel")]
+    [CreateAssetMenu(menuName = "Channels/Input Channel")]
     public class InputChannelSO: ScriptableObject
     {
         public float horizontalDirection;

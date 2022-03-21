@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Abilities.Active.Skills
 {
-    [CreateAssetMenu(menuName = "Skills/Active/Dash", fileName = "Dash")]
+    [CreateAssetMenu(menuName = "Abilities/Active/Skills/Dash", fileName = "Dash")]
     public class DashAbility : ActiveAbility
     {
         private float dashForce;

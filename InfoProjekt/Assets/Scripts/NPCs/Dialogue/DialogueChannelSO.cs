@@ -4,7 +4,7 @@ using Util.EventArgs;
 
 namespace NPCs.Dialogue
 {
-    [CreateAssetMenu(menuName = "Dialogue/Dialogue Channel")]
+    [CreateAssetMenu(menuName = "Channels/Dialogue Channel")]
     public class DialogueChannelSO: ScriptableObject
     {
         public event EventHandler<DialogueEventArgs> OnRequestDialogue;
