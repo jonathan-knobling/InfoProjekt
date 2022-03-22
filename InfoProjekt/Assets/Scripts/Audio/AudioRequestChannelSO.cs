@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Util.EventArgs;
 
-namespace Sound
+namespace Audio
 {
     [CreateAssetMenu(menuName = "Channels/Audio Request Channel")]
     public class AudioRequestChannelSO: ScriptableObject

@@ -1,4 +1,5 @@
 using System;
+using Audio;
 using UnityEngine;
 using Util.EventArgs;
 
@@ -21,18 +22,35 @@ namespace Sound
             if (args.isMusic)
             {
                 ChangeMusic(args);
+                return;
             }
-            //Instantiate new GameObject with AudioManager transform as parent
-            GameObject sourceObject = Instantiate(new GameObject(), transform, true);
+
+            if (args.parent != null)
+            {
+                AddAudioSource(args, args.parent);
+            }
+            else
+            {
+                AddAudioSource(args, transform);
+            }
+        }
+
+        private void AddAudioSource(AudioRequestArgs args, Transform parent)
+        {
+            //Instantiate new GameObject and add parent
+            GameObject sourceObject = Instantiate(new GameObject(), parent);
             //Attach audio source to the object
             AudioSource source = sourceObject.AddComponent<AudioSource>();
             
             //Apply eventargs data
-            sourceObject.transform.position = args.position;
             source.clip = args.clip;
             source.volume = args.volume;
             source.loop = args.loop;
-
+            source.priority = args.priority;
+            source.spatialize = args.spatialize;
+            source.spatialBlend = args.spatialBlend;
+            source.minDistance = args.minDistance;
+            source.maxDistance = args.maxDistance;
         }
 
         private void ChangeMusic(AudioRequestArgs args)
