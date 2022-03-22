@@ -456,6 +456,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -3580,6 +3581,151 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      TX Village Props Platform S: 21300216
+      TX Village Props Road Sign Text C: 21300050
+      TX Village Props Spike: 21300228
+      TX Village Props Fence B Rail: 21300040
+      TX Village Props Well: 21300066
+      TX Village Props Statue Bouquet: 21300152
+      TX Village Props Clother Hanger Rope A: 21300234
+      TX Village Props Clother Hanger Pillar B: 21300232
+      TX Village Props Chest Silver: -8851566310641887263
+      TX Village Props Bush A: 21300110
+      TX Village Props Bucket: 21300068
+      TX Village Props Barricade: 21300214
+      TX Village Props Gravestone B: 21300088
+      TX Village Props Wheat C: 21300144
+      TX Village Props Wheat E: 21300148
+      TX Village Props Clother Hanger Pillar A: 21300230
+      TX Village Props Fence B Pillar: 21300038
+      TX Village Props Hay Fork: 21300080
+      TX Village Props Cauldron: 21300198
+      TX Village Props Spear: 21300164
+      TX Village Props Ladder M: 21300072
+      TX Village Props Kettle: 21300202
+      TX Village Props Sword: 21300166
+      TX Village Props Sunflower B: 21300264
+      TX Village Props Flower B: 21300108
+      TX Village Props Pot B: 21300012
+      TX Village Props Rock C: 21300138
+      TX Village Props Fence A Rail B: 21300032
+      TX Village Props Bush C: 21300114
+      TX Village Props Fence A Rail A: 21300030
+      TX Village Props Fence A Pillar C: 21300028
+      TX Village Props Stall Fruit C: 21300210
+      TX Village Props Road Sign Text B: 21300048
+      TX Village Props Ladder Side LB: 3325885465304735478
+      TX Village Props Grain Box: 21300200
+      TX Village Props Ladder Side LT: 9202163618114184290
+      TX Village Props Pot C: 21300014
+      TX Village Props Road Lamp Light On: 21300020
+      TX Village Props Statue: 21300150
+      TX Village Props Wood Logs: 21300126
+      TX Village Props Wine Bottle: 21300176
+      TX Village Props Wheelbarrow Wheel: 21300118
+      TX Village Props Stall Fruit B: 21300208
+      TX Village Props Fence A Pillar B: 21300026
+      TX Village Props Training Dummy: 21300184
+      TX Village Props Banner Pillar: 21300122
+      TX Village Props Wheat D: 21300146
+      TX Village Props Rock B: 21300136
+      TX Village Props Platform M: 21300222
+      TX Village Props Spike Ball: 21300260
+      TX Village Props Arrow: 21300156
+      TX Village Props Arrow Hit: 21300158
+      TX Village Props Platform L: 21300220
+      TX Village Props Cloth D: 21300242
+      TX Village Props Anvil: 21300084
+      TX Village Props Grass D: 21300102
+      TX Village Props Pumpkin B: 21300258
+      TX Village Props Cloth G: 21300252
+      TX Village Props Grass F: 21300106
+      TX Village Props Table: 21300172
+      TX Village Props Apple: 21300178
+      TX Village Props Billboard: 21300052
+      TX Village Props Bush B: 21300112
+      TX Village Props Rock A: 21300134
+      TX Village Props Cloth B: 21300238
+      TX Village Props Stall Fruit A: 21300206
+      TX Village Props Ladder Side RB: -996102965649306420
+      TX Village Props Cloth E: 21300248
+      TX Village Props Sunflower C: 21300266
+      TX Village Props Road Lamp Light Off: 21300018
+      TX Village Props Cloth C: 21300240
+      TX Village Props Road Sign B: 21300044
+      TX Village Props Tree A: 21300120
+      TX Village Props Hay Pile: 21300078
+      TX Village Props Crate Large: 21300000
+      TX Village Props Platform W: 21300218
+      TX Village Props Stall Table: 21300194
+      TX Village Props Pumpkin A: 21300256
+      TX Village Props Fence A Rail C: 21300034
+      TX Village Props Stump: 21300062
+      TX Village Props Clother Hanger Clip: 21300244
+      TX Village Props Crate Small: 21300002
+      TX Village Props Ladder Side RM: -8353649271199622519
+      TX Village Props Ladder B: 21300074
+      TX Village Props Chest Iron: 21300006
+      TX Village Props Axe: 21300064
+      TX Village Props Weapon Rack: 21300162
+      TX Village Props Billboard Noti C: 21300060
+      TX Village Props Grass A: 21300094
+      TX Village Props Grass C: 21300098
+      TX Village Props Ladder Side LM: 5803455356149086885
+      TX Village Props Sunflower A: 21300262
+      TX Village Props Fire Bowl: 21300268
+      TX Village Props Platform R: 21300224
+      TX Village Props Brick Wall: 21300160
+      TX Village Props Gravestone D: 21300092
+      TX Village Props Cloth A: 21300236
+      TX Village Props Stall Tent Pillar: 21300190
+      TX Village Props Torch: 21300022
+      TX Village Props Campfire: 21300128
+      TX Village Props Tree B: 21300226
+      TX Village Props Ladder T: 21300070
+      TX Village Props Ladder Side RT: -2052889030473512461
+      TX Village Props Basket: 21300196
+      TX Village Props Billboard Noti D: 21300056
+      TX Village Props Billboard Noti A: 21300054
+      TX Village Props Wheelbarrow: 21300116
+      TX Village Props Chest Golden: -2305204071527019509
+      TX Village Props Wheat B: 21300142
+      TX Village Props Bread: 21300182
+      TX Village Props White Bottle: 21300204
+      TX Village Props Road Sign Text A: 21300046
+      TX Village Props Gunny Bag B: 21300132
+      TX Village Props Billboard Noti B: 21300058
+      TX Village Props Road Lamp: 21300016
+      TX Village Props Cup: 21300180
+      TX Village Props Hammer: 21300186
+      TX Village Props Gravestone C: 21300090
+      TX Village Props Grass B: 21300096
+      TX Village Props Cloth F: 21300250
+      TX Village Props Stall Tent: 21300188
+      TX Village Props Pot A: 21300010
+      TX Village Props Banner: 21300124
+      TX Village Props Chest Wooden: 21300004
+      TX Village Props Stall Fruit D: 21300212
+      TX Village Props Hay Bale: 21300076
+      TX Village Props Scarecrow: 21300082
+      TX Village Props Wheat A: 21300140
+      TX Village Props Gunny Bag A: 21300130
+      TX Village Props Log Bench: 21300170
+      TX Village Props Fence A Nail: 21300036
+      TX Village Props Chair: 21300174
+      TX Village Props Road Sign A: 21300042
+      TX Village Props Clother Hanger Rope B: 21300246
+      TX Village Props Hanging Bag: 21300192
+      TX Village Props Platform E: -3806943691756881100
+      TX Village Props Cloth H: 21300254
+      TX Village Props Gravestone A: 21300086
+      TX Village Props Heavy Sword: 21300168
+      TX Village Props Archert Target: 21300154
+      TX Village Props Grass E: 21300104
+      TX Village Props Fence A Pillar A: 21300024
+      TX Village Props Barrel: 21300008
+      TX Village Props Flower A: 21300100
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
