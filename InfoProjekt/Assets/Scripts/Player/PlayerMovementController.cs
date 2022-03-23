@@ -1,5 +1,6 @@
 using System;
 using IO;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Player
@@ -13,9 +14,12 @@ namespace Player
         [SerializeField] private Animator animator;
         [SerializeField] private InputChannelSO inputChannel;
 
-        //Movement Variables
-        private float Speed => stats.Speed;
+        [Header("Movement Variables")] 
+        [SerializeField] private float accelerationForce = 10f;
+        [SerializeField] private float linearDrag = 1f;
+        private float MaxSpeed => stats.Speed;
         private float horizontalDirection;
+        private bool changingDirection =>(rb.velocity.x > 0f && horizontalDirection < 0f) || (rb.velocity.x < 0f && horizontalDirection > 0f);
         private bool FacingRight => Math.Abs(Mathf.Sign(transform.localScale.x) - 1) < 0.01f; // basically sign(x) == 1
 
         [Header("Jump Variables")]
@@ -30,10 +34,10 @@ namespace Player
         [SerializeField] private LayerMask groundLayer;
         private bool isGrounded;
         private int groundedBuffer;
-    
+
         private Rigidbody2D rb;
         private Stats.Stats stats;
-        
+
         //Cached Properties
         private static readonly int CPSpeed = Animator.StringToHash("speed");
         private static readonly int CPGrounded = Animator.StringToHash("grounded");
@@ -57,6 +61,7 @@ namespace Player
             if (isGrounded)
             {
                 groundedBuffer = maxGroundedBuffer;
+                ApplyLinearDrag();
             }
             groundedBuffer--;
             jumpInputBuffer--;
@@ -102,8 +107,14 @@ namespace Player
 
         private void Move()
         {
-            rb.velocity = new Vector2(horizontalDirection * Speed, rb.velocity.y);
-            //wenn geschwindigkeit > 0
+            //eine force adden
+            rb.AddForce(new Vector2(horizontalDirection * accelerationForce, 0f));
+            //wenn der player schneller is als max speed die geschwindigkeit auf maxspeed setzen
+            if (math.abs(rb.velocity.x) > MaxSpeed)
+            {
+                rb.velocity = new Vector2(horizontalDirection * MaxSpeed, rb.velocity.y);
+            }
+            //wenn geschwindigkeit egal welche richtung > 0
             if (rb.velocity.magnitude > 0)
             {
                 stats.XPManager.AddWalkTime(Time.deltaTime);
@@ -114,6 +125,18 @@ namespace Player
         {
             rb.AddForce(new Vector2(0,JumpForce),ForceMode2D.Impulse);
             animator.SetTrigger(CPJump);
+        }
+
+        private void ApplyLinearDrag()
+        {
+            if (horizontalDirection < 0.01f || changingDirection)
+            {
+                rb.drag = linearDrag;
+            }
+            else
+            {
+                rb.drag = 0;
+            }
         }
 
         private void Flip()
