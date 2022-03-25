@@ -1,5 +1,4 @@
 using Flow;
-using Flow.States;
 using IO;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -8,7 +7,7 @@ namespace UI
 {
     public class PauseMenuController : MonoBehaviour
     {
-
+        [SerializeField] private FlowChannelSO flowChannel;
         [SerializeField] private InputChannelSO inputChannel;
         
         private VisualElement root;
@@ -43,14 +42,14 @@ namespace UI
 
             optionsBackButton.clicked += OptionsBackButtonPressed;
 
-            inputChannel.PauseButtonPressed += OnPauseButtonPressed;
+            inputChannel.OnPauseButtonPressed += PauseButtonPressed;
         }
 
-        private void OnPauseButtonPressed()
+        private void PauseButtonPressed()
         {
             if (!screen.style.display.Equals(DisplayStyle.Flex))
             {
-                FlowStateManager.Instance.ChangeState(new FlowStatePaused());
+                flowChannel.ChangeFlowState(FlowState.Paused);
                 screen.style.display = DisplayStyle.Flex;
             }
             else
@@ -61,9 +60,11 @@ namespace UI
 
         void ResumeButtonPressed()
         {
-            FlowStateManager.Instance.ChangeState(new FlowStateDefault());
+            flowChannel.ChangeFlowState(FlowState.Default);
             screen.style.display = DisplayStyle.None;
-            OptionsBackButtonPressed(); // falls man während man im options menu is esc drückt
+            
+            // falls man während man im options menu is esc drückt
+            OptionsBackButtonPressed(); 
         }
 
         void OptionsButtonPressed()

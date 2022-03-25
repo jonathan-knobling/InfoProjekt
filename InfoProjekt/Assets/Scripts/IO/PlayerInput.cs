@@ -5,42 +5,35 @@ namespace IO
 {
     public class PlayerInput: MonoBehaviour
     {
-        public static PlayerInput Instance;
-        
         [SerializeField] public InputChannelSO inputChannel;
-
-        private void Start()
-        {
-            Instance = this;
-        }
 
         private void Update()
         {
-            inputChannel.horizontalDirection = Input.GetAxisRaw("Horizontal");
+            inputChannel.HorizontalDirection = Input.GetAxisRaw("Horizontal");
 
             if (Input.GetButtonDown("Jump"))
             {
-                inputChannel.OnJumpButtonPressed();
+                inputChannel.JumpButtonPressed();
             }
 
             if (Input.GetButtonDown("Hit"))
             {
-                inputChannel.OnHitButtonPressed();
+                inputChannel.HitButtonPressed();
             }
 
             if (Input.GetButtonDown("Interact"))
             {
-                inputChannel.OnInteractButtonPressed();
+                inputChannel.InteractButtonPressed();
             }
             
             if (Input.GetButtonDown("Pause"))
             {
-                inputChannel.OnPauseButtonPressed();
+                inputChannel.PauseButtonPressed();
             }
 
             if (Input.GetButtonDown("Skill1"))
             {
-               inputChannel.OnSkill1ButtonPressed();
+               inputChannel.Skill1ButtonPressed();
             }
         }
     }

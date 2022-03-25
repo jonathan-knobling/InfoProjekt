@@ -26,6 +26,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 367506263313124108}
   m_RootOrder: 0
@@ -66,6 +67,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 367506262551981139}
   - {fileID: 7327532978053073105}
@@ -158,9 +160,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 4408689453333150550}
+  movementChannel: {fileID: 11400000, guid: 8116edc9ec2a08541a1957278e9be3fc, type: 2}
   inputChannel: {fileID: 11400000, guid: 089b2dbb73bd38745996825d79789973, type: 2}
-  speed: 10
-  jumpForce: 20
+  accelerationForce: 80
+  linearDrag: 0.1
   maxJumpInputBuffer: 4
   groundCheck: {fileID: 367506262551981139}
   checkRadius: 0.25
@@ -170,7 +173,7 @@ MonoBehaviour:
     m_Bits: 64
 --- !u!95 &4408689453333150550
 Animator:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -183,6 +186,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -199,9 +203,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 611fe8c94d4f85f44bcff85389420a40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skills:
-  - {fileID: 11400000, guid: b13d4542969522045a099996b5cf3959, type: 2}
   inputChannel: {fileID: 11400000, guid: 089b2dbb73bd38745996825d79789973, type: 2}
+  activeAbilities: []
+  passiveAbilities: []
 --- !u!114 &6883077913904807541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,6 +218,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d14bdc59bb68b64290f5066bb478332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 10
+  jumpForce: 20
 --- !u!61 &7200453716840296574
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -254,6 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 4408689453333150550}
   inputChannel: {fileID: 11400000, guid: 089b2dbb73bd38745996825d79789973, type: 2}
+  combatChannel: {fileID: 11400000, guid: fed798c61ed025940be5ab2c2e0c391b, type: 2}
   camTransform: {fileID: 0}
   attackPoint: {fileID: 7327532978053073105}
   attackRange: 0.5
@@ -272,6 +279,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0758ae6686648794d9091071a1ff0a79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  questChannel: {fileID: 11400000, guid: f0fcfb30689430a48b968a0334c056c7, type: 2}
+  combatChannel: {fileID: 11400000, guid: fed798c61ed025940be5ab2c2e0c391b, type: 2}
   quests:
   - {fileID: 11400000, guid: e263de35a4e3c2743ac548d13e899875, type: 2}
 --- !u!114 &7491245609188217219
@@ -286,6 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a64dac1ee44bebb394e4040d1e72e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
 --- !u!1 &7364008634936125946
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,6 +322,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.447, y: 0.835, z: -392.45706}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 367506263313124108}
   m_RootOrder: 1

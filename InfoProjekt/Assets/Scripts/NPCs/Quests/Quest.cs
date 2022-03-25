@@ -1,4 +1,5 @@
 using System.Linq;
+using Player;
 using UnityEngine;
 
 namespace NPCs.Quests
@@ -12,12 +13,12 @@ namespace NPCs.Quests
         public string description;
         public bool completed;
 
-        public void Init()
+        public void Init(PlayerCombatChannelSO combatChannel)
         {
             for (int i = 0; i < goals.Length; i++)
             {
                 //initialize all goals
-                goals[i].Init();
+                goals[i].Init(combatChannel);
             }
         }
         

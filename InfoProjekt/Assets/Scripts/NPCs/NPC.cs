@@ -15,7 +15,7 @@ namespace NPCs
 
         public override void Init()
         {
-            inputChannel.InteractButtonPressed += OnInteractButtonPressed;
+            inputChannel.OnInteractButtonPressed += OnInteractButtonPressed;
         }
         
         private void OnInteractButtonPressed()

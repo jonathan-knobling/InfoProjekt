@@ -975,7 +975,7 @@ MonoBehaviour:
   m_PanelSettings: {fileID: 11400000, guid: 54a87a570ad727e4a9604f75b8ed8ece, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: e08339561d2ef4a478feaecd789045c1, type: 3}
-  m_SortingOrder: 0
+  m_SortingOrder: -5
 --- !u!1 &205457524
 GameObject:
   m_ObjectHideFlags: 0
@@ -1563,7 +1563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 542478181}
-  player: {fileID: 0}
+  player: {fileID: 1473672437}
 --- !u!1 &346249795
 GameObject:
   m_ObjectHideFlags: 0
@@ -3080,6 +3080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf2c1b900e70ae94c81a7f3fbfe40798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flowChannel: {fileID: 11400000, guid: 2bcb0dc02fcc3454f937dd78df90adba, type: 2}
   inputChannel: {fileID: 11400000, guid: 089b2dbb73bd38745996825d79789973, type: 2}
 --- !u!114 &667924465
 MonoBehaviour:
@@ -3096,7 +3097,7 @@ MonoBehaviour:
   m_PanelSettings: {fileID: 11400000, guid: 54a87a570ad727e4a9604f75b8ed8ece, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 47134073573726548a673f42aa53c02c, type: 3}
-  m_SortingOrder: 0
+  m_SortingOrder: 10
 --- !u!1 &669877577
 GameObject:
   m_ObjectHideFlags: 0
@@ -6450,18 +6451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00bd946a0f3f4c1e914c881e489e4b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startMusicArgs:
-    clip: {fileID: 8300000, guid: 31355eb0519d65b4485a9c255e8f9e02, type: 3}
-    isMusic: 1
-    loop: 1
-    volume: 1
-    parent: {fileID: 0}
-    priority: 0
-    spatialize: 0
-    minDistance: 0
-    maxDistance: 0
-    spatialBlend: 0
-  audioRequestChannel: {fileID: 11400000, guid: 0aa15f2441f8ea247804cee3fc803afa, type: 2}
+  flowChannel: {fileID: 11400000, guid: 2bcb0dc02fcc3454f937dd78df90adba, type: 2}
 --- !u!4 &1203111337
 Transform:
   m_ObjectHideFlags: 0
@@ -6748,7 +6738,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 542478181}
-  player: {fileID: 0}
+  player: {fileID: 1473672437}
 --- !u!1 &1285356379
 GameObject:
   m_ObjectHideFlags: 0
@@ -7626,7 +7616,7 @@ MonoBehaviour:
   m_PanelSettings: {fileID: 11400000, guid: 54a87a570ad727e4a9604f75b8ed8ece, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 1552d32507fcbab449c960578444a070, type: 3}
-  m_SortingOrder: 0
+  m_SortingOrder: -10
 --- !u!4 &1487111482
 Transform:
   m_ObjectHideFlags: 0
@@ -8093,11 +8083,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &1577799313 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 877459163903295759, guid: 78242feab96a6e347b7d869095a378ef, type: 3}
-  m_PrefabInstance: {fileID: 877459163988894085}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1589322879
 GameObject:
   m_ObjectHideFlags: 0
@@ -8326,7 +8311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 542478181}
-  player: {fileID: 0}
+  player: {fileID: 1473672437}
 --- !u!1 &1610131609
 GameObject:
   m_ObjectHideFlags: 0
@@ -8541,6 +8526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueChannel: {fileID: 11400000, guid: 1cee07124a92d754a813fea17d6b394a, type: 2}
+  flowChannel: {fileID: 11400000, guid: 2bcb0dc02fcc3454f937dd78df90adba, type: 2}
 --- !u!114 &1629364464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10978,7 +10964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 542478181}
-  player: {fileID: 0}
+  player: {fileID: 1473672437}
 --- !u!4 &2015508290
 Transform:
   m_ObjectHideFlags: 0
@@ -11772,14 +11758,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Spawner
       objectReference: {fileID: 0}
-    - target: {fileID: 877459162185102952, guid: 78242feab96a6e347b7d869095a378ef, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 877459162185102954, guid: 78242feab96a6e347b7d869095a378ef, type: 3}
-      propertyPath: spawnPoint
-      value: 
-      objectReference: {fileID: 1577799313}
     - target: {fileID: 877459162185102965, guid: 78242feab96a6e347b7d869095a378ef, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -11823,26 +11801,6 @@ PrefabInstance:
     - target: {fileID: 877459162185102965, guid: 78242feab96a6e347b7d869095a378ef, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 877459163903295756, guid: 78242feab96a6e347b7d869095a378ef, type: 3}
-      propertyPath: m_Name
-      value: SpawnPoint 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5097822290111380141, guid: 78242feab96a6e347b7d869095a378ef, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 5097822290111380141, guid: 78242feab96a6e347b7d869095a378ef, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 5205616747523458846, guid: 78242feab96a6e347b7d869095a378ef, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.98
-      objectReference: {fileID: 0}
-    - target: {fileID: 5205616747523458846, guid: 78242feab96a6e347b7d869095a378ef, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.03
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78242feab96a6e347b7d869095a378ef, type: 3}

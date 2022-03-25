@@ -17,7 +17,7 @@ namespace Abilities.Active.Skills
 
         public override void Init(InputChannelSO inputChannel, GameObject parentObject)
         {
-            inputChannel.Skill1ButtonPressed += OnSkillButtonPressed;
+            inputChannel.OnSkill1ButtonPressed += OnSkillButtonPressed;
             base.parent = parentObject;
         }
 

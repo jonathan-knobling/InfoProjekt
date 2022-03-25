@@ -1,17 +1,17 @@
 using System;
 using IO;
+using Player.Stats;
 using Unity.Mathematics;
 using UnityEngine;
 
 namespace Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    [RequireComponent(typeof(Stats.Stats))]
+    [RequireComponent(typeof(PlayerStats))]
     public class PlayerMovementController : MonoBehaviour
     {
-        public static PlayerMovementController Instance;
-        
         [SerializeField] private Animator animator;
+        [SerializeField] private PlayerMovementChannelSO movementChannel;
         [SerializeField] private InputChannelSO inputChannel;
 
         [Header("Movement Variables")] 
@@ -36,23 +36,21 @@ namespace Player
         private int groundedBuffer;
 
         private Rigidbody2D rb;
-        private Stats.Stats stats;
+        private PlayerStats stats;
 
         //Cached Properties
         private static readonly int CPSpeed = Animator.StringToHash("speed");
         private static readonly int CPGrounded = Animator.StringToHash("grounded");
         private static readonly int CPJump = Animator.StringToHash("jump");
 
-        private void Awake()
-        {
-            Instance = this;
-        }
-
         void Start()
         {
             rb = GetComponent<Rigidbody2D>();
-            stats = GetComponent<Stats.Stats>();
-            inputChannel.JumpButtonPressed += OnJumpButtonPressed;
+            stats = GetComponent<PlayerStats>();
+            
+            inputChannel.OnJumpButtonPressed += OnJumpButtonPressed;
+            movementChannel.AddPlayerMovementController(this);
+            movementChannel.OnSetIdle += SetIdle;
         }
 
         void FixedUpdate()
@@ -97,7 +95,7 @@ namespace Player
         
         void Update()
         {
-            horizontalDirection = inputChannel.horizontalDirection;
+            horizontalDirection = inputChannel.HorizontalDirection;
             if (isGrounded && jumpInputBuffer > 0)
             {
                 Jump();
@@ -115,7 +113,7 @@ namespace Player
                 rb.velocity = new Vector2(horizontalDirection * MaxSpeed, rb.velocity.y);
             }
             //wenn geschwindigkeit egal welche richtung > 0
-            if (rb.velocity.magnitude > 0)
+            if (rb.velocity.magnitude > 0.1f)
             {
                 stats.XPManager.AddWalkTime(Time.deltaTime);
             }
@@ -147,7 +145,7 @@ namespace Player
             transformers.localScale = scale;
         }
 
-        public void SetIdle()
+        private void SetIdle()
         {
             animator.SetFloat(CPSpeed, 0);
             animator.SetBool(CPGrounded, true);

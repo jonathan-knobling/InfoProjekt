@@ -51,7 +51,6 @@ namespace Enemies.EnemyAI
         void Update()
         {
             state.Update(this);
-            Debug.Log(state.name);
         }
 
         public Collider2D CheckView()

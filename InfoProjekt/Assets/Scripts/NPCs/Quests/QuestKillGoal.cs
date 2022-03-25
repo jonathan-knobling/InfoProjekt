@@ -9,9 +9,9 @@ namespace NPCs.Quests
     {
         public string enemyID;
 
-        public override void Init()
+        public override void Init(PlayerCombatChannelSO combatChannel)
         {
-            PlayerCombatController.Instance.OnEnemyKilled += EnemyKilledListener;
+            combatChannel.OnEnemyKilled += EnemyKilledListener;
         }
 
         public override void Update()
@@ -19,10 +19,9 @@ namespace NPCs.Quests
             completed = currentAmount >= requiredAmount;
         }
 
-        private void EnemyKilledListener(object sender, StringEventArgs e)
+        private void EnemyKilledListener(string killedEnemyID)
         {
-            string data = e.data;
-            if (enemyID == data)
+            if (enemyID == killedEnemyID)
             {
                 currentAmount++;
                 Debug.Log(currentAmount);

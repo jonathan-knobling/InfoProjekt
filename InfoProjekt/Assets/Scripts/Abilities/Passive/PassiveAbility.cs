@@ -9,12 +9,12 @@ namespace Abilities.Passive
 
         [SerializeField] protected new string name;
         protected GameObject parent;
-        protected Stats stats;
+        protected PlayerStats stats;
         
         //getter
         public string Name => name;
 
-        public abstract void Init(GameObject parentObject, Stats playerStats);
+        public abstract void Init(GameObject parentObject, PlayerStats playerStats);
         public abstract void Update();
     }
 }

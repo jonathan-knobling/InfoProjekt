@@ -35,21 +35,18 @@ namespace Enemies.EnemyAI
             //wenn der abstand kleiner is als hitradius
             if (Math.Abs(targetPosX - posX) < enemyAI.HitRadius)
             {
-                Debug.Log("abstand kleiner als hitradius");
-                target.GetComponent<Stats>().DealDamage(enemyAI.Stats.AttackDamage);
+                target.GetComponent<PlayerStats>().DealDamage(enemyAI.Stats.AttackDamage);
                 enemyAI.Animator.SetTrigger(CPAttack);
             }
             
             //wenn die distanz zwischen target und enemy kleiner mindestabstand ist
             if (Math.Abs(targetPosX - posX) < enemyAI.MinTargetDistance)
             {
-                Debug.Log("distanz kleiner als mindestabstand");
                 movement.StopMoving();
                 return;
             }// oder > viewradius nicht weiterbewegen 
             if (Math.Abs(targetPosX - posX) > viewRadius)
             {
-                Debug.Log("distanz größer als viewradius");
                 movement.StopMoving();
                 //und in roaming state switchen
                 enemyAI.SwitchState();
@@ -57,12 +54,10 @@ namespace Enemies.EnemyAI
             }
             if (targetPosX < posX)
             {
-                Debug.Log("move left");
                 movement.MoveLeft(enemyAI.Stats.Speed);
             }
             else
             {
-                Debug.Log("move right");
                 movement.MoveRight(enemyAI.Stats.Speed);
             }
         }

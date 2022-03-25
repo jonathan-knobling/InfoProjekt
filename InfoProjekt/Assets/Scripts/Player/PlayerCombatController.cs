@@ -1,27 +1,24 @@
 using System;
 using Enemies;
 using IO;
+using Player.Stats;
 using UnityEngine;
-using Util.EventArgs;
 
 namespace Player
 {
-    [RequireComponent(typeof(Stats.Stats))]
+    [RequireComponent(typeof(PlayerStats))]
     public class PlayerCombatController: MonoBehaviour
     {
-        public static PlayerCombatController Instance;
-        
         [SerializeField] private Animator animator;
         [SerializeField] private InputChannelSO inputChannel;
+        [SerializeField] private PlayerCombatChannelSO combatChannel;
         [SerializeField] private Transform camTransform;
         [SerializeField] private Transform attackPoint;
         [SerializeField] private float attackRange = 0.5f;
         [SerializeField] private LayerMask enemyLayers;
+        private PlayerStats stats;
         
-        public event EventHandler<StringEventArgs> OnEnemyKilled;
-        
-        private Stats.Stats stats;
-        
+        //cached properties
         private static readonly int CPAttack = Animator.StringToHash("attack");
 
         private void Start()
@@ -30,17 +27,14 @@ namespace Player
             Physics2D.IgnoreLayerCollision(7,8);
             //enemies untereinander ignoren collision
             Physics2D.IgnoreLayerCollision(7,7);
-            stats = GetComponent<Stats.Stats>();
-            inputChannel.HitButtonPressed += OnHitButtonPressed;
-        }
-
-        private void Awake()
-        {
-            Instance = this;
+            stats = GetComponent<PlayerStats>();
+            inputChannel.OnHitButtonPressed += OnHitButtonPressed;
+            combatChannel.AddPlayerCombatController(this);
         }
 
         private void OnHitButtonPressed()
         {
+            Debug.Log("Attack");
             Vector2 mousePos = Input.mousePosition;
             if((mousePos.x/240 - 4 > transform.position.x - camTransform.position.x && Math.Abs(Mathf.Sign(transform.localScale.x) - (-1)) > 0.01f) || (mousePos.x/240 - 4 < transform.position.x - camTransform.position.x && Math.Abs(Mathf.Sign(transform.localScale.x) - 1) > 0.01f))
             {// wenn die maus rechts vom player is und der player nich nach rechts zeigt (x scale = negativ) || und anders rum       (240 sind die PPU) (4 sind die units vom rand links der cam bis zur mitte der cam)
@@ -65,8 +59,7 @@ namespace Player
                 if(enemy.GetComponent<EnemyStats>().IsDead)
                 {
                     stats.AddXP(enemy.GetComponent<EnemyStats>());
-                    //event on enemy killed wird invoked und der name als eventarg gepassed
-                    OnEnemyKilled?.Invoke(this, new StringEventArgs(enemy.GetComponent<EnemyStats>().enemyID));
+                    combatChannel.EnemyKilled(enemy.GetComponent<EnemyStats>().enemyID);
                 }
                 stats.XPManager.AddDealtDamage(dealtDamage);
             }
