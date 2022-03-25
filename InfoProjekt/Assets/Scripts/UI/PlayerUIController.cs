@@ -1,12 +1,12 @@
+using Player.Stats;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Player
+namespace UI
 {
     public class PlayerUIController : MonoBehaviour
     {
-
-        [SerializeField] private Stats.Stats stats;
+        [SerializeField] private PlayerStats stats;
 
         private Label levelText;
 

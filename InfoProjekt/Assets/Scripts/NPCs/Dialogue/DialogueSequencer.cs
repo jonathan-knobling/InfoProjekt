@@ -18,6 +18,13 @@ namespace NPCs.Dialogue
         private Util.Dialogue currentDialogue;
         private DialogueNode currentDialogueNode;
 
+        private readonly FlowChannelSO flowChannel;
+
+        public DialogueSequencer(FlowChannelSO flowChannel)
+        {
+            this.flowChannel = flowChannel;
+        }
+
         public void StartDialogue(Util.Dialogue dialogue)
         {
             //wenn kein dialog aktiv ist
@@ -28,7 +35,7 @@ namespace NPCs.Dialogue
                 StartDialogueNode(dialogue.startNode);
                 //event invoken dass ein dialog gestartet hat
                 OnStartDialogue?.Invoke(dialogue);
-                FlowStateManager.Instance.ChangeState(new FlowStateDialogue());
+                flowChannel.ChangeFlowState(FlowState.Dialogue);
             }
             else
             {
@@ -44,7 +51,7 @@ namespace NPCs.Dialogue
                 currentDialogue = null;
                 //event invoken dass der dialog geendet hat
                 OnEndDialogue?.Invoke(dialogue);
-                FlowStateManager.Instance.ChangeState(new FlowStateDefault());
+                flowChannel.ChangeFlowState(FlowState.Default);
             }
         }
 

@@ -1,9 +1,9 @@
 namespace Flow
 {
-    public interface IFlowState
+    public enum FlowState
     {
-        void EnterState();
-        void Update();
-        void LeaveState();
+        Default, 
+        Paused, 
+        Dialogue
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Flow;
 using NPCs.Dialogue.Nodes;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -10,6 +11,8 @@ namespace NPCs.Dialogue.UI
     public class DialogueUIController : MonoBehaviour, IDialogueNodeVisitor
     {
         [SerializeField] private DialogueChannelSO dialogueChannel;
+        [SerializeField] private FlowChannelSO flowChannel;
+        
         private Button[] buttons;
 
         private List<DialogueChoiceNodeUI> choiceNodeUIs;
@@ -33,7 +36,7 @@ namespace NPCs.Dialogue.UI
 
             choiceNodeUIs = new List<DialogueChoiceNodeUI>(3);
 
-            sequencer = new DialogueSequencer();
+            sequencer = new DialogueSequencer(flowChannel);
             dialogueChannel.OnRequestDialogue += OnDialogueRequested;
             sequencer.OnStartDialogue += OnStartDialogue;
             sequencer.OnEndDialogue += OnEndDialogue;
@@ -95,22 +98,22 @@ namespace NPCs.Dialogue.UI
             text.text = node.line.speaker.characterName + ": " + node.line.line;
         }
 
-        public void OnDialogueRequested(object o, DialogueEventArgs e)
+        private void OnDialogueRequested(object o, DialogueEventArgs e)
         {
             sequencer.StartDialogue(e.Dialogue);
         }
 
-        public void OnStartDialogue(Util.Dialogue dialogue)
+        private void OnStartDialogue(Util.Dialogue dialogue)
         {
             screen.style.display = DisplayStyle.Flex;
         }
 
-        public void OnEndDialogue(Util.Dialogue dialogue)
+        private void OnEndDialogue(Util.Dialogue dialogue)
         {
             screen.style.display = DisplayStyle.None;
         }
 
-        public void OnStartDialogueNode(DialogueNode dialogueNode)
+        private void OnStartDialogueNode(DialogueNode dialogueNode)
         {
             dialogueNode.Visit(this);
         }

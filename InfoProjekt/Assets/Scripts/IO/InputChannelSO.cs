@@ -1,42 +1,61 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace IO
 {
     [CreateAssetMenu(menuName = "Channels/Input Channel")]
     public class InputChannelSO: ScriptableObject
     {
-        public float horizontalDirection;
+        public float HorizontalDirection { set; get; }
+        public bool enabled = true;
         
-        public event Action JumpButtonPressed;
-        public event Action HitButtonPressed;
-        public event Action InteractButtonPressed;
-        public event Action PauseButtonPressed;
-        public event Action Skill1ButtonPressed;
+        public event Action OnJumpButtonPressed;
+        public event Action OnHitButtonPressed;
+        public event Action OnInteractButtonPressed;
+        public event Action OnPauseButtonPressed;
+        public event Action OnSkill1ButtonPressed;
 
-        public void OnJumpButtonPressed()
+        public void JumpButtonPressed()
         {
-            JumpButtonPressed?.Invoke();
+            Debug.Log(enabled);
+            if (enabled)
+            {
+                Debug.Log("Invoke Jump");
+                OnJumpButtonPressed?.Invoke();
+            }
         }
 
-        public void OnHitButtonPressed()
+        public void HitButtonPressed()
         {
-            HitButtonPressed?.Invoke();
+            if (enabled)
+            {
+                OnHitButtonPressed?.Invoke();
+            }
         }
 
-        public void OnInteractButtonPressed()
+        public void InteractButtonPressed()
         {
-            InteractButtonPressed?.Invoke();
+            if (enabled)
+            {
+                OnInteractButtonPressed?.Invoke();
+            }
         }
 
-        public void OnPauseButtonPressed()
+        public void PauseButtonPressed()
         {
-            PauseButtonPressed?.Invoke();
+            if (enabled)
+            {
+                OnPauseButtonPressed?.Invoke();
+            }
         }
 
-        public void OnSkill1ButtonPressed()
+        public void Skill1ButtonPressed()
         {
-            Skill1ButtonPressed?.Invoke();
+            if (enabled)
+            {
+                OnSkill1ButtonPressed?.Invoke();
+            }
         }
     }
 }

@@ -1,25 +1,22 @@
 using System.Collections.Generic;
+using Player;
 using UnityEngine;
 
 namespace NPCs.Quests
 {
     public class QuestHandler : MonoBehaviour
     {
-        public static QuestHandler Instance;
-        
+        [SerializeField] private QuestChannelSO questChannel;
+        [SerializeField] private PlayerCombatChannelSO combatChannel;
         [SerializeField] private List<Quest> quests;
-
-        private void Awake()
-        {
-            Instance = this;
-        }
 
         private void Start()
         {
-            quests.ForEach(quest => quest.Init());
+            quests.ForEach(quest => quest.Init(combatChannel));
+            questChannel.OnRequestAddQuest += AddQuest;
         }
 
-        void Update()
+        private void Update()
         {
             if (quests == null) return;
             
@@ -38,7 +35,7 @@ namespace NPCs.Quests
             }
         }
 
-        public void addQuest(Quest quest)
+        private void AddQuest(Quest quest)
         {
             quests.Add(quest);
         }

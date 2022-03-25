@@ -47,7 +47,6 @@ namespace Enemies
         
         public void MoveRight(float speed)
         {
-            Debug.Log("Move Right");
             //abs damit es auch auf jeden fall sich nach rechts bewegt
             currentVelocityX = Math.Abs(speed);
             if (!FacingRight)
@@ -58,7 +57,6 @@ namespace Enemies
 
         public void MoveLeft(float speed)
         {
-            Debug.Log("Move Left"); 
             //abs damit es auch auf jeden fall sich nach links bewegt
             currentVelocityX = -Mathf.Abs(speed);
             if (FacingRight)
@@ -69,7 +67,6 @@ namespace Enemies
 
         public void StopMoving()
         {
-            Debug.Log("Stop Moving");
             currentVelocityX = 0;
         }
 

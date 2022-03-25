@@ -10,7 +10,7 @@ namespace Abilities.Passive.Skills
     {
         private const float XPMultiplier = 1f;
         
-        public override void Init(GameObject parentObject, Stats playerStats)
+        public override void Init(GameObject parentObject, PlayerStats playerStats)
         {
             playerStats.XPManager.UniversalXPMultiplier = XPMultiplier;
         }

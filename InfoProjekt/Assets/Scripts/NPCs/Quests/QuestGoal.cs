@@ -1,3 +1,4 @@
+using Player;
 using UnityEngine;
 
 namespace NPCs.Quests
@@ -9,9 +10,9 @@ namespace NPCs.Quests
         public int currentAmount;
         public int requiredAmount;
 
-        public abstract void Init();
+        public abstract void Init(PlayerCombatChannelSO combatChannel);
 
-        public QuestGoal()
+        protected QuestGoal()
         {
             currentAmount = 0;
             completed = false;

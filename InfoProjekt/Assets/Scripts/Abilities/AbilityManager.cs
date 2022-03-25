@@ -7,18 +7,18 @@ using UnityEngine;
 
 namespace Abilities
 {
-    [RequireComponent(typeof(Stats))]
+    [RequireComponent(typeof(PlayerStats))]
     public class AbilityManager : MonoBehaviour
     {
         [SerializeField] private InputChannelSO inputChannel;
         [SerializeField] private ActiveAbility[] activeAbilities;
         [SerializeField] private PassiveAbility[] passiveAbilities;
 
-        private Stats stats;
+        private PlayerStats stats;
         
         private void Start()
         {
-            stats = GetComponent<Stats>();
+            stats = GetComponent<PlayerStats>();
             
             foreach (var ability in activeAbilities)
             {

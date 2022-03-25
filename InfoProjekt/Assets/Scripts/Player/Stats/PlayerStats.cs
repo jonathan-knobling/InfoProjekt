@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Player.Stats
 {
     [RequireComponent(typeof(Animator))]
-    public class Stats : MonoBehaviour
+    public class PlayerStats : MonoBehaviour
     {
         private static readonly int CPDeath = Animator.StringToHash("death");
         private Animator animator;
@@ -178,7 +178,6 @@ namespace Player.Stats
         private void Die()
         {
             animator.SetTrigger(CPDeath);
-            Debug.Log("DIE");
             //vllt death screen oder so
             //löschen
         }
