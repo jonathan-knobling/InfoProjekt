@@ -19,7 +19,7 @@ namespace Player
         [SerializeField] private float linearDrag = 1f;
         private float MaxSpeed => stats.Speed;
         private float horizontalDirection;
-        private bool changingDirection =>(rb.velocity.x > 0f && horizontalDirection < 0f) || (rb.velocity.x < 0f && horizontalDirection > 0f);
+        private bool ChangingDirection =>(rb.velocity.x > 0f && horizontalDirection < 0f) || (rb.velocity.x < 0f && horizontalDirection > 0f);
         private bool FacingRight => Math.Abs(Mathf.Sign(transform.localScale.x) - 1) < 0.01f; // basically sign(x) == 1
 
         [Header("Jump Variables")]
@@ -129,7 +129,7 @@ namespace Player
 
         private void ApplyLinearDrag()
         {
-            if (horizontalDirection < 0.01f || changingDirection)
+            if (horizontalDirection < 0.01f || ChangingDirection)
             {
                 rb.drag = linearDrag;
             }
