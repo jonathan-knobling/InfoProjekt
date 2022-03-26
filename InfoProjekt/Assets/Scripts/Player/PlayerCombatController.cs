@@ -36,8 +36,9 @@ namespace Player
         {
             Debug.Log("Attack");
             Vector2 mousePos = Input.mousePosition;
+            // wenn die maus rechts vom player is und der player nich nach rechts zeigt (x scale = negativ) || und anders rum       (240 sind die PPU) (4 sind die units vom rand links der cam bis zur mitte der cam)
             if((mousePos.x/240 - 4 > transform.position.x - camTransform.position.x && Math.Abs(Mathf.Sign(transform.localScale.x) - (-1)) > 0.01f) || (mousePos.x/240 - 4 < transform.position.x - camTransform.position.x && Math.Abs(Mathf.Sign(transform.localScale.x) - 1) > 0.01f))
-            {// wenn die maus rechts vom player is und der player nich nach rechts zeigt (x scale = negativ) || und anders rum       (240 sind die PPU) (4 sind die units vom rand links der cam bis zur mitte der cam)
+            {
                 var transformers = transform;
                 Vector3 scale = transformers.localScale;
                 scale.x *= -1;
