@@ -19,7 +19,10 @@ namespace Flow.States
 
         public void EnterState()
         {
+<<<<<<< HEAD
             Debug.Log("Enter Dialogue State");
+=======
+>>>>>>> main
             movementChannel.SetIdle();
             movementChannel.DisablePlayerMovement();
             combatChannel.DisablePlayerCombat();
