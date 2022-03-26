@@ -7,10 +7,15 @@ namespace Player
     [CreateAssetMenu(menuName = "Channels/Player Movement Channel")]
     public class PlayerMovementChannelSO: ScriptableObject
     {
-        private List<PlayerMovementController> controllers;
+        private readonly List<PlayerMovementController> controllers;
 
         public event Action OnSetIdle;
 
+        public PlayerMovementChannelSO()
+        {
+            controllers = new List<PlayerMovementController>();
+        }
+        
         public void AddPlayerMovementController(PlayerMovementController controller)
         {
             controllers.Add(controller);

@@ -7,10 +7,15 @@ namespace Player
     [CreateAssetMenu(menuName = "Channels/Player Combat Channel")]
     public class PlayerCombatChannelSO: ScriptableObject
     {
+        private readonly List<PlayerCombatController> controllers;
+        
         public event Action<string> OnEnemyKilled;
 
-        private List<PlayerCombatController> controllers;
-        
+        public PlayerCombatChannelSO()
+        {
+            controllers = new List<PlayerCombatController>();
+        }
+
         public void EnemyKilled(string enemyID)
         {
             OnEnemyKilled?.Invoke(enemyID);
