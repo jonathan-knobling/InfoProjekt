@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Inventory.Items
 {
     [CreateAssetMenu(menuName = "Items/Stackable Item")]
-    public sealed class StackableItem: Item
+    public class StackableItem: Item
     {
         [SerializeField] private float amount;
         
