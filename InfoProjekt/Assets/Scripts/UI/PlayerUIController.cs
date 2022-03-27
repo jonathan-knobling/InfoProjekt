@@ -1,4 +1,4 @@
-using Player.Stats;
+using Environment.Actors.Player.Stats;
 using UnityEngine;
 using UnityEngine.UIElements;
 
