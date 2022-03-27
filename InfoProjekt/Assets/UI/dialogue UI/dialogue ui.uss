@@ -1,12 +1,12 @@
-.button:hover {
+Button:hover {
     background-color: rgb(99, 99, 99);
 }
 
-.button:active {
+Button:active {
     background-color: rgb(125, 125, 125);
 }
 
-.button {
+Button {
     font-size: 32px;
     -unity-font-style: bold;
     width: 300px;

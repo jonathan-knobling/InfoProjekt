@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Node 1
   m_EditorClassIdentifier: 
   choiceNodeButtonText: Fuck You!
-  line: {fileID: 11400000, guid: b480ebfee0db119429367986c6ec83f6, type: 2}
+  line:
+    speaker: {fileID: 11400000, guid: 7b6479b4cb59789479bdbdfd6bb34747, type: 2}
+    line: Fuck You!
   dialogueEvent: {fileID: 0}
-  choices: []
+  choices:
+  - {fileID: 11400000, guid: ee936fb550a01304faaa3321db8731cc, type: 2}
+  - {fileID: 11400000, guid: fd6effa5e56dc844997391d32bb28663, type: 2}

@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Node 1-2
   m_EditorClassIdentifier: 
   choiceNodeButtonText: OK
-  line: {fileID: 11400000, guid: 266a6aa22831a224cbdf3a1361a8297f, type: 2}
+  line:
+    speaker: {fileID: 11400000, guid: 7b6479b4cb59789479bdbdfd6bb34747, type: 2}
+    line: lmao
   dialogueEvent: {fileID: 11400000, guid: 2a37338f16a30a447a47c801610e0c25, type: 2}
   nextNode: {fileID: 0}
-  confirmButtonText: OK
+  nextButtonText: OK

@@ -1,10 +1,10 @@
-using NPCs.Dialogue.Util;
+using Gameplay.Dialogue.Util;
 
 namespace Util.EventArgs
 {
     public class DialogueEventArgs: System.EventArgs
     {
-        public Dialogue Dialogue { get; private set; }
+        public Dialogue Dialogue { get; }
 
         public DialogueEventArgs(Dialogue dialogue)
         {

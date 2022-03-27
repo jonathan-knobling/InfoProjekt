@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Node 1-1
   m_EditorClassIdentifier: 
   choiceNodeButtonText: Fuck You Too!
-  line: {fileID: 11400000, guid: 64974ef871699b64ab974d2c53285c11, type: 2}
+  line:
+    speaker: {fileID: 11400000, guid: 7b6479b4cb59789479bdbdfd6bb34747, type: 2}
+    line: lmao
   dialogueEvent: {fileID: 11400000, guid: 2a37338f16a30a447a47c801610e0c25, type: 2}
   nextNode: {fileID: 0}
-  confirmButtonText: OK
+  nextButtonText: OK
