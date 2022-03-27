@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Gameplay.Dialogue.UI
 {
-    public class DialogueChoiceNodeUI
+    public class DialogueNodeButton
     {
         private readonly DialogueNode node;
 
         private readonly DialogueSequencer sequencer;
 
-        public DialogueChoiceNodeUI(DialogueSequencer sequencer, DialogueNode node)
+        public DialogueNodeButton(DialogueSequencer sequencer, DialogueNode node)
         {
             this.sequencer = sequencer;
             this.node = node;

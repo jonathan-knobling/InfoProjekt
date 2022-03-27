@@ -95,3 +95,7 @@ InfoProjekt/.idea/.idea.InfoProjekt/.idea/
 .idea/.idea.InfoProjekt.dir/.idea/
 
 InfoProjekt/Logs/
+
+*.dwlt
+
+InfoProjekt/UserSettings/Layouts/

@@ -19,11 +19,10 @@ namespace Tech.Flow.States
 
         public void EnterState()
         {
-            Debug.Log("Enter Dialogue State");
             movementChannel.SetIdle();
             movementChannel.DisablePlayerMovement();
             combatChannel.DisablePlayerCombat();
-            inputChannel.enabled = false;
+            InputChannelSO.Enabled = false;
         }
 
         public void Update()
@@ -35,7 +34,7 @@ namespace Tech.Flow.States
         {
             combatChannel.EnablePlayerCombat();
             movementChannel.EnablePlayerMovement();
-            inputChannel.enabled = true;
+            InputChannelSO.Enabled = true;
         }
     }
 }

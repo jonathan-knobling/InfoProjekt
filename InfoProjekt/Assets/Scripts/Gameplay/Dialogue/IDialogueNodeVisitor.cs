@@ -5,6 +5,6 @@ namespace Gameplay.Dialogue
     public interface IDialogueNodeVisitor
     {
         void Visit(DialogueLinearNode linearNode);
-        abstract void Visit(DialogeChoiceNode choiceNode);
+        void Visit(DialogeChoiceNode choiceNode);
     }
 }

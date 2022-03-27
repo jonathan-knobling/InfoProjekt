@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Environment.Actors.NPCs
 {
-    public abstract class NPC: Actor, IInteractable
+    public class NPC: Actor, IInteractable
     {
         [Header("Tech Stuff")]
         [SerializeField] protected DialogueChannelSO dialogueChannel;
@@ -32,8 +32,8 @@ namespace Environment.Actors.NPCs
         {
             if (Physics2D.OverlapCircle(transform.position, interactionRadius, interactionLayers))
             {
-                Interact();
                 Debug.Log("interact");
+                Interact();
                 //show "press f to interact" oder so ähnlich :)
             }
         }

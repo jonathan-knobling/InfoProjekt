@@ -1,11 +1,11 @@
-using UnityEngine;
+using System;
 
 namespace Gameplay.Dialogue.Util
 {
-    [CreateAssetMenu(menuName = "Dialogue/Line")]
-    public class DialogueLine: ScriptableObject
+    [Serializable]
+    public class DialogueLine
     {
-        [SerializeField] public DialogueCharacter speaker;
-        [SerializeField] public string line;
+        public DialogueCharacter speaker;
+        public string line;
     }
 }

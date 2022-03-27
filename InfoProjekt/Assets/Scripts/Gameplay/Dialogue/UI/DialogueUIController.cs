@@ -12,29 +12,26 @@ namespace Gameplay.Dialogue.UI
     {
         [SerializeField] private DialogueChannelSO dialogueChannel;
         [SerializeField] private FlowChannelSO flowChannel;
-        
-        private Button[] buttons;
 
-        private List<DialogueChoiceNodeUI> choiceNodeUIs;
+        private List<DialogueNodeButton> choiceNodeUIs;
+
         private VisualElement root;
-
+        private VisualElement buttonContainer;
         private VisualElement screen;
+        private Label text;
 
         private DialogueSequencer sequencer;
-        private Label text;
 
         private void Start()
         {
             root = GetComponent<UIDocument>().rootVisualElement;
 
             screen = root.Q<VisualElement>("screen");
-            buttons = new Button[3];
-            buttons[0] = root.Q<Button>("button1");
-            buttons[1] = root.Q<Button>("button2");
-            buttons[2] = root.Q<Button>("button3");
+            buttonContainer = root.Q<VisualElement>("buttons");
+            
             text = root.Q<Label>("text");
 
-            choiceNodeUIs = new List<DialogueChoiceNodeUI>(3);
+            choiceNodeUIs = new List<DialogueNodeButton>(3);
 
             sequencer = new DialogueSequencer(flowChannel);
             dialogueChannel.OnRequestDialogue += OnDialogueRequested;
@@ -47,25 +44,16 @@ namespace Gameplay.Dialogue.UI
         {
             //wenn es ein dialog event gibt dieses ausführen
             if (node.dialogueEvent != null) node.dialogueEvent.Invoke();
-
-            //alle buttons unsichtbar
-            foreach (var button in buttons)
-            {
-                button.style.display = DisplayStyle.None;
-                Debug.Log("dadasdasdasd");
-            }
-
-            //einen button zum confirmen wieder sichtbar machen und text setzen
-            buttons[0].style.display = DisplayStyle.Flex;
-            buttons[0].text = node.nextButtonText;
-
-            //alle choicenodeuis aus der liste entfernen
-            choiceNodeUIs.Clear();
             
-            //choicenode ui erstellen und die onbuttonclicked funktion dem button hinzufügen und alle anderen gecleared
-            choiceNodeUIs.Add(new DialogueChoiceNodeUI(sequencer, node));
-            Debug.Log("onbuttonclickedhinzufügen");
-            buttons[0].clicked += choiceNodeUIs[0].OnButtonClicked;
+            choiceNodeUIs.Clear();
+            buttonContainer.Clear();
+            
+            //nodebutton erstellen und die onbuttonclicked funktion dem button hinzufügen
+            choiceNodeUIs.Add(new DialogueNodeButton(sequencer, node.nextNode));
+            Button button = new Button();
+            button.clicked += choiceNodeUIs[0].OnButtonClicked;
+            button.text = node.choiceNodeButtonText;
+            buttonContainer.Add(button);
 
             //text und speaker auf das label anwenden
             text.text = node.line.speaker.characterName + ": " + node.line.line;
@@ -79,19 +67,18 @@ namespace Gameplay.Dialogue.UI
             //fehlermeldung wenn zu viele choices gibt
             if (node.choices.Count > 3) throw new Exception("too many choice nodes (max 3)");
             
-            //alle choicenodeuis aus der liste entfernen
             choiceNodeUIs.Clear();
+            buttonContainer.Clear();
             
             //für jede option die man anklicken kann (max 3)
             for (var i = 0; i < node.choices.Count; i++)
             {
-                //button auf sichtbar setzen und text des buttons setzen
-                buttons[i].style.display = DisplayStyle.Flex;
-                buttons[i].text = node.choices[i].choiceNodeButtonText;
-
-                //choicenode uis erstellen und onbuttonclicked funktion dem button hinzufügen und alle anderen gecleared
-                choiceNodeUIs[i] = new DialogueChoiceNodeUI(sequencer, node.choices[i]);
-                buttons[i].clicked += choiceNodeUIs[i].OnButtonClicked;
+                Debug.Log("Add Button");
+                choiceNodeUIs.Add(new DialogueNodeButton(sequencer, node.choices[i]));
+                Button button = new Button();
+                button.clicked += choiceNodeUIs[i].OnButtonClicked;
+                button.text = node.choices[i].choiceNodeButtonText;
+                buttonContainer.Add(button);
             }
 
             //text und speaker auf das label anwenden
@@ -115,6 +102,7 @@ namespace Gameplay.Dialogue.UI
 
         private void OnStartDialogueNode(DialogueNode dialogueNode)
         {
+            Debug.Log("Visit Node");
             dialogueNode.Visit(this);
         }
     }

@@ -18,6 +18,7 @@ namespace Gameplay.Dialogue.Nodes
 
         public override void Visit(IDialogueNodeVisitor visitor)
         {
+            Debug.Log("Visiting...");
             visitor.Visit(this);
         }
     }

@@ -7,7 +7,7 @@ namespace Tech.IO
     public class InputChannelSO: ScriptableObject
     {
         public float HorizontalDirection { set; get; }
-        public bool enabled = true;
+        public static bool Enabled { get; set; }
         
         public event Action OnJumpButtonPressed;
         public event Action OnHitButtonPressed;
@@ -15,10 +15,16 @@ namespace Tech.IO
         public event Action OnPauseButtonPressed;
         public event Action OnSkill1ButtonPressed;
 
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        private static void Init()
+        {
+            Enabled = true;
+        }
+        
         public void JumpButtonPressed()
         {
-            Debug.Log(enabled);
-            if (enabled)
+            Debug.Log(Enabled);
+            if (Enabled)
             {
                 Debug.Log("Invoke Jump");
                 OnJumpButtonPressed?.Invoke();
@@ -27,7 +33,7 @@ namespace Tech.IO
 
         public void HitButtonPressed()
         {
-            if (enabled)
+            if (Enabled)
             {
                 OnHitButtonPressed?.Invoke();
             }
@@ -35,7 +41,7 @@ namespace Tech.IO
 
         public void InteractButtonPressed()
         {
-            if (enabled)
+            if (Enabled)
             {
                 OnInteractButtonPressed?.Invoke();
             }
@@ -43,7 +49,7 @@ namespace Tech.IO
 
         public void PauseButtonPressed()
         {
-            if (enabled)
+            if (Enabled)
             {
                 OnPauseButtonPressed?.Invoke();
             }
@@ -51,7 +57,7 @@ namespace Tech.IO
 
         public void Skill1ButtonPressed()
         {
-            if (enabled)
+            if (Enabled)
             {
                 OnSkill1ButtonPressed?.Invoke();
             }

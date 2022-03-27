@@ -889,7 +889,7 @@ GameObject:
   m_Component:
   - component: {fileID: 207094027}
   - component: {fileID: 207094026}
-  - component: {fileID: 207094025}
+  - component: {fileID: 207094028}
   m_Layer: 9
   m_Name: NPC
   m_TagString: Untagged
@@ -897,25 +897,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &207094025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 207094024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3477c78cc7964c64bbaf909d4c4042c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputChannel: {fileID: 11400000, guid: 089b2dbb73bd38745996825d79789973, type: 2}
-  interactionRadius: 2
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 256
-  dialogueChannel: {fileID: 11400000, guid: 1cee07124a92d754a813fea17d6b394a, type: 2}
-  greetDialogue: {fileID: 11400000, guid: 2520299bb7dfcc843b8d9f109d83df45, type: 2}
 --- !u!212 &207094026
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -983,6 +964,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &207094028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207094024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3477c78cc7964c64bbaf909d4c4042c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Davids Mom
+  dialogueChannel: {fileID: 11400000, guid: 1cee07124a92d754a813fea17d6b394a, type: 2}
+  inputChannel: {fileID: 11400000, guid: 089b2dbb73bd38745996825d79789973, type: 2}
+  interactionRadius: 2
+  interactionLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  greetDialogue: {fileID: 11400000, guid: 2520299bb7dfcc843b8d9f109d83df45, type: 2}
 --- !u!1 &216327651
 GameObject:
   m_ObjectHideFlags: 0
@@ -9348,11 +9349,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4459712548062227215, guid: 7dc45234e14d7ab4897a9313a1eccfec, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -39.46
+      value: -43.56
       objectReference: {fileID: 0}
     - target: {fileID: 4459712548062227215, guid: 7dc45234e14d7ab4897a9313a1eccfec, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.19
+      value: 4.61
       objectReference: {fileID: 0}
     - target: {fileID: 4459712548062227215, guid: 7dc45234e14d7ab4897a9313a1eccfec, type: 3}
       propertyPath: m_LocalPosition.z

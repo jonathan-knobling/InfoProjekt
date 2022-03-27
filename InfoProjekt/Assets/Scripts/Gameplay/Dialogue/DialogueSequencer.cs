@@ -1,3 +1,4 @@
+using System;
 using Gameplay.Dialogue.Nodes;
 using Tech.Flow;
 using UnityEngine;
@@ -6,15 +7,11 @@ namespace Gameplay.Dialogue
 {
     public class DialogueSequencer
     {
-        public delegate void DialogueCallback(Gameplay.Dialogue.Util.Dialogue dialogue);
-        public delegate void DialogueNodeCallback(DialogueNode dialogueNode);
-
-        public DialogueCallback OnStartDialogue;
-        public DialogueCallback OnEndDialogue;
-        public DialogueNodeCallback OnStartDialogueNode;
-        public DialogueNodeCallback OnEndDialogueNode;
+        public Action<Util.Dialogue> OnStartDialogue;
+        public Action<Util.Dialogue> OnEndDialogue;
+        public Action<DialogueNode> OnStartDialogueNode;
         
-        private Gameplay.Dialogue.Util.Dialogue currentDialogue;
+        private Util.Dialogue currentDialogue;
         private DialogueNode currentDialogueNode;
 
         private readonly FlowChannelSO flowChannel;
@@ -56,6 +53,10 @@ namespace Gameplay.Dialogue
 
         public void StartDialogueNode(DialogueNode dialogueNode)
         {
+            if (dialogueNode == null)
+            {
+                EndDialogue(currentDialogue);
+            }
             if (dialogueNode.Equals(currentDialogue.startNode) || currentDialogueNode.CanBeFollowedByNode(dialogueNode))
             {
                 currentDialogueNode = dialogueNode;
