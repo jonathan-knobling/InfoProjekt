@@ -1,3 +1,4 @@
+using Environment.Actors.Player;
 using Environment.Actors.Player.Stats;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -52,19 +53,19 @@ namespace UI
 
         private void Update()
         {
-            levelText.text = "LEVEL: " + stats.Level + " (" + stats.LevelXP + ")";
+            levelText.text = "LEVEL: " + stats.level + " (" + stats.levelXP + ")";
 
-            strengthStatText.text = "STRENGTH: " + stats.CurrentStats[0] + " | " + stats.HiddenStats[0] + " | " + stats.TotalStats[0];
-            enduranceStatText.text = "ENDURANCE: " + stats.CurrentStats[1] + " | " + stats.HiddenStats[1] + " | " + stats.TotalStats[1];
-            dexterityStatText.text = "DEXTERITY: " + stats.CurrentStats[2] + " | " + stats.HiddenStats[2] + " | " + stats.TotalStats[2];
-            agilityStatText.text = "AGILITY: " + stats.CurrentStats[3] + " | " + stats.HiddenStats[3] + " | " + stats.TotalStats[3];
-            magicStatText.text = "MAGIC: " + stats.CurrentStats[4] + " | " + stats.HiddenStats[4] + " | " + stats.TotalStats[4];
+            strengthStatText.text = "STRENGTH: " + stats.CurrentStatus[StatusAbility.Strength] + " | " + stats.HiddenStatus[StatusAbility.Strength] + " | " + stats.TotalStatus[StatusAbility.Strength];
+            enduranceStatText.text = "ENDURANCE: " + stats.CurrentStatus[StatusAbility.Endurance] + " | " + stats.HiddenStatus[StatusAbility.Endurance] + " | " + stats.TotalStatus[StatusAbility.Endurance];
+            dexterityStatText.text = "DEXTERITY: " + stats.CurrentStatus[StatusAbility.Dexterity] + " | " + stats.HiddenStatus[StatusAbility.Dexterity] + " | " + stats.TotalStatus[StatusAbility.Dexterity];
+            agilityStatText.text = "AGILITY: " + stats.CurrentStatus[StatusAbility.Agility] + " | " + stats.HiddenStatus[StatusAbility.Agility] + " | " + stats.TotalStatus[StatusAbility.Agility];
+            magicStatText.text = "MAGIC: " + stats.CurrentStatus[StatusAbility.Magic] + " | " + stats.HiddenStatus[StatusAbility.Magic] + " | " + stats.TotalStatus[StatusAbility.Magic];
 
-            strengthXPText.text = "STRENGTH XP: " + stats.CurrentXP[0];
-            enduranceXPText.text = "ENDURANCE XP: " + stats.CurrentXP[1];
-            dexterityXPText.text = "DEXTERITY XP: " + stats.CurrentXP[2];
-            agilityXPText.text = "AGILITY XP: " + stats.CurrentXP[3];
-            magicXPText.text = "MAGIC XP: " + stats.CurrentXP[4];
+            strengthXPText.text = "STRENGTH XP: " + stats.CurrentXP[StatusAbility.Strength];
+            enduranceXPText.text = "ENDURANCE XP: " + stats.CurrentXP[StatusAbility.Endurance];
+            dexterityXPText.text = "DEXTERITY XP: " + stats.CurrentXP[StatusAbility.Dexterity];
+            agilityXPText.text = "AGILITY XP: " + stats.CurrentXP[StatusAbility.Agility];
+            magicXPText.text = "MAGIC XP: " + stats.CurrentXP[StatusAbility.Magic];
 
 
             if (stats.LevelUpPossible) 

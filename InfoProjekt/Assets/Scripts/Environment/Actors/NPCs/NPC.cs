@@ -1,26 +1,36 @@
 using Gameplay.Dialogue;
+using Gameplay.Dialogue.Util;
+using Tech.IO;
 using UnityEngine;
 
 namespace Environment.Actors.NPCs
 {
-    public class NPC: Interactable
+    public abstract class NPC: Actor, IInteractable
     {
-        [SerializeField] private DialogueChannelSO dialogueChannel;
-        [SerializeField] private global::Gameplay.Dialogue.Util.Dialogue greetDialogue;
+        [Header("Tech Stuff")]
+        [SerializeField] protected DialogueChannelSO dialogueChannel;
+        [SerializeField] protected InputChannelSO inputChannel;
 
-        public override void Interact()
+        [Header("Interaction Stuff")]
+        [SerializeField] protected float interactionRadius = 2f;
+        [SerializeField] protected LayerMask interactionLayers;
+        
+        [Header("NPC Stuff")]
+        [SerializeField] protected Dialogue greetDialogue;
+
+        public void Start()
+        {
+            inputChannel.OnInteractButtonPressed += OnInteractButtonPressed;
+        }
+
+        public virtual void Interact()
         {
             dialogueChannel.RequestDialog(greetDialogue);
         }
 
-        public override void Init()
+        protected virtual void OnInteractButtonPressed()
         {
-            inputChannel.OnInteractButtonPressed += OnInteractButtonPressed;
-        }
-        
-        private void OnInteractButtonPressed()
-        {
-            if (Physics2D.OverlapCircle(transform.position, interactionRadius, playerMask))
+            if (Physics2D.OverlapCircle(transform.position, interactionRadius, interactionLayers))
             {
                 Interact();
                 Debug.Log("interact");

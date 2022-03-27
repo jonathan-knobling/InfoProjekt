@@ -1,25 +1,7 @@
-using Tech.IO;
-using UnityEngine;
-
 namespace Environment
 {
-    public abstract class Interactable: MonoBehaviour
+    public interface IInteractable
     {
-        [SerializeField] protected InputChannelSO inputChannel;
-        [SerializeField] protected int interactionRadius;
-        [SerializeField] protected LayerMask playerMask;
-
-        public abstract void Interact();
-        public abstract void Init();
-        
-        private void Start()
-        {
-            Init();    
-        }
-
-        private void OnDrawGizmos()
-        {
-            Gizmos.DrawWireSphere(transform.position, interactionRadius);
-        }
+        void Interact();
     }
 }

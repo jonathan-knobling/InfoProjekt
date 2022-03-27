@@ -6,7 +6,6 @@ using UnityEngine;
 
 namespace Environment.Actors.Player
 {
-    [RequireComponent(typeof(PlayerStats))]
     public class PlayerCombatController: MonoBehaviour
     {
         [SerializeField] private Animator animator;
@@ -52,7 +51,7 @@ namespace Environment.Actors.Player
         
             foreach(Collider2D enemy in hitEnemies)
             {
-                float dealtDamage = enemy.GetComponent<EnemyStats>().Hit(stats.AttackDamage);
+                float dealtDamage = enemy.GetComponent<EnemyStats>().DealDamage(stats.attackDamage);
                 if(enemy.GetComponent<EnemyStats>().IsDead)
                 {
                     stats.AddXP(enemy.GetComponent<EnemyStats>());

@@ -171,7 +171,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.0354838, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -940,6 +940,7 @@ MonoBehaviour:
   accelerationForce: 80
   linearDrag: 0.5
   maxJumpInputBuffer: 4
+  jumpForce: 20
   groundCheck: {fileID: 4764667846776599490}
   checkRadius: 0.25
   maxGroundedBuffer: 4
@@ -993,8 +994,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d14bdc59bb68b64290f5066bb478332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  jumpForce: 20
 --- !u!61 &2660222579089108975
 BoxCollider2D:
   m_ObjectHideFlags: 0

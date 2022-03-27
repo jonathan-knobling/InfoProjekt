@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Environment.Actors.Enemies
 {
-    public class EnemyStats : MonoBehaviour
+    public class EnemyStats : Stats
     {
         [Header("Animator")]
         private static readonly int AnimatorHit = Animator.StringToHash("hit");
@@ -12,10 +12,10 @@ namespace Environment.Actors.Enemies
         
         [Header("Stats")] 
         [SerializeField] public string enemyID;
-        [SerializeField] public int level = 1;
-        [SerializeField] private float maxHealth = 10;
+        [SerializeField] public new int level = 1;
+        [SerializeField] private new float maxHealth = 10;
         [SerializeField] private float defenseMultiplier = 1;
-        [SerializeField] private float attackDamage = 3;
+        [SerializeField] private new float attackDamage = 3;
         [SerializeField] private int xpAmount = 2;
         private const float LevelMultiplier = 2.5f;
         private float HiddenMaxHealth => (LevelMultiplier * level * maxHealth);
@@ -36,7 +36,7 @@ namespace Environment.Actors.Enemies
         }
 
         [Description("Returns the actually dealt damage")]
-        public float Hit(float damage)
+        public override float DealDamage(float damage)
         {
             float actualDamage = damage * defenseMultiplier;
             health -= damage;

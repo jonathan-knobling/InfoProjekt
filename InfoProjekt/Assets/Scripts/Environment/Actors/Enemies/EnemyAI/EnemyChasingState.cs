@@ -1,4 +1,5 @@
 using System;
+using Environment.Actors.Player;
 using Environment.Actors.Player.Stats;
 using UnityEngine;
 

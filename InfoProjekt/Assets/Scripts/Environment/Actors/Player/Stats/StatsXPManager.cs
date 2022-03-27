@@ -2,9 +2,9 @@ namespace Environment.Actors.Player.Stats
 {
     public class StatsXPManager
     {
-        private readonly PlayerStats stats;
+        private readonly Status stats;
 
-        public StatsXPManager(PlayerStats stats)
+        public StatsXPManager(Status stats)
         {
             this.stats = stats;
             UniversalXPMultiplier = 1f;

@@ -3,6 +3,7 @@ using Environment.Actors.Player.Stats;
 using Tech.IO;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Environment.Actors.Player
 {
@@ -17,14 +18,14 @@ namespace Environment.Actors.Player
         [Header("Movement Variables")] 
         [SerializeField] private float accelerationForce = 10f;
         [SerializeField] private float linearDrag = 1f;
-        private float MaxSpeed => stats.Speed;
+        private float MaxSpeed => stats.speed;
         private float horizontalDirection;
         private bool ChangingDirection =>(rb.velocity.x > 0f && horizontalDirection < 0f) || (rb.velocity.x < 0f && horizontalDirection > 0f);
         private bool FacingRight => Math.Abs(Mathf.Sign(transform.localScale.x) - 1) < 0.01f; // basically sign(x) == 1
 
         [Header("Jump Variables")]
         [SerializeField] private int maxJumpInputBuffer = 4;
-        private float JumpForce => stats.JumpForce;
+        [SerializeField] private float jumpForce = 20f;
         private int jumpInputBuffer;
 
         [Header("Ground Variables")]
@@ -121,7 +122,7 @@ namespace Environment.Actors.Player
 
         private void Jump()
         {
-            rb.AddForce(new Vector2(0,JumpForce),ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
             animator.SetTrigger(CPJump);
         }
 
