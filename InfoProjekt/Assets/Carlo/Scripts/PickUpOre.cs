@@ -2,8 +2,10 @@ using Gameplay.Inventory;
 using Gameplay.Inventory.Items;
 using Tech.IO;
 using UI;
+using UI.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Util.EventArgs;
 
 
 public class PickUpOre : MonoBehaviour
@@ -41,9 +43,8 @@ public class PickUpOre : MonoBehaviour
     {
         text = new Label();
         text.text = "Press F to pick up!";
-        text.transform.position = new Vector2(900, 900);
         text.style.fontSize = 40;
-        uiChannel.RequestAddUIVisualElement(text);
+        uiChannel.RequestAddUIVisualElement(new UIEventArgs(text, null, UIType.Prompt));
     }
     private void OnTriggerExit2D(Collider2D col)
     {
