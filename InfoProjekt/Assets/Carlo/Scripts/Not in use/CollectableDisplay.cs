@@ -4,10 +4,10 @@ using Inventory.Items;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OreDisplay : MonoBehaviour
+public class CollectableDisplay : MonoBehaviour
 {
     
-    public Ore ore;
+    public Collectable ore;
 
     public Image artwork;
     

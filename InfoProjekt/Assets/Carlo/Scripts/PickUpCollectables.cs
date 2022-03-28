@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 
-public class PickUpOre : MonoBehaviour
+public class PickUpCollectables : MonoBehaviour
 {
     [SerializeField] private InputChannelSO inputChannel;
     [SerializeField] private float interactionRadius;
