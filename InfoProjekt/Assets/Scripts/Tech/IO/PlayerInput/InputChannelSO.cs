@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Tech.IO
+namespace Tech.IO.PlayerInput
 {
     [CreateAssetMenu(menuName = "Channels/Input Channel")]
     public class InputChannelSO: ScriptableObject

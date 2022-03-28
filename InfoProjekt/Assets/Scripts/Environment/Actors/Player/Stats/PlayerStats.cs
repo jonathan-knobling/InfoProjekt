@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using Environment.Actors.Enemies;
+using Tech.IO.Saves;
 using UnityEngine;
 
 namespace Environment.Actors.Player.Stats
 {
-    public class PlayerStats: Actors.Stats
+    public class PlayerStats: Actors.Stats, ISaveable
     {
         private static readonly int CPDeath = Animator.StringToHash("death");
 
@@ -21,20 +22,20 @@ namespace Environment.Actors.Player.Stats
         public Dictionary<StatusAbility, float> TotalStatus => status.TotalStatus;
         public Dictionary<StatusAbility, float> CurrentXP => status.CurrentXP;
         
-        private void Start()
+        private void Awake()
         {
             status = new Status();
-            Health = maxHealth;
+            Health = MaxHealth;
             animator = GetComponent<Animator>();
         }
 
         private void Update()
         {
-            level = status.Level;
-            levelXP = status.LevelXP;
-            maxHealth = status.Endurance * 0.69f;
-            attackDamage = status.Strength * 0.69f;
-            speed = status.Agility * 0.69f;
+            Level = status.Level;
+            LevelXP = status.LevelXP;
+            MaxHealth = status.Endurance * 0.69f;
+            AttackDamage = status.Strength * 0.69f;
+            Speed = status.Agility * 0.69f;
         }
 
         public override float DealDamage(float damageAmount)
@@ -74,6 +75,18 @@ namespace Environment.Actors.Player.Stats
         public void StatusUpdate()
         {
             status.StatusUpdate();
+        }
+
+        
+        //saving
+        public object SerializeComponent()
+        {
+            return status.SerializeComponent();
+        }
+
+        public void ApplySerializedData(object data)
+        {
+            status.ApplySerializedData(data);
         }
     }
 }

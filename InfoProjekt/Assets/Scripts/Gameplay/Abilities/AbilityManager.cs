@@ -3,6 +3,7 @@ using Environment.Actors.Player.Stats;
 using Gameplay.Abilities.Active;
 using Gameplay.Abilities.Passive;
 using Tech.IO;
+using Tech.IO.PlayerInput;
 using UnityEngine;
 
 namespace Gameplay.Abilities

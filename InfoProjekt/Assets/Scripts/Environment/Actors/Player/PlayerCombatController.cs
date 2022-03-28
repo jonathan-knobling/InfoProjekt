@@ -2,6 +2,7 @@ using System;
 using Environment.Actors.Enemies;
 using Environment.Actors.Player.Stats;
 using Tech.IO;
+using Tech.IO.PlayerInput;
 using UnityEngine;
 
 namespace Environment.Actors.Player
@@ -51,7 +52,7 @@ namespace Environment.Actors.Player
         
             foreach(Collider2D enemy in hitEnemies)
             {
-                float dealtDamage = enemy.GetComponent<EnemyStats>().DealDamage(stats.attackDamage);
+                float dealtDamage = enemy.GetComponent<EnemyStats>().DealDamage(stats.AttackDamage);
                 if(enemy.GetComponent<EnemyStats>().IsDead)
                 {
                     stats.AddXP(enemy.GetComponent<EnemyStats>());

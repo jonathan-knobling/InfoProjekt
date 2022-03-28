@@ -12,42 +12,42 @@ namespace Environment.Actors.Enemies
         
         [Header("Stats")] 
         [SerializeField] public string enemyID;
-        [SerializeField] public new int level = 1;
-        [SerializeField] private new float maxHealth = 10;
+        [SerializeField] public int level = 1;
+        [SerializeField] private float maxHealth = 10;
         [SerializeField] private float defenseMultiplier = 1;
-        [SerializeField] private new float attackDamage = 3;
+        [SerializeField] private float attackDamage = 3;
         [SerializeField] private int xpAmount = 2;
         private const float LevelMultiplier = 2.5f;
         private float HiddenMaxHealth => (LevelMultiplier * level * maxHealth);
         private float HiddenAttackDamage => (int)(LevelMultiplier * level * attackDamage);
-        private float health;
+        private new float Health;
 
         //getters
-        public int Level => level;
-        public bool IsDead => health <= 0;
+        public new int Level => level;
+        public bool IsDead => Health <= 0;
         public int XPAmount => xpAmount;
-        public float AttackDamage => HiddenAttackDamage;
-        public float Speed => (float) ((1 + 0.25 * level) * 5);
+        public new float AttackDamage => HiddenAttackDamage;
+        public new float Speed => (float) ((1 + 0.25 * level) * 5);
         public float RoamingSpeed => (float) ((1 + 0.15 * level) * 5);
 
         private void Start()
         {
-            health = HiddenMaxHealth;
+            Health = HiddenMaxHealth;
         }
 
         [Description("Returns the actually dealt damage")]
         public override float DealDamage(float damage)
         {
             float actualDamage = damage * defenseMultiplier;
-            health -= damage;
+            Health -= damage;
             
             
-            if (health <= 0)
+            if (Health <= 0)
             {
                 Die();
                 
                 //relevant wenn health < 0
-                actualDamage -= health;
+                actualDamage -= Health;
                 return actualDamage;
             }
 

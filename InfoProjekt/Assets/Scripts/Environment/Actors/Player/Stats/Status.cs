@@ -1,10 +1,12 @@
+using System;
 using System.Collections.Generic;
 using Environment.Actors.Enemies;
+using Tech.IO.Saves;
 using UnityEngine;
 
 namespace Environment.Actors.Player.Stats
 {
-    public class Status
+    public class Status: ISaveable
     {
         public StatsXPManager XPManager { get; }
 
@@ -12,10 +14,11 @@ namespace Environment.Actors.Player.Stats
         private readonly int[] xpThreshold = {0, 4, 8, 15, 16, 23, 42, 69, 420, 911, 1337, 9000, 69420};
         
         public int Level { get; private set; }
+        public float LevelXP { get; private set; }
         
-        public readonly Dictionary<StatusAbility, int> CurrentStatus;
-        public readonly Dictionary<StatusAbility, int> HiddenStatus;
-        public readonly Dictionary<StatusAbility, float> CurrentXP;
+        public Dictionary<StatusAbility, int> CurrentStatus;
+        public Dictionary<StatusAbility, int> HiddenStatus;
+        public Dictionary<StatusAbility, float> CurrentXP;
 
         public Status()
         {
@@ -84,8 +87,6 @@ namespace Environment.Actors.Player.Stats
         {
             CurrentXP[StatusAbility.Agility] += xpAmount;
         }
-        
-        public float LevelXP { get; private set; }
 
         public Dictionary<StatusAbility, float> TotalStatus => new Dictionary<StatusAbility, float>(5)
         {
@@ -159,6 +160,40 @@ namespace Environment.Actors.Player.Stats
         {
             LevelXP += (int) (enemyStats.XPAmount * Mathf.Pow(10, enemyStats.Level - Level));
             // gleiches level -> *10^0 = 1 | enemy level eins kleiner -> *10^-1 | grösser *10^1 etc.
+        }
+        
+        
+        //saving
+        public object SerializeComponent()
+        {
+            return new SaveData()
+            {
+                level = Level,
+                levelXP = LevelXP,
+                CurrentStatus = CurrentStatus,
+                HiddenStatus = HiddenStatus,
+                CurrentXP = CurrentXP
+            };
+        }
+
+        public void ApplySerializedData(object data)
+        {
+            var serializedData = (SaveData) data;
+            Level = serializedData.level;
+            LevelXP = serializedData.levelXP;
+            CurrentStatus = serializedData.CurrentStatus;
+            HiddenStatus = serializedData.HiddenStatus;
+            CurrentXP = serializedData.CurrentXP;
+        }
+        
+        [Serializable]
+        private struct SaveData
+        {
+            public int level;
+            public float levelXP;
+            public Dictionary<StatusAbility, int> CurrentStatus;
+            public Dictionary<StatusAbility, int> HiddenStatus;
+            public Dictionary<StatusAbility, float> CurrentXP;
         }
     }
 }

@@ -1,5 +1,6 @@
 using Environment.Actors.Player;
 using Tech.IO;
+using Tech.IO.PlayerInput;
 using UnityEngine;
 
 namespace Tech.Flow.States

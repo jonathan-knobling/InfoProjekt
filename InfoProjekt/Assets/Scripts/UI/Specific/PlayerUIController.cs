@@ -52,7 +52,7 @@ namespace UI.Specific
 
         private void Update()
         {
-            levelText.text = "LEVEL: " + stats.level + " (" + stats.levelXP + ")";
+            levelText.text = "LEVEL: " + stats.Level + " (" + stats.LevelXP + ")";
 
             strengthStatText.text = "STRENGTH: " + stats.CurrentStatus[StatusAbility.Strength] + " | " + stats.HiddenStatus[StatusAbility.Strength] + " | " + stats.TotalStatus[StatusAbility.Strength];
             enduranceStatText.text = "ENDURANCE: " + stats.CurrentStatus[StatusAbility.Endurance] + " | " + stats.HiddenStatus[StatusAbility.Endurance] + " | " + stats.TotalStatus[StatusAbility.Endurance];
