@@ -1,6 +1,7 @@
 using Gameplay.Dialogue;
 using Gameplay.Dialogue.Util;
 using Tech.IO;
+using Tech.IO.PlayerInput;
 using UnityEngine;
 
 namespace Environment.Actors.NPCs

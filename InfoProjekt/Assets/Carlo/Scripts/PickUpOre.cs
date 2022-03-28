@@ -1,6 +1,7 @@
 using Gameplay.Inventory;
 using Gameplay.Inventory.Items;
 using Tech.IO;
+using Tech.IO.PlayerInput;
 using UI;
 using UI.Generic;
 using UnityEngine;

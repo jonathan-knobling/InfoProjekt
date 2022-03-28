@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Environment.Actors
@@ -5,11 +6,11 @@ namespace Environment.Actors
     public abstract class Stats: MonoBehaviour, IDamagable
     {
         protected float Health;
-        public int level;
-        public float levelXP;
-        public float maxHealth;
-        public float attackDamage;
-        public float speed;
+        protected float MaxHealth;
+        [NonSerialized] public int Level;
+        [NonSerialized] public float LevelXP;
+        [NonSerialized] public float AttackDamage;
+        [NonSerialized] public float Speed;
         
         public abstract float DealDamage(float damage);
     }

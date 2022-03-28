@@ -1,6 +1,7 @@
 using System;
 using Environment.Actors.Player.Stats;
 using Tech.IO;
+using Tech.IO.PlayerInput;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -18,7 +19,7 @@ namespace Environment.Actors.Player
         [Header("Movement Variables")] 
         [SerializeField] private float accelerationForce = 10f;
         [SerializeField] private float linearDrag = 1f;
-        private float MaxSpeed => stats.speed;
+        private float MaxSpeed => stats.Speed;
         private float horizontalDirection;
         private bool ChangingDirection =>(rb.velocity.x > 0f && horizontalDirection < 0f) || (rb.velocity.x < 0f && horizontalDirection > 0f);
         private bool FacingRight => Math.Abs(Mathf.Sign(transform.localScale.x) - 1) < 0.01f; // basically sign(x) == 1
