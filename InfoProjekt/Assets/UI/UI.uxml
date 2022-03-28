@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd">
+    <ui:VisualElement name="screen" style="width: 100%; height: 100%; position: absolute;" />
+    <ui:VisualElement name="prompt" style="position: absolute; height: auto; width: 100%; right: 0; bottom: 12%; align-items: center;" />
+</ui:UXML>

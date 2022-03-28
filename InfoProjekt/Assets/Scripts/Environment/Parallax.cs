@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Environment
@@ -29,6 +30,5 @@ namespace Environment
             var transform1 = transform;
             transform1.position = new Vector3(newPosX, transform1.position.y, startPosition.z);
         }
-    
     }
 }
