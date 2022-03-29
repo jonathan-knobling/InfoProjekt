@@ -176,14 +176,14 @@ namespace Environment.Actors.Player.Stats
             };
         }
 
-        public void ApplySerializedData(object data)
+        public void ApplySerializedData(object serializedData)
         {
-            var serializedData = (SaveData) data;
-            Level = serializedData.level;
-            LevelXP = serializedData.levelXP;
-            CurrentStatus = serializedData.CurrentStatus;
-            HiddenStatus = serializedData.HiddenStatus;
-            CurrentXP = serializedData.CurrentXP;
+            var data = (SaveData) serializedData;
+            Level = data.level;
+            LevelXP = data.levelXP;
+            CurrentStatus = data.CurrentStatus;
+            HiddenStatus = data.HiddenStatus;
+            CurrentXP = data.CurrentXP;
         }
         
         [Serializable]

@@ -1,9 +1,11 @@
+using System;
 using System.ComponentModel;
+using Tech.IO.Saves;
 using UnityEngine;
 
 namespace Environment.Actors.Enemies
 {
-    public class EnemyStats : MonoBehaviour, IDamagable
+    public class EnemyStats : MonoBehaviour, IDamagable, ISaveable
     {
         [Header("Animator")]
         private static readonly int AnimatorHit = Animator.StringToHash("hit");
@@ -59,6 +61,28 @@ namespace Environment.Actors.Enemies
         {
             animator.SetTrigger(Death);
             Destroy(gameObject);
+        }
+
+        
+        //Saving
+        public object SerializeComponent()
+        {
+            return new SaveData()
+            {
+                healthData = health
+            };
+        }
+
+        public void ApplySerializedData(object serializedData)
+        {
+            var data = (SaveData) serializedData;
+            health = data.healthData;
+        }
+
+        [Serializable]
+        private struct SaveData
+        {
+            public float healthData;
         }
     }
 }

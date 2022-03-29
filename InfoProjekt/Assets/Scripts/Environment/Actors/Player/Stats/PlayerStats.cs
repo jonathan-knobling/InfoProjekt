@@ -83,9 +83,9 @@ namespace Environment.Actors.Player.Stats
             return status.SerializeComponent();
         }
 
-        public void ApplySerializedData(object data)
+        public void ApplySerializedData(object serializedData)
         {
-            status.ApplySerializedData(data);
+            status.ApplySerializedData(serializedData);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Util.Serialization
         public float[] rotation = new float[4];
         public float[] scale = new float[3];
         
-        public SerializeableTransform(Transform transform, bool worldSpace = false)
+        public SerializeableTransform(Transform transform)
         {
             var localPosition = transform.localPosition;
             position[0] = localPosition.x;
