@@ -8,14 +8,25 @@ namespace Tech.IO.Saves
 {
     public class SaveManager: MonoBehaviour
     {
+        [SerializeField] private SaveChannelSO saveChannel;
+        
+        private Dictionary<string, object> saveBuffer;
+        
         private string SavePath => Application.persistentDataPath + "/save.dmg";
-
+        
         private void Start()
         {
             //Load();
             SceneManager.activeSceneChanged += Save;
+            saveChannel.OnSave += AddToSafeBuffer;
+            saveBuffer = new Dictionary<string, object>();
         }
-
+            
+        private void AddToSafeBuffer(string key, object data)
+        {
+            saveBuffer.Add(key, data);
+        }
+        
         //overload um zu activeSceneChanged subben zu können
         private void Save(Scene arg0, Scene scene)
         {
@@ -27,7 +38,17 @@ namespace Tech.IO.Saves
         {
             //erst loaden damit andere scenen nich ge overwritet werden
             var serializedData = LoadFile();
+
+            //apply save buffer
+            foreach (var (key, value) in saveBuffer)
+            {
+                serializedData.Add(key, value);
+            }
+            saveBuffer.Clear();
+            
+            //load new changes from game
             SerializeGame(serializedData);
+            //save the file
             SaveFile(serializedData);
         }
         
@@ -35,6 +56,7 @@ namespace Tech.IO.Saves
         private void Load()
         {
             var serializedData = LoadFile();
+            saveChannel.Load(serializedData);
             ApplySerializedData(serializedData);
         }
         
@@ -66,7 +88,7 @@ namespace Tech.IO.Saves
         private void SerializeGame(Dictionary<string, object> serializedData)
         {
             //jedes saveable gameobject in der activen scene serializen und ins save dictionary packen
-            foreach (var saveable in GameObject.FindObjectsOfType<SaveableGameObject>())
+            foreach (var saveable in FindObjectsOfType<SaveableGameObject>())
             {
                 serializedData[saveable.ID] = saveable.SerializeGameObject();
             }
@@ -75,7 +97,7 @@ namespace Tech.IO.Saves
         private void ApplySerializedData(Dictionary<string, object> serializedData)
         {
             //jedes saveable gameobject in der activen scene aus dem dictionary die serializete data holen mit der ID
-            foreach (var saveable in GameObject.FindObjectsOfType<SaveableGameObject>())
+            foreach (var saveable in FindObjectsOfType<SaveableGameObject>())
             {
                 if (serializedData.TryGetValue(saveable.ID, out object data))
                 {

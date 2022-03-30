@@ -54,11 +54,14 @@ namespace Environment.Actors.Enemies.Spawning
             //durch den array loopen und data eintragen
             for (int i = 0; i < enemyInstances.Count; i++)
             {
-                data.enemies[i] = new EnemyData()
+                if(!enemyInstances[i].Equals(null))
                 {
-                    EnemySerializedData = enemyInstances[i].GetComponent<EnemyStats>().SerializeComponent(),
-                    enemyTransform = new SerializeableTransform(enemyInstances[i].transform)
-                };
+                    data.enemies[i] = new EnemyData()
+                    {
+                        EnemySerializedData = enemyInstances[i].GetComponent<EnemyStats>().SerializeComponent(),
+                        enemyTransform = new SerializeableTransform(enemyInstances[i].transform)
+                    };
+                }
             }
 
             return data;

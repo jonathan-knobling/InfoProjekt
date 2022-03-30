@@ -10931,6 +10931,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1106472539736047250, guid: c28a7ec5f789b67479e6dadbd65a53b5, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 1106472539736047250, guid: c28a7ec5f789b67479e6dadbd65a53b5, type: 3}
       propertyPath: m_Name
       value: DropItem
       objectReference: {fileID: 0}
@@ -10940,15 +10944,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1106472539736047251, guid: c28a7ec5f789b67479e6dadbd65a53b5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -31.514402
+      value: -31.26
       objectReference: {fileID: 0}
     - target: {fileID: 1106472539736047251, guid: c28a7ec5f789b67479e6dadbd65a53b5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.9072912
+      value: 3.44
       objectReference: {fileID: 0}
     - target: {fileID: 1106472539736047251, guid: c28a7ec5f789b67479e6dadbd65a53b5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -438.80975
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1106472539736047251, guid: c28a7ec5f789b67479e6dadbd65a53b5, type: 3}
       propertyPath: m_LocalRotation.w

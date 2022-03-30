@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Tech.IO.Saves
 {
-    public class SaveableGameObject: MonoBehaviour
+    public class SaveableGameObject: MonoBehaviour, IIdentifiable
     {
         [SerializeField] private string id = String.Empty;
 

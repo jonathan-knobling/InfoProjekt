@@ -10,14 +10,15 @@ namespace Util
         private bool elapsed;
         private bool paused;
         private bool repeat;
-        
+
         public event Action OnElapsed;
 
         //getter
         public bool Elapsed => elapsed;
         public bool Paused => paused;
         public bool Repeat => repeat;
-
+        public float ElapsedTime => elapsedTime;
+        
         public Timer(float time, bool repeat)
         {
             this.repeat = repeat;

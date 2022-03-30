@@ -9,10 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15d56425028c4e088dbfe0dfec0a7113, type: 3}
-  m_Name: g head
+  m_Script: {fileID: 11500000, guid: 2a3f8a36ff314bd79fa6af2655995913, type: 3}
+  m_Name: Item Save Channel SO
   m_EditorClassIdentifier: 
-  name: G Head
-  sprite: {fileID: 21300000, guid: 5533f00ca5bf1094eb025bc0f02e1eac, type: 3}
-  rarity: {fileID: 11400000, guid: 88b7a3442ef91514e95b766c59673ad4, type: 2}
-  amount: 2

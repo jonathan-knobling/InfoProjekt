@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using Gameplay.Inventory.Items;
-using Inventory;
-using Inventory.Items;
 using UnityEngine;
 
 namespace Gameplay.Inventory

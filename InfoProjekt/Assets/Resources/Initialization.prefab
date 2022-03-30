@@ -995,11 +995,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d14bdc59bb68b64290f5066bb478332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 0
-  levelXP: 0
-  maxHealth: 0
-  attackDamage: 0
-  speed: 0
 --- !u!61 &2660222579089108975
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1099,6 +1094,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7933265516121399651}
   - component: {fileID: 3392155256646291545}
+  - component: {fileID: 4830559846380439394}
   m_Layer: 0
   m_Name: SaveManager
   m_TagString: Untagged
@@ -1133,6 +1129,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb1c17e60264477897eb8b542231cf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveChannel: {fileID: 11400000, guid: 810dda9ef91f0974c801c73659465c5d, type: 2}
+--- !u!114 &4830559846380439394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6421217519171463823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cdaedcc17e9447b99d2238c348d2e94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropItems: []
+  itemChannel: {fileID: 11400000, guid: 108cd8a1436d83e45b74f9419b97e4ed, type: 2}
+  saveChannel: {fileID: 11400000, guid: 810dda9ef91f0974c801c73659465c5d, type: 2}
+  dropItemPrefab: {fileID: 1106472539736047250, guid: c28a7ec5f789b67479e6dadbd65a53b5, type: 3}
+  id: DropItemManager
 --- !u!1 &7197125718573662975
 GameObject:
   m_ObjectHideFlags: 0

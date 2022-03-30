@@ -1,8 +1,7 @@
-using Gameplay.Inventory;
-using Gameplay.Inventory.Items;
+using System;
 using UnityEngine;
 
-namespace Inventory.Items
+namespace Gameplay.Inventory.Items
 {
     [CreateAssetMenu(menuName = "Items/Stackable Item")]
     public class StackableItem: Item
