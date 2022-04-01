@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/menus/Menus.uss?fileID=7433441132597879392&amp;guid=0076037aa8065764fa599975fcc71a49&amp;type=3#Menus" />
+    <ui:VisualElement name="settings" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; position: absolute;">
+        <ui:Label text="SETTINGS" display-tooltip-when-elided="true" name="header" class="header" />
+        <ui:Button text="BACK" display-tooltip-when-elided="true" name="back_button" class="button-style" style="position: absolute; bottom: 25px;" />
+    </ui:VisualElement>
+</ui:UXML>

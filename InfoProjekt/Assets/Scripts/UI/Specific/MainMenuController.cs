@@ -1,54 +1,67 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 namespace UI.Specific
 {
     public class MainMenuController : MonoBehaviour
     {
+        [SerializeField] private UIDocument mainMenu;
+        [SerializeField] private UIDocument settingsMenu;
+        [SerializeField] private UIDocument loadMenu;
 
-        private Button playButton;
-        private Button settingsButton;
-        private Button settingsBackButton;
-
-        private VisualElement settingsScreen;
-        private VisualElement mainMenuScreen;
+        //Main Menu
+        private Button mainMenuPlayButton;
+        private Button mainMenuSettingsButton;
+        
+        //Settings Menu
+        private Button settingsMenuBackButton;
+        
+        //Load Menu
+        private Button loadMenuBackButton;
 
         void Start()
         {
-            //visual element root also wo alles drinne is getten
-            var root = GetComponent<UIDocument>().rootVisualElement;
-
-            //buttons vom root getten
-            playButton = root.Q<Button>("play_button");
-            settingsButton = root.Q<Button>("settings_button");
-            settingsBackButton = root.Q<Button>("back_button");
-
-            //settings und main menu screen getten
-            settingsScreen = root.Q<VisualElement>("settings");
-            mainMenuScreen = root.Q<VisualElement>("main_menu");
-
-            //die Funktionen den Buttons hinzufügen
-            playButton.clicked += PlayButtonPressed;
-            settingsButton.clicked += SettingsButtonPressed;
-            settingsBackButton.clicked += SettingsBackButtonPressed;
+            Time.timeScale = 0f;
+            
+            //Main Menu init
+            mainMenuPlayButton = mainMenu.rootVisualElement.Q<Button>("play_button");
+            mainMenuSettingsButton = mainMenu.rootVisualElement.Q<Button>("settings_button");
+            
+            //Settings Menu init
+            settingsMenuBackButton = settingsMenu.rootVisualElement.Q<Button>("back_button");
+            
+            //Load Menu init
+            loadMenuBackButton = loadMenu.rootVisualElement.Q<Button>("back_button");
+            
+            
+            //Main Menu events
+            mainMenuPlayButton.clicked += MenuPlayButtonPressed;
+            mainMenuSettingsButton.clicked += MainMenuSettingsButtonPressed;
+            
+            //Settings Menu events
+            settingsMenuBackButton.clicked += SettingsMenuBackButtonPressed;
+            
+            
+            loadMenu.enabled = false;
+            settingsMenu.enabled = false;
         }
 
-        void PlayButtonPressed()
+        void MenuPlayButtonPressed()
         {
-            SceneManager.LoadScene("Spawn");
+            loadMenu.enabled = true;
+            mainMenu.enabled = false;
         }
 
-        void SettingsButtonPressed()
+        void MainMenuSettingsButtonPressed()
         {
-            settingsScreen.style.display = DisplayStyle.Flex;
-            mainMenuScreen.style.display = DisplayStyle.None;
+            settingsMenu.enabled = true;
+            mainMenu.enabled = false;
         }
 
-        void SettingsBackButtonPressed()
+        void SettingsMenuBackButtonPressed()
         {
-            settingsScreen.style.display = DisplayStyle.None;
-            mainMenuScreen.style.display = DisplayStyle.Flex;
+            settingsMenu.enabled = false;
+            mainMenu.enabled = true;
         }
     }
 }
