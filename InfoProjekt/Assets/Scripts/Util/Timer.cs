@@ -17,6 +17,7 @@ namespace Util
         public bool Elapsed => elapsed;
         public bool Paused => paused;
         public bool Repeat => repeat;
+        public float ElapsedTime => elapsedTime;
 
         public Timer(float time, bool repeat)
         {
