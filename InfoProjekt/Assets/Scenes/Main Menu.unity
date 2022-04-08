@@ -245,6 +245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 849006588}
   - component: {fileID: 849006589}
+  - component: {fileID: 849006590}
   m_Layer: 0
   m_Name: Settings Menu
   m_TagString: Untagged
@@ -283,6 +284,20 @@ MonoBehaviour:
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 77e481cff97581a41b0d097ceb5a8cd3, type: 3}
   m_SortingOrder: 0
+--- !u!114 &849006590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849006587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b280996267324367a72cacb00b6f656e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainMenu: {fileID: 823808549}
+  settingsMenu: {fileID: 849006589}
 --- !u!1 &1333847908
 GameObject:
   m_ObjectHideFlags: 0

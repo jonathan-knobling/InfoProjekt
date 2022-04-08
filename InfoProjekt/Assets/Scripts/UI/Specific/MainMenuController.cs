@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -9,59 +10,48 @@ namespace UI.Specific
         [SerializeField] private UIDocument settingsMenu;
         [SerializeField] private UIDocument loadMenu;
 
-        //Main Menu
-        private Button mainMenuPlayButton;
-        private Button mainMenuSettingsButton;
+        private VisualElement root;
         
-        //Settings Menu
-        private Button settingsMenuBackButton;
-        
-        //Load Menu
-        private Button loadMenuBackButton;
+        private Button playButton;
+        private Button settingsButton;
+        private Button quitButton;
+
+        private void Awake()
+        {
+            root = mainMenu.rootVisualElement;
+            
+            playButton = root.Q<Button>("play_button");
+            settingsButton = root.Q<Button>("settings_button");
+            quitButton = root.Q<Button>("quit_button");
+            
+            playButton.clicked += MenuPlayButtonPressed;
+            settingsButton.clicked += MainMenuSettingsButtonPressed;
+            quitButton.clicked += QuitButtonPressed;
+        }
 
         void Start()
         {
             Time.timeScale = 0f;
             
-            //Main Menu init
-            mainMenuPlayButton = mainMenu.rootVisualElement.Q<Button>("play_button");
-            mainMenuSettingsButton = mainMenu.rootVisualElement.Q<Button>("settings_button");
-            
-            //Settings Menu init
-            settingsMenuBackButton = settingsMenu.rootVisualElement.Q<Button>("back_button");
-            
-            //Load Menu init
-            loadMenuBackButton = loadMenu.rootVisualElement.Q<Button>("back_button");
-            
-            
-            //Main Menu events
-            mainMenuPlayButton.clicked += MenuPlayButtonPressed;
-            mainMenuSettingsButton.clicked += MainMenuSettingsButtonPressed;
-            
-            //Settings Menu events
-            settingsMenuBackButton.clicked += SettingsMenuBackButtonPressed;
-            
-            
-            loadMenu.enabled = false;
-            settingsMenu.enabled = false;
+            loadMenu.rootVisualElement.style.display = DisplayStyle.None;
+            settingsMenu.rootVisualElement.style.display = DisplayStyle.None;
         }
 
-        void MenuPlayButtonPressed()
+        private void MenuPlayButtonPressed()
         {
-            loadMenu.enabled = true;
-            mainMenu.enabled = false;
+            loadMenu.rootVisualElement.style.display = DisplayStyle.Flex;
+            mainMenu.rootVisualElement.style.display = DisplayStyle.None;
         }
 
-        void MainMenuSettingsButtonPressed()
+        private void MainMenuSettingsButtonPressed()
         {
-            settingsMenu.enabled = true;
-            mainMenu.enabled = false;
+            settingsMenu.rootVisualElement.style.display = DisplayStyle.Flex;
+            mainMenu.rootVisualElement.style.display = DisplayStyle.None;
         }
 
-        void SettingsMenuBackButtonPressed()
+        private void QuitButtonPressed()
         {
-            settingsMenu.enabled = false;
-            mainMenu.enabled = true;
+            Application.Quit();
         }
     }
 }
