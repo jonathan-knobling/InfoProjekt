@@ -18,6 +18,7 @@ namespace Assets.Carlo.Scripts
         [SerializeField] private UIChannelSO uiChannel;
         [SerializeField] private GameObject pickUpEffect;
         private InteractionBar pickUpInteraction;
+        private GameObject particle;
         
             
         private Label text;
@@ -26,6 +27,9 @@ namespace Assets.Carlo.Scripts
             inputChannel.OnInteractButtonPressed += InteractButtonPressed;
             pickUpInteraction = new InteractionBar(0.7f, uiChannel);
             pickUpInteraction.OnProgressBarOver += Interact;
+            pickUpInteraction.StartEffect += CreateParticles;
+            pickUpInteraction.StopEffect += StopParticles;
+            particle = Instantiate(pickUpEffect, transform.position, transform.rotation);        
         }
 
         private void InteractButtonPressed()
@@ -38,7 +42,7 @@ namespace Assets.Carlo.Scripts
 
         private void Interact()
         {
-            CreateParticles();
+            particle.GetComponent<ParticleSystem>().Stop();
             Destroy(gameObject);
             InventoryManager.Instance.AddItem(item);
         }
@@ -61,8 +65,12 @@ namespace Assets.Carlo.Scripts
 
         private void CreateParticles()
         {
-         var particle = Instantiate(pickUpEffect, transform.position, transform.rotation);
-         particle.GetComponent<ParticleSystem>().Play();
+            particle.GetComponent<ParticleSystem>().Play();
+        }
+
+        private void StopParticles()
+        {
+            particle.GetComponent<ParticleSystem>().Stop();
         }
 
         void OnTriggerStay2D(Collider2D other)

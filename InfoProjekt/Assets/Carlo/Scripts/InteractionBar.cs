@@ -17,6 +17,8 @@ namespace Assets.Carlo.Scripts
         private bool active;
 
         public event Action OnProgressBarOver;
+        public event Action StartEffect;
+        public event Action StopEffect;
 
         public InteractionBar(float interactionTime, UIChannelSO uiChannel)
         {
@@ -42,15 +44,21 @@ namespace Assets.Carlo.Scripts
             
             if (!Input.GetKey(KeyCode.F) && active)
             {
+                StopEffect?.Invoke();
                 timer.Pause();
                 active = false;
                 uiChannel.RequestRemoveUIVisualElement(interactionBar);
             } 
             else if (Input.GetKey(KeyCode.F) && !active)
             {
+                StartEffect?.Invoke();
                 timer.Start();
                 active = true;
                 uiChannel.RequestAddUIVisualElement(new UIEventArgs(interactionBar, null, UIType.Default));
+            }
+            else if (!Input.GetKey(KeyCode.F) && !active)
+            {
+                timer.Pause();
             }
         }
 
