@@ -24,8 +24,7 @@ namespace Gameplay.Inventory.ItemSaving
             itemChannel.OnRemoveDropItem += RemoveItem;
 
             saveChannel.OnLoad += LoadItems;
-            
-            SceneManager.activeSceneChanged += SceneChanged;
+            saveChannel.OnSaveGameState += SaveItems;
         }
 
         private void AddItem(CollectableItem item)
@@ -37,13 +36,7 @@ namespace Gameplay.Inventory.ItemSaving
         {
             dropItems.Remove(item);
         }
-        
-        private void SceneChanged(Scene arg0, Scene arg1)
-        {
-            SaveItems();
-        }
 
-        [ContextMenu("Save")]
         private void SaveItems()
         {
             SaveData data = new SaveData()

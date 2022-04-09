@@ -80,7 +80,6 @@ namespace Environment.Actors.Enemies.EnemyAI
                 state = chasingState;
                 state.EnterState(this);
             }
-            Debug.Log("Switch State");
         }
 
         private void OnDrawGizmos()

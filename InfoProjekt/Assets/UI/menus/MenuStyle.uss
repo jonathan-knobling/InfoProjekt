@@ -1,10 +1,7 @@
-.button-style {
+Button {
     height: 71px;
     width: 280px;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-radius: 10px;
     background-color: rgb(114, 193, 242);
     color: rgb(0, 0, 0);
     -unity-font-style: bold;
@@ -15,13 +12,10 @@
     border-bottom-color: rgba(114, 193, 242, 255);
 }
 
-.button-style:hover {
+Button:hover {
     height: 71px;
     width: 300px;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-radius: 10px;
     background-color: rgb(114, 193, 242);
     color: rgb(0, 0, 0);
     -unity-font-style: bold;
@@ -32,13 +26,10 @@
     border-bottom-color: rgba(114, 193, 242, 255);
 }
 
-.button-style:active {
+Button:active {
     height: 71px;
     width: 280px;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-radius: 10px;
     background-color: rgb(114, 193, 242);
     color: rgb(255, 255, 255);
     -unity-font-style: bold;

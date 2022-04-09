@@ -1,5 +1,6 @@
-using System;
+using Tech.IO.Saves;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 namespace UI.Specific
@@ -9,10 +10,12 @@ namespace UI.Specific
         [SerializeField] private UIDocument mainMenu;
         [SerializeField] private UIDocument settingsMenu;
         [SerializeField] private UIDocument loadMenu;
+        [SerializeField] private SaveChannelSO saveChannel;
 
         private VisualElement root;
         
         private Button playButton;
+        private Button loadButton;
         private Button settingsButton;
         private Button quitButton;
 
@@ -21,11 +24,13 @@ namespace UI.Specific
             root = mainMenu.rootVisualElement;
             
             playButton = root.Q<Button>("play_button");
+            loadButton = root.Q<Button>("load_button");
             settingsButton = root.Q<Button>("settings_button");
             quitButton = root.Q<Button>("quit_button");
             
-            playButton.clicked += MenuPlayButtonPressed;
-            settingsButton.clicked += MainMenuSettingsButtonPressed;
+            playButton.clicked += PlayButtonPressed;
+            loadButton.clicked += LoadButtonPressed;
+            settingsButton.clicked += SettingsButtonPressed;
             quitButton.clicked += QuitButtonPressed;
         }
 
@@ -37,13 +42,20 @@ namespace UI.Specific
             settingsMenu.rootVisualElement.style.display = DisplayStyle.None;
         }
 
-        private void MenuPlayButtonPressed()
+        private void PlayButtonPressed()
+        {
+            saveChannel.SaveGameState();
+            SceneManager.LoadScene("Spawn");
+            Time.timeScale = 1f;
+        }
+        
+        private void LoadButtonPressed()
         {
             loadMenu.rootVisualElement.style.display = DisplayStyle.Flex;
             mainMenu.rootVisualElement.style.display = DisplayStyle.None;
         }
 
-        private void MainMenuSettingsButtonPressed()
+        private void SettingsButtonPressed()
         {
             settingsMenu.rootVisualElement.style.display = DisplayStyle.Flex;
             mainMenu.rootVisualElement.style.display = DisplayStyle.None;

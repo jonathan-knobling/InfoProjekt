@@ -17,7 +17,6 @@ namespace Gameplay.Dialogue.UI
 
         public void OnButtonClicked()
         {
-            Debug.Log("button clicked");
             sequencer.StartDialogueNode(node);
         }
     }

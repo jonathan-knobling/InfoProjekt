@@ -8,7 +8,7 @@ namespace Tech.IO.Saves
     {
         private const string SaveKey = "saved_scene"; 
         
-        private SaveChannelSO saveChannel;
+        [SerializeField] private SaveChannelSO saveChannel;
 
         private string savedScene;
         
@@ -17,14 +17,24 @@ namespace Tech.IO.Saves
             saveChannel.OnLoad += LoadSavedScene;
         }
 
+        [ContextMenu("Save Current Scene")]
         private void SaveCurrentScene()
         {
+            Debug.Log("Save: " + SceneManager.GetActiveScene().name);
             saveChannel.Save(SaveKey, SceneManager.GetActiveScene().name);
         }
 
         private void LoadSavedScene(Dictionary<string, object> dictionary)
         {
+            Debug.Log("Load Scene");
             savedScene = (string) dictionary[SaveKey];
+            saveChannel.SaveGameState();
+            SceneManager.LoadScene(savedScene);
+        }
+
+        private void OnApplicationQuit()
+        {
+            SaveCurrentScene();
         }
     }
 }

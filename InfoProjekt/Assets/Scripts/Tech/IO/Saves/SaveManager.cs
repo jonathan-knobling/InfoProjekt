@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Tech.IO.Saves
 {
@@ -12,25 +11,24 @@ namespace Tech.IO.Saves
         
         private Dictionary<string, object> saveBuffer;
         
-        private string SavePath => Application.persistentDataPath + "/save.dmg";
+        private string SavePath => Application.persistentDataPath + "/saves/default.dmg";
         
         private void Start()
         {
-            //Load();
-            SceneManager.activeSceneChanged += Save;
+            saveChannel.OnSaveGameState += Save;
             saveChannel.OnSave += AddToSafeBuffer;
+            saveChannel.OnLoadSaveFile += Load;
             saveBuffer = new Dictionary<string, object>();
         }
             
         private void AddToSafeBuffer(string key, object data)
         {
-            saveBuffer.Add(key, data);
-        }
-        
-        //overload um zu activeSceneChanged subben zu können
-        private void Save(Scene arg0, Scene scene)
-        {
-            Save();
+            //wenn es noch nich gibt neu adden in den buffer
+            if (!saveBuffer.TryAdd(key, data))
+            {
+                //ansonsten value überschreiben
+                saveBuffer[key] = data;
+            }
         }
         
         [ContextMenu("Save")]
@@ -42,7 +40,12 @@ namespace Tech.IO.Saves
             //apply save buffer
             foreach (var (key, value) in saveBuffer)
             {
-                serializedData.Add(key, value);
+                //wenn es noch nich gibt neu adden
+                if (!serializedData.TryAdd(key, value))
+                {
+                    //ansonsten value überschreiben
+                    serializedData[key] = value;
+                }
             }
             saveBuffer.Clear();
             
@@ -55,7 +58,13 @@ namespace Tech.IO.Saves
         [ContextMenu("Load")]
         private void Load()
         {
-            var serializedData = LoadFile();
+            Load(SavePath);
+        }
+        
+        private void Load(string path)
+        {
+            Debug.Log("Load");
+            var serializedData = LoadFile(path);
             saveChannel.Load(serializedData);
             ApplySerializedData(serializedData);
         }
@@ -71,14 +80,19 @@ namespace Tech.IO.Saves
 
         private Dictionary<string, object> LoadFile()
         {
+            return LoadFile(SavePath);
+        }
+        
+        private Dictionary<string, object> LoadFile(string path)
+        {
             //wenn es noch keinen save file gibt
-            if (!File.Exists(SavePath))
+            if (!File.Exists(path))
             {
                 return new Dictionary<string, object>();
             }
 
             //file stream machen und deserializete data in dictionary packen
-            using (FileStream stream = File.Open(SavePath, FileMode.Open))
+            using (FileStream stream = File.Open(path, FileMode.Open))
             {
                 var formatter = new BinaryFormatter();
                 return (Dictionary<string, object>) formatter.Deserialize(stream);
