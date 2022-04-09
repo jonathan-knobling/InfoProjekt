@@ -103,6 +103,8 @@ namespace Environment.Actors.Player
                 Jump();
                 jumpInputBuffer = 0;
             }
+
+            movementChannel.Velocity = rb.velocity.magnitude;
         }
 
         private void Move()

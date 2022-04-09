@@ -10,6 +10,8 @@ namespace Environment.Actors.Player
         private readonly List<PlayerMovementController> controllers;
 
         public event Action OnSetIdle;
+        
+        public float Velocity { get; set;  }
 
         public PlayerMovementChannelSO()
         {

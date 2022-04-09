@@ -42,7 +42,7 @@ namespace Assets.Carlo.Scripts
 
         private void Interact()
         {
-            particle.GetComponent<ParticleSystem>().Stop();
+            Destroy(particle);
             Destroy(gameObject);
             InventoryManager.Instance.AddItem(item);
         }

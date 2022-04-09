@@ -14,7 +14,7 @@ namespace Assets.Carlo.Scripts
         private UIChannelSO uiChannel;
         private Timer timer;
         private ProgressBar interactionBar;
-        private bool active;
+        private bool active = true;
 
         public event Action OnProgressBarOver;
         public event Action StartEffect;
@@ -55,10 +55,6 @@ namespace Assets.Carlo.Scripts
                 timer.Start();
                 active = true;
                 uiChannel.RequestAddUIVisualElement(new UIEventArgs(interactionBar, null, UIType.Default));
-            }
-            else if (!Input.GetKey(KeyCode.F) && !active)
-            {
-                timer.Pause();
             }
         }
 
