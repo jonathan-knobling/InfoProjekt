@@ -1,3 +1,4 @@
+using Tech.IO.Saves;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -6,49 +7,63 @@ namespace UI.Specific
 {
     public class MainMenuController : MonoBehaviour
     {
+        [SerializeField] private UIDocument mainMenu;
+        [SerializeField] private UIDocument settingsMenu;
+        [SerializeField] private UIDocument loadMenu;
+        [SerializeField] private SaveChannelSO saveChannel;
 
+        private VisualElement root;
+        
         private Button playButton;
+        private Button loadButton;
         private Button settingsButton;
-        private Button settingsBackButton;
+        private Button quitButton;
 
-        private VisualElement settingsScreen;
-        private VisualElement mainMenuScreen;
+        private void Awake()
+        {
+            root = mainMenu.rootVisualElement;
+            
+            playButton = root.Q<Button>("play_button");
+            loadButton = root.Q<Button>("load_button");
+            settingsButton = root.Q<Button>("settings_button");
+            quitButton = root.Q<Button>("quit_button");
+            
+            playButton.clicked += PlayButtonPressed;
+            loadButton.clicked += LoadButtonPressed;
+            settingsButton.clicked += SettingsButtonPressed;
+            quitButton.clicked += QuitButtonPressed;
+        }
 
         void Start()
         {
-            //visual element root also wo alles drinne is getten
-            var root = GetComponent<UIDocument>().rootVisualElement;
-
-            //buttons vom root getten
-            playButton = root.Q<Button>("play_button");
-            settingsButton = root.Q<Button>("settings_button");
-            settingsBackButton = root.Q<Button>("back_button");
-
-            //settings und main menu screen getten
-            settingsScreen = root.Q<VisualElement>("settings");
-            mainMenuScreen = root.Q<VisualElement>("main_menu");
-
-            //die Funktionen den Buttons hinzufügen
-            playButton.clicked += PlayButtonPressed;
-            settingsButton.clicked += SettingsButtonPressed;
-            settingsBackButton.clicked += SettingsBackButtonPressed;
+            Time.timeScale = 0f;
+            
+            loadMenu.rootVisualElement.style.display = DisplayStyle.None;
+            settingsMenu.rootVisualElement.style.display = DisplayStyle.None;
         }
 
-        void PlayButtonPressed()
+        private void PlayButtonPressed()
         {
+            saveChannel.SaveGameState();
             SceneManager.LoadScene("Spawn");
+            Time.timeScale = 1f;
+        }
+        
+        private void LoadButtonPressed()
+        {
+            loadMenu.rootVisualElement.style.display = DisplayStyle.Flex;
+            mainMenu.rootVisualElement.style.display = DisplayStyle.None;
         }
 
-        void SettingsButtonPressed()
+        private void SettingsButtonPressed()
         {
-            settingsScreen.style.display = DisplayStyle.Flex;
-            mainMenuScreen.style.display = DisplayStyle.None;
+            settingsMenu.rootVisualElement.style.display = DisplayStyle.Flex;
+            mainMenu.rootVisualElement.style.display = DisplayStyle.None;
         }
 
-        void SettingsBackButtonPressed()
+        private void QuitButtonPressed()
         {
-            settingsScreen.style.display = DisplayStyle.None;
-            mainMenuScreen.style.display = DisplayStyle.Flex;
+            Application.Quit();
         }
     }
 }

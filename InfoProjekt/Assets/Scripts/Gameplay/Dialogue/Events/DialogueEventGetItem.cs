@@ -1,7 +1,5 @@
 using Gameplay.Inventory;
 using Gameplay.Inventory.Items;
-using Inventory;
-using Inventory.Items;
 using UnityEngine;
 
 namespace Gameplay.Dialogue.Events

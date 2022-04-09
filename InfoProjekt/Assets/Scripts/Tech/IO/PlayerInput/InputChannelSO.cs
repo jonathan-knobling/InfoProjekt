@@ -26,7 +26,6 @@ namespace Tech.IO.PlayerInput
             Debug.Log(Enabled);
             if (Enabled)
             {
-                Debug.Log("Invoke Jump");
                 OnJumpButtonPressed?.Invoke();
             }
         }

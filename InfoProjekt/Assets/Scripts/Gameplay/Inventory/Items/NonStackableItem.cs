@@ -1,4 +1,4 @@
-using Inventory;
+using System;
 using UnityEngine;
 
 namespace Gameplay.Inventory.Items

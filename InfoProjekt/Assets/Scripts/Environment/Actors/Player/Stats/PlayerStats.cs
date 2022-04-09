@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Environment.Actors.Player.Stats
 {
-    public class PlayerStats: Actors.Stats, ISaveable
+    public class PlayerStats: MonoBehaviour, ISaveable, IDamagable
     {
         private static readonly int CPDeath = Animator.StringToHash("death");
 
@@ -21,33 +21,32 @@ namespace Environment.Actors.Player.Stats
         public Dictionary<StatusAbility, int> HiddenStatus => status.HiddenStatus;
         public Dictionary<StatusAbility, float> TotalStatus => status.TotalStatus;
         public Dictionary<StatusAbility, float> CurrentXP => status.CurrentXP;
+
+        public int Level => status.Level;
+        public float LevelXP => status.LevelXP;
+        public float MaxHealth => status.Endurance * 0.69f;
+        public float AttackDamage => status.Strength * 0.69f;
+        public float Speed => status.Agility * 0.69f;
+
+        private float health;
         
         private void Awake()
         {
             status = new Status();
-            Health = MaxHealth;
+            health = MaxHealth;
             animator = GetComponent<Animator>();
         }
 
-        private void Update()
+        public float DealDamage(float damageAmount)
         {
-            Level = status.Level;
-            LevelXP = status.LevelXP;
-            MaxHealth = status.Endurance * 0.69f;
-            AttackDamage = status.Strength * 0.69f;
-            Speed = status.Agility * 0.69f;
-        }
-
-        public override float DealDamage(float damageAmount)
-        {
-            Health -= damageAmount; 
+            health -= damageAmount; 
             float receivedDamage;
             
-            if (Health <= 0)
+            if (health <= 0)
             {
-                receivedDamage = damageAmount + Health;
+                receivedDamage = damageAmount + health;
                 XPManager.AddReceivedDamage(receivedDamage);
-                Health = 0;
+                health = 0;
                 Die();
                 return receivedDamage;
             }
@@ -84,9 +83,9 @@ namespace Environment.Actors.Player.Stats
             return status.SerializeComponent();
         }
 
-        public void ApplySerializedData(object data)
+        public void ApplySerializedData(object serializedData)
         {
-            status.ApplySerializedData(data);
+            status.ApplySerializedData(serializedData);
         }
     }
 }

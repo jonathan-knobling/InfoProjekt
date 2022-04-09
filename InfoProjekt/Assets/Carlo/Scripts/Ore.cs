@@ -1,5 +1,4 @@
-
-using Inventory.Items;
+using Gameplay.Inventory.Items;
 using UnityEngine;
 
 namespace Assets.Carlo.Scripts

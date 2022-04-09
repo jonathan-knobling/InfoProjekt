@@ -155,7 +155,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -183,9 +183,21 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -971,7 +983,6 @@ TextureImporter:
       HeavyBandit_2: 21300004
       HeavyBandit_16: 21300032
       HeavyBandit_1: 21300002
-      HeavyBandit_35: 21300070
       HeavyBandit_12: 21300024
       HeavyBandit_31: 21300062
       HeavyBandit_23: 21300046
@@ -992,14 +1003,15 @@ TextureImporter:
       HeavyBandit_10: 21300020
       HeavyBandit_24: 21300048
       HeavyBandit_7: 21300014
-      HeavyBandit_11: 21300022
+      HeavyBandit_35: 21300070
       HeavyBandit_27: 21300054
-      HeavyBandit_32: 21300064
+      HeavyBandit_11: 21300022
       HeavyBandit_14: 21300028
+      HeavyBandit_32: 21300064
       HeavyBandit_29: 21300058
       HeavyBandit_5: 21300010
-      HeavyBandit_30: 21300060
       HeavyBandit_3: 21300006
+      HeavyBandit_30: 21300060
       HeavyBandit_8: 21300016
       HeavyBandit_19: 21300038
   spritePackingTag: 

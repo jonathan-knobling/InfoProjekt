@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 718992244711744523}
   - component: {fileID: 560471374}
   m_Layer: 7
-  m_Name: Enemy
+  m_Name: wizard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,6 +33,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -44.714, y: 3.073, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -148,6 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f48e232d0ddcf5f429de03de41a03b75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefab: {fileID: 4459712548062227219}
   animator: {fileID: 4459712548062227213}
   enemyID: wizard
   level: 1
@@ -157,7 +159,7 @@ MonoBehaviour:
   xpAmount: 1
 --- !u!95 &4459712548062227213
 Animator:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -170,6 +172,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -189,7 +192,6 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
-  viewPoint: {fileID: 0}
   viewRadius: 5
   roamingRadius: 20
   minTargetDistance: 0.3
