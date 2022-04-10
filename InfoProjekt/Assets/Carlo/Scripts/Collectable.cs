@@ -29,7 +29,7 @@ namespace Assets.Carlo.Scripts
             pickUpInteraction.OnProgressBarOver += Interact;
             pickUpInteraction.StartEffect += CreateParticles;
             pickUpInteraction.StopEffect += StopParticles;
-            particle = Instantiate(pickUpEffect, transform.position, transform.rotation);        
+            particle = Instantiate(pickUpEffect, transform.position, transform.rotation);
         }
 
         private void InteractButtonPressed()
