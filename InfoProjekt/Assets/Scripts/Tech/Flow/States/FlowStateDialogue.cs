@@ -1,4 +1,4 @@
-using Environment.Actors.Player;
+using Actors.Player;
 using Tech.IO;
 using Tech.IO.PlayerInput;
 using UnityEngine;

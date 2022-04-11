@@ -1,5 +1,5 @@
 using System.Linq;
-using Environment.Actors.Player;
+using Actors.Player;
 using UnityEngine;
 
 namespace Gameplay.Quests

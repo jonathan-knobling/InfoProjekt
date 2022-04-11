@@ -6,7 +6,7 @@ namespace Tech.IO.PlayerInput
     [CreateAssetMenu(menuName = "Channels/Input Channel")]
     public class InputChannelSO: ScriptableObject
     {
-        public float HorizontalDirection { set; get; }
+        public Vector2 InputDirection { set; get; }
         public static bool Enabled { get; set; }
         
         public event Action OnJumpButtonPressed;

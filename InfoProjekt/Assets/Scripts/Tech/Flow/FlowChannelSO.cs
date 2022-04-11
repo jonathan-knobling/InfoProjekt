@@ -1,5 +1,5 @@
 using System;
-using Environment.Actors.Player;
+using Actors.Player;
 using Tech.Flow.States;
 using Tech.IO;
 using Tech.IO.PlayerInput;

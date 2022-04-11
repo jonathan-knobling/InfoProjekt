@@ -8,7 +8,7 @@ namespace Tech.IO.PlayerInput
 
         private void Update()
         {
-            inputChannel.HorizontalDirection = Input.GetAxisRaw("Horizontal");
+            inputChannel.InputDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
             if (Input.GetButtonDown("Jump"))
             {
