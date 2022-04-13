@@ -744,68 +744,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputChannel: {fileID: 11400000, guid: 089b2dbb73bd38745996825d79789973, type: 2}
---- !u!1 &2392557095392818795
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2501332592669497152}
-  m_Layer: 8
-  m_Name: attackPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2501332592669497152
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2392557095392818795}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.4469986, y: 0.83500004, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4764667848431686813}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4764667846776599491
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4764667846776599490}
-  m_Layer: 8
-  m_Name: GroundCheck
-  m_TagString: Untagged
-  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4764667846776599490
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4764667846776599491}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4764667848431686813}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4764667848431686801
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,7 +764,6 @@ GameObject:
   - component: {fileID: 6915399786505910147}
   - component: {fileID: 2373507946171731474}
   - component: {fileID: 356444747806177217}
-  - component: {fileID: 4693271568134627782}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -845,9 +782,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4764667846776599490}
-  - {fileID: 2501332592669497152}
+  m_Children: []
   m_Father: {fileID: 8782817059234473019}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -892,7 +827,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f2ed27d6c1c3ccc48959bcca269d88f0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0f39a9205e4394ee1b6ba8269428d176, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -931,24 +866,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4764667848431686801}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2699191e578e264284343700583893a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 8802544291543164103}
   movementChannel: {fileID: 11400000, guid: 8116edc9ec2a08541a1957278e9be3fc, type: 2}
   inputChannel: {fileID: 11400000, guid: 089b2dbb73bd38745996825d79789973, type: 2}
-  accelerationForce: 80
-  linearDrag: 0.5
-  maxJumpInputBuffer: 4
-  jumpForce: 20
-  groundCheck: {fileID: 4764667846776599490}
-  checkRadius: 0.25
-  maxGroundedBuffer: 4
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  accelerationForce: 65
+  linearDrag: 10
 --- !u!95 &8802544291543164103
 Animator:
   serializedVersion: 4
@@ -1012,8 +938,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.66647196}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 1.5, y: 1.5}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1038,7 +964,7 @@ MonoBehaviour:
   inputChannel: {fileID: 11400000, guid: 089b2dbb73bd38745996825d79789973, type: 2}
   combatChannel: {fileID: 11400000, guid: fed798c61ed025940be5ab2c2e0c391b, type: 2}
   camTransform: {fileID: 693971642809258987}
-  attackPoint: {fileID: 2501332592669497152}
+  attackPoint: {fileID: 0}
   attackRange: 0.5
   enemyLayers:
     serializedVersion: 2
@@ -1085,19 +1011,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 5923060d-09c6-43f9-b943-cb10339fec03
---- !u!114 &4693271568134627782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4764667848431686801}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c179053a11742b5bacb4364c4c136c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputChannel: {fileID: 0}
 --- !u!1 &6421217519171463823
 GameObject:
   m_ObjectHideFlags: 0
@@ -1229,7 +1142,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4621627471392406473}
   - component: {fileID: 7932539099526881945}
-  - component: {fileID: 55739384871578830}
   - component: {fileID: 423049901215151404}
   m_Layer: 0
   m_Name: hero-idle-front
@@ -1305,19 +1217,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &55739384871578830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7812846949110596966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c179053a11742b5bacb4364c4c136c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputChannel: {fileID: 11400000, guid: 089b2dbb73bd38745996825d79789973, type: 2}
 --- !u!50 &423049901215151404
 Rigidbody2D:
   serializedVersion: 4

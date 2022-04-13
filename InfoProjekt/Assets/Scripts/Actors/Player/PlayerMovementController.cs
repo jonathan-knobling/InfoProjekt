@@ -1,12 +1,13 @@
 using Actors.Player.Stats;
 using Tech.IO.PlayerInput;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Actors.Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(PlayerStats))]
-    //[RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof(Animator))]
     public class PlayerMovementController : MonoBehaviour
     {
         [SerializeField] private PlayerMovementChannelSO movementChannel;
@@ -20,13 +21,19 @@ namespace Actors.Player
         [SerializeField] private float linearDrag = 10f;
         private float MaxSpeed => stats.Speed;
         private Vector2 direction;
-        private bool ChangingDirection =>    rb.velocity.x > 0.001f && direction.x < 0.001f
-                                          || rb.velocity.x < 0.001f && direction.x > 0.001f 
-                                          || rb.velocity.y > 0.001f && direction.y < 0.001f
-                                          || rb.velocity.y < 0.001f && direction.y > 0.001f;
+        private bool ChangingDirection =>    rb.velocity.x > 0.1f && direction.x < 0.1f
+                                          || rb.velocity.x < 0.1f && direction.x > 0.1f 
+                                          || rb.velocity.y > 0.1f && direction.y < 0.1f
+                                          || rb.velocity.y < 0.1f && direction.y > 0.1f;
+
+        private bool FacingRight => math.abs(math.sign(transform.localScale.x) - 1) > 0.001f; // basically sign(x) == 1
         
         //Cached Properties
         private static readonly int CPSpeed = Animator.StringToHash("speed");
+        private static readonly int CPDirX = Animator.StringToHash("dir_x");
+        private static readonly int CPDirY = Animator.StringToHash("dir_y");
+        private static readonly int CPLastDirX = Animator.StringToHash("last_dir_x");
+        private static readonly int CPLastDirY = Animator.StringToHash("last_dir_y");
 
         void Start()
         {
@@ -48,9 +55,37 @@ namespace Actors.Player
             ApplyLinearDrag();
             Move();
             
-            //animator.SetFloat(CPSpeed, Mathf.Abs(rb.velocity.x));
+            //set animator values
+            animator.SetFloat(CPSpeed, math.abs(rb.velocity.magnitude));
+            animator.SetFloat(CPDirX, math.sign(rb.velocity.x));
+            animator.SetFloat(CPDirY, math.sign(rb.velocity.y));
+            if (math.sign(rb.velocity.x) != 0)
+            {
+                animator.SetFloat(CPLastDirX, math.sign(rb.velocity.x));
+            }
+            if (math.sign(rb.velocity.y) != 0)
+            {
+                animator.SetFloat(CPLastDirY, math.sign(rb.velocity.y));
+            }
+
+            if (!FacingRight && direction.x < 0)
+            {
+                Flip();
+            }
+            else if (FacingRight && direction.x > 0)
+            {
+                Flip();
+            }
         }
-        
+
+        private void Flip()
+        {
+            var tf = transform;
+            Vector3 scale = tf.localScale;
+            scale.x *= -1;
+            tf.localScale = scale;
+        }
+
         private void Move()
         {
             rb.AddForce(direction.normalized * accelerationForce);
@@ -80,7 +115,9 @@ namespace Actors.Player
         
         private void SetIdle()
         {
-            //animator.SetFloat(CPSpeed, 0);
+            animator.SetFloat(CPSpeed, 0);
+            animator.SetFloat(CPDirX, 0);
+            animator.SetFloat(CPDirY, 0);
         }
     }
 }

@@ -4,7 +4,7 @@ namespace Tech
 {
     public class Initialization: MonoBehaviour
     {
-        //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         public static void Initialize()
         {
             //Initialize Services and GameObjects
