@@ -1,4 +1,3 @@
-using Tech.IO;
 using Tech.IO.PlayerInput;
 using UnityEngine;
 
@@ -19,7 +18,7 @@ namespace Gameplay.Abilities.Active.Skills
         public override void Init(InputChannelSO inputChannel, GameObject parentObject)
         {
             inputChannel.OnSkill1ButtonPressed += OnSkillButtonPressed;
-            base.parent = parentObject;
+            parent = parentObject;
         }
 
         public override void Update()

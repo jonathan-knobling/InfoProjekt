@@ -1,5 +1,4 @@
-using Environment.Actors.Player;
-using Environment.Actors.Player.Stats;
+using Actors.Player.Stats;
 using Gameplay.Abilities.Active;
 using Gameplay.Abilities.Passive;
 using Tech.IO;

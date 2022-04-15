@@ -1,9 +1,9 @@
 using System;
-using Environment.Actors.Player;
 using Tech.Flow.States;
-using Tech.IO;
 using Tech.IO.PlayerInput;
 using UnityEngine;
+using PlayerCombatChannelSO = Actors.Player.PlayerCombatChannelSO;
+using PlayerMovementChannelSO = Actors.Player.PlayerMovementChannelSO;
 
 namespace Tech.Flow
 {

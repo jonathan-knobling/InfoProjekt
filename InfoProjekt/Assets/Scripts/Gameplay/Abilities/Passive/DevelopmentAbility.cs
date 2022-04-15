@@ -1,4 +1,4 @@
-using Environment.Actors.Player.Stats;
+using Actors.Player.Stats;
 
 namespace Gameplay.Abilities.Passive
 {
