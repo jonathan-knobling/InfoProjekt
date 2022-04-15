@@ -12,7 +12,7 @@ namespace Gameplay.Inventory.ItemSaving
     {
         [SerializeField] private List<CollectableItem> dropItems;
         [SerializeField] private ItemSaveChannelSO itemChannel;
-        [SerializeField] private SaveChannelSO saveChannel;
+        [SerializeField] private IOChannelSO ioChannel;
         [SerializeField] private GameObject dropItemPrefab;
         [SerializeField] private string id = "DropItemManager";
 
@@ -23,8 +23,9 @@ namespace Gameplay.Inventory.ItemSaving
             itemChannel.OnAddDropItem += AddItem;
             itemChannel.OnRemoveDropItem += RemoveItem;
 
-            saveChannel.OnLoad += LoadItems;
-            saveChannel.OnSaveGameState += SaveItems;
+            ioChannel.OnLoadData += LoadItems;  
+            //todo
+            //ioChannel.OnSaveToFile += SaveItems;
         }
 
         private void AddItem(CollectableItem item)
@@ -51,7 +52,7 @@ namespace Gameplay.Inventory.ItemSaving
                 data.transforms[i] = new SerializeableTransform(dropItems[i].transform);
             }
 
-            saveChannel.Save(ID, data);
+            ioChannel.SaveData(ID, data);
         }
 
         [Serializable]

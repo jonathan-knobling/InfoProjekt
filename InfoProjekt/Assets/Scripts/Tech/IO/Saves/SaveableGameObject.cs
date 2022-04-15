@@ -25,7 +25,7 @@ namespace Tech.IO.Saves
             return serializedGameObject;
         }
 
-        public void ApplySerializedData(object o)
+        public void ApplySerializedStateData(object o)
         {
             var serializedGameObject = (Dictionary<string, object>) o;
 

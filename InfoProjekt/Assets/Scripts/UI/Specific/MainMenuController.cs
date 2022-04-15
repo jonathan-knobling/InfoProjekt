@@ -10,7 +10,7 @@ namespace UI.Specific
         [SerializeField] private UIDocument mainMenu;
         [SerializeField] private UIDocument settingsMenu;
         [SerializeField] private UIDocument loadMenu;
-        [SerializeField] private SaveChannelSO saveChannel;
+        [SerializeField] private IOChannelSO ioChannel;
 
         private VisualElement root;
         
@@ -44,7 +44,6 @@ namespace UI.Specific
 
         private void PlayButtonPressed()
         {
-            saveChannel.SaveGameState();
             SceneManager.LoadScene("Spawn");
             Time.timeScale = 1f;
         }

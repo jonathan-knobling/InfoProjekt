@@ -5,21 +5,22 @@ using Tech.IO.Saves;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace UI.Specific
+namespace UI.Specific.SaveUI
 {
     public class LoadMenuController: MonoBehaviour
     {
         [SerializeField] private UIDocument mainMenu;
         [SerializeField] private UIDocument loadMenu;
 
-        [SerializeField] private SaveChannelSO saveChannel;
+        [SerializeField] private IOChannelSO ioChannel;
 
         private VisualElement root;
         
         private Button backButton;
         private ScrollView savesContainer;
 
-        private List<SaveButtonHandler> saveButtonHandlers;
+        //ReSharper disable once CollectionNeverQueried.Local
+        private List<LoadButtonHandler> loadButtonHandlers;
 
         private void Start()
         {
@@ -29,7 +30,7 @@ namespace UI.Specific
             savesContainer = root.Q<ScrollView>("saves_container");
             savesContainer.Clear();
 
-            saveButtonHandlers = new List<SaveButtonHandler>();
+            loadButtonHandlers = new List<LoadButtonHandler>();
             GetSaves();
             
             backButton.clicked += BackButtonPressed;
@@ -46,13 +47,13 @@ namespace UI.Specific
                            + " | " + File.GetLastWriteTime(path)).ToUpper()
                 };
                 
-                SaveButtonHandler handler = new SaveButtonHandler(path, saveChannel);
+                LoadButtonHandler handler = new LoadButtonHandler(path, ioChannel);
                 
                 button.clicked += handler.ButtonPressed;
                 button.clicked += ResumeTime;
                 
                 savesContainer.Add(button);
-                saveButtonHandlers.Add(handler);
+                loadButtonHandlers.Add(handler);
             }
         }
 

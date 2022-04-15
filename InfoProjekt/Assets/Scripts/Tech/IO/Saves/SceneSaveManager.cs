@@ -1,40 +1,20 @@
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Tech.IO.Saves
 {
-    public class SceneSaveManager: MonoBehaviour
+    public static class SceneSaveManager
     {
-        private const string SaveKey = "saved_scene"; 
-        
-        [SerializeField] private SaveChannelSO saveChannel;
+        private const string SaveKey = "saved_scene";
 
-        private string savedScene;
-        
-        private void Start()
+        public static KeyValuePair<string, object> SaveCurrentScene()
         {
-            saveChannel.OnLoad += LoadSavedScene;
+            return new KeyValuePair<string, object>(SaveKey, SceneManager.GetActiveScene().name);
         }
 
-        [ContextMenu("Save Current Scene")]
-        private void SaveCurrentScene()
+        public static void LoadSavedScene(Dictionary<string, object> dictionary)
         {
-            Debug.Log("Save: " + SceneManager.GetActiveScene().name);
-            saveChannel.Save(SaveKey, SceneManager.GetActiveScene().name);
-        }
-
-        private void LoadSavedScene(Dictionary<string, object> dictionary)
-        {
-            Debug.Log("Load Scene");
-            savedScene = (string) dictionary[SaveKey];
-            saveChannel.SaveGameState();
-            SceneManager.LoadScene(savedScene);
-        }
-
-        private void OnApplicationQuit()
-        {
-            SaveCurrentScene();
+            SceneManager.LoadScene((string) dictionary[SaveKey]);
         }
     }
 }

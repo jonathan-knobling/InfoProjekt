@@ -52,7 +52,7 @@ namespace UI.Specific
 
         private void Update()
         {
-            levelText.text = "LEVEL: " + stats.Level + " (" + stats.LevelXP + ")";
+            levelText.text = "LEVEL: " + stats.Level + " (" + stats.levelXP + ")";
 
             strengthStatText.text = "STRENGTH: " + stats.CurrentStatus[StatusAbility.Strength] + " | " + stats.HiddenStatus[StatusAbility.Strength] + " | " + stats.TotalStatus[StatusAbility.Strength];
             enduranceStatText.text = "ENDURANCE: " + stats.CurrentStatus[StatusAbility.Endurance] + " | " + stats.HiddenStatus[StatusAbility.Endurance] + " | " + stats.TotalStatus[StatusAbility.Endurance];
@@ -60,11 +60,11 @@ namespace UI.Specific
             agilityStatText.text = "AGILITY: " + stats.CurrentStatus[StatusAbility.Agility] + " | " + stats.HiddenStatus[StatusAbility.Agility] + " | " + stats.TotalStatus[StatusAbility.Agility];
             magicStatText.text = "MAGIC: " + stats.CurrentStatus[StatusAbility.Magic] + " | " + stats.HiddenStatus[StatusAbility.Magic] + " | " + stats.TotalStatus[StatusAbility.Magic];
 
-            strengthXPText.text = "STRENGTH XP: " + stats.CurrentXP[StatusAbility.Strength];
-            enduranceXPText.text = "ENDURANCE XP: " + stats.CurrentXP[StatusAbility.Endurance];
-            dexterityXPText.text = "DEXTERITY XP: " + stats.CurrentXP[StatusAbility.Dexterity];
-            agilityXPText.text = "AGILITY XP: " + stats.CurrentXP[StatusAbility.Agility];
-            magicXPText.text = "MAGIC XP: " + stats.CurrentXP[StatusAbility.Magic];
+            strengthXPText.text = "STRENGTH XP: " + stats.currentXP[StatusAbility.Strength];
+            enduranceXPText.text = "ENDURANCE XP: " + stats.currentXP[StatusAbility.Endurance];
+            dexterityXPText.text = "DEXTERITY XP: " + stats.currentXP[StatusAbility.Dexterity];
+            agilityXPText.text = "AGILITY XP: " + stats.currentXP[StatusAbility.Agility];
+            magicXPText.text = "MAGIC XP: " + stats.currentXP[StatusAbility.Magic];
 
 
             if (stats.LevelUpPossible) 
