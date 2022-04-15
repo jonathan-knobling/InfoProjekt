@@ -1,7 +1,7 @@
-using System;
 using Actors.Enemies;
 using Actors.Player.Stats;
 using Tech.IO.PlayerInput;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Actors.Player
@@ -11,14 +11,15 @@ namespace Actors.Player
         [SerializeField] private Animator animator;
         [SerializeField] private InputChannelSO inputChannel;
         [SerializeField] private PlayerCombatChannelSO combatChannel;
-        [SerializeField] private Transform camTransform;
-        [SerializeField] private Transform attackPoint;
+        [SerializeField] private Camera cam;
         [SerializeField] private float attackRange = 0.5f;
         [SerializeField] private LayerMask enemyLayers;
         private PlayerStats stats;
         
         //cached properties
         private static readonly int CPAttack = Animator.StringToHash("attack");
+        private static readonly int CPAttackDirX = Animator.StringToHash("att_dir_x");
+        private static readonly int CPAttackDirY = Animator.StringToHash("att_dir_y");
 
         private void Start()
         {
@@ -30,25 +31,25 @@ namespace Actors.Player
         private void OnHitButtonPressed()
         {
             Vector2 mousePos = Input.mousePosition;
-            // wenn die maus rechts vom player is und der player nich nach rechts zeigt (x scale = negativ) || und anders rum       (240 sind die PPU) (4 sind die units vom rand links der cam bis zur mitte der cam)
-            if((mousePos.x/240 - 4 > transform.position.x - camTransform.position.x && Math.Abs(Mathf.Sign(transform.localScale.x) - (-1)) > 0.01f) || (mousePos.x/240 - 4 < transform.position.x - camTransform.position.x && Math.Abs(Mathf.Sign(transform.localScale.x) - 1) > 0.01f))
-            {
-                var transformers = transform;
-                Vector3 scale = transformers.localScale;
-                scale.x *= -1;
-                transformers.localScale = scale;
-            }
-            //Debug.Log(mousePos.x / 240 + "  |  " + (transform.position.x - camTransform.position.x) + "  |  " + transform.position.x + "," + camTransform.position.x);
+            Vector2 playerPos = cam.WorldToScreenPoint(transform.position);
+
+            Vector2 hitDir = math.sign((mousePos - playerPos).normalized);
+
+            animator.SetFloat(CPAttackDirX, hitDir.x);
+            animator.SetFloat(CPAttackDirY, hitDir.y);
+            animator.SetTrigger(CPAttack);
+            
             Attack();
         }
 
         private void Attack()
         {
-            animator.SetTrigger(CPAttack);
-        
-            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-        
-            foreach(Collider2D enemy in hitEnemies)
+            //get all enemies in aoe
+            var colliders = Physics2D.OverlapCircleAll(transform.position, attackRange, enemyLayers);
+
+
+            //deal damage to enemies
+            foreach(Collider2D enemy in colliders)
             {
                 float dealtDamage = enemy.GetComponent<EnemyStats>().DealDamage(stats.AttackDamage);
                 if(enemy.GetComponent<EnemyStats>().IsDead)
@@ -58,12 +59,6 @@ namespace Actors.Player
                 }
                 stats.XPManager.AddDealtDamage(dealtDamage);
             }
-        }
-
-        private void OnDrawGizmosSelected()
-        {
-            if (attackPoint == null) return;
-            Gizmos.DrawWireSphere(attackPoint.position, attackRange);
         }
     }
 }
