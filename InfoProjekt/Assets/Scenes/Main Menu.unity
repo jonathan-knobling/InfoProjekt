@@ -186,7 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 823808549}
   loadMenu: {fileID: 604007288}
-  saveChannel: {fileID: 11400000, guid: 810dda9ef91f0974c801c73659465c5d, type: 2}
+  ioChannel: {fileID: 11400000, guid: 810dda9ef91f0974c801c73659465c5d, type: 2}
 --- !u!1 &823808545
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,7 +235,7 @@ MonoBehaviour:
   mainMenu: {fileID: 823808549}
   settingsMenu: {fileID: 849006589}
   loadMenu: {fileID: 604007288}
-  saveChannel: {fileID: 11400000, guid: 810dda9ef91f0974c801c73659465c5d, type: 2}
+  ioChannel: {fileID: 11400000, guid: 810dda9ef91f0974c801c73659465c5d, type: 2}
 --- !u!114 &823808549
 MonoBehaviour:
   m_ObjectHideFlags: 0

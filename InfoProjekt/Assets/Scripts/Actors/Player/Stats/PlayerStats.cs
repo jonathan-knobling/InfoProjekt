@@ -20,11 +20,11 @@ namespace Actors.Player.Stats
         public Dictionary<StatusAbility, int> CurrentStatus => status.CurrentStatus;
         public Dictionary<StatusAbility, int> HiddenStatus => status.HiddenStatus;
         public Dictionary<StatusAbility, float> TotalStatus => status.TotalStatus;
-        public Dictionary<StatusAbility, float> CurrentXP => status.CurrentXP;
+        public Dictionary<StatusAbility, float> currentXP => status.CurrentXP;
 
         public int Level => status.Level;
-        public float LevelXP => status.LevelXP;
-        public float MaxHealth => status.Endurance * 0.69f;
+        public float levelXP => status.LevelXP;
+        private float MaxHealth => status.Endurance * 0.69f;
         public float AttackDamage => status.Strength * 0.69f;
         public float Speed => status.Agility * 0.69f;
 

@@ -1,25 +1,25 @@
 using System.Collections.Generic;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 namespace Tech.IO.Saves
 {
     public class SaveManager: MonoBehaviour
     {
-        [SerializeField] private SaveChannelSO saveChannel;
+        [SerializeField] private IOChannelSO ioChannel;
         
         private Dictionary<string, object> saveBuffer;
         
-        private string SavePath => Application.persistentDataPath + "/saves/default.dmg";
+        private string SavePath => Application.persistentDataPath + "/saves/";
+        
         
         private void Start()
         {
-            saveChannel.OnSaveGameState += Save;
-            saveChannel.OnSave += AddToSafeBuffer;
-            saveChannel.OnLoadSaveFile += Load;
+            ioChannel.OnSaveToFile += Save;
+            ioChannel.OnSaveData += AddToSafeBuffer;
+            ioChannel.OnLoadSaveFile += LoadFile;
             saveBuffer = new Dictionary<string, object>();
         }
+        
             
         private void AddToSafeBuffer(string key, object data)
         {
@@ -31,11 +31,18 @@ namespace Tech.IO.Saves
             }
         }
         
-        [ContextMenu("Save")]
-        private void Save()
+        
+        private void Save(string fileName)
         {
             //erst loaden damit andere scenen nich ge overwritet werden
-            var serializedData = LoadFile();
+            var serializedData = SaveIO.LoadFile(fileName);
+            
+            //save current scene
+            KeyValuePair<string, object> scene = SceneSaveManager.SaveCurrentScene();
+            if (!serializedData.TryAdd(scene.Key, scene.Value))
+            {
+                serializedData[scene.Key] = scene.Value;
+            }
 
             //apply save buffer
             foreach (var (key, value) in saveBuffer)
@@ -50,56 +57,22 @@ namespace Tech.IO.Saves
             saveBuffer.Clear();
             
             //load new changes from game
-            SerializeGame(serializedData);
+            SerializeGameState(serializedData);
             //save the file
-            SaveFile(serializedData);
+            SaveIO.SaveFile(serializedData, SavePath + fileName);
         }
         
-        [ContextMenu("Load")]
-        private void Load()
-        {
-            Load(SavePath);
-        }
-        
-        private void Load(string path)
-        {
-            Debug.Log("Load");
-            var serializedData = LoadFile(path);
-            saveChannel.Load(serializedData);
-            ApplySerializedData(serializedData);
-        }
-        
-        private void SaveFile(object data)
-        {
-            using (var stream = File.Open(SavePath, FileMode.Create))
-            {
-                var formatter = new BinaryFormatter();
-                formatter.Serialize(stream, data);
-            }
-        }
 
-        private Dictionary<string, object> LoadFile()
+        private void LoadFile(string path)
         {
-            return LoadFile(SavePath);
+            var serializedData = SaveIO.LoadFile(path);
+            SceneSaveManager.LoadSavedScene(serializedData);
+            ioChannel.Load(serializedData);
+            ApplySerializedStateData(serializedData);
         }
         
-        private Dictionary<string, object> LoadFile(string path)
-        {
-            //wenn es noch keinen save file gibt
-            if (!File.Exists(path))
-            {
-                return new Dictionary<string, object>();
-            }
 
-            //file stream machen und deserializete data in dictionary packen
-            using (FileStream stream = File.Open(path, FileMode.Open))
-            {
-                var formatter = new BinaryFormatter();
-                return (Dictionary<string, object>) formatter.Deserialize(stream);
-            }
-        }
-
-        private void SerializeGame(Dictionary<string, object> serializedData)
+        private void SerializeGameState(Dictionary<string, object> serializedData)
         {
             //jedes saveable gameobject in der activen scene serializen und ins save dictionary packen
             foreach (var saveable in FindObjectsOfType<SaveableGameObject>())
@@ -107,22 +80,24 @@ namespace Tech.IO.Saves
                 serializedData[saveable.ID] = saveable.SerializeGameObject();
             }
         }
+        
 
-        private void ApplySerializedData(Dictionary<string, object> serializedData)
+        private void ApplySerializedStateData(Dictionary<string, object> serializedData)
         {
             //jedes saveable gameobject in der activen scene aus dem dictionary die serializete data holen mit der ID
             foreach (var saveable in FindObjectsOfType<SaveableGameObject>())
             {
                 if (serializedData.TryGetValue(saveable.ID, out object data))
                 {
-                    saveable.ApplySerializedData(data);
+                    saveable.ApplySerializedStateData(data);
                 }
             }
         }
+        
 
         private void OnApplicationQuit()
         {
-            Save();
+            Save(SaveIO.GenerateNewFileName("auto"));
         }
     }
 }

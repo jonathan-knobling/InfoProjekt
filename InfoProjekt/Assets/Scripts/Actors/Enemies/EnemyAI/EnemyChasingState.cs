@@ -1,6 +1,5 @@
 using System;
 using Actors.Player.Stats;
-using Environment.Actors.Enemies;
 using UnityEngine;
 
 namespace Actors.Enemies.EnemyAI
