@@ -1,4 +1,5 @@
-using Environment.test;
+using Actors.Enemies;
+using Gameplay.Inventory;
 using Tech.IO.Saves;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ namespace Environment.ObjectRegister
 {
     public class EnvironmentObjectRegister: MonoBehaviour, ISaveable
     {
+        [SerializeField] private ObjectRegisterChannelSO registerChannel;
         [SerializeField] private EnemyDataBase enemyDataBase;
         [SerializeField] private GameObject collectableItemPrefab;
 
@@ -16,8 +18,39 @@ namespace Environment.ObjectRegister
         {
             enemyRegister = new EnemyRegister(enemyDataBase);
             itemRegister = new ItemRegister(collectableItemPrefab);
+
+            registerChannel.OnRequestRegisterEnemy += RegisterEnemy;
+            registerChannel.OnRequestRemoveEnemy += RemoveEnemy;
+            registerChannel.OnRequestRegisterCollectableItem += RegisterItem;
+            registerChannel.OnRequestRemoveCollectableItem += RemoveItem;
         }
 
+        private void Update()
+        {
+            registerChannel.currentMobCap = enemyRegister.currentMobCap;
+        }
+
+        private void RegisterEnemy(GameObject enemy)
+        {
+            if (!enemy.TryGetComponent(typeof(EnemyStats), out _)) return;
+            enemyRegister.RegisterEnemy(enemy);
+        }
+
+        private void RemoveEnemy(GameObject enemy)
+        {
+            if (!enemy.TryGetComponent(typeof(EnemyStats), out _)) return;
+            enemyRegister.RemoveEnemy(enemy);
+        }
+
+        private void RegisterItem(CollectableItem item)
+        {
+            itemRegister.RegisterItem(item);
+        }
+
+        private void RemoveItem(CollectableItem item)
+        {
+            itemRegister.RemoveItem(item);
+        }
 
         public object SerializeComponent()
         {

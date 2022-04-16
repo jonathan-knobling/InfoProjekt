@@ -1,5 +1,7 @@
-using System.Collections.Generic;
+using System;
+using Environment.ObjectRegister;
 using UnityEngine;
+using Util;
 
 namespace Environment.Spawning
 {
@@ -7,20 +9,25 @@ namespace Environment.Spawning
     {
 
         [SerializeField] private GameObject enemySpawnPrefab;
-        [SerializeField] private int numberOfEnemies;
-        [SerializeField] private Transform spawnPoint;
-        private List<GameObject> enemyInstances;
+        [SerializeField] private ObjectRegisterChannelSO objectRegister;
 
-        void Start()
+        private Timer timer;
+        private const float SpawnTime = 25f;
+
+        private void Start()
         {
-            enemyInstances = new List<GameObject>();
+            timer = new Timer(SpawnTime);
         }
 
-        void Update()
+        private void Update()
         {
-            while (enemyInstances.Count < numberOfEnemies)
+            timer.Update();
+
+            if (timer.Elapsed && objectRegister.currentMobCap < EnemyRegister.mobcap)
             {
-                enemyInstances.Add(Instantiate(enemySpawnPrefab, spawnPoint.position, spawnPoint.rotation));
+                timer.Restart();
+                var instance = Instantiate(enemySpawnPrefab, transform.position, transform.rotation);
+                objectRegister.RequestRegisterEnemy(instance);
             }
         }
     }

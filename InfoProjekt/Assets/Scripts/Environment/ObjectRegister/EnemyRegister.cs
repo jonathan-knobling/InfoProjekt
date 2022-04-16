@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Actors.Enemies;
-using Environment.test;
 using Tech.IO.Saves;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,6 +9,9 @@ namespace Environment.ObjectRegister
 {
     public class EnemyRegister: ISaveable
     {
+        public static int mobcap => 64;
+        public int currentMobCap => enemies.Count;
+
         private readonly EnemyDataBase enemyDataBase;
 
         private HashSet<GameObject> enemies;

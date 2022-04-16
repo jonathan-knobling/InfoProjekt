@@ -1,4 +1,5 @@
 using System;
+using Environment.ObjectRegister;
 using Gameplay.Inventory.Items;
 using Tech.IO.Saves;
 using UnityEngine;
