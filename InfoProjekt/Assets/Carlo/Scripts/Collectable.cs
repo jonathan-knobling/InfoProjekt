@@ -1,3 +1,4 @@
+using System;
 using Gameplay.Inventory;
 using Gameplay.Inventory.Items;
 using Tech.IO.PlayerInput;
@@ -15,22 +16,33 @@ namespace Assets.Carlo.Scripts
         [SerializeField] private LayerMask interactionLayer;
         [SerializeField] private Item item;
         [SerializeField] private UIChannelSO uiChannel;
+        [SerializeField] private GameObject pickUpEffect;
+        private InteractionBar pickUpInteraction;
+        private GameObject particle;
+        
+            
         private Label text;
         void Start()
         {
             inputChannel.OnInteractButtonPressed += InteractButtonPressed;
+            pickUpInteraction = new InteractionBar(0.7f, uiChannel);
+            pickUpInteraction.OnProgressBarOver += Interact;
+            pickUpInteraction.StartEffect += CreateParticles;
+            pickUpInteraction.StopEffect += StopParticles;
+            particle = Instantiate(pickUpEffect, transform.position, transform.rotation);
         }
-    
+
         private void InteractButtonPressed()
         {
             if (Physics2D.OverlapCircle(transform.position, interactionRadius, interactionLayer))
             {
-                Interact();
+                return;
             }
         }
 
         private void Interact()
         {
+            Destroy(particle);
             Destroy(gameObject);
             InventoryManager.Instance.AddItem(item);
         }
@@ -50,5 +62,21 @@ namespace Assets.Carlo.Scripts
         {
             uiChannel.RequestRemoveUIVisualElement(text);
         }
+
+        private void CreateParticles()
+        {
+            particle.GetComponent<ParticleSystem>().Play();
+        }
+
+        private void StopParticles()
+        {
+            particle.GetComponent<ParticleSystem>().Stop();
+        }
+
+        void OnTriggerStay2D(Collider2D other)
+        {
+            pickUpInteraction.Update();
+        }
     }
+    
 }

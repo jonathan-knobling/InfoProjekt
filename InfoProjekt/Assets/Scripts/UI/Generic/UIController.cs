@@ -23,6 +23,7 @@ namespace UI.Generic
             cam = GameObject.Find("Main Camera").GetComponent<Camera>();
 
             root = GetComponent<UIDocument>().rootVisualElement;
+            screen = root.Q<VisualElement>("screen");
             promptContainer = root.Q<VisualElement>("prompt");
             
             followUIElements = new Dictionary<VisualElement, Transform>();
