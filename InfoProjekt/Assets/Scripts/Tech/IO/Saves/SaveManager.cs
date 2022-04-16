@@ -1,7 +1,5 @@
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Tech.IO.Saves
 {
@@ -99,7 +97,7 @@ namespace Tech.IO.Saves
 
         private void OnApplicationQuit()
         {
-            Save("auto-" + GUID.Generate().ToString().Substring(0,10));
+            Save(SaveIO.GenerateNewFileName("auto"));
         }
     }
 }

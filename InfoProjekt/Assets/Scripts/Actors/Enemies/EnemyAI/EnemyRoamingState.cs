@@ -1,4 +1,3 @@
-using Environment.Actors.Enemies;
 using Unity.Mathematics;
 using UnityEngine;
 using Util;

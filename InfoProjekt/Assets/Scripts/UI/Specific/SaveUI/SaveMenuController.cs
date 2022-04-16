@@ -16,6 +16,8 @@ namespace UI.Specific.SaveUI
         private VisualElement root;
         
         private Button backButton;
+        private Button newSaveButton;
+        
         private ScrollView savesContainer;
 
         //ReSharper disable once CollectionNeverQueried.Local
@@ -23,9 +25,13 @@ namespace UI.Specific.SaveUI
 
         private void Start()
         {
+            saveMenu.enabled = false;
+            
             root = saveMenu.rootVisualElement;
 
             backButton = root.Q<Button>("back_button");
+            newSaveButton = root.Q<Button>("new_save");
+            
             savesContainer = root.Q<ScrollView>("saves_container");
             savesContainer.Clear();
 
@@ -33,6 +39,12 @@ namespace UI.Specific.SaveUI
             GetSaves();
             
             backButton.clicked += BackButtonPressed;
+            newSaveButton.clicked += NewSaveButtonPressed;
+        }
+
+        private void NewSaveButtonPressed()
+        {
+            ioChannel.SaveToFile(SaveIO.GenerateNewFileName());
         }
 
         private void GetSaves()
@@ -40,13 +52,14 @@ namespace UI.Specific.SaveUI
             string[] paths = Directory.GetFiles(Application.persistentDataPath + "/saves");
             foreach (var path in paths)
             {
+                string fileName = path.Split(new[] {'.', '\\'}, StringSplitOptions.RemoveEmptyEntries)[^2]
+                                   + " | " + File.GetLastWriteTime(path);
                 Button button = new Button
                 {
-                    text = (path.Split(new []{'.','\\'}, StringSplitOptions.RemoveEmptyEntries)[^2] 
-                            + " | " + File.GetLastWriteTime(path)).ToUpper()
+                    text = fileName.ToUpper()
                 };
                 
-                SaveButtonHandler handler = new SaveButtonHandler(path, ioChannel);
+                SaveButtonHandler handler = new SaveButtonHandler(fileName, ioChannel);
                 
                 button.clicked += handler.ButtonPressed;
                 
@@ -58,7 +71,7 @@ namespace UI.Specific.SaveUI
         private void BackButtonPressed()
         {
             saveMenu.enabled = false;
-            pauseMenu.enabled = true;
+            pauseMenu.rootVisualElement.Q<VisualElement>("screen").style.display = DisplayStyle.Flex;
         }
     }
 }

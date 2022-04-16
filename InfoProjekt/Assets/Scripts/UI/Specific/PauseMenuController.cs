@@ -8,6 +8,7 @@ namespace UI.Specific
 {
     public class PauseMenuController : MonoBehaviour
     {
+        [SerializeField] private UIDocument saveMenuUI;
         [SerializeField] private FlowChannelSO flowChannel;
         [SerializeField] private InputChannelSO inputChannel;
         
@@ -18,6 +19,7 @@ namespace UI.Specific
         private VisualElement optionsMenu;
 
         private Button resumeButton;
+        private Button saveButton;
         private Button optionsButton;
         private Button quitButton;
 
@@ -32,18 +34,26 @@ namespace UI.Specific
             optionsMenu = root.Q<VisualElement>("options_menu");
 
             resumeButton = root.Q<Button>("resume_button");
+            saveButton = root.Q<Button>("save_button");
             optionsButton = root.Q<Button>("options_button");
             quitButton = root.Q<Button>("quit_button");
 
             optionsBackButton = root.Q<Button>("back_button");
 
             resumeButton.clicked += ResumeButtonPressed;
+            saveButton.clicked += SaveButtonPressed;
             optionsButton.clicked += OptionsButtonPressed;
             quitButton.clicked += QuitButtonPressed;
 
             optionsBackButton.clicked += OptionsBackButtonPressed;
 
             inputChannel.OnPauseButtonPressed += PauseButtonPressed;
+        }
+
+        private void SaveButtonPressed()
+        {
+            saveMenuUI.enabled = true;
+            screen.style.display = DisplayStyle.None;
         }
 
         private void PauseButtonPressed()

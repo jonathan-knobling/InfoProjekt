@@ -4,18 +4,18 @@ namespace UI.Specific.SaveUI
 {
     public class SaveButtonHandler
     {
-        private readonly string path;
+        private readonly string fileName;
         private readonly IOChannelSO ioChannel;
 
-        public SaveButtonHandler(string path, IOChannelSO ioChannel)
+        public SaveButtonHandler(string fileName, IOChannelSO ioChannel)
         {
-            this.path = path;
+            this.fileName = fileName;
             this.ioChannel = ioChannel;
         }
 
         public void ButtonPressed()
         {
-            ioChannel.SaveToFile(path);
+            ioChannel.SaveToFile(fileName);
         }
     }
 }

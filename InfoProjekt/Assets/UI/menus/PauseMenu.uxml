@@ -1,11 +1,12 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/menus/PauseMenuStyles.uss?fileID=7433441132597879392&amp;guid=8885c7e77f7fed54d9abd873c6b96998&amp;type=3#PauseMenuStyles" />
-    <Style src="project://database/Assets/UI/menus/Menus.uss?fileID=7433441132597879392&amp;guid=0076037aa8065764fa599975fcc71a49&amp;type=3#Menus" />
+    <Style src="project://database/Assets/UI/menus/MenuStyle.uss?fileID=7433441132597879392&amp;guid=0076037aa8065764fa599975fcc71a49&amp;type=3#MenuStyle" />
     <ui:VisualElement name="screen" style="display: none;">
         <ui:VisualElement name="background" style="background-color: rgb(0, 0, 0); opacity: 0.69; height: 1080px; width: 1920px; display: flex; justify-content: center; align-items: center;" />
         <ui:VisualElement name="pause_menu" style="position: absolute; width: 1920px; height: 1080px; align-items: center; justify-content: center; display: flex;">
             <ui:Label text="PAUSE" display-tooltip-when-elided="true" name="header" class="header" />
             <ui:Button text="RESUME" display-tooltip-when-elided="true" name="resume_button" class="button-style" />
+            <ui:Button text="SAVE" display-tooltip-when-elided="true" name="save_button" />
             <ui:Button text="OPTIONS" display-tooltip-when-elided="true" name="options_button" class="button-style" />
             <ui:Button text="QUIT" display-tooltip-when-elided="true" name="quit_button" class="button-style" />
         </ui:VisualElement>

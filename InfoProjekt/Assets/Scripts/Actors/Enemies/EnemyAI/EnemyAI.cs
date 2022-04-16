@@ -1,5 +1,4 @@
 using System.ComponentModel;
-using Environment.Actors.Enemies;
 using UnityEngine;
 
 namespace Actors.Enemies.EnemyAI

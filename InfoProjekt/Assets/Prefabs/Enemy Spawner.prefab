@@ -49,15 +49,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 018bc818d07ae7d4db70a9463b3c0ed7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 4459712548062227219, guid: 7dc45234e14d7ab4897a9313a1eccfec, type: 3}
+  enemySpawnPrefab: {fileID: 4459712548062227219, guid: 7dc45234e14d7ab4897a9313a1eccfec, type: 3}
   numberOfEnemies: 3
-  spawnPoints:
-  - {fileID: 877459163903295759}
-  - {fileID: 5205616747523458846}
-  - {fileID: 5097822290111380141}
-  nonHostile:
-    serializedVersion: 2
-    m_Bits: 256
+  spawnPoint: {fileID: 877459163903295759}
 --- !u!61 &877459162185102955
 BoxCollider2D:
   m_ObjectHideFlags: 0

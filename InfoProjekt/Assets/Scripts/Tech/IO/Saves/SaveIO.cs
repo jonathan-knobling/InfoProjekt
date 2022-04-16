@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEditor;
 
 namespace Tech.IO.Saves
 {
@@ -29,6 +30,11 @@ namespace Tech.IO.Saves
             FileStream stream = File.Open(path, FileMode.Open);
             var formatter = new BinaryFormatter();
             return (Dictionary<string, object>) formatter.Deserialize(stream);
+        }
+
+        public static string GenerateNewFileName(string prefix = "save")
+        {
+            return prefix + "-" + GUID.Generate().ToString().Substring(0,10);
         }
     }
 }
