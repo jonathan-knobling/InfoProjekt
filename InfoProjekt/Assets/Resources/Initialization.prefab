@@ -380,7 +380,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf2c1b900e70ae94c81a7f3fbfe40798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenuUI: {fileID: 693971642749889404}
   saveMenuUI: {fileID: 3963589662981356550}
   flowChannel: {fileID: 11400000, guid: 2bcb0dc02fcc3454f937dd78df90adba, type: 2}
   inputChannel: {fileID: 11400000, guid: 089b2dbb73bd38745996825d79789973, type: 2}
@@ -685,6 +684,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 1766464605722092004}
+  playerUI: {fileID: 0}
+  hotbarStyle: {fileID: 7433441132597879392, guid: a902171ed7ea5a440b2600c15b53b6c8, type: 3}
 --- !u!114 &693971643486080911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1011,6 +1012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 472d78df273440869bd81c492b9e0295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveTransform: 0
   id: 5923060d-09c6-43f9-b943-cb10339fec03
 --- !u!1 &6421217519171463823
 GameObject:

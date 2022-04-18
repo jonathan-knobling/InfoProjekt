@@ -12,7 +12,7 @@ namespace Gameplay.Dialogue.Events
         
         public override void Invoke()
         {
-            InventoryManager.Instance.AddItem(item);
+            InventoryManager.ItemContainerInstance.TryAddItem(item);
         }
     }
 }

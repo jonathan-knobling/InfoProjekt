@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Gameplay.Inventory.Items;
 using UnityEngine;
 
@@ -6,34 +5,61 @@ namespace Gameplay.Inventory
 {
     public class InventoryManager: MonoBehaviour, IItemContainer
     {
-        public static InventoryManager Instance;
-        
-        [SerializeField] private List<Item> items;
+        public static IItemContainer ItemContainerInstance;
 
+        [SerializeField] private int inventoryCapacity = 36;
+        [SerializeField] private int hotbarCapacity = 9;
+
+        //alle items
+        private Item[] items;
+
+        //hotbar is first 9 elements of items array
+        public Item[] hotbarItems => items[..(hotbarCapacity-1)];
+        
         private void Awake()
         {
-            Instance = this;
+            ItemContainerInstance = this;
         }
 
         private void Start()
         {
-            if (items == null)
+            items = new Item[inventoryCapacity];
+        }
+
+        public int GetFirstEmptySlot()
+        {
+            for (int i = 0; i < items.Length; i++)
             {
-                items = new List<Item>();
+                if (items[i].Equals(null)) return i;
             }
+
+            return -1;
         }
 
-        public void AddItem(Item item)
+        public bool DropSlot(int slot)
         {
-            item.RequestAddItem(this);
+            if (items[slot].Equals(null)) return false;
+            
+            //drop item
+            return true;
         }
 
-        public void AddItem(NonStackableItem item)
+        public void RemoveSlot(int slot)
         {
-            items.Add(item);
+            items[slot] = null;
         }
 
-        public void AddItem(StackableItem item)
+        public Item GetSlot(int slut) // :)
+        {
+            return items[slut];
+        }
+
+        public bool TryAddItem(Item item)
+        {
+            return item.RequestAddItem(this);
+        }
+        
+        public bool TryAddItem(StackableItem item)
         {
             foreach (var i in items)
             {
@@ -44,10 +70,53 @@ namespace Gameplay.Inventory
                     StackableItem stackableItem = (StackableItem) i;
                     //den amount erhöhen
                     stackableItem.AddItemAmount(item.Amount);
-                    return;
+                    return true;
                 }
             }
-            items.Add(item);
+
+            return TryAddItem(item, GetFirstEmptySlot());
+        }
+
+        public bool TryAddItem(NonStackableItem item)
+        {
+            return TryAddItem(item, GetFirstEmptySlot());
+        }
+
+        public bool TryAddItem(Item item, int slot)
+        {
+            return item.RequestAddItem(this,slot);
+        }
+
+        public bool TryAddItem(StackableItem item, int slot)
+        {
+            try
+            {
+                if (items[slot].Equals(null)) return false;
+            }
+            catch
+            {
+                Debug.LogWarning("Trying to access inventory item slot but index is out of bounds: " + slot);
+                return false;
+            }
+
+            items[slot] = item;
+            return true;
+        }
+
+        public bool TryAddItem(NonStackableItem item, int slot)
+        {
+            try
+            {
+                if (items[slot].Equals(null)) return false;
+            }
+            catch
+            {
+                Debug.LogWarning("Trying to access inventory item slot but index is out of bounds: " + slot);
+                return false;
+            }
+
+            items[slot] = item;
+            return true;
         }
 
         public bool HasItem(NonStackableItem item)
@@ -59,10 +128,9 @@ namespace Gameplay.Inventory
         {
             foreach (var i in items)
             {
-                if (i.Name.Equals(itemName))
-                {
-                    return true;
-                }
+                if (i.Equals(null)) continue;
+                
+                if (i.Name.Equals(itemName)) return true;
             }
             return false;
         }
@@ -71,6 +139,8 @@ namespace Gameplay.Inventory
         {
             foreach (var i in items)
             {
+                if (i.Equals(null)) continue;
+                
                 if (i.Name.Equals(item.Name))
                 {
                     //Item zu Stackable item casten
@@ -87,14 +157,15 @@ namespace Gameplay.Inventory
 
         public bool RemoveItem(StackableItem item, float amount)
         {
-            if (amount == 0)
+            if (amount <= 0)
             {
                 return false;
             }
 
-            //list von hinten iteraten damit ich evtl items[i] sicher removen kann
-            for (int i = items.Count - 1; i >= 0; i--)
+            for (int i = 0; i < items.Length; i++)
             {
+                if (items[i].Equals(null)) continue;
+                
                 if (items[i].Name.Equals(item.Name))
                 {
                     //Item zu Stackable item casten
@@ -104,15 +175,11 @@ namespace Gameplay.Inventory
                             stackableItem.RemoveItemAmount(amount);
                             return true;
                     }
-                    else if (stackableItem.Amount.Equals(amount))
+                    if (stackableItem.Amount <= amount)
                     {
-                        items.RemoveAt(i);
+                        items[i] = null;
                         return true;
                     }
-                }
-                else
-                {
-                    items.RemoveAt(i);
                 }
             }
 
@@ -121,11 +188,11 @@ namespace Gameplay.Inventory
 
         public bool RemoveItem(NonStackableItem item)
         {
-            for (int i = items.Count - 1; i >= 0; i--)
+            for (int i = items.Length - 1; i >= 0; i--)
             {
                 if (items[i].Name.Equals(item.Name))
                 {
-                    items.RemoveAt(i);
+                    items[i] = null;
                 }
             }
 

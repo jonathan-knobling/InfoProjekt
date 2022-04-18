@@ -11,6 +11,8 @@ namespace Actors.Player
 
         public event Action OnSetIdle;
 
+        public float Velocity { get; set; }
+
         public PlayerMovementChannelSO()
         {
             controllers = new List<MonoBehaviour>();

@@ -52,7 +52,7 @@ namespace Assets.Carlo.Scripts
             else if (Input.GetKey(KeyCode.F) && !active)
             {
                 StartEffect?.Invoke();
-                timer.Start();
+                timer.Restart();
                 active = true;
                 uiChannel.RequestAddUIVisualElement(new UIEventArgs(interactionBar, null, UIType.Default));
             }

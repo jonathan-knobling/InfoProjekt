@@ -13,7 +13,8 @@ namespace Gameplay.Inventory.Items
         public string Name => name;
         public Rarity Rarity => rarity;
 
-        public abstract void RequestAddItem(IItemContainer container);
+        public abstract bool RequestAddItem(IItemContainer container, int slot);
+        public abstract bool RequestAddItem(IItemContainer container);
         public abstract void RequestDropItem(IItemContainer container);
     }
 }

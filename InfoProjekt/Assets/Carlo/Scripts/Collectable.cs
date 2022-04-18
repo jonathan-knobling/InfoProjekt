@@ -44,7 +44,7 @@ namespace Assets.Carlo.Scripts
         {
             Destroy(particle);
             Destroy(gameObject);
-            InventoryManager.Instance.AddItem(item);
+            InventoryManager.ItemContainerInstance.TryAddItem(item);
         }
 
         private void OnDrawGizmosSelected()

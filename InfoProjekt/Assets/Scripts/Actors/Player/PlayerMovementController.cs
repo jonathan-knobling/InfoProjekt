@@ -48,6 +48,7 @@ namespace Actors.Player
         private void Update()
         {
             direction = inputChannel.InputDirection;
+            movementChannel.Velocity = rb.velocity.magnitude;
         }
 
         private void FixedUpdate()
