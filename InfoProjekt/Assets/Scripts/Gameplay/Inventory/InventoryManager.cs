@@ -1,3 +1,4 @@
+using System;
 using Gameplay.Inventory.Items;
 using UnityEngine;
 
@@ -14,15 +15,13 @@ namespace Gameplay.Inventory
         private Item[] items;
 
         //hotbar is first 9 elements of items array
-        public Item[] hotbarItems => items[..(hotbarCapacity-1)];
+        public Item[] hotbarItems => items[..hotbarCapacity];
+
+        public event Action<int, Item> OnInventoryChange;
         
         private void Awake()
         {
             ItemContainerInstance = this;
-        }
-
-        private void Start()
-        {
             items = new Item[inventoryCapacity];
         }
 
@@ -40,13 +39,15 @@ namespace Gameplay.Inventory
         {
             if (items[slot].Equals(null)) return false;
             
-            //drop item
+            // todo drop item
+            OnInventoryChange?.Invoke(slot, items[slot]);
             return true;
         }
 
         public void RemoveSlot(int slot)
         {
             items[slot] = null;
+            OnInventoryChange?.Invoke(slot, items[slot]);
         }
 
         public Item GetSlot(int slut) // :)
@@ -61,15 +62,17 @@ namespace Gameplay.Inventory
         
         public bool TryAddItem(StackableItem item)
         {
-            foreach (var i in items)
+            for(int i = 0; i < items.Length; i++)
             {
                 //wenn es das item schon gibt
-                if (i.name.Equals(item.Name))
+                if (items[i].name.Equals(item.Name))
                 {
                     //kann sein das es nicht funktioniert wegen dem casten
-                    StackableItem stackableItem = (StackableItem) i;
+                    StackableItem stackableItem = (StackableItem) items[i];
                     //den amount erhöhen
                     stackableItem.AddItemAmount(item.Amount);
+                    
+                    OnInventoryChange?.Invoke(i, items[i]);
                     return true;
                 }
             }
@@ -98,8 +101,9 @@ namespace Gameplay.Inventory
                 Debug.LogWarning("Trying to access inventory item slot but index is out of bounds: " + slot);
                 return false;
             }
-
+            
             items[slot] = item;
+            OnInventoryChange?.Invoke(slot, item);
             return true;
         }
 
@@ -114,8 +118,9 @@ namespace Gameplay.Inventory
                 Debug.LogWarning("Trying to access inventory item slot but index is out of bounds: " + slot);
                 return false;
             }
-
+            
             items[slot] = item;
+            OnInventoryChange?.Invoke(slot, item);
             return true;
         }
 
@@ -172,12 +177,14 @@ namespace Gameplay.Inventory
                     StackableItem stackableItem = (StackableItem) items[i];
                     if (stackableItem.Amount > amount)
                     {
-                            stackableItem.RemoveItemAmount(amount);
-                            return true;
+                        stackableItem.RemoveItemAmount(amount);
+                        OnInventoryChange?.Invoke(i, items[i]);
+                        return true;
                     }
                     if (stackableItem.Amount <= amount)
                     {
                         items[i] = null;
+                        OnInventoryChange?.Invoke(i, items[i]);
                         return true;
                     }
                 }
@@ -193,6 +200,7 @@ namespace Gameplay.Inventory
                 if (items[i].Name.Equals(item.Name))
                 {
                     items[i] = null;
+                    OnInventoryChange?.Invoke(i, items[i]);
                 }
             }
 
@@ -206,17 +214,21 @@ namespace Gameplay.Inventory
 
         public void DropItem(NonStackableItem item)
         {
+            throw new NotImplementedException();
             //RemoveItem(item);
             //anscheinend effizienter
             //var transform1 = transform;
+            //OnInventoryChange?.Invoke(new []{itemSlotIndex});
             //Instantiate(item.DropItem, transform1.position, transform1.rotation);
         }
 
         //overloaden = op
         public void DropItem(StackableItem item, float amount)
         {
+            throw new NotImplementedException();
             //RemoveItem(item, amount);
             //var transform1 = transform;
+            //OnInventoryChange?.Invoke(new []{itemSlotIndex});
             // Instantiate(item.DropItem, transform1.position, transform1.rotation);
         } 
     }

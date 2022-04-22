@@ -25,8 +25,6 @@ namespace UI.Specific.SaveUI
 
         private void Start()
         {
-            saveMenu.enabled = false;
-            
             root = saveMenu.rootVisualElement;
 
             backButton = root.Q<Button>("back_button");
@@ -40,6 +38,8 @@ namespace UI.Specific.SaveUI
             
             backButton.clicked += BackButtonPressed;
             newSaveButton.clicked += NewSaveButtonPressed;
+            
+            
         }
 
         private void NewSaveButtonPressed()
@@ -71,7 +71,7 @@ namespace UI.Specific.SaveUI
         private void BackButtonPressed()
         {
             saveMenu.enabled = false;
-            pauseMenu.rootVisualElement.Q<VisualElement>("screen").style.display = DisplayStyle.Flex;
+            pauseMenu.rootVisualElement.style.display = DisplayStyle.Flex;
         }
     }
 }

@@ -1,3 +1,4 @@
+using Tech.IO.PlayerInput;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -5,8 +6,9 @@ namespace UI.Specific
 {
     public class SettingsMenuController: MonoBehaviour
     {
-        [SerializeField] private UIDocument mainMenu;
+        [SerializeField] private UIDocument previousMenu;
         [SerializeField] private UIDocument settingsMenu;
+        [SerializeField] private InputChannelSO inputChannel;
 
         private VisualElement root;
         
@@ -19,11 +21,12 @@ namespace UI.Specific
             backButton = root.Q<Button>("back_button");
             
             backButton.clicked += BackButtonPressed;
+            inputChannel.OnPauseButtonPressed += BackButtonPressed;
         }
 
         private void BackButtonPressed()
         {
-            mainMenu.rootVisualElement.style.display = DisplayStyle.Flex;
+            previousMenu.rootVisualElement.style.display = DisplayStyle.Flex;
             settingsMenu.rootVisualElement.style.display = DisplayStyle.None;
         }
     }
