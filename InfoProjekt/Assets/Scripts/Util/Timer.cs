@@ -60,7 +60,7 @@ namespace Util
             paused = false;
         }
 
-        public void Start()
+        public void Restart()
         {
             elapsedTime = 0;
             elapsed = false;

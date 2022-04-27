@@ -3,7 +3,7 @@ using System.Linq;
 using Gameplay.Inventory.Items;
 using UnityEngine;
 
-namespace Gameplay.Inventory
+namespace Environment.ObjectRegister
 {
     [CreateAssetMenu(menuName = "Databases/Item Database")]
     public class ItemDataBase: ScriptableObject

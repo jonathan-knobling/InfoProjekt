@@ -2,8 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Environment.test
+namespace Environment.ObjectRegister
 {
+    [CreateAssetMenu(menuName = "Databases/Enemy Database")]
     public class EnemyDataBase: ScriptableObject
     {
         [SerializeField] private List<GameObject> enemyList;

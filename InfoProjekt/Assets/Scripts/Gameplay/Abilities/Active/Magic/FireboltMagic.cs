@@ -1,13 +1,13 @@
-using Tech.IO.PlayerInput;
+using Tech;
 using UnityEngine;
 
 namespace Gameplay.Abilities.Active.Magic
 {
     public class FireboltMagic: MagicAbility
     {
-        public override void Init(InputChannelSO inputChannel, GameObject parentObject)
+        public override void Init(EventChannelSO eventChannel, GameObject parentObject)
         {
-            parent = parentObject;
+            Parent = parentObject;
         }
 
         public override void Update()

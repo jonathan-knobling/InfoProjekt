@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Tech;
 using Tech.IO.Saves;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -12,7 +13,7 @@ namespace UI.Specific.SaveUI
         [SerializeField] private UIDocument mainMenu;
         [SerializeField] private UIDocument loadMenu;
 
-        [SerializeField] private IOChannelSO ioChannel;
+        [SerializeField] private EventChannelSO eventChannel;
 
         private VisualElement root;
         
@@ -47,7 +48,7 @@ namespace UI.Specific.SaveUI
                            + " | " + File.GetLastWriteTime(path)).ToUpper()
                 };
                 
-                LoadButtonHandler handler = new LoadButtonHandler(path, ioChannel);
+                LoadButtonHandler handler = new LoadButtonHandler(path, eventChannel);
                 
                 button.clicked += handler.ButtonPressed;
                 button.clicked += ResumeTime;

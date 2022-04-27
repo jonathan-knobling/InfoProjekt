@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using UnityEngine;
 
 namespace Tech.IO.Saves
 {
-    [CreateAssetMenu(menuName = "Channels/Save Channel")]
-    public class IOChannelSO: ScriptableObject
+    public class IOChannel
     {
         public event Action<string, object> OnSaveData;
         public event Action<string> OnSaveToFile;

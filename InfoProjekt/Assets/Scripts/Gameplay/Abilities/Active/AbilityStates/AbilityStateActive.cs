@@ -14,7 +14,7 @@ namespace Gameplay.Abilities.Active.AbilityStates
 
         public override void Activate(ActiveAbility ability)
         {
-            timer = new Timer(ability.ActiveTime);
+            timer = new Timer(ability.activeTime);
             parentAbility = ability;
             timer.OnElapsed += NextState;
         }

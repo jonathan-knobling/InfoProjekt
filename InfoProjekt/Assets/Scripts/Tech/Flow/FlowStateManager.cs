@@ -5,7 +5,7 @@ namespace Tech.Flow
 {
     public class FlowStateManager: MonoBehaviour
     {
-        [SerializeField] private FlowChannelSO flowChannel;
+        [SerializeField] private EventChannelSO eventChannel;
         
         private IFlowState state;
 
@@ -14,7 +14,7 @@ namespace Tech.Flow
             state = new FlowStateDefault();
             state.EnterState();
 
-            flowChannel.OnChangeFlowState += ChangeState;
+            eventChannel.FlowChannel.OnChangeFlowState += ChangeState;
         }
 
         private void Update()

@@ -171,7 +171,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.3333334, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -380,7 +380,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf2c1b900e70ae94c81a7f3fbfe40798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenuUI: {fileID: 693971642749889404}
   saveMenuUI: {fileID: 3963589662981356550}
   flowChannel: {fileID: 11400000, guid: 2bcb0dc02fcc3454f937dd78df90adba, type: 2}
   inputChannel: {fileID: 11400000, guid: 089b2dbb73bd38745996825d79789973, type: 2}
@@ -427,7 +426,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 693971642809258990}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00000014901161, y: -0.30000013, z: -25}
+  m_LocalPosition: {x: 0.00000023841858, y: -0.30000013, z: -25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -656,7 +655,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &693971643486080909
 Transform:
   m_ObjectHideFlags: 0
@@ -685,6 +684,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 1766464605722092004}
+  playerUI: {fileID: 693971643486080911}
+  inventory: {fileID: 2373507946171731474}
 --- !u!114 &693971643486080911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -998,7 +999,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a64dac1ee44bebb394e4040d1e72e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items: []
+  inventoryCapacity: 36
+  hotbarCapacity: 9
 --- !u!114 &356444747806177217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1011,6 +1013,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 472d78df273440869bd81c492b9e0295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveTransform: 0
   id: 5923060d-09c6-43f9-b943-cb10339fec03
 --- !u!1 &6421217519171463823
 GameObject:

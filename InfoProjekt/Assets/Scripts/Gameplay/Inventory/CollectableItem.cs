@@ -1,4 +1,5 @@
 using System;
+using Environment.ObjectRegister;
 using Gameplay.Inventory.Items;
 using Tech.IO.Saves;
 using UnityEngine;
@@ -44,7 +45,7 @@ namespace Gameplay.Inventory
                     Debug.Log("TriggerEnter but item is null");
                     return;
                 }
-                col.GetComponent<InventoryManager>().AddItem(item);
+                col.GetComponent<IItemContainer>().TryAddItem(item);
                 Destroy(gameObject);
             }
         }

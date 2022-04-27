@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Tech;
 using Tech.IO.Saves;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -11,7 +12,7 @@ namespace UI.Specific.SaveUI
     {
         [SerializeField] private UIDocument pauseMenu;
         [SerializeField] private UIDocument saveMenu;
-        [SerializeField] private IOChannelSO ioChannel;
+        [SerializeField] private EventChannelSO eventChannel;
         
         private VisualElement root;
         
@@ -25,8 +26,6 @@ namespace UI.Specific.SaveUI
 
         private void Start()
         {
-            saveMenu.enabled = false;
-            
             root = saveMenu.rootVisualElement;
 
             backButton = root.Q<Button>("back_button");
@@ -40,11 +39,13 @@ namespace UI.Specific.SaveUI
             
             backButton.clicked += BackButtonPressed;
             newSaveButton.clicked += NewSaveButtonPressed;
+            
+            
         }
 
         private void NewSaveButtonPressed()
         {
-            ioChannel.SaveToFile(SaveIO.GenerateNewFileName());
+            eventChannel.IOChannel.SaveToFile(SaveIO.GenerateNewFileName());
         }
 
         private void GetSaves()
@@ -59,7 +60,7 @@ namespace UI.Specific.SaveUI
                     text = fileName.ToUpper()
                 };
                 
-                SaveButtonHandler handler = new SaveButtonHandler(fileName, ioChannel);
+                SaveButtonHandler handler = new SaveButtonHandler(fileName, eventChannel);
                 
                 button.clicked += handler.ButtonPressed;
                 
@@ -71,7 +72,7 @@ namespace UI.Specific.SaveUI
         private void BackButtonPressed()
         {
             saveMenu.enabled = false;
-            pauseMenu.rootVisualElement.Q<VisualElement>("screen").style.display = DisplayStyle.Flex;
+            pauseMenu.rootVisualElement.style.display = DisplayStyle.Flex;
         }
     }
 }

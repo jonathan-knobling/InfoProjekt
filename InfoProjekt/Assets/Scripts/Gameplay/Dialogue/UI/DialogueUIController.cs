@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Gameplay.Dialogue.Nodes;
+using Tech;
 using Tech.Flow;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -10,8 +11,7 @@ namespace Gameplay.Dialogue.UI
 {
     public class DialogueUIController : MonoBehaviour, IDialogueNodeVisitor
     {
-        [SerializeField] private DialogueChannelSO dialogueChannel;
-        [SerializeField] private FlowChannelSO flowChannel;
+        [SerializeField] private EventChannelSO eventChannel;
 
         private List<DialogueNodeButton> choiceNodeUIs;
 
@@ -33,8 +33,8 @@ namespace Gameplay.Dialogue.UI
 
             choiceNodeUIs = new List<DialogueNodeButton>(3);
 
-            sequencer = new DialogueSequencer(flowChannel);
-            dialogueChannel.OnRequestDialogue += OnDialogueRequested;
+            sequencer = new DialogueSequencer(eventChannel.FlowChannel);
+            eventChannel.DialogueChannel.OnRequestDialogue += OnDialogueRequested;
             sequencer.OnStartDialogue += OnStartDialogue;
             sequencer.OnEndDialogue += OnEndDialogue;
             sequencer.OnStartDialogueNode += OnStartDialogueNode;

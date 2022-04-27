@@ -1,3 +1,4 @@
+using Tech;
 using Tech.IO.Saves;
 
 namespace UI.Specific.SaveUI
@@ -5,17 +6,17 @@ namespace UI.Specific.SaveUI
     public class LoadButtonHandler
     {
         private readonly string path;
-        private readonly IOChannelSO ioChannel;
+        private readonly EventChannelSO eventChannel;
 
-        public LoadButtonHandler(string path, IOChannelSO ioChannel)
+        public LoadButtonHandler(string path, EventChannelSO eventChannel)
         {
             this.path = path;
-            this.ioChannel = ioChannel;
+            this.eventChannel = eventChannel;
         }
 
         public void ButtonPressed()
         {
-            ioChannel.LoadSaveFile(path);
+            eventChannel.IOChannel.LoadSaveFile(path);
         }
     }
 }

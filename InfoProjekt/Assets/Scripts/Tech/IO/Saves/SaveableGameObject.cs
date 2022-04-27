@@ -1,11 +1,15 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Util.Serialization;
 
 namespace Tech.IO.Saves
 {
-    public class SaveableGameObject: MonoBehaviour, IIdentifiable
+    public class SaveableGameObject: MonoBehaviour
     {
+        [SerializeField] private bool saveTransform;
+            
+        [Header("GUID")]
         [SerializeField] private string id = String.Empty;
 
         public string ID => id;
@@ -20,6 +24,11 @@ namespace Tech.IO.Saves
             foreach (var saveable in GetComponents<ISaveable>())
             {
                 serializedGameObject[saveable.GetType().ToString()] = saveable.SerializeComponent();
+            }
+
+            if (saveTransform)
+            {
+                serializedGameObject.Add("transform", new SerializeableTransform(transform));
             }
 
             return serializedGameObject;
@@ -37,6 +46,13 @@ namespace Tech.IO.Saves
                 {
                     saveable.ApplySerializedData(data);
                 }
+            }
+
+            if (saveTransform)
+            {
+                serializedGameObject.TryGetValue("transform", out object data);
+                var serializedTransform = (SerializeableTransform) data;
+                SerializeableTransform.DeserializeTransform(serializedTransform, transform);
             }
         }
     }

@@ -4,35 +4,35 @@ namespace Tech.IO.PlayerInput
 {
     public class PlayerInput: MonoBehaviour
     {
-        [SerializeField] public InputChannelSO inputChannel;
+        [SerializeField] public EventChannelSO eventChannel;
 
         private void Update()
         {
-            inputChannel.InputDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            eventChannel.InputChannel.InputDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
             if (Input.GetButtonDown("Jump"))
             {
-                inputChannel.JumpButtonPressed();
+                eventChannel.InputChannel.JumpButtonPressed();
             }
 
             if (Input.GetButtonDown("Hit"))
             {
-                inputChannel.HitButtonPressed();
+                eventChannel.InputChannel.HitButtonPressed();
             }
 
             if (Input.GetButtonDown("Interact"))
             {
-                inputChannel.InteractButtonPressed();
+                eventChannel.InputChannel.InteractButtonPressed();
             }
             
             if (Input.GetButtonDown("Pause"))
             {
-                inputChannel.PauseButtonPressed();
+                eventChannel.InputChannel.PauseButtonPressed();
             }
 
             if (Input.GetButtonDown("Skill1"))
             {
-               inputChannel.Skill1ButtonPressed();
+                eventChannel.InputChannel.Skill1ButtonPressed();
             }
         }
     }

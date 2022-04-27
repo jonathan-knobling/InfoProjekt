@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Tech;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Util.EventArgs;
@@ -7,7 +8,7 @@ namespace UI.Generic
 {
     public class UIController : MonoBehaviour
     {
-        [SerializeField] private UIChannelSO uiChannel;
+        [SerializeField] private EventChannelSO eventChannel;
 
         private Camera cam;
         
@@ -28,8 +29,8 @@ namespace UI.Generic
             
             followUIElements = new Dictionary<VisualElement, Transform>();
 
-            uiChannel.OnRequestAddUIVisualElement += AddUIElement;
-            uiChannel.OnRequestRemoveUIVisualElement += RemoveUIElement;
+            eventChannel.UIChannel.OnRequestAddUIVisualElement += AddUIElement;
+            eventChannel.UIChannel.OnRequestRemoveUIVisualElement += RemoveUIElement;
         }
 
         private void Update()

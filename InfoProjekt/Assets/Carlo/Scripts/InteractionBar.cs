@@ -1,37 +1,37 @@
 using System;
+using Tech;
 using UI.Generic;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.UIElements;
 using Util;
 using Util.EventArgs;
 
-namespace Assets.Carlo.Scripts
+namespace Carlo.Scripts
 {
     public class InteractionBar {
-    
-        private float interactionTime;
-        private UIChannelSO uiChannel;
-        private Timer timer;
-        private ProgressBar interactionBar;
+        
+        private readonly float interactionTime;
+        private readonly EventChannelSO eventChannel;
+        private readonly Timer timer;
+        private readonly ProgressBar interactionBar;
         private bool active = true;
 
         public event Action OnProgressBarOver;
         public event Action StartEffect;
         public event Action StopEffect;
 
-        public InteractionBar(float interactionTime, UIChannelSO uiChannel)
+        public InteractionBar(float interactionTime, EventChannelSO eventChannel)
         {
             this.interactionTime = interactionTime;
-            this.uiChannel = uiChannel;
+            this.eventChannel = eventChannel;
             timer = new Timer(interactionTime);
             timer.OnElapsed += OnTimerEnd;
             interactionBar = new ProgressBar();
         }
-        public InteractionBar(UIChannelSO uiChannel)
+        public InteractionBar(EventChannelSO eventChannel)
         {
             interactionTime = 1.5f;
-            this.uiChannel = uiChannel;
+            this.eventChannel = eventChannel;
             timer = new Timer(interactionTime);
             timer.OnElapsed += OnTimerEnd;
             interactionBar = new ProgressBar();
@@ -47,21 +47,21 @@ namespace Assets.Carlo.Scripts
                 StopEffect?.Invoke();
                 timer.Pause();
                 active = false;
-                uiChannel.RequestRemoveUIVisualElement(interactionBar);
+                eventChannel.UIChannel.RequestRemoveUIVisualElement(interactionBar);
             } 
             else if (Input.GetKey(KeyCode.F) && !active)
             {
                 StartEffect?.Invoke();
-                timer.Start();
+                timer.Restart();
                 active = true;
-                uiChannel.RequestAddUIVisualElement(new UIEventArgs(interactionBar, null, UIType.Default));
+                eventChannel.UIChannel.RequestAddUIVisualElement(new UIEventArgs(interactionBar, null, UIType.Default));
             }
         }
 
         private void OnTimerEnd()
         {
             OnProgressBarOver?.Invoke();
-            uiChannel.RequestRemoveUIVisualElement(interactionBar);
+            eventChannel.UIChannel.RequestRemoveUIVisualElement(interactionBar);
         }
     }
 }

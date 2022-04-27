@@ -1,12 +1,10 @@
 using System;
-using UnityEngine;
 using UnityEngine.UIElements;
 using Util.EventArgs;
 
 namespace UI.Generic
 {
-    [CreateAssetMenu(menuName = "Channels/UI Channel")]
-    public class UIChannelSO: ScriptableObject
+    public class UIChannel
     {
         public event Action<UIEventArgs> OnRequestAddUIVisualElement;
         public event Action<VisualElement> OnRequestRemoveUIVisualElement;

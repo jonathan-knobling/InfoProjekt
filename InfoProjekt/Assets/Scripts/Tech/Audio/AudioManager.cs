@@ -6,17 +6,17 @@ namespace Tech.Audio
 {
     public class AudioManager: MonoBehaviour
     {
-        [SerializeField] public AudioRequestChannelSO audioRequestChannel;
+        [SerializeField] public EventChannelSO eventChannel;
 
         private AudioSource musicSource;
 
         private void Start()
         {
             musicSource = gameObject.AddComponent<AudioSource>();
-            audioRequestChannel.AudioRequestHandler += PlaySound;
+            eventChannel.AudioRequestChannel.AudioRequestHandler += PlaySound;
         }
 
-        public void PlaySound(object sender, AudioRequestArgs args)
+        private void PlaySound(object sender, AudioRequestArgs args)
         {
             if (args.isMusic)
             {

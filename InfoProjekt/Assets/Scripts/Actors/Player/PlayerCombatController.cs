@@ -1,6 +1,7 @@
+using System.Diagnostics.Tracing;
 using Actors.Enemies;
 using Actors.Player.Stats;
-using Tech.IO.PlayerInput;
+using Tech;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -9,8 +10,7 @@ namespace Actors.Player
     public class PlayerCombatController: MonoBehaviour
     {
         [SerializeField] private Animator animator;
-        [SerializeField] private InputChannelSO inputChannel;
-        [SerializeField] private PlayerCombatChannelSO combatChannel;
+        [SerializeField] private EventChannelSO eventChannel;
         [SerializeField] private Camera cam;
         [SerializeField] private float attackRange = 0.5f;
         [SerializeField] private LayerMask enemyLayers;
@@ -24,8 +24,8 @@ namespace Actors.Player
         private void Start()
         {
             stats = GetComponent<PlayerStats>();
-            inputChannel.OnHitButtonPressed += OnHitButtonPressed;
-            combatChannel.AddPlayerCombatController(this);
+            eventChannel.InputChannel.OnHitButtonPressed += OnHitButtonPressed;
+            eventChannel.PlayerChannel.AddPlayerCombatController(this);
         }
 
         private void OnHitButtonPressed()
@@ -55,7 +55,7 @@ namespace Actors.Player
                 if(enemy.GetComponent<EnemyStats>().IsDead)
                 {
                     stats.AddXP(enemy.GetComponent<EnemyStats>());
-                    combatChannel.EnemyKilled(enemy.GetComponent<EnemyStats>().enemyID);
+                    eventChannel.PlayerChannel.EnemyKilled(enemy.GetComponent<EnemyStats>().enemyID);
                 }
                 stats.XPManager.AddDealtDamage(dealtDamage);
             }

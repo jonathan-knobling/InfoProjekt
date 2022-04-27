@@ -1,18 +1,14 @@
 using System;
+using Actors.Player;
 using Tech.Flow.States;
 using Tech.IO.PlayerInput;
-using UnityEngine;
-using PlayerCombatChannelSO = Actors.Player.PlayerCombatChannelSO;
-using PlayerMovementChannelSO = Actors.Player.PlayerMovementChannelSO;
 
 namespace Tech.Flow
 {
-    [CreateAssetMenu(menuName = "Channels/Flow Channel")]
-    public class FlowChannelSO: ScriptableObject
+    public class FlowChannel
     {
-        [SerializeField] private PlayerCombatChannelSO combatChannel;
-        [SerializeField] private PlayerMovementChannelSO movementChannel;
-        [SerializeField] private InputChannelSO inputChannel;
+        private readonly PlayerChannel playerChannel;
+        private readonly InputChannel inputChannel;
 
         private readonly FlowStateDefault defaultState;
         private readonly FlowStatePaused pausedState;
@@ -20,8 +16,11 @@ namespace Tech.Flow
 
         public event Action<IFlowState> OnChangeFlowState;
 
-        public FlowChannelSO()
+        public FlowChannel(PlayerChannel playerChannel, InputChannel inputChannel)
         {
+            this.playerChannel = playerChannel;
+            this.inputChannel = inputChannel;
+            
             defaultState = new FlowStateDefault();
             pausedState = new FlowStatePaused();
         }
@@ -42,7 +41,7 @@ namespace Tech.Flow
                 }
                 case FlowState.Dialogue:
                 {
-                    dialogueState ??= new FlowStateDialogue(combatChannel, movementChannel, inputChannel);
+                    dialogueState ??= new FlowStateDialogue(playerChannel, inputChannel);
                     OnChangeFlowState?.Invoke(dialogueState);
                     break;
                 }
