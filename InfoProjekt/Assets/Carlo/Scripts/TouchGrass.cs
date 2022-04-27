@@ -1,15 +1,16 @@
-using Actors.Player;
+using Tech;
 using UnityEngine;
 
-namespace Assets.Carlo.Scripts
+namespace Carlo.Scripts
 {
     public class TouchGrass : MonoBehaviour
     {
-        [SerializeField] private PlayerMovementChannelSO movementChannel;
+        [SerializeField] private EventChannelSO eventChannel;
         [SerializeField] private Animator grassAnimator;
         private AudioSource grassSound;
         private bool isTouching;
-    
+        private static readonly int GrassAnimation = Animator.StringToHash("GrassAnimation");
+
         private void Start()
         {
             grassSound = GetComponent<AudioSource>();
@@ -17,15 +18,15 @@ namespace Assets.Carlo.Scripts
     
         private void Update()
         {
-            if (isTouching && movementChannel.Velocity > 0.0001f)
+            if (isTouching && eventChannel.PlayerChannel.Velocity > 0.0001f)
             {
-                grassAnimator.SetBool("GrassAnimation", true);
+                grassAnimator.SetBool(GrassAnimation, true);
                 grassSound.Play();
             }
 
-            if (!isTouching || movementChannel.Velocity < 0.0001f)
+            if (!isTouching || eventChannel.PlayerChannel.Velocity < 0.0001f)
             {
-                grassAnimator.SetBool("GrassAnimation" , false);
+                grassAnimator.SetBool(GrassAnimation , false);
             }
         }
     

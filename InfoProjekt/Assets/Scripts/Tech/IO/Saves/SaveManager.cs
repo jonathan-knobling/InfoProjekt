@@ -5,7 +5,7 @@ namespace Tech.IO.Saves
 {
     public class SaveManager: MonoBehaviour
     {
-        [SerializeField] private IOChannelSO ioChannel;
+        [SerializeField] private EventChannelSO eventChannel;
         
         private Dictionary<string, object> saveBuffer;
         
@@ -14,9 +14,9 @@ namespace Tech.IO.Saves
         
         private void Start()
         {
-            ioChannel.OnSaveToFile += Save;
-            ioChannel.OnSaveData += AddToSafeBuffer;
-            ioChannel.OnLoadSaveFile += LoadFile;
+            eventChannel.IOChannel.OnSaveToFile += Save;
+            eventChannel.IOChannel.OnSaveData += AddToSafeBuffer;
+            eventChannel.IOChannel.OnLoadSaveFile += LoadFile;
             saveBuffer = new Dictionary<string, object>();
         }
         
@@ -67,7 +67,7 @@ namespace Tech.IO.Saves
         {
             var serializedData = SaveIO.LoadFile(path);
             SceneSaveManager.LoadSavedScene(serializedData);
-            ioChannel.Load(serializedData);
+            eventChannel.IOChannel.Load(serializedData);
             ApplySerializedStateData(serializedData);
         }
         

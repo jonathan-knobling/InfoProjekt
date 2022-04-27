@@ -15,11 +15,11 @@ namespace Gameplay.Abilities.Active.AbilityStates
         public override void Activate(ActiveAbility ability)
         {
             parentAbility = ability;
-            timer = new Timer(ability.CooldownTime);
+            timer = new Timer(ability.cooldownTime);
             timer.OnElapsed += NextState;
         }
 
-        public void NextState()
+        private void NextState()
         {
             parentAbility.State = parentAbility.ReadyState;
             parentAbility.ReadyState.Activate(parentAbility);

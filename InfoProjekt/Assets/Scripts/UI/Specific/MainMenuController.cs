@@ -1,4 +1,3 @@
-using Tech.IO.Saves;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -10,7 +9,6 @@ namespace UI.Specific
         [SerializeField] private UIDocument mainMenu;
         [SerializeField] private UIDocument settingsMenu;
         [SerializeField] private UIDocument loadMenu;
-        [SerializeField] private IOChannelSO ioChannel;
 
         private VisualElement root;
         

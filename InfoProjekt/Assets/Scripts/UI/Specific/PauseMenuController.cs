@@ -1,5 +1,5 @@
+using Tech;
 using Tech.Flow;
-using Tech.IO.PlayerInput;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -8,8 +8,7 @@ namespace UI.Specific
     public class PauseMenuController : MonoBehaviour
     {
         [SerializeField] private UIDocument saveMenuUI;
-        [SerializeField] private FlowChannelSO flowChannel;
-        [SerializeField] private InputChannelSO inputChannel;
+        [SerializeField] private EventChannelSO eventChannel;
         
         private VisualElement root;
 
@@ -40,7 +39,7 @@ namespace UI.Specific
             optionsButton.clicked += OptionsButtonPressed;
             quitButton.clicked += QuitButtonPressed;
 
-            inputChannel.OnPauseButtonPressed += PauseButtonPressed;
+            eventChannel.InputChannel.OnPauseButtonPressed += PauseButtonPressed;
         }
 
         private void SaveButtonPressed()
@@ -53,7 +52,7 @@ namespace UI.Specific
         {
             if (!screen.style.display.Equals(DisplayStyle.Flex))
             {
-                flowChannel.ChangeFlowState(FlowState.Paused);
+                eventChannel.FlowChannel.ChangeFlowState(FlowState.Paused);
                 screen.style.display = DisplayStyle.Flex;
             }
             else
@@ -64,7 +63,7 @@ namespace UI.Specific
 
         void ResumeButtonPressed()
         {
-            flowChannel.ChangeFlowState(FlowState.Default);
+            eventChannel.FlowChannel.ChangeFlowState(FlowState.Default);
             screen.style.display = DisplayStyle.None;
         }
 

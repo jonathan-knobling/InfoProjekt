@@ -5,23 +5,21 @@ namespace Tech.Flow.States
 {
     public class FlowStateDialogue: IFlowState
     {
-        private readonly PlayerCombatChannelSO combatChannel;
-        private readonly PlayerMovementChannelSO movementChannel;
-        private readonly InputChannelSO inputChannel;
+        private readonly PlayerChannel playerChannel;
+        private readonly InputChannel inputChannel;
         
-        public FlowStateDialogue(PlayerCombatChannelSO combatChannel, PlayerMovementChannelSO movementChannel, InputChannelSO inputChannel)
+        public FlowStateDialogue(PlayerChannel playerChannel, InputChannel inputChannel)
         {
-            this.combatChannel = combatChannel;
-            this.movementChannel = movementChannel;
+            this.playerChannel = playerChannel;
             this.inputChannel = inputChannel;
         }
 
         public void EnterState()
         {
-            movementChannel.SetIdle();
-            movementChannel.DisablePlayerMovement();
-            combatChannel.DisablePlayerCombat();
-            InputChannelSO.Enabled = false;
+            playerChannel.MovementSetIdle();
+            playerChannel.DisablePlayerMovement();
+            playerChannel.DisablePlayerCombat();
+            InputChannel.Enabled = false;
         }
 
         public void Update()
@@ -31,9 +29,9 @@ namespace Tech.Flow.States
 
         public void LeaveState()
         {
-            combatChannel.EnablePlayerCombat();
-            movementChannel.EnablePlayerMovement();
-            InputChannelSO.Enabled = true;
+            playerChannel.EnablePlayerCombat();
+            playerChannel.EnablePlayerMovement();
+            InputChannel.Enabled = true;
         }
     }
 }

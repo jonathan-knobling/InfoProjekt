@@ -1,21 +1,21 @@
-using Tech.IO.Saves;
+using Tech;
 
 namespace UI.Specific.SaveUI
 {
     public class SaveButtonHandler
     {
         private readonly string fileName;
-        private readonly IOChannelSO ioChannel;
+        private readonly EventChannelSO eventChannel;
 
-        public SaveButtonHandler(string fileName, IOChannelSO ioChannel)
+        public SaveButtonHandler(string fileName, EventChannelSO eventChannel)
         {
             this.fileName = fileName;
-            this.ioChannel = ioChannel;
+            this.eventChannel = eventChannel;
         }
 
         public void ButtonPressed()
         {
-            ioChannel.SaveToFile(fileName);
+            eventChannel.IOChannel.SaveToFile(fileName);
         }
     }
 }

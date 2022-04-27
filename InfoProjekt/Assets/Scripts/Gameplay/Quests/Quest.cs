@@ -1,5 +1,6 @@
 using System.Linq;
 using Actors.Player;
+using Tech;
 using UnityEngine;
 
 namespace Gameplay.Quests
@@ -13,12 +14,12 @@ namespace Gameplay.Quests
         public string description;
         public bool completed;
 
-        public void Init(PlayerCombatChannelSO combatChannel)
+        public void Init(EventChannelSO eventChannel)
         {
             for (int i = 0; i < goals.Length; i++)
             {
                 //initialize all goals
-                goals[i].Init(combatChannel);
+                goals[i].Init(eventChannel);
             }
         }
         

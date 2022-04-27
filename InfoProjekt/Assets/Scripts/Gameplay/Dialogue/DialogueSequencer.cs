@@ -14,9 +14,9 @@ namespace Gameplay.Dialogue
         private Util.Dialogue currentDialogue;
         private DialogueNode currentDialogueNode;
 
-        private readonly FlowChannelSO flowChannel;
+        private readonly FlowChannel flowChannel;
 
-        public DialogueSequencer(FlowChannelSO flowChannel)
+        public DialogueSequencer(FlowChannel flowChannel)
         {
             this.flowChannel = flowChannel;
         }

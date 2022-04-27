@@ -4,8 +4,7 @@ using UnityEngine;
 
 namespace Environment.ObjectRegister
 {
-    [CreateAssetMenu(menuName = "Channels/Object Register Channel")]
-    public class ObjectRegisterChannelSO: ScriptableObject
+    public class ObjectRegisterChannel
     {
         public int currentMobCap { get; set; }
         

@@ -1,4 +1,5 @@
 using Actors.Player;
+using Tech;
 using UnityEngine;
 
 namespace Gameplay.Quests
@@ -10,7 +11,7 @@ namespace Gameplay.Quests
         public int currentAmount;
         public int requiredAmount;
 
-        public abstract void Init(PlayerCombatChannelSO combatChannel);
+        public abstract void Init(EventChannelSO eventChannel);
 
         protected QuestGoal()
         {

@@ -1,11 +1,9 @@
 using System;
-using UnityEngine;
 using Util.EventArgs;
 
 namespace Gameplay.Dialogue
 {
-    [CreateAssetMenu(menuName = "Channels/Dialogue Channel")]
-    public class DialogueChannelSO: ScriptableObject
+    public class DialogueChannel
     {
         public event EventHandler<DialogueEventArgs> OnRequestDialogue;
         

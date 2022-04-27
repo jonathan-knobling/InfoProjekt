@@ -1,5 +1,6 @@
 using System;
 using Environment.ObjectRegister;
+using Tech;
 using UnityEngine;
 using Util;
 
@@ -9,7 +10,7 @@ namespace Environment.Spawning
     {
 
         [SerializeField] private GameObject enemySpawnPrefab;
-        [SerializeField] private ObjectRegisterChannelSO objectRegister;
+        [SerializeField] private EventChannelSO eventChannel;
 
         private Timer timer;
         private const float SpawnTime = 25f;
@@ -23,11 +24,11 @@ namespace Environment.Spawning
         {
             timer.Update();
 
-            if (timer.Elapsed && objectRegister.currentMobCap < EnemyRegister.mobcap)
+            if (timer.Elapsed && eventChannel.ObjectRegisterChannel.currentMobCap < EnemyRegister.mobcap)
             {
                 timer.Restart();
                 var instance = Instantiate(enemySpawnPrefab, transform.position, transform.rotation);
-                objectRegister.RequestRegisterEnemy(instance);
+                eventChannel.ObjectRegisterChannel.RequestRegisterEnemy(instance);
             }
         }
     }

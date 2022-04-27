@@ -1,4 +1,4 @@
-using Tech.IO.PlayerInput;
+using Tech;
 using UnityEngine;
 
 namespace Gameplay.Abilities.Active.Skills
@@ -15,10 +15,10 @@ namespace Gameplay.Abilities.Active.Skills
             activeTime = 0f;
         }
 
-        public override void Init(InputChannelSO inputChannel, GameObject parentObject)
+        public override void Init(EventChannelSO eventChannel, GameObject parentObject)
         {
-            inputChannel.OnSkill1ButtonPressed += OnSkillButtonPressed;
-            parent = parentObject;
+            eventChannel.InputChannel.OnSkill1ButtonPressed += OnSkillButtonPressed;
+            Parent = parentObject;
         }
 
         public override void Update()
@@ -32,7 +32,7 @@ namespace Gameplay.Abilities.Active.Skills
             {
                 State = ActiveState;
                 ActiveState.Activate(this);
-                Rigidbody2D rb = parent.GetComponent<Rigidbody2D>();
+                Rigidbody2D rb = Parent.GetComponent<Rigidbody2D>();
                 //bewegungsrichtung getten
                 Vector2 direction = rb.velocity;
                 // vector = 1

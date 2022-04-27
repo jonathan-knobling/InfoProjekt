@@ -1,5 +1,6 @@
 using Actors.Enemies;
 using Gameplay.Inventory;
+using Tech;
 using Tech.IO.Saves;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ namespace Environment.ObjectRegister
 {
     public class EnvironmentObjectRegister: MonoBehaviour, ISaveable
     {
-        [SerializeField] private ObjectRegisterChannelSO registerChannel;
+        [SerializeField] private EventChannelSO eventChannel;
         [SerializeField] private EnemyDataBase enemyDataBase;
         [SerializeField] private GameObject collectableItemPrefab;
 
@@ -19,15 +20,15 @@ namespace Environment.ObjectRegister
             enemyRegister = new EnemyRegister(enemyDataBase);
             itemRegister = new ItemRegister(collectableItemPrefab);
 
-            registerChannel.OnRequestRegisterEnemy += RegisterEnemy;
-            registerChannel.OnRequestRemoveEnemy += RemoveEnemy;
-            registerChannel.OnRequestRegisterCollectableItem += RegisterItem;
-            registerChannel.OnRequestRemoveCollectableItem += RemoveItem;
+            eventChannel.ObjectRegisterChannel.OnRequestRegisterEnemy += RegisterEnemy;
+            eventChannel.ObjectRegisterChannel.OnRequestRemoveEnemy += RemoveEnemy;
+            eventChannel.ObjectRegisterChannel.OnRequestRegisterCollectableItem += RegisterItem;
+            eventChannel.ObjectRegisterChannel.OnRequestRemoveCollectableItem += RemoveItem;
         }
 
         private void Update()
         {
-            registerChannel.currentMobCap = enemyRegister.currentMobCap;
+            eventChannel.ObjectRegisterChannel.currentMobCap = enemyRegister.currentMobCap;
         }
 
         private void RegisterEnemy(GameObject enemy)

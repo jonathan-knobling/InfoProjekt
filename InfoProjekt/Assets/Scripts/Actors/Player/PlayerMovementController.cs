@@ -1,5 +1,5 @@
 using Actors.Player.Stats;
-using Tech.IO.PlayerInput;
+using Tech;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -10,8 +10,7 @@ namespace Actors.Player
     [RequireComponent(typeof(Animator))]
     public class PlayerMovementController : MonoBehaviour
     {
-        [SerializeField] private PlayerMovementChannelSO movementChannel;
-        [SerializeField] private InputChannelSO inputChannel;
+        [SerializeField] private EventChannelSO eventChannel;
         private Animator animator;
         private PlayerStats stats;
         private Rigidbody2D rb;
@@ -40,15 +39,15 @@ namespace Actors.Player
             rb = GetComponent<Rigidbody2D>();
             stats = GetComponent<PlayerStats>();
             animator = GetComponent<Animator>();
-            
-            movementChannel.AddPlayerMovementController(this);
-            movementChannel.OnSetIdle += SetIdle;
+
+            eventChannel.PlayerChannel.AddPlayerMovementController(this);
+            eventChannel.PlayerChannel.OnSetIdle += SetIdle;
         }
 
         private void Update()
         {
-            direction = inputChannel.InputDirection;
-            movementChannel.Velocity = rb.velocity.magnitude;
+            direction = eventChannel.InputChannel.InputDirection;
+            eventChannel.PlayerChannel.Velocity = rb.velocity.magnitude;
         }
 
         private void FixedUpdate()

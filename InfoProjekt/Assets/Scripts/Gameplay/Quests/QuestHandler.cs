@@ -1,19 +1,19 @@
 using System.Collections.Generic;
 using Actors.Player;
+using Tech;
 using UnityEngine;
 
 namespace Gameplay.Quests
 {
     public class QuestHandler : MonoBehaviour
     {
-        [SerializeField] private QuestChannelSO questChannel;
-        [SerializeField] private PlayerCombatChannelSO combatChannel;
+        [SerializeField] private EventChannelSO eventChannel;
         [SerializeField] private List<Quest> quests;
 
         private void Start()
         {
-            quests.ForEach(quest => quest.Init(combatChannel));
-            questChannel.OnRequestAddQuest += AddQuest;
+            quests.ForEach(quest => quest.Init(eventChannel));
+            eventChannel.QuestChannel.OnRequestAddQuest += AddQuest;
         }
 
         private void Update()

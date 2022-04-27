@@ -1,6 +1,7 @@
 using Actors.Player.Stats;
 using Gameplay.Abilities.Active;
 using Gameplay.Abilities.Passive;
+using Tech;
 using Tech.IO;
 using Tech.IO.PlayerInput;
 using UnityEngine;
@@ -10,7 +11,7 @@ namespace Gameplay.Abilities
     [RequireComponent(typeof(PlayerStats))]
     public class AbilityManager : MonoBehaviour
     {
-        [SerializeField] private InputChannelSO inputChannel;
+        [SerializeField] private EventChannelSO eventChannel;
         [SerializeField] private ActiveAbility[] activeAbilities;
         [SerializeField] private PassiveAbility[] passiveAbilities;
 
@@ -22,7 +23,7 @@ namespace Gameplay.Abilities
             
             foreach (var ability in activeAbilities)
             {
-                ability.Init(inputChannel, gameObject);
+                ability.Init(eventChannel, gameObject);
             }
 
             foreach (var ability in passiveAbilities)

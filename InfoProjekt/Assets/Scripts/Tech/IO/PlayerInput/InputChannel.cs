@@ -3,8 +3,7 @@ using UnityEngine;
 
 namespace Tech.IO.PlayerInput
 {
-    [CreateAssetMenu(menuName = "Channels/Input Channel")]
-    public class InputChannelSO: ScriptableObject
+    public class InputChannel
     {
         public Vector2 InputDirection { set; get; }
         public static bool Enabled { get; set; }

@@ -1,10 +1,8 @@
 using System;
-using UnityEngine;
 
 namespace Gameplay.Quests
 {
-    [CreateAssetMenu(menuName = "Channels/Quest Channel")]
-    public class QuestChannelSO: ScriptableObject
+    public class QuestChannel
     {
         public Action<Quest> OnRequestAddQuest;
 

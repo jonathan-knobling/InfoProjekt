@@ -1,4 +1,4 @@
-using Tech.IO.PlayerInput;
+using Tech;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -8,7 +8,7 @@ namespace UI.Specific
     {
         [SerializeField] private UIDocument previousMenu;
         [SerializeField] private UIDocument settingsMenu;
-        [SerializeField] private InputChannelSO inputChannel;
+        [SerializeField] private EventChannelSO eventChannel;
 
         private VisualElement root;
         
@@ -21,7 +21,7 @@ namespace UI.Specific
             backButton = root.Q<Button>("back_button");
             
             backButton.clicked += BackButtonPressed;
-            inputChannel.OnPauseButtonPressed += BackButtonPressed;
+            eventChannel.InputChannel.OnPauseButtonPressed += BackButtonPressed;
         }
 
         private void BackButtonPressed()

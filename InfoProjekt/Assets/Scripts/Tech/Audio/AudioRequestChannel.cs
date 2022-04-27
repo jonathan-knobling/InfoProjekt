@@ -1,11 +1,9 @@
 using System;
-using UnityEngine;
 using Util.EventArgs;
 
 namespace Tech.Audio
 {
-    [CreateAssetMenu(menuName = "Channels/Audio Request Channel")]
-    public class AudioRequestChannelSO: ScriptableObject
+    public class AudioRequestChannel
     {
         public event EventHandler<AudioRequestArgs> AudioRequestHandler;
 
