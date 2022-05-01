@@ -313,5 +313,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b280996267324367a72cacb00b6f656e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenu: {fileID: 823808549}
+  previousMenu: {fileID: 823808549}
   settingsMenu: {fileID: 849006589}
+  inputChannel: {fileID: 11400000, guid: 089b2dbb73bd38745996825d79789973, type: 2}

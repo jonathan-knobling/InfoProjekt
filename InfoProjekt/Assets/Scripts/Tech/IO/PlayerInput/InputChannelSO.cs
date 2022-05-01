@@ -12,7 +12,7 @@ namespace Tech.IO.PlayerInput
         public event Action OnJumpButtonPressed;
         public event Action OnHitButtonPressed;
         public event Action OnInteractButtonPressed;
-        public event Action OnPauseButtonPressed;
+        public event Action OnEscapeButtonPressed;
         public event Action OnSkill1ButtonPressed;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
@@ -46,11 +46,11 @@ namespace Tech.IO.PlayerInput
             }
         }
 
-        public void PauseButtonPressed()
+        public void EscapeButtonPressed()
         {
             if (Enabled)
             {
-                OnPauseButtonPressed?.Invoke();
+                OnEscapeButtonPressed?.Invoke();
             }
         }
 

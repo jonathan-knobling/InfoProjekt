@@ -38,8 +38,8 @@ namespace UI.Specific.SaveUI
             
             backButton.clicked += BackButtonPressed;
             newSaveButton.clicked += NewSaveButtonPressed;
-            
-            
+
+            saveMenu.enabled = false;
         }
 
         private void NewSaveButtonPressed()
@@ -71,7 +71,7 @@ namespace UI.Specific.SaveUI
         private void BackButtonPressed()
         {
             saveMenu.enabled = false;
-            pauseMenu.rootVisualElement.style.display = DisplayStyle.Flex;
+            pauseMenu.enabled = true;
         }
     }
 }

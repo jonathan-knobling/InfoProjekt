@@ -7,74 +7,69 @@ namespace UI.Specific
 {
     public class PauseMenuController : MonoBehaviour
     {
-        [SerializeField] private UIDocument saveMenuUI;
         [SerializeField] private FlowChannelSO flowChannel;
         [SerializeField] private InputChannelSO inputChannel;
         
-        private VisualElement root;
-
-        private VisualElement screen;
-        private VisualElement pauseMenu;
-        private VisualElement optionsMenu;
+        [Header("UI Documents")]
+        [SerializeField] private UIDocument pauseMenu;
+        [SerializeField] private UIDocument saveMenu;
+        [SerializeField] private UIDocument settingsMenu;
 
         private Button resumeButton;
         private Button saveButton;
         private Button optionsButton;
         private Button quitButton;
-
-        private Button optionsBackButton;
-
-        void Start()
+        
+        void Awake()
         {
-            root = GetComponent<UIDocument>().rootVisualElement;
-
-            screen = root.Q<VisualElement>("screen");
-
+            var root = GetComponent<UIDocument>().rootVisualElement;
+            
             resumeButton = root.Q<Button>("resume_button");
             saveButton = root.Q<Button>("save_button");
             optionsButton = root.Q<Button>("options_button");
             quitButton = root.Q<Button>("quit_button");
-
+            
             resumeButton.clicked += ResumeButtonPressed;
             saveButton.clicked += SaveButtonPressed;
             optionsButton.clicked += OptionsButtonPressed;
             quitButton.clicked += QuitButtonPressed;
-
-            inputChannel.OnPauseButtonPressed += PauseButtonPressed;
+            
+            inputChannel.OnEscapeButtonPressed += EscapeButtonPressed;
+            
+            pauseMenu.enabled = false;
         }
-
+        
         private void SaveButtonPressed()
         {
-            saveMenuUI.enabled = true;
-            screen.style.display = DisplayStyle.None;
+            saveMenu.enabled = true;
+            pauseMenu.enabled = false;
         }
 
-        private void PauseButtonPressed()
+        private void EscapeButtonPressed()
         {
-            if (!screen.style.display.Equals(DisplayStyle.Flex))
+            if (!pauseMenu.enabled)
             {
                 flowChannel.ChangeFlowState(FlowState.Paused);
-                screen.style.display = DisplayStyle.Flex;
+                pauseMenu.enabled = true;
             }
             else
             {
                 ResumeButtonPressed();
             }
         }
-
-        void ResumeButtonPressed()
+        
+        private void ResumeButtonPressed()
         {
             flowChannel.ChangeFlowState(FlowState.Default);
-            screen.style.display = DisplayStyle.None;
+            pauseMenu.enabled = false;
         }
-
-        void OptionsButtonPressed()
+        
+        private void OptionsButtonPressed()
         {
-            optionsMenu.style.display = DisplayStyle.Flex;
-            pauseMenu.style.display = DisplayStyle.None;
+            settingsMenu.enabled = true;
         }
-
-        void QuitButtonPressed()
+        
+        private void QuitButtonPressed()
         {
             Application.Quit();
         }
