@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Actors.Enemies;
 using Environment;
@@ -20,16 +21,18 @@ namespace Actors.Player.Stats
         public Dictionary<StatusAbility, int> CurrentStatus => status.CurrentStatus;
         public Dictionary<StatusAbility, int> HiddenStatus => status.HiddenStatus;
         public Dictionary<StatusAbility, float> TotalStatus => status.TotalStatus;
-        public Dictionary<StatusAbility, float> currentXP => status.CurrentXP;
-
-        public int Level => status.Level;
-        public float levelXP => status.LevelXP;
-        private float MaxHealth => status.Endurance * 0.69f;
-        public float AttackDamage => status.Strength * 0.69f;
-        public float Speed => status.Agility * 0.69f;
-
+        public Dictionary<StatusAbility, float> CurrentXP => status.CurrentXP;
+        
         private float health;
         
+        public int Level => status.Level;
+        public float LevelXP => status.LevelXP;
+        public float MaxHealth => status.Endurance * 0.69f;
+        public float AttackDamage => status.Strength * 0.69f;
+        public float Speed => status.Agility * 0.69f;
+        public float Health => health;
+        public float HealthPercentage => health / MaxHealth;
+
         private void Awake()
         {
             status = new Status();
@@ -76,7 +79,7 @@ namespace Actors.Player.Stats
             status.StatusUpdate();
         }
 
-        
+
         //saving
         public object SerializeComponent()
         {
@@ -87,5 +90,25 @@ namespace Actors.Player.Stats
         {
             status.ApplySerializedData(serializedData);
         }
+        
+        
+        //testing
+        private void Update()
+        {
+            if (Input.GetKey(KeyCode.K))
+            {
+                health -= 0.01f;
+            }
+
+            if (Input.GetKey(KeyCode.L))
+            {
+                health += 0.01f;
+            }
+
+            if (health < 0) health = 0;
+            if (health > MaxHealth) health = MaxHealth;
+            
+            Debug.Log(health);
+        }/**/
     }
 }

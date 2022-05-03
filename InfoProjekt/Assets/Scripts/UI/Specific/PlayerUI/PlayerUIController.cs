@@ -7,12 +7,13 @@ namespace UI.Specific.PlayerUI
 {
     public class PlayerUIController : MonoBehaviour
     {
+        [SerializeField] private InventoryManager inventory;
         [SerializeField] private PlayerStats stats;
         [SerializeField] private UIDocument playerUI;
-        [SerializeField] private InventoryManager inventory;
 
         private StatsMenuUIController statsMenuUI;
         private HotbarUIController hotbarUI;
+        private HealthbarUIController healthbarUI;
 
         private VisualElement root;
         
@@ -25,11 +26,13 @@ namespace UI.Specific.PlayerUI
 
             statsMenuUI = new StatsMenuUIController(statsRoot, stats);
             hotbarUI = new HotbarUIController(hotbarRoot, inventory);
+            healthbarUI = new HealthbarUIController(root, stats);
         }
 
         private void Update()
         {
             statsMenuUI.Update();
+            healthbarUI.Update();
         }
     }
 }
