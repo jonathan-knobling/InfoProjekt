@@ -7,7 +7,6 @@ namespace UI.Specific.PlayerUI
     public class HealthbarUIController
     {
         private readonly PlayerStats stats;
-        private UIDocument playerStatsUI;
 
         private readonly VisualElement healthBar;
         

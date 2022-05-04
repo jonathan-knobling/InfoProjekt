@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Actors.Enemies;
 using Environment;
@@ -24,14 +23,18 @@ namespace Actors.Player.Stats
         public Dictionary<StatusAbility, float> CurrentXP => status.CurrentXP;
         
         private float health;
+        private float mp;
         
         public int Level => status.Level;
         public float LevelXP => status.LevelXP;
         public float MaxHealth => status.Endurance * 0.69f;
+        public float MaxMP => status.Magic * 0.69f;
         public float AttackDamage => status.Strength * 0.69f;
         public float Speed => status.Agility * 0.69f;
         public float Health => health;
+        public float MP => mp;
         public float HealthPercentage => health / MaxHealth;
+        public float MPPercentage => mp / MaxMP;
 
         private void Awake()
         {

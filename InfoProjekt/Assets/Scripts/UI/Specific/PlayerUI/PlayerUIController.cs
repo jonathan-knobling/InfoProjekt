@@ -14,6 +14,7 @@ namespace UI.Specific.PlayerUI
         private StatsMenuUIController statsMenuUI;
         private HotbarUIController hotbarUI;
         private HealthbarUIController healthbarUI;
+        private MPBarUIController mpBarUI;
 
         private VisualElement root;
         
@@ -27,12 +28,14 @@ namespace UI.Specific.PlayerUI
             statsMenuUI = new StatsMenuUIController(statsRoot, stats);
             hotbarUI = new HotbarUIController(hotbarRoot, inventory);
             healthbarUI = new HealthbarUIController(root, stats);
+            mpBarUI = new MPBarUIController(stats, root);
         }
 
         private void Update()
         {
             statsMenuUI.Update();
             healthbarUI.Update();
+            mpBarUI.Update();
         }
     }
 }
