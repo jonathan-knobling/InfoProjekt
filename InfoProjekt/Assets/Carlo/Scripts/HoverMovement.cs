@@ -1,21 +1,23 @@
 using UnityEngine;
 
-namespace Assets.Carlo.Scripts
+namespace Carlo.Scripts
 {
     public class HoverMovement : MonoBehaviour
     {
         [SerializeField] private float extent = 1;
         [SerializeField] private float speed = 1;
-        private Vector3 position;
+        private Vector3 startingPosition;
 
         void Start()
         {
-            position = transform.position;
+            startingPosition = transform.position;
         }
     
         void Update()
         {
-            transform.position = new Vector3(transform.position.x, Mathf.Sin(Time.time * speed) * extent + position.y, transform.position.z);
+            var position = transform.position;
+            position = new Vector3(position.x, Mathf.Sin(Time.time * speed) * extent + startingPosition.y, position.z);
+            transform.position = position;
         }
     }
 }

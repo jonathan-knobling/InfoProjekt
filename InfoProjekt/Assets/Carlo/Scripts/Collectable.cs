@@ -51,9 +51,11 @@ namespace Carlo.Scripts
         }
         private void OnTriggerEnter2D(Collider2D col)
         {
-            text = new Label();
-            text.text = "Press F to pick up!";
-            text.style.fontSize = 40;
+            text = new Label
+            {
+                text = "Press F to pick up!",
+                style = {fontSize = 40}
+            };
             eventChannel.UIChannel.RequestAddUIVisualElement(new UIEventArgs(text, null, UIType.Prompt));
         }
         private void OnTriggerExit2D(Collider2D col)
