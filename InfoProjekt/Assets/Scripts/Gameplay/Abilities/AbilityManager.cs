@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Actors.Player.Stats;
 using Gameplay.Abilities.Active;
 using Gameplay.Abilities.Passive;
@@ -12,18 +13,20 @@ namespace Gameplay.Abilities
     public class AbilityManager : MonoBehaviour
     {
         [SerializeField] private EventChannelSO eventChannel;
-        [SerializeField] private ActiveAbility[] activeAbilities;
-        [SerializeField] private PassiveAbility[] passiveAbilities;
 
-        private PlayerStats stats;
+        private List<ActiveAbility> activeAbilities;
+        private List<PassiveAbility> passiveAbilities;
+
+        public List<ActiveAbility> ActiveAbilities => activeAbilities;
+        public List<PassiveAbility> PassiveAbilities => passiveAbilities;
         
         private void Start()
         {
-            stats = GetComponent<PlayerStats>();
+            var stats = GetComponent<PlayerStats>();
             
             foreach (var ability in activeAbilities)
             {
-                ability.Init(eventChannel, gameObject);
+                ability.Init(eventChannel, gameObject, this);
             }
 
             foreach (var ability in passiveAbilities)
@@ -32,7 +35,7 @@ namespace Gameplay.Abilities
             }
         }
 
-        void Update()
+        private void Update()
         {
             foreach (var ability in activeAbilities)
             {

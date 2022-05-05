@@ -4,27 +4,33 @@ using UnityEngine;
 
 namespace Gameplay.Abilities.Active
 {
-    public abstract class ActiveAbility: ScriptableObject
+    public abstract class ActiveAbility: Ability
     {
-        public float cooldownTime { get; protected set; }
-        public float activeTime { get; protected set; }
-        protected GameObject Parent { get; set; }
-        
-        protected internal AbilityState State { get; set; }
+        [SerializeField] protected float maxCooldownTime;
+        [SerializeField] protected float maxActiveTime;
+        protected GameObject Parent;
+
+        public float CurCooldownTime => CooldownState.Timer.ElapsedTime;
+        public float CurActiveTime => ActiveState.Timer.ElapsedTime;
+        public float MaxCooldownTime => maxCooldownTime;
+        public float MaxActiveTime => maxActiveTime;
+        public float CooldownPercentage => CurCooldownTime / MaxCooldownTime * 100;
+        public float ActiveTimePercentage => CurActiveTime / MaxActiveTime * 100;
+
+        public AbilityState State { get; protected internal set; }
         protected internal AbilityStateReady ReadyState { get; }
         protected internal AbilityStateCooldown CooldownState { get; }
-        protected AbilityStateActive ActiveState { get; }
+        protected internal AbilityStateActive ActiveState { get; }
 
         protected ActiveAbility()
         {
             ReadyState = new AbilityStateReady();
-            ActiveState = new AbilityStateActive();
-            CooldownState = new AbilityStateCooldown();
+            ActiveState = new AbilityStateActive(this);
+            CooldownState = new AbilityStateCooldown(this);
             State = ReadyState;
-            ReadyState.Activate(this);
+            ReadyState.Activate();
         }
 
-        public abstract void Init(EventChannelSO eventChannel, GameObject parentObject);
-        public abstract void Update();
+        public abstract void Init(EventChannelSO inputChannel, GameObject parentObject, AbilityManager abilityManager);
     }
 }

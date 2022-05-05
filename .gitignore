@@ -101,3 +101,5 @@ InfoProjekt/Logs/
 InfoProjekt/UserSettings/Layouts/
 
 *.log
+
+InfoProjekt/ProjectSettings/RiderScriptEditorPersistedState.asset

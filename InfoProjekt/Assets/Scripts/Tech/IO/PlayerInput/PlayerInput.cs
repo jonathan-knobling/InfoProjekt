@@ -27,7 +27,7 @@ namespace Tech.IO.PlayerInput
             
             if (Input.GetButtonDown("Pause"))
             {
-                eventChannel.InputChannel.PauseButtonPressed();
+                eventChannel.InputChannel.EscapeButtonPressed();
             }
 
             if (Input.GetButtonDown("Skill1"))

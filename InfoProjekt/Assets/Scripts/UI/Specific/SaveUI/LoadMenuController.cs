@@ -60,8 +60,8 @@ namespace UI.Specific.SaveUI
 
         private void BackButtonPressed()
         {
-            mainMenu.rootVisualElement.style.display = DisplayStyle.Flex;
-            loadMenu.rootVisualElement.style.display = DisplayStyle.None;
+            mainMenu.enabled = true;
+            loadMenu.enabled = false;
         }
 
         private void ResumeTime()

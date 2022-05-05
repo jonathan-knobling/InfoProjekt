@@ -21,13 +21,23 @@ namespace UI.Specific
             backButton = root.Q<Button>("back_button");
             
             backButton.clicked += BackButtonPressed;
-            eventChannel.InputChannel.OnPauseButtonPressed += BackButtonPressed;
+            eventChannel.InputChannel.OnEscapeButtonPressed += BackButtonPressed;
+
+            settingsMenu.enabled = false;
+        }
+
+        private void EscapeButtonPressed()
+        {
+            if (settingsMenu.enabled)
+            {
+                BackButtonPressed();
+            }
         }
 
         private void BackButtonPressed()
         {
-            previousMenu.rootVisualElement.style.display = DisplayStyle.Flex;
-            settingsMenu.rootVisualElement.style.display = DisplayStyle.None;
+            previousMenu.enabled = true;
+            settingsMenu.enabled = false;
         }
     }
 }

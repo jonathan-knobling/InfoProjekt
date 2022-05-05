@@ -35,9 +35,9 @@ namespace UI.Specific
         void Start()
         {
             Time.timeScale = 0f;
-            
-            loadMenu.rootVisualElement.style.display = DisplayStyle.None;
-            settingsMenu.rootVisualElement.style.display = DisplayStyle.None;
+
+            loadMenu.enabled = false;
+            settingsMenu.enabled = false;
         }
 
         private void PlayButtonPressed()
@@ -48,14 +48,14 @@ namespace UI.Specific
         
         private void LoadButtonPressed()
         {
-            loadMenu.rootVisualElement.style.display = DisplayStyle.Flex;
-            mainMenu.rootVisualElement.style.display = DisplayStyle.None;
+            loadMenu.enabled = true;
+            mainMenu.enabled = false;
         }
 
         private void SettingsButtonPressed()
         {
-            settingsMenu.rootVisualElement.style.display = DisplayStyle.Flex;
-            mainMenu.rootVisualElement.style.display = DisplayStyle.None;
+            settingsMenu.enabled = true;
+            mainMenu.enabled = false;
         }
 
         private void QuitButtonPressed()

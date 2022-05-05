@@ -5,7 +5,7 @@ namespace Gameplay.Abilities.Active.Magic
 {
     public class FireboltMagic: MagicAbility
     {
-        public override void Init(EventChannelSO eventChannel, GameObject parentObject)
+        public override void Init(EventChannelSO inputChannel, GameObject parentObject, AbilityManager abilityManager)
         {
             Parent = parentObject;
         }
