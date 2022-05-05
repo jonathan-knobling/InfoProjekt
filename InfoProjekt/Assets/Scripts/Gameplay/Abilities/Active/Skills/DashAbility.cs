@@ -11,14 +11,14 @@ namespace Gameplay.Abilities.Active.Skills
         public DashAbility()
         {
             name = "dash";
-            cooldownTime = 7.5f;
-            activeTime = 0f;
+            maxCooldownTime = 7.5f;
+            maxActiveTime = 0f;
         }
 
-        public override void Init(InputChannelSO inputChannel, GameObject parentObject)
+        public override void Init(InputChannelSO inputChannel, GameObject parentObject, AbilityManager abilityManager)
         {
             inputChannel.OnSkill1ButtonPressed += OnSkillButtonPressed;
-            parent = parentObject;
+            Parent = parentObject;
         }
 
         public override void Update()
@@ -31,8 +31,8 @@ namespace Gameplay.Abilities.Active.Skills
             if (State.Equals(ReadyState))
             {
                 State = ActiveState;
-                ActiveState.Activate(this);
-                Rigidbody2D rb = parent.GetComponent<Rigidbody2D>();
+                ActiveState.Activate();
+                Rigidbody2D rb = Parent.GetComponent<Rigidbody2D>();
                 //bewegungsrichtung getten
                 Vector2 direction = rb.velocity;
                 // vector = 1

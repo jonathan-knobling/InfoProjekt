@@ -3,17 +3,11 @@ using UnityEngine;
 
 namespace Gameplay.Abilities.Passive
 {
-    public abstract class PassiveAbility: ScriptableObject
+    public abstract class PassiveAbility: Ability
     {
-
-        [SerializeField] protected new string name;
         protected GameObject Parent;
         protected PlayerStats Stats;
-        
-        //getter
-        public string Name => name;
 
         public abstract void Init(GameObject parentObject, PlayerStats playerStats);
-        public abstract void Update();
     }
 }

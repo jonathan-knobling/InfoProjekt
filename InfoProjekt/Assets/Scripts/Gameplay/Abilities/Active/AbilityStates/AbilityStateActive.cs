@@ -1,28 +1,36 @@
+using System;
 using Util;
 
 namespace Gameplay.Abilities.Active.AbilityStates
 {
     public class AbilityStateActive: AbilityState
     {
-        private Timer timer;
+        public Timer Timer;
         private ActiveAbility parentAbility;
+
+        public event Action OnEnterState;
+        
+        public AbilityStateActive(ActiveAbility ability)
+        {
+            parentAbility = ability;
+        }
         
         public override void Update()
         {
-            timer.Update();
+            Timer.Update();
         }
 
-        public override void Activate(ActiveAbility ability)
+        public override void Activate()
         {
-            timer = new Timer(ability.ActiveTime);
-            parentAbility = ability;
-            timer.OnElapsed += NextState;
+            OnEnterState?.Invoke();
+            Timer = new Timer(parentAbility.MaxActiveTime);
+            Timer.OnElapsed += NextState;
         }
 
         private void NextState()
         {
             parentAbility.State = parentAbility.CooldownState;
-            parentAbility.CooldownState.Activate(parentAbility);
+            parentAbility.CooldownState.Activate();
         }
     }
 }
