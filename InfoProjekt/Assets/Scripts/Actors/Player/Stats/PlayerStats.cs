@@ -110,8 +110,6 @@ namespace Actors.Player.Stats
 
             if (health < 0) health = 0;
             if (health > MaxHealth) health = MaxHealth;
-            
-            Debug.Log(health);
         }/**/
     }
 }

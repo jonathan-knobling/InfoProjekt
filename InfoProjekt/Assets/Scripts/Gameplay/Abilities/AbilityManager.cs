@@ -14,8 +14,8 @@ namespace Gameplay.Abilities
     {
         [SerializeField] private EventChannelSO eventChannel;
 
-        private List<ActiveAbility> activeAbilities;
-        private List<PassiveAbility> passiveAbilities;
+        [SerializeField] private List<ActiveAbility> activeAbilities;
+        [SerializeField] private List<PassiveAbility> passiveAbilities;
 
         public List<ActiveAbility> ActiveAbilities => activeAbilities;
         public List<PassiveAbility> PassiveAbilities => passiveAbilities;
@@ -23,6 +23,8 @@ namespace Gameplay.Abilities
         private void Start()
         {
             var stats = GetComponent<PlayerStats>();
+            activeAbilities ??= new List<ActiveAbility>();
+            passiveAbilities ??= new List<PassiveAbility>();
             
             foreach (var ability in activeAbilities)
             {

@@ -9,8 +9,8 @@ namespace Environment.ObjectRegister
 {
     public class EnemyRegister: ISaveable
     {
-        public static int mobcap => 64;
-        public int currentMobCap => enemies.Count;
+        public static int Mobcap => 64;
+        public int CurrentMobCap => enemies.Count;
 
         private readonly EnemyDataBase enemyDataBase;
 
@@ -19,6 +19,7 @@ namespace Environment.ObjectRegister
         public EnemyRegister(EnemyDataBase dataBase)
         {
             enemyDataBase = dataBase;
+            enemies = new HashSet<GameObject>();
         }
 
         public void RegisterEnemy(GameObject enemy)

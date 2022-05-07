@@ -39,14 +39,11 @@ namespace Actors.Player
             rb = GetComponent<Rigidbody2D>();
             stats = GetComponent<PlayerStats>();
             animator = GetComponent<Animator>();
-
-            eventChannel.PlayerChannel.AddPlayerMovementController(this);
-            eventChannel.PlayerChannel.OnSetIdle += SetIdle;
         }
 
         private void Update()
         {
-            direction = eventChannel.InputChannel.InputDirection;
+            direction = eventChannel.InputChannel.InputProvider.GetState().InputDirection.value;
             eventChannel.PlayerChannel.Velocity = rb.velocity.magnitude;
         }
 

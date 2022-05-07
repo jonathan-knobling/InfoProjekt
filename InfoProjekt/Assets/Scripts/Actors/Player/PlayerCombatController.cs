@@ -25,7 +25,6 @@ namespace Actors.Player
         {
             stats = GetComponent<PlayerStats>();
             eventChannel.InputChannel.OnHitButtonPressed += OnHitButtonPressed;
-            eventChannel.PlayerChannel.AddPlayerCombatController(this);
         }
 
         private void OnHitButtonPressed()

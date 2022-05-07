@@ -5,60 +5,41 @@ namespace Tech.IO.PlayerInput
 {
     public class InputChannel
     {
-        public Vector2 InputDirection { set; get; }
-        public static bool Enabled { get; set; }
-        
-        public event Action OnJumpButtonPressed;
+        public InputProvider InputProvider;
+
         public event Action OnHitButtonPressed;
         public event Action OnInteractButtonPressed;
         public event Action OnEscapeButtonPressed;
         public event Action OnSkill1ButtonPressed;
-
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-        private static void Init()
-        {
-            Enabled = true;
-        }
         
-        public void JumpButtonPressed()
+        public InputChannel()
         {
-            Debug.Log(Enabled);
-            if (Enabled)
-            {
-                OnJumpButtonPressed?.Invoke();
-            }
+            InputProvider = new InputProvider();
+
+            InputProvider.OnHitButtonPressed += HitButtonPressed;
+            InputProvider.OnInteractButtonPressed += InteractButtonPressed;
+            InputProvider.OnEscapeButtonPressed += EscapeButtonPressed;
+            InputProvider.OnSkill1ButtonPressed += Skill1ButtonPressed;
         }
 
         public void HitButtonPressed()
         {
-            if (Enabled)
-            {
-                OnHitButtonPressed?.Invoke();
-            }
+            OnHitButtonPressed?.Invoke();
         }
 
         public void InteractButtonPressed()
         {
-            if (Enabled)
-            {
-                OnInteractButtonPressed?.Invoke();
-            }
+            OnInteractButtonPressed?.Invoke();
         }
 
         public void EscapeButtonPressed()
         {
-            if (Enabled)
-            {
-                OnEscapeButtonPressed?.Invoke();
-            }
+            OnEscapeButtonPressed?.Invoke();
         }
 
         public void Skill1ButtonPressed()
         {
-            if (Enabled)
-            {
-                OnSkill1ButtonPressed?.Invoke();
-            }
+            OnSkill1ButtonPressed?.Invoke();
         }
     }
 }

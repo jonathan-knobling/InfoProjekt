@@ -28,7 +28,7 @@ namespace Environment.ObjectRegister
 
         private void Update()
         {
-            eventChannel.ObjectRegisterChannel.currentMobCap = enemyRegister.currentMobCap;
+            eventChannel.ObjectRegisterChannel.currentMobCap = enemyRegister.CurrentMobCap;
         }
 
         private void RegisterEnemy(GameObject enemy)
