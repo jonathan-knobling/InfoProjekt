@@ -20,19 +20,7 @@ namespace Tech.Flow.States
             inputMiddleWare.InputState = new Optional<InputState>()
             {
                 enabled = true,
-                value = new InputState()
-                {
-                    CanOperate = new Optional<bool>()
-                    {
-                        enabled = true,
-                        value = false
-                    },
-                    InputDirection = new Optional<Vector2>()
-                    {
-                        enabled = true,
-                        value = new Vector2(0, 0)
-                    }
-                }
+                value = new InputState(new Vector2(0, 0), false)
             };
         }
 

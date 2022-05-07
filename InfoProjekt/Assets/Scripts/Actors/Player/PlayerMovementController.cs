@@ -2,6 +2,7 @@ using Actors.Player.Stats;
 using Tech;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 namespace Actors.Player
 {
@@ -45,6 +46,7 @@ namespace Actors.Player
         {
             direction = eventChannel.InputChannel.InputProvider.GetState().InputDirection.value;
             eventChannel.PlayerChannel.Velocity = rb.velocity.magnitude;
+            eventChannel.PlayerChannel.MaxVelocity = MaxSpeed;
         }
 
         private void FixedUpdate()
@@ -87,7 +89,7 @@ namespace Actors.Player
         {
             rb.AddForce(direction.normalized * accelerationForce);
             
-            if (rb.velocity.magnitude > MaxSpeed)
+            if (rb.velocity.magnitude > MaxSpeed && !eventChannel.InputChannel.InputProvider.GetState().DontCapVelocity.value)
             {
                 rb.velocity = direction.normalized * MaxSpeed;
             }
@@ -100,6 +102,12 @@ namespace Actors.Player
         
         private void ApplyLinearDrag()
         {
+            if(eventChannel.InputChannel.InputProvider.GetState().LinearDrag.enabled)
+            {
+                rb.drag = eventChannel.InputChannel.InputProvider.GetState().LinearDrag.value;
+                return;
+            }
+
             if (direction.magnitude < 0.001f || ChangingDirection)
             {
                 rb.drag = linearDrag;

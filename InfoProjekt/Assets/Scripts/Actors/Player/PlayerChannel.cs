@@ -7,6 +7,7 @@ namespace Actors.Player
         public event Action<string> OnEnemyKilled;
 
         public float Velocity { get; set; }
+        public float MaxVelocity { get; set; }
 
         //Combat
         public void EnemyKilled(string enemyID)

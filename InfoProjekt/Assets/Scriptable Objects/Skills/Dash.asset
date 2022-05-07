@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f3969b51ae9304499dc84312555a968, type: 3}
   m_Name: Dash
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 95406b6737b66479a80d172766f8bac5, type: 3}
+  icon: {fileID: 0}
   maxCooldownTime: 4
   maxActiveTime: 0
-  dashForce: 200
+  dashForce: 150

@@ -24,10 +24,11 @@ namespace Tech.IO.PlayerInput
             
             foreach (var middleWare in inputMiddleWares)
             {
+                //Debug.Log(state.InputDirection.value.ToString());
+                
                 state = middleWare.Process(state);
             }
 
-            Debug.Log(state.InputDirection.value.ToString());
             return state;
         }
 
@@ -37,10 +38,10 @@ namespace Tech.IO.PlayerInput
 
             inputMiddleWares.Insert(index, middleWare);
 
-            middleWare.OnEscapeButtonPressed += OnEscapeButtonPressed;
-            middleWare.OnHitButtonPressed += OnHitButtonPressed;
-            middleWare.OnInteractButtonPressed += OnInteractButtonPressed;
-            middleWare.OnSkill1ButtonPressed += OnSkill1ButtonPressed;
+            middleWare.OnEscapeButtonPressed += EscapeButtonPressed;
+            middleWare.OnHitButtonPressed += HitButtonPressed;
+            middleWare.OnInteractButtonPressed += InteractButtonPressed;
+            middleWare.OnSkill1ButtonPressed += Skill1ButtonPressed;
             
             return true;
         }
@@ -49,14 +50,38 @@ namespace Tech.IO.PlayerInput
         {
             if (!inputMiddleWares.Contains(middleWare)) return false;
             
-            middleWare.OnEscapeButtonPressed -= OnEscapeButtonPressed;
-            middleWare.OnHitButtonPressed -= OnHitButtonPressed;
-            middleWare.OnSkill1ButtonPressed -= OnSkill1ButtonPressed;
-            middleWare.OnInteractButtonPressed -= OnInteractButtonPressed;
+            middleWare.OnEscapeButtonPressed -= EscapeButtonPressed;
+            middleWare.OnHitButtonPressed -= HitButtonPressed;
+            middleWare.OnSkill1ButtonPressed -= Skill1ButtonPressed;
+            middleWare.OnInteractButtonPressed -= InteractButtonPressed;
             
             inputMiddleWares.Remove(middleWare);
             
             return true;
+        }
+
+        public void HitButtonPressed()
+        {
+            if(GetState().CanOperate.value)
+                OnHitButtonPressed?.Invoke();
+        }
+
+        public void InteractButtonPressed()
+        {
+            if(GetState().CanOperate.value)
+                OnInteractButtonPressed?.Invoke();
+        }
+
+        public void EscapeButtonPressed()
+        {
+            if(GetState().CanOperate.value)
+                OnEscapeButtonPressed?.Invoke();
+        }
+
+        public void Skill1ButtonPressed()
+        {
+            if(GetState().CanOperate.value)
+                OnSkill1ButtonPressed?.Invoke();
         }
     }
 }
