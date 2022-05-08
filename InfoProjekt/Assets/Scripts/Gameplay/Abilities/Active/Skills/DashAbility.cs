@@ -22,7 +22,7 @@ namespace Gameplay.Abilities.Active.Skills
         public override void Init(EventChannelSO eventChannelSO, GameObject parentObject, AbilityManager abilityManager)
         {
             eventChannel = eventChannelSO;
-            eventChannelSO.InputChannel.OnSkill1ButtonPressed += OnSkillButtonPressed;
+            eventChannelSO.InputChannel.OnSkill4ButtonPressed += OnSkillButtonPressed;
             rb = parentObject.GetComponent<Rigidbody2D>();
 
             inputMiddleWare = new InputMiddleWare();
@@ -32,7 +32,6 @@ namespace Gameplay.Abilities.Active.Skills
         public override void Update()
         {
             State.Update();
-            Debug.Log(inputMiddleWare.InputState.enabled);
             if (inputMiddleWare.InputState.enabled && rb.velocity.magnitude <= eventChannel.PlayerChannel.MaxVelocity)
             {
                 inputMiddleWare.Disable();

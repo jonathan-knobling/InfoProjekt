@@ -655,7 +655,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &693971643486080909
 Transform:
   m_ObjectHideFlags: 0
@@ -1072,6 +1072,7 @@ MonoBehaviour:
   eventChannel: {fileID: 11400000, guid: 68f4d361e53e1ee4e94c67673f5e76cf, type: 2}
   activeAbilities:
   - {fileID: 11400000, guid: b13d4542969522045a099996b5cf3959, type: 2}
+  - {fileID: 11400000, guid: 9ceedab0a14d26f489b979fc2a6307a4, type: 2}
   passiveAbilities: []
 --- !u!114 &1766464605722092004
 MonoBehaviour:

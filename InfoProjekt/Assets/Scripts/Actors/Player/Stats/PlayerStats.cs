@@ -62,6 +62,15 @@ namespace Actors.Player.Stats
             return receivedDamage;
         }
 
+        public void UseMP(float mpAmount)
+        {
+            if (mpAmount < 0) return;
+
+            mp -= mpAmount;
+
+            if (mp < 0) mp = 0;
+        }
+
         private void Die()
         {
             animator.SetTrigger(CPDeath);

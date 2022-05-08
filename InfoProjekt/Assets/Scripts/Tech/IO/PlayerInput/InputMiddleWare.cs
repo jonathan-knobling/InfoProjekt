@@ -1,4 +1,3 @@
-using System;
 using System.ComponentModel;
 using Util;
 
@@ -7,11 +6,6 @@ namespace Tech.IO.PlayerInput
     public class InputMiddleWare
     {
         public Optional<InputState> InputState { get; set; }
-
-        public event Action OnHitButtonPressed;
-        public event Action OnInteractButtonPressed;
-        public event Action OnEscapeButtonPressed;
-        public event Action OnSkill1ButtonPressed;
 
         [Description("Creates InputState and sets it to disabled")]
         public InputMiddleWare()
@@ -44,26 +38,6 @@ namespace Tech.IO.PlayerInput
             else newState.LinearDrag.value = inputState.LinearDrag.value;
             
             return newState;
-        }
-
-        public void HitButtonPressed()
-        {
-            OnHitButtonPressed?.Invoke();
-        }
-
-        public void InteractButtonPressed()
-        {
-            OnInteractButtonPressed?.Invoke();
-        }
-
-        public void EscapeButtonPressed()
-        {
-            OnEscapeButtonPressed?.Invoke();
-        }
-
-        public void Skill1ButtonPressed()
-        {
-            OnSkill1ButtonPressed?.Invoke();
         }
 
         public void Disable()

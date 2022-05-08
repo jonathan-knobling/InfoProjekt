@@ -22,11 +22,6 @@ namespace Tech.IO.PlayerInput
                 enabled = true,
                 value = new InputState(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")), true, false)
             };
-            
-            //Debug.Log(inputMiddleWare.InputState.value.InputDirection.value.ToString());
-
-            //Debug.Log(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).ToString());
-            //Debug.Log(inputMiddleWare.InputState.value.InputDirection.value.ToString());
 
             if (Input.GetButtonDown("Hit"))
             {
@@ -38,14 +33,35 @@ namespace Tech.IO.PlayerInput
                 eventChannel.InputChannel.InputProvider.InteractButtonPressed();
             }
             
-            if (Input.GetButtonDown("Pause"))
+            if (Input.GetButtonDown("Cancel"))
             {
                 eventChannel.InputChannel.InputProvider.EscapeButtonPressed();
             }
 
+            if (Input.GetButtonDown("OpenInv"))
+            {
+                eventChannel.InputChannel.InputProvider.OpenInvButtonPressed();
+            }
+                
             if (Input.GetButtonDown("Skill1"))
             {
                 eventChannel.InputChannel.InputProvider.Skill1ButtonPressed();
+            }
+            
+            if (Input.GetButtonDown("Skill2"))
+            {
+                eventChannel.InputChannel.InputProvider.Skill2ButtonPressed();
+            }
+            
+            if (Input.GetButtonDown("Skill3"))
+            {
+                eventChannel.InputChannel.InputProvider.Skill3ButtonPressed();
+            }
+            
+            if (Input.GetButtonDown("Skill4"))
+            {
+                Debug.Log("made it here");
+                eventChannel.InputChannel.InputProvider.Skill4ButtonPressed();
             }
         }
     }

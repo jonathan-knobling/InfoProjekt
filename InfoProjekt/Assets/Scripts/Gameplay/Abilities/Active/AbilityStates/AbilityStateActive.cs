@@ -6,7 +6,7 @@ namespace Gameplay.Abilities.Active.AbilityStates
     public class AbilityStateActive: AbilityState
     {
         public Timer Timer;
-        private ActiveAbility parentAbility;
+        private readonly ActiveAbility parentAbility;
 
         public event Action OnEnterState;
         

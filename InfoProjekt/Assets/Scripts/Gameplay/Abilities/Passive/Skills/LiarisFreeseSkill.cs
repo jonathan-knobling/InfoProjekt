@@ -7,7 +7,7 @@ namespace Gameplay.Abilities.Passive.Skills
     public class LiarisFreeseSkill: PassiveAbility
     {
         private const float XPMultiplier = 1f;
-        
+
         public override void Init(GameObject parentObject, PlayerStats playerStats)
         {
             playerStats.XPManager.UniversalXPMultiplier = XPMultiplier;
