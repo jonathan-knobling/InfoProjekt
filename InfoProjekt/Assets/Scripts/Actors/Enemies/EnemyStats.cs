@@ -13,8 +13,11 @@ namespace Actors.Enemies
         private static readonly int Death = Animator.StringToHash("death");
         [SerializeField] public Animator animator;
         
-        [Header("Stats")]
+        [Header("Info")]
         [SerializeField] public string enemyID;
+        [SerializeField] private EnemyType type;
+        
+        [Header("Stats")]
         [SerializeField] public int level = 1;
         [SerializeField] private float maxHealth = 10;
         [SerializeField] private float defenseMultiplier = 1;
@@ -32,6 +35,7 @@ namespace Actors.Enemies
         public float AttackDamage => HiddenAttackDamage;
         public float Speed => (float) ((1 + 0.25 * level) * 5);
         public float RoamingSpeed => (float) ((1 + 0.15 * level) * 5);
+        public EnemyType Type => type;
 
         private void Start()
         {

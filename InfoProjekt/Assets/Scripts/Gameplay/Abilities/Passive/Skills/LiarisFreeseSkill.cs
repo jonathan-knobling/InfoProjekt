@@ -1,4 +1,5 @@
 using Actors.Player.Stats;
+using Tech;
 using UnityEngine;
 
 namespace Gameplay.Abilities.Passive.Skills
@@ -8,7 +9,7 @@ namespace Gameplay.Abilities.Passive.Skills
     {
         private const float XPMultiplier = 1f;
 
-        public override void Init(GameObject parentObject, PlayerStats playerStats)
+        public override void Init(GameObject parentObject, PlayerStats playerStats, EventChannelSO eventChannel)
         {
             playerStats.XPManager.UniversalXPMultiplier = XPMultiplier;
         }

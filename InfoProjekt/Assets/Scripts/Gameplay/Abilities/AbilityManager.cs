@@ -33,7 +33,7 @@ namespace Gameplay.Abilities
 
             foreach (var ability in passiveAbilities)
             {
-                ability.Init(gameObject, stats);
+                ability.Init(gameObject, stats, eventChannel);
             }
         }
 

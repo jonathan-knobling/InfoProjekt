@@ -1,5 +1,8 @@
+using System;
+
 namespace Actors.Player.Stats
 {
+    [Serializable]
     public enum StatusRank
     {
         S, //900+

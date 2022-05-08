@@ -3,6 +3,7 @@ using Actors.Enemies;
 using Environment;
 using Tech.IO.Saves;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 namespace Actors.Player.Stats
 {
@@ -29,18 +30,20 @@ namespace Actors.Player.Stats
         public float LevelXP => status.LevelXP;
         public float MaxHealth => status.Endurance * 0.69f;
         public float MaxMP => status.Magic * 0.69f;
-        public float AttackDamage => status.Strength * 0.69f;
         public float Speed => status.Agility * 0.69f;
         public float Health => health;
         public float MP => mp;
         public float HealthPercentage => health / MaxHealth;
         public float MPPercentage => mp / MaxMP;
 
+        public List<IDamageModifier> DamageModifiers;
+
         private void Awake()
         {
             status = new Status();
             health = MaxHealth;
             animator = GetComponent<Animator>();
+            DamageModifiers = new List<IDamageModifier>();
         }
 
         public float DealDamage(float damageAmount)
@@ -60,6 +63,18 @@ namespace Actors.Player.Stats
             receivedDamage = damageAmount;
             XPManager.AddReceivedDamage(receivedDamage);
             return receivedDamage;
+        }
+
+        public float GetAttackDamage(EnemyStats enemyStats)
+        {
+            float baseDamage = 10f + 0.1f * status.Strength;
+            
+            foreach (var modifier in DamageModifiers)
+            {
+                baseDamage = modifier.CalculateDamage(enemyStats, baseDamage);
+            }
+
+            return baseDamage;
         }
 
         public void UseMP(float mpAmount)

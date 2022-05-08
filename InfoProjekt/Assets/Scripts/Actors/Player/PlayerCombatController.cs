@@ -45,12 +45,14 @@ namespace Actors.Player
         {
             //get all enemies in aoe
             var colliders = Physics2D.OverlapCircleAll(transform.position, attackRange, enemyLayers);
-
-
+            
             //deal damage to enemies
             foreach(Collider2D enemy in colliders)
             {
-                float dealtDamage = enemy.GetComponent<EnemyStats>().DealDamage(stats.AttackDamage);
+                var enemyStats = enemy.GetComponent<EnemyStats>();
+                float attDmg = stats.GetAttackDamage(enemyStats);
+                float dealtDamage = enemyStats.DealDamage(attDmg);
+                
                 if(enemy.GetComponent<EnemyStats>().IsDead)
                 {
                     stats.AddXP(enemy.GetComponent<EnemyStats>());
