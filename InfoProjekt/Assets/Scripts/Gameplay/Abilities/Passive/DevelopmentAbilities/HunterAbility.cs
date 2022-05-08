@@ -9,7 +9,7 @@ using UnityEngine;
 namespace Gameplay.Abilities.Passive.DevelopmentAbilities
 {
     [CreateAssetMenu(menuName = "Abilities/Passive/Development Ability/Hunter", fileName = "Hunter")]
-    public class HunterAbility: DevelopmentAbility, ISaveable
+    public class HunterAbility: DevelopmentAbility
     {
         [SerializeField] private float damageModifier;
         [SerializeField] private float xpModifier;
@@ -21,6 +21,7 @@ namespace Gameplay.Abilities.Passive.DevelopmentAbilities
 
         public override void Init(GameObject parentObject, PlayerStats playerStats, EventChannelSO eventChannel)
         {
+            id = "hunter";
             killedEnemies = new List<string>();
             rank = StatusRank.I;
             eventChannel.PlayerChannel.OnEnemyKilled += AddKilledEnemy;
@@ -47,7 +48,7 @@ namespace Gameplay.Abilities.Passive.DevelopmentAbilities
 
         
         //Serialization
-        public object SerializeComponent()
+        public override object SerializeComponent()
         {
             return new SaveData()
             {
@@ -56,7 +57,7 @@ namespace Gameplay.Abilities.Passive.DevelopmentAbilities
             };
         }
 
-        public void ApplySerializedData(object serializedData)
+        public override void ApplySerializedData(object serializedData)
         {
             rank = ((SaveData) serializedData).Rank;
             killedEnemies = ((SaveData) serializedData).KilledEnemies.ToList();

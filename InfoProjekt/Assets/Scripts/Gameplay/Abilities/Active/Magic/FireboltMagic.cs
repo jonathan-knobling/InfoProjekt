@@ -1,6 +1,5 @@
 using Actors.Player.Stats;
 using Tech;
-using Unity.Mathematics;
 using UnityEngine;
 
 namespace Gameplay.Abilities.Active.Magic
@@ -18,6 +17,7 @@ namespace Gameplay.Abilities.Active.Magic
             Parent = parentObject;
             eventChannel.InputChannel.OnSkill2ButtonPressed += OnSkillButtonPressed;
             cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+            id = "firebolt";
         }
 
         public override void Update()
@@ -57,6 +57,16 @@ namespace Gameplay.Abilities.Active.Magic
             
             //sound?
             //animation?
+        }
+        
+        public override object SerializeComponent()
+        {
+            return null;
+        }
+
+        public override void ApplySerializedData(object serializedData)
+        {
+            
         }
     }
 }

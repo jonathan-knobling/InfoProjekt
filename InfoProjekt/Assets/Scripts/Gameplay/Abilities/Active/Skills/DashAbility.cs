@@ -15,6 +15,7 @@ namespace Gameplay.Abilities.Active.Skills
 
         public DashAbility()
         {
+            id = "dash";
             maxCooldownTime = 7.5f;
             maxActiveTime = 0f;
         }
@@ -59,6 +60,17 @@ namespace Gameplay.Abilities.Active.Skills
                 direction *= dashForce;
                 rb.AddForce(direction, ForceMode2D.Impulse);
             }
+        }
+        
+        
+        public override object SerializeComponent()
+        {
+            return null;
+        }
+
+        public override void ApplySerializedData(object serializedData)
+        {
+            
         }
     }
 }

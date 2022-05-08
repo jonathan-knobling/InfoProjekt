@@ -12,9 +12,20 @@ namespace Gameplay.Abilities.Passive.Skills
         public override void Init(GameObject parentObject, PlayerStats playerStats, EventChannelSO eventChannel)
         {
             playerStats.XPManager.UniversalXPMultiplier = XPMultiplier;
+            id = "liaris_freese";
         }
 
         public override void Update()
+        {
+            
+        }
+
+        public override object SerializeComponent()
+        {
+            return null;
+        }
+
+        public override void ApplySerializedData(object serializedData)
         {
             
         }

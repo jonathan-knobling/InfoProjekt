@@ -28,7 +28,7 @@ namespace Gameplay.Abilities.Active
             ActiveState = new AbilityStateActive(this);
             CooldownState = new AbilityStateCooldown(this);
             State = ReadyState;
-            ReadyState.Activate();
+            ReadyState.Activate(); 
         }
 
         public abstract void Init(EventChannelSO inputChannel, GameObject parentObject, AbilityManager abilityManager);
