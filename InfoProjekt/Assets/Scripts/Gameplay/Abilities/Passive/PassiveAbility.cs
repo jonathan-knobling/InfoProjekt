@@ -1,4 +1,5 @@
 using Actors.Player.Stats;
+using Tech;
 using UnityEngine;
 
 namespace Gameplay.Abilities.Passive
@@ -8,6 +9,6 @@ namespace Gameplay.Abilities.Passive
         protected GameObject Parent;
         protected PlayerStats Stats;
 
-        public abstract void Init(GameObject parentObject, PlayerStats playerStats);
+        public abstract void Init(GameObject parentObject, PlayerStats playerStats, EventChannelSO eventChannel);
     }
 }

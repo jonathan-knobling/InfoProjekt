@@ -41,7 +41,7 @@ namespace Tech.Flow
                 }
                 case FlowState.Dialogue:
                 {
-                    dialogueState ??= new FlowStateDialogue(playerChannel, inputChannel);
+                    dialogueState ??= new FlowStateDialogue(inputChannel);
                     OnChangeFlowState?.Invoke(dialogueState);
                     break;
                 }

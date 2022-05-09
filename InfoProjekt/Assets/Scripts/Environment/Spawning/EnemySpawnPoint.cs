@@ -24,7 +24,7 @@ namespace Environment.Spawning
         {
             timer.Update();
 
-            if (timer.Elapsed && eventChannel.ObjectRegisterChannel.currentMobCap < EnemyRegister.mobcap)
+            if (timer.Elapsed && eventChannel.ObjectRegisterChannel.currentMobCap < EnemyRegister.Mobcap)
             {
                 timer.Restart();
                 var instance = Instantiate(enemySpawnPrefab, transform.position, transform.rotation);

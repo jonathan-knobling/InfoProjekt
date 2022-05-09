@@ -7,7 +7,6 @@ namespace UI.Specific
 {
     public class PauseMenuController : MonoBehaviour
     {
-        [SerializeField] private UIDocument saveMenuUI;
         [SerializeField] private EventChannelSO eventChannel;
         
         [Header("UI Documents")]

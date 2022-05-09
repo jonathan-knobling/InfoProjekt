@@ -27,13 +27,13 @@ namespace UI.Specific.PlayerUI
 
             var statsRoot = root.Q<VisualElement>("stats_screen");
             var hotbarRoot = root.Q<VisualElement>("hotbar");
-            var abilitiesRoot = root.Q<VisualElement>("abilities");
+            //var abilitiesRoot = root.Q<VisualElement>("abilities");
 
             statsMenuUI = new StatsMenuUIController(statsRoot, stats);
             hotbarUI = new HotbarUIController(hotbarRoot, inventory);
             healthbarUI = new HealthbarUIController(root, stats);
             mpBarUI = new MPBarUIController(stats, root);
-            abilityUI = new AbilityUIController(abilitiesRoot, abilityManager);
+            //abilityUI = new AbilityUIController(abilitiesRoot, abilityManager);
         }
 
         private void Update()
@@ -41,7 +41,7 @@ namespace UI.Specific.PlayerUI
             statsMenuUI.Update();
             healthbarUI.Update();
             mpBarUI.Update();
-            abilityUI.Update();
+            //abilityUI.Update();
         }
     }
 }
