@@ -61,16 +61,5 @@ namespace Gameplay.Abilities.Active.Skills
                 rb.AddForce(direction, ForceMode2D.Impulse);
             }
         }
-        
-        
-        public override object SerializeComponent()
-        {
-            return null;
-        }
-
-        public override void ApplySerializedData(object serializedData)
-        {
-            
-        }
     }
 }

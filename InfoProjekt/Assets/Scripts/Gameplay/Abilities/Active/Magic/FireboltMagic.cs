@@ -58,15 +58,5 @@ namespace Gameplay.Abilities.Active.Magic
             //sound?
             //animation?
         }
-        
-        public override object SerializeComponent()
-        {
-            return null;
-        }
-
-        public override void ApplySerializedData(object serializedData)
-        {
-            
-        }
     }
 }

@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Actors.Enemies;
 using Actors.Player.Stats;
 using Tech;
-using Tech.IO.Saves;
 using UnityEngine;
 
 namespace Gameplay.Abilities.Passive.DevelopmentAbilities
@@ -62,7 +62,8 @@ namespace Gameplay.Abilities.Passive.DevelopmentAbilities
             rank = ((SaveData) serializedData).Rank;
             killedEnemies = ((SaveData) serializedData).KilledEnemies.ToList();
         }
-
+        
+        [Serializable]
         private struct SaveData
         {
             public string[] KilledEnemies;
@@ -70,7 +71,7 @@ namespace Gameplay.Abilities.Passive.DevelopmentAbilities
         }
     }
     
-    public class HunterAbilityDamageModifier: IDamageModifier
+    internal class HunterAbilityDamageModifier: IDamageModifier
     {
         private readonly HunterAbility parent;
 

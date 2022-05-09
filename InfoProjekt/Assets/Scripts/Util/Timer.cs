@@ -19,6 +19,7 @@ namespace Util
         public bool Paused => paused;
         public bool Repeat => repeat;
         public float ElapsedTime => elapsedTime;
+        public float RemainingTime => time - elapsedTime;
         
         public Timer(float time, bool repeat)
         {
@@ -71,6 +72,13 @@ namespace Util
         public void SetRepeat(bool b)
         {
             repeat = b;
+        }
+
+        public void SetRemainingTime(float remainingTime)
+        {
+            if (remainingTime < 0 || remainingTime > time) return;
+
+            elapsedTime = time - remainingTime;
         }
     }
 }

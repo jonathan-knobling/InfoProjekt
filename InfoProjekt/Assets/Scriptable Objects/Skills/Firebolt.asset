@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d54fbd759b453a87be20e67442c3ac, type: 3}
   m_Name: Firebolt
   m_EditorClassIdentifier: 
+  id: 
   icon: {fileID: -7008412969330441016, guid: d6b8c791d8089b44a9a8c5a7423bd180, type: 3}
   maxCooldownTime: 3
   maxActiveTime: 0
   projectilePrefab: {fileID: 6679350505711597824, guid: 0d1e19c923a11bf4ca5baf595e8f7667, type: 3}
   mpUsage: 1
-  fireboltSpeed: 4
+  fireboltSpeed: 15
