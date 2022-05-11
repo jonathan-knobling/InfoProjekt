@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
 namespace Actors.Enemies.EnemyAITest
@@ -40,33 +38,37 @@ namespace Actors.Enemies.EnemyAITest
         {
             targetPos = cam.ScreenToWorldPoint(Input.mousePosition);
 
-            var buffer = new ComputeBuffer(boidsCount, 36);
-
+            //update boidsData
             for (int i = 0; i < boidsCount; i++)
             {
                 boidsData[i].flockPos = targetPos;
             }
             
+            //create compute buffer
+            var buffer = new ComputeBuffer(boidsCount, 36);
             buffer.SetData(boidsData);
             
+            //set shader data
             computeShader.SetBuffer(kernelHandle, "boidBuffer", buffer);
             computeShader.SetFloat("deltaTime", Time.deltaTime);
             
+            //execute shader
             computeShader.Dispatch(kernelHandle, boidsCount, 1, 1);
             
+            //read new data from compute buffer
             buffer.GetData(boidsData);
             
             buffer.Release();
 
+            //update boid game objects
             for (int i = 0; i < boidsCount; i++)
             {
                 boidsGO[i].transform.localPosition = boidsData[i].pos;
 
-                if (!boidsData[i].rot.Equals(Vector2.zero))
-                {
-                    boidsGO[i].transform.rotation = Quaternion.LookRotation(boidsData[i].rot);
-                    boidsGO[i].transform.Rotate(0, -90f, 0);
-                }
+                if (boidsData[i].rot.Equals(Vector2.zero)) continue;
+                
+                boidsGO[i].transform.rotation = Quaternion.LookRotation(boidsData[i].rot);
+                boidsGO[i].transform.Rotate(0, -90f, 0);
             }
         }
 
