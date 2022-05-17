@@ -1,8 +1,7 @@
-using System.Diagnostics.Tracing;
+using System;
 using Actors.Enemies;
 using Actors.Player.Stats;
 using Tech;
-using Unity.Mathematics;
 using UnityEngine;
 
 namespace Actors.Player
@@ -32,7 +31,7 @@ namespace Actors.Player
             Vector2 mousePos = Input.mousePosition;
             Vector2 playerPos = cam.WorldToScreenPoint(transform.position);
 
-            Vector2 hitDir = math.sign((mousePos - playerPos).normalized);
+            Vector2 hitDir = (mousePos - playerPos).normalized;
 
             animator.SetFloat(CPAttackDirX, hitDir.x);
             animator.SetFloat(CPAttackDirY, hitDir.y);
@@ -53,10 +52,10 @@ namespace Actors.Player
                 float attDmg = stats.GetAttackDamage(enemyStats);
                 float dealtDamage = enemyStats.DealDamage(attDmg);
                 
-                if(enemy.GetComponent<EnemyStats>().IsDead)
+                if(enemyStats.IsDead)
                 {
-                    stats.AddXP(enemy.GetComponent<EnemyStats>());
-                    eventChannel.PlayerChannel.EnemyKilled(enemy.GetComponent<EnemyStats>().enemyID);
+                    stats.AddXP(enemyStats);
+                    eventChannel.PlayerChannel.EnemyKilled(enemyStats.enemyID);
                 }
                 stats.XPManager.AddDealtDamage(dealtDamage);
             }

@@ -1,8 +1,7 @@
+using System;
 using Actors.Player.Stats;
 using Tech;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
 
 namespace Actors.Player
 {
@@ -26,7 +25,7 @@ namespace Actors.Player
                                           || rb.velocity.y > 0.1f && direction.y < 0.1f
                                           || rb.velocity.y < 0.1f && direction.y > 0.1f;
 
-        private bool FacingRight => math.abs(math.sign(transform.localScale.x) - 1) > 0.001f; // basically sign(x) == 1
+        private bool FacingRight => Math.Abs(Math.Sign(transform.localScale.x) - 1) > 0.001f; // basically sign(x) == 1
         
         //Cached Properties
         private static readonly int CPSpeed = Animator.StringToHash("speed");
@@ -55,16 +54,16 @@ namespace Actors.Player
             Move();
             
             //set animator values
-            animator.SetFloat(CPSpeed, math.abs(rb.velocity.magnitude));
-            animator.SetFloat(CPDirX, math.sign(rb.velocity.x));
-            animator.SetFloat(CPDirY, math.sign(rb.velocity.y));
-            if (math.sign(rb.velocity.x) != 0)
+            animator.SetFloat(CPSpeed, Math.Abs(rb.velocity.magnitude));
+            animator.SetFloat(CPDirX, Math.Sign(rb.velocity.x));
+            animator.SetFloat(CPDirY, Math.Sign(rb.velocity.y));
+            if (Math.Sign(rb.velocity.x) != 0)
             {
-                animator.SetFloat(CPLastDirX, math.sign(rb.velocity.x));
+                animator.SetFloat(CPLastDirX, Math.Sign(rb.velocity.x));
             }
-            if (math.sign(rb.velocity.y) != 0)
+            if (Math.Sign(rb.velocity.y) != 0)
             {
-                animator.SetFloat(CPLastDirY, math.sign(rb.velocity.y));
+                animator.SetFloat(CPLastDirY, Math.Sign(rb.velocity.y));
             }
 
             if (!FacingRight && direction.x < 0)

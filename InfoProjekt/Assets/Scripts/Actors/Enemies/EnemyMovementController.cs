@@ -1,6 +1,5 @@
 using System;
 using System.ComponentModel;
-using Unity.Mathematics;
 using UnityEngine;
 
 namespace Actors.Enemies
@@ -23,7 +22,7 @@ namespace Actors.Enemies
 
         private void Update()
         {
-            animator.SetFloat(Speed, math.abs(rb.velocity.x));
+            animator.SetFloat(Speed, Math.Abs(rb.velocity.x));
             rb.velocity = new Vector2(currentVelocityX, rb.velocity.y);
         }
 
