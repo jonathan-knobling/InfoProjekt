@@ -1,14 +1,17 @@
-namespace Util.FSM
+namespace Util.FSM.TransitionConditions
 {
     public class FloatTransitionCondition: ITransitionCondition
     {
-        private readonly float value;
+        private readonly Ref<float> value;
         private readonly float targetValue;
         private readonly Condition condition;
 
-        public FloatTransitionCondition(float value, Condition condition, float targetValue)
+        public FloatTransitionCondition(ref float value, Condition condition, float targetValue)
         {
-            this.value = value;
+            this.value = new Ref<float>()
+            {
+                Value = value
+            };
             this.targetValue = targetValue;
             this.condition = condition;
         }
@@ -18,17 +21,17 @@ namespace Util.FSM
             switch (condition)
             {
                 case Condition.Equal:
-                    return value.Equals(targetValue);
+                    return value.Value.Equals(targetValue);
                 case Condition.NotEqual:
-                    return !value.Equals(targetValue);
+                    return !value.Value.Equals(targetValue);
                 case Condition.Greater:
-                    return value > targetValue;
+                    return value.Value > targetValue;
                 case Condition.Less:
-                    return value < targetValue;
+                    return value.Value < targetValue;
                 case Condition.GreaterEqual:
-                    return value >= targetValue;
+                    return value.Value >= targetValue;
                 case Condition.LessEqual:
-                    return value <= targetValue;
+                    return value.Value <= targetValue;
                 default:
                     return false;
             }

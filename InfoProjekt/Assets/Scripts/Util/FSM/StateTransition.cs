@@ -1,16 +1,17 @@
 using System.Linq;
 using JetBrains.Annotations;
+using UnityEngine;
 
 namespace Util.FSM
 {
-    public abstract class StateTransition
+    public class StateTransition
     {
-        [NotNull] private readonly IStateHandler stateHandler;
-        [NotNull] private readonly State targetState;
+        private readonly IStateHandler stateHandler;
+        private readonly State targetState;
 
-        [NotNull] private readonly ITransitionCondition[] conditions;
+        private readonly ITransitionCondition[] conditions;
 
-        public StateTransition([NotNull] IStateHandler stateHandler, [NotNull] State targetState, [NotNull] ITransitionCondition[] conditions)
+        public StateTransition(IStateHandler stateHandler, State targetState, ITransitionCondition[] conditions)
         {
             this.stateHandler = stateHandler;
             this.targetState = targetState;
@@ -34,6 +35,13 @@ namespace Util.FSM
             stateHandler.GetState().OnStateExit();
             stateHandler.ChangeState(targetState);
             stateHandler.GetState().OnStateEnter();
+        }
+
+        public static StateTransition[] SingleTransition(IStateHandler stateHandler, State targetState, ITransitionCondition[] conditions)
+        {
+            var arr = new StateTransition[1];
+            arr[0] = new StateTransition(stateHandler, targetState, conditions);
+            return arr;
         }
     }
 }

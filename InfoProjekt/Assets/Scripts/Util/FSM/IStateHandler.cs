@@ -2,7 +2,7 @@ namespace Util.FSM
 {
     public interface IStateHandler
     {
-        void ChangeState(State state);
+        void ChangeState(State newState);
         State GetState();
     }
 }
