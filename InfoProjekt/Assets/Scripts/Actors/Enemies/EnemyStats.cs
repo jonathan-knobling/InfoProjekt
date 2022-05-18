@@ -33,8 +33,8 @@ namespace Actors.Enemies
         public bool IsDead => health <= 0;
         public int XPAmount => xpAmount;
         public float AttackDamage => HiddenAttackDamage;
-        public float Speed => (float) ((1 + 0.25 * level) * 5);
-        public float RoamingSpeed => (float) ((1 + 0.15 * level) * 5);
+        public float Speed => (float) ((1 + 0.25 * level) * 1.5f);
+        public float RoamingSpeed => (float) ((1 + 0.15 * level) * 1.4f);
         public EnemyType Type => type;
 
         private void Start()

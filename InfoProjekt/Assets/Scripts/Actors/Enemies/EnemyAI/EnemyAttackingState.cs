@@ -5,11 +5,13 @@ namespace Actors.Enemies.EnemyAI
 {
     public class EnemyAttackingState: State
     {
-        private GameObject enemy;
+        private readonly GameObject enemy;
+        private readonly EnemyMovementController movementController;
 
-        public EnemyAttackingState(GameObject enemy)
+        public EnemyAttackingState(GameObject enemy, EnemyMovementController enemyMovementController)
         {
             this.enemy = enemy;
+            movementController = enemyMovementController;
         }
         
         public override void OnStateEnter()

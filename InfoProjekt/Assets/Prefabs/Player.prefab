@@ -65,7 +65,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 541257647223408048}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -33.27, y: 2.75, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -159,18 +159,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2699191e578e264284343700583893a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 4590722431800014310}
-  movementChannel: {fileID: 11400000, guid: 8116edc9ec2a08541a1957278e9be3fc, type: 2}
-  inputChannel: {fileID: 11400000, guid: 089b2dbb73bd38745996825d79789973, type: 2}
+  eventChannel: {fileID: 0}
   accelerationForce: 80
   linearDrag: 0.1
-  maxJumpInputBuffer: 4
-  groundCheck: {fileID: 541257646088512227}
-  checkRadius: 0.25
-  maxGroundedBuffer: 4
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!95 &4590722431800014310
 Animator:
   serializedVersion: 4
@@ -203,7 +194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 611fe8c94d4f85f44bcff85389420a40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputChannel: {fileID: 11400000, guid: 089b2dbb73bd38745996825d79789973, type: 2}
+  eventChannel: {fileID: 0}
+  abilityDatabase: {fileID: 0}
   activeAbilities: []
   passiveAbilities: []
 --- !u!114 &6710030209889104069
@@ -218,8 +210,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d14bdc59bb68b64290f5066bb478332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  jumpForce: 20
 --- !u!61 &7022920003705749198
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -259,10 +249,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 4590722431800014310}
-  inputChannel: {fileID: 11400000, guid: 089b2dbb73bd38745996825d79789973, type: 2}
-  combatChannel: {fileID: 11400000, guid: fed798c61ed025940be5ab2c2e0c391b, type: 2}
-  camTransform: {fileID: 0}
-  attackPoint: {fileID: 7434293317000873569}
+  eventChannel: {fileID: 0}
+  cam: {fileID: 0}
   attackRange: 0.5
   enemyLayers:
     serializedVersion: 2
@@ -279,8 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0758ae6686648794d9091071a1ff0a79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questChannel: {fileID: 11400000, guid: f0fcfb30689430a48b968a0334c056c7, type: 2}
-  combatChannel: {fileID: 11400000, guid: fed798c61ed025940be5ab2c2e0c391b, type: 2}
+  eventChannel: {fileID: 0}
   quests:
   - {fileID: 11400000, guid: e263de35a4e3c2743ac548d13e899875, type: 2}
 --- !u!114 &7308509011361128243
@@ -295,7 +282,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a64dac1ee44bebb394e4040d1e72e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items: []
+  inventoryCapacity: 36
+  hotbarCapacity: 9
 --- !u!1 &7253465976093763402
 GameObject:
   m_ObjectHideFlags: 0

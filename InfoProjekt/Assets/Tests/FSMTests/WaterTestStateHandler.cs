@@ -13,23 +13,9 @@ namespace Tests.FSMTests
 
         public WaterTestStateHandler(TestTemperature temp)
         {
-            bool IsBelowZero()
-            {
-                Debug.Log(temp.Temp);
-                return temp.Temp < 0;
-            }
-
-            bool IsNormal()
-            {
-                Debug.Log(temp.Temp);
-                return temp.Temp is >= 0 and < 100;
-            }
-
-            bool IsOverHundred()
-            {
-                Debug.Log(temp.Temp);
-                return temp.Temp > 100;
-            }
+            bool IsBelowZero() => temp.Temp < 0;
+            bool IsNormal() => temp.Temp is >= 0 and < 100;
+            bool IsOverHundred() => temp.Temp > 100;
 
             var gasState = new GasState(this);
             var frozenState = new FrozenState(this);
