@@ -1,27 +1,29 @@
 using Environment;
 using Gameplay.Dialogue.Util;
 using Tech;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Actors.NPCs
 {
     public class NPC: Actor, IInteractable
     {
         [Header("Tech Stuff")] 
-        [SerializeField]
-        private EventChannelSO eventChannel;
+        [SerializeField] private EventChannelSO eventChannel;
 
         [Header("Interaction Stuff")]
-        [SerializeField]
-        private float interactionRadius = 2f;
+        [SerializeField] private float interactionRadius = 2f;
         [SerializeField] private LayerMask interactionLayers;
+        [SerializeField] private string npcID;
+        private GameObject player;
         
         [Header("NPC Stuff")]
-        [SerializeField]
-        private Dialogue greetDialogue;
+        [SerializeField] private Dialogue greetDialogue;
 
         public void Start()
         {
+            GameObject.Find("Player");
             eventChannel.InputChannel.OnInteractButtonPressed += OnInteractButtonPressed;
         }
 
@@ -36,8 +38,15 @@ namespace Actors.NPCs
             {
                 Debug.Log("interact");
                 Interact();
-                //show "press f to interact" oder so ähnlich :)
+                turnToPlayer();
+                //show "press f to interact" oder so ï¿½hnlich :)
             }
+        }
+
+        private void turnToPlayer()
+        {
+            Vector3 relativePos = player.transform.position - transform.position;
+            transform.rotation = Quaternion.LookRotation(relativePos);
         }
     }
 }
