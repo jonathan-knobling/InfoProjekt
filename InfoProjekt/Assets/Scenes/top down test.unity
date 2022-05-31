@@ -2138,6 +2138,7 @@ MonoBehaviour:
   interactionLayers:
     serializedVersion: 2
     m_Bits: 256
+  npcID: 
   greetDialogue: {fileID: 11400000, guid: 2520299bb7dfcc843b8d9f109d83df45, type: 2}
 --- !u!212 &1762895851
 SpriteRenderer:
@@ -2159,7 +2160,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

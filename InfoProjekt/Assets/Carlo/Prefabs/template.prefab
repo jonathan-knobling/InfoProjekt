@@ -54,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -114,10 +114,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a38ccc9fc177f54b98a30700107af3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputChannel: {fileID: 11400000, guid: 089b2dbb73bd38745996825d79789973, type: 2}
+  eventChannel: {fileID: 0}
   interactionRadius: 2
   interactionLayer:
     serializedVersion: 2
     m_Bits: 0
   item: {fileID: 0}
-  uiChannel: {fileID: 11400000, guid: 47ac2e1314517934eb7836ccd86f9a7e, type: 2}
+  pickUpEffect: {fileID: 0}

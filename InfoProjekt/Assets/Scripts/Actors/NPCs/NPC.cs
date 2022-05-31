@@ -1,7 +1,6 @@
 using Environment;
 using Gameplay.Dialogue.Util;
 using Tech;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -29,7 +28,9 @@ namespace Actors.NPCs
 
         public void Interact()
         {
+            TurnToPlayer();
             eventChannel.DialogueChannel.RequestDialog(greetDialogue);
+    
         }
 
         private void OnInteractButtonPressed()
@@ -38,12 +39,11 @@ namespace Actors.NPCs
             {
                 Debug.Log("interact");
                 Interact();
-                turnToPlayer();
                 //show "press f to interact" oder so �hnlich :)
             }
         }
 
-        private void turnToPlayer()
+        private void TurnToPlayer()
         {
             Vector3 relativePos = player.transform.position - transform.position;
             transform.rotation = Quaternion.LookRotation(relativePos);
