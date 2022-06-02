@@ -1,44 +1,61 @@
 using System;
 using UnityEngine;
+using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 namespace Actors.Enemies
 {
     public class EnemyMovementController
     {
-        private readonly GameObject go;
+        private readonly GameObject enemy;
         private readonly Animator animator;
         private readonly Rigidbody2D rb;
         private readonly EnemyStats stats;
 
-        private static readonly int Speed = Animator.StringToHash("speed"); // cached property
-        private bool FacingRight => Math.Abs(Mathf.Sign(go.transform.localScale.x) - 1) < 0.01f; // basically sign(x) == 1
+        private readonly NavMeshAgent agent;
 
-        public EnemyMovementController(GameObject go)
+        //private static readonly int Speed = Animator.StringToHash("speed");
+        private bool FacingRight => Math.Abs(Mathf.Sign(enemy.transform.localScale.x) - 1) < 0.01f;
+
+        public EnemyMovementController(GameObject enemy)
         {
-            this.go = go;
-            rb = go.GetComponent<Rigidbody2D>();
-            //animator = go.GetComponent<Animator>();
-            stats = go.GetComponent<EnemyStats>();
+            this.enemy = enemy;
+            rb = enemy.GetComponent<Rigidbody2D>();
+            //animator = enemy.GetComponent<Animator>();
+            stats = enemy.GetComponent<EnemyStats>();
+            
+            agent = enemy.GetComponent<NavMeshAgent>();
+            agent.updateRotation = false;
+            agent.updateUpAxis = false;
         }
 
         public void Update()
         {
+            if(rb.velocity.x > 0 && !FacingRight) Flip();
             //animator.SetFloat(Speed, Math.Abs(rb.velocity.magnitude));
         }
 
-        public void Move(Vector2 dir)
+        public void Move(Vector2 destination)
         {
-            if(dir.x > 0 && !FacingRight) Flip();
-
-            rb.velocity = dir.normalized * stats.Speed;
+            agent.SetDestination(destination);
         }
 
         private void Flip()
         {
-            var transform1 = go.transform;
+            var transform1 = enemy.transform;
             Vector3 scale = transform1.localScale;
             scale.x *= -1;
             transform1.localScale = scale;
+        }
+
+        public void MoveToRandomPosition(float walkRadius)
+        {
+            //Get Random Direction
+            var randomDirection = Random.insideUnitCircle.normalized * walkRadius;
+            //Get a valid Navmesh Position in this direction
+            NavMesh.SamplePosition(randomDirection, out var hit, walkRadius, 1);
+            //Move to the Navmesh Position
+            Move(hit.position);
         }
     }
 }

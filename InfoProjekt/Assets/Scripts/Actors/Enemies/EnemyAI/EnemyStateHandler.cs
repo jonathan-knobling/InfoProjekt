@@ -8,18 +8,21 @@ namespace Actors.Enemies.EnemyAI
     {
         private State state;
 
-        public EnemyStateHandler(GameObject go, GameObject target, EnemyMovementController enemyMovementController)
+        public EnemyStateHandler(GameObject enemy, GameObject target, EnemyMovementController enemyMovementController)
         {
-            //Setup State Machine Transitions
-            var circleCollider2D = go.GetComponent<CircleCollider2D>();
+            //Get Enemy and Target Colliders
+            var enemyCollider = enemy.GetComponent<CircleCollider2D>();
             var targetCollider = target.GetComponent<Collider2D>();
 
-            bool RoamToAttackCondition() => circleCollider2D.IsTouching(targetCollider);
-            bool AttackToRoamCondition() => !circleCollider2D.IsTouching(targetCollider);
+            //Transition Condition Functions
+            bool RoamToAttackCondition() => enemyCollider.IsTouching(targetCollider);
+            bool AttackToRoamCondition() => !enemyCollider.IsTouching(targetCollider);
             
-            var roamingState = new EnemyRoamingState(go, enemyMovementController);
-            var attackingState = new EnemyAttackingState(go, enemyMovementController);
+            //Create Enemy States
+            var roamingState = new EnemyRoamingState(enemy, target, enemyMovementController);
+            var attackingState = new EnemyAttackingState(enemy, target, enemyMovementController);
             
+            //Setup State Transitions
             roamingState.Init(StateTransition.SingleTransition(
                 this, attackingState,
                 EventTransitionCondition.SingleCondition(RoamToAttackCondition)));
@@ -28,6 +31,7 @@ namespace Actors.Enemies.EnemyAI
                 this, roamingState,
                 EventTransitionCondition.SingleCondition(AttackToRoamCondition)));
 
+            //Set Starting State to Roaming State
             state = roamingState;
             state.OnStateEnter();
         }

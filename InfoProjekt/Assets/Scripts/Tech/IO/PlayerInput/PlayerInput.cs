@@ -60,7 +60,6 @@ namespace Tech.IO.PlayerInput
             
             if (Input.GetButtonDown("Skill4"))
             {
-                Debug.Log("made it here");
                 eventChannel.InputChannel.InputProvider.Skill4ButtonPressed();
             }
         }

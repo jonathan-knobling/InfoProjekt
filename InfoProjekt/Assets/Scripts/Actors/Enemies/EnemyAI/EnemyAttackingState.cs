@@ -8,7 +8,8 @@ namespace Actors.Enemies.EnemyAI
         private readonly GameObject enemy;
         private readonly EnemyMovementController movementController;
 
-        public EnemyAttackingState(GameObject enemy, EnemyMovementController enemyMovementController)
+        public EnemyAttackingState(GameObject enemy, GameObject target,
+            EnemyMovementController enemyMovementController)
         {
             this.enemy = enemy;
             movementController = enemyMovementController;

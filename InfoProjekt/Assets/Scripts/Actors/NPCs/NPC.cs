@@ -1,12 +1,10 @@
-using Environment;
 using Gameplay.Dialogue.Util;
 using Tech;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Actors.NPCs
 {
-    public class NPC: Actor, IInteractable
+    public class NPC: Actor
     {
         [Header("Tech Stuff")] 
         [SerializeField] private EventChannelSO eventChannel;

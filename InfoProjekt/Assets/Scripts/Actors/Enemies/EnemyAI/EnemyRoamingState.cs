@@ -13,7 +13,7 @@ namespace Actors.Enemies.EnemyAI
         
         private Rigidbody2D rb;
         
-        public EnemyRoamingState(GameObject enemy, EnemyMovementController enemyMovementController)
+        public EnemyRoamingState(GameObject enemy, GameObject target, EnemyMovementController enemyMovementController)
         {
             this.enemy = enemy;
             movementController = enemyMovementController;
