@@ -48,6 +48,7 @@ namespace Actors.Enemies
             float actualDamage = damage * defenseMultiplier;
             health -= damage;
             
+            Debug.Log("damage dealt");
             
             if (health <= 0)
             {
@@ -58,13 +59,13 @@ namespace Actors.Enemies
                 return actualDamage;
             }
 
-            animator.SetTrigger(AnimatorHit);
+            //animator.SetTrigger(AnimatorHit);
             return actualDamage;
         }
 
         private void Die()
         {
-            animator.SetTrigger(Death);
+            //animator.SetTrigger(Death);
             Destroy(gameObject);
         }
 
