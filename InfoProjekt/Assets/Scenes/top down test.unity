@@ -2113,6 +2113,7 @@ GameObject:
   - component: {fileID: 1762895852}
   - component: {fileID: 1762895851}
   - component: {fileID: 1762895850}
+  - component: {fileID: 1762895853}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -2138,7 +2139,7 @@ MonoBehaviour:
   interactionLayers:
     serializedVersion: 2
     m_Bits: 256
-  npcID: 
+  npcID: asdasdasd
   greetDialogue: {fileID: 11400000, guid: 2520299bb7dfcc843b8d9f109d83df45, type: 2}
 --- !u!212 &1762895851
 SpriteRenderer:
@@ -2181,7 +2182,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 606bc7833699b46bfb26e8141d2a64a7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2200,10 +2201,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1762895849}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.06, y: 1.85, z: 0}
+  m_LocalPosition: {x: -10.06, y: 1.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &1762895853
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762895849}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0000014305115, y: 0.20046169}
+  m_Size: {x: 1.1486502, y: 1.8797423}
+  m_Direction: 0

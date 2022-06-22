@@ -9,7 +9,7 @@ namespace Actors.Enemies.EnemyAI
         private readonly GameObject enemy;
         private readonly EnemyMovementController movementController;
         
-        private Timer timer;
+        private Timer idleTimer;
         
         private Rigidbody2D rb;
         
@@ -22,8 +22,8 @@ namespace Actors.Enemies.EnemyAI
         public override void OnStateEnter()
         {
             enemy.GetComponent<SpriteRenderer>().color = Color.green;
-            timer = new Timer(Random.value);
-            timer.OnElapsed += OnTimerOver;
+            idleTimer = new Timer(Random.value);
+            idleTimer.OnElapsed += OnTimerOver;
         }
         
         public override void OnStateExit()
@@ -33,8 +33,6 @@ namespace Actors.Enemies.EnemyAI
         
         public override void OnStateUpdate()
         {
-            timer.Update();
-            
             //update transitions
             foreach (var transition in Transitions)
             {

@@ -1,3 +1,4 @@
+using System;
 using Gameplay.Dialogue.Util;
 using Tech;
 using UnityEngine;
@@ -26,7 +27,7 @@ namespace Actors.NPCs
 
         public void Interact()
         {
-            TurnToPlayer();
+            //TurnToPlayer();
             eventChannel.DialogueChannel.RequestDialog(greetDialogue);
     
         }
@@ -45,6 +46,11 @@ namespace Actors.NPCs
         {
             Vector3 relativePos = player.transform.position - transform.position;
             transform.rotation = Quaternion.LookRotation(relativePos);
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.DrawWireSphere(transform.position, interactionRadius);
         }
     }
 }

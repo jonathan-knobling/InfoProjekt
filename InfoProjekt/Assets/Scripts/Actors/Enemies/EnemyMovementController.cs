@@ -14,6 +14,10 @@ namespace Actors.Enemies
 
         private readonly NavMeshAgent agent;
 
+        public bool TargetReached => !agent.pathPending
+                                     && agent.remainingDistance <= agent.stoppingDistance
+                                     && !agent.hasPath || agent.velocity.sqrMagnitude == 0f;
+
         //private static readonly int Speed = Animator.StringToHash("speed");
         private bool FacingRight => Math.Abs(Mathf.Sign(enemy.transform.localScale.x) - 1) < 0.01f;
 
