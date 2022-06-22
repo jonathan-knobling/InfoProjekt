@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a38ccc9fc177f54b98a30700107af3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventChannel: {fileID: 0}
+  eventChannel: {fileID: 11400000, guid: 68f4d361e53e1ee4e94c67673f5e76cf, type: 2}
   interactionRadius: 2
   interactionLayer:
     serializedVersion: 2
@@ -135,8 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fba4187397fc994db69f1659b7780d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  extent: 0.2
-  speed: 3
+  extent: 0.15
+  speed: 2.5
 --- !u!95 &1019894363
 Animator:
   serializedVersion: 4
