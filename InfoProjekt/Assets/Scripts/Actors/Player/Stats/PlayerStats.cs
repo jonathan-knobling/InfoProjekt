@@ -88,7 +88,8 @@ namespace Actors.Player.Stats
 
         private void Die()
         {
-            animator.SetTrigger(CPDeath);
+            Destroy(gameObject);
+            //animator.SetTrigger(CPDeath);
         }
 
         public void AddXP(EnemyStats enemy)

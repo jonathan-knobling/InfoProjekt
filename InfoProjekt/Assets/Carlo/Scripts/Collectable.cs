@@ -22,20 +22,12 @@ namespace Carlo.Scripts
         private Label text;
         void Start()
         {
-            eventChannel.InputChannel.OnInteractButtonPressed += InteractButtonPressed;
             pickUpInteraction = new InteractionBar(0.7f, eventChannel);
             pickUpInteraction.OnProgressBarOver += Interact;
             pickUpInteraction.StartEffect += CreateParticles;
             pickUpInteraction.StopEffect += StopParticles;
-            particle = Instantiate(pickUpEffect, transform.position, transform.rotation);
-        }
-
-        private void InteractButtonPressed()
-        {
-            if (Physics2D.OverlapCircle(transform.position, interactionRadius, interactionLayer))
-            {
-                
-            }
+            var transform1 = transform;
+            particle = Instantiate(pickUpEffect, transform1.position, transform1.rotation);
         }
 
         private void Interact()
@@ -51,6 +43,8 @@ namespace Carlo.Scripts
         }
         private void OnTriggerEnter2D(Collider2D col)
         {
+            if (col.gameObject.layer != interactionLayer) return;
+
             text = new Label
             {
                 text = "Press F to pick up!",
@@ -73,7 +67,7 @@ namespace Carlo.Scripts
             particle.GetComponent<ParticleSystem>().Stop();
         }
 
-        void OnTriggerStay2D(Collider2D other)
+        private void OnTriggerStay2D(Collider2D other)
         {
             pickUpInteraction.Update();
         }
