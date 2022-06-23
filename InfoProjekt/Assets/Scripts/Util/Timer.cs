@@ -6,7 +6,7 @@ namespace Util
     [Serializable]
     public class Timer
     {
-        private readonly float time;
+        private float time;
         private float elapsedTime;
         private bool elapsed;
         private bool paused;
@@ -21,35 +21,30 @@ namespace Util
         public float ElapsedTime => elapsedTime;
         public float RemainingTime => time - elapsedTime;
         
-        public Timer(float time, bool repeat)
+        public Timer(float time, bool repeat = false)
         {
             this.repeat = repeat;
-            elapsed = false;
-            this.time = time;
-        }
-        
-        public Timer(float time)
-        {
-            repeat = false;
             elapsed = false;
             this.time = time;
         }
 
         public void Update()
         {
-            if (!paused)
-            {
-                elapsedTime += Time.deltaTime;
-                if (elapsedTime >= time)
-                {
-                    if (!repeat)
-                    {
-                        paused = true;
-                    }
-                    elapsed = true;
-                    OnElapsed?.Invoke();
-                }   
-            }
+            if (paused) return;
+            elapsedTime += Time.deltaTime;
+            
+            if (!(elapsedTime >= time)) return;
+            if (!repeat) paused = true;
+            
+            elapsed = true;
+            OnElapsed?.Invoke();
+        }
+
+        public void SetNew(float time, bool repeat = false)
+        {
+            Restart();
+            this.repeat = repeat;
+            this.time = time;
         }
 
         public void Pause()
