@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.ComponentModel;
+using System.Threading;
 using Environment;
 using Tech.IO.Saves;
 using UnityEngine;
@@ -9,8 +11,8 @@ namespace Actors.Enemies
     public class EnemyStats : MonoBehaviour, IDamagable, ISaveable
     {
         [Header("Animator")]
-        private static readonly int AnimatorHit = Animator.StringToHash("hit");
-        private static readonly int Death = Animator.StringToHash("death");
+        private static readonly int AnimatorTriggerHurt = Animator.StringToHash("hurt");
+        private static readonly int AnimatorTriggerDie = Animator.StringToHash("die");
         [SerializeField] public Animator animator;
         
         [Header("Info")]
@@ -52,20 +54,21 @@ namespace Actors.Enemies
             
             if (health <= 0)
             {
-                Die();
+                StartCoroutine(Die());
                 
                 //relevant wenn health < 0
                 actualDamage -= health;
                 return actualDamage;
             }
 
-            //animator.SetTrigger(AnimatorHit);
+            animator.SetTrigger(AnimatorTriggerHurt);
             return actualDamage;
         }
 
-        private void Die()
+        private IEnumerator Die()
         {
-            //animator.SetTrigger(Death);
+            animator.SetTrigger(AnimatorTriggerDie);
+            yield return new WaitForSeconds(1f);
             Destroy(gameObject);
         }
 
