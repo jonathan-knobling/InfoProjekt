@@ -285,10 +285,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fovRadius: 5
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 256
   projectilePrefab: {fileID: 6679350505711597824, guid: 0d1e19c923a11bf4ca5baf595e8f7667, type: 3}
+  shootingSpeed: 1.2
 --- !u!1 &347406386
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,11 +412,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 195470953279188905, guid: 12c58daf93447a04db0932825c1e0678, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.2883854
+      value: -1.66
       objectReference: {fileID: 0}
     - target: {fileID: 195470953279188905, guid: 12c58daf93447a04db0932825c1e0678, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.70329285
+      value: -0.94
       objectReference: {fileID: 0}
     - target: {fileID: 195470953279188905, guid: 12c58daf93447a04db0932825c1e0678, type: 3}
       propertyPath: m_LocalPosition.z

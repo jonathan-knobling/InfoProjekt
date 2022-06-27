@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 using Gameplay.Inventory;
 using Tech.IO.Saves;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Util.Serialization;
+using Object = UnityEngine.Object;
 
 namespace Environment.ObjectRegister
 {
@@ -66,6 +68,7 @@ namespace Environment.ObjectRegister
             }
         }
 
+        [Serializable]
         private struct SaveData
         {
             public string Scene;

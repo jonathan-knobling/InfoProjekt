@@ -53,15 +53,16 @@ namespace Gameplay.Dialogue
 
         public void StartDialogueNode(DialogueNode dialogueNode)
         {
-            if (dialogueNode == null)
+            if (dialogueNode is null)
             {
                 EndDialogue(currentDialogue);
+                return;
             }
-            if (dialogueNode.Equals(currentDialogue.startNode) || currentDialogueNode.CanBeFollowedByNode(dialogueNode))
-            {
-                currentDialogueNode = dialogueNode;
-                OnStartDialogueNode?.Invoke(dialogueNode);
-            }
+            
+            if (!dialogueNode.Equals(currentDialogue.startNode) && !currentDialogueNode.CanBeFollowedByNode(dialogueNode)) return;
+            
+            currentDialogueNode = dialogueNode;
+            OnStartDialogueNode?.Invoke(dialogueNode);
         }
     }
 }
