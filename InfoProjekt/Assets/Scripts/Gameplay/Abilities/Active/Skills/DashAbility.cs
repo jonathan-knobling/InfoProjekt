@@ -1,30 +1,43 @@
-using Tech.IO;
+using Tech;
 using Tech.IO.PlayerInput;
 using UnityEngine;
+using Util;
 
 namespace Gameplay.Abilities.Active.Skills
 {
     [CreateAssetMenu(menuName = "Abilities/Active/Skills/Dash", fileName = "Dash")]
     public class DashAbility : ActiveAbility
     {
-        private float dashForce;
+        [SerializeField] private float dashForce = 100f;
+        private EventChannelSO eventChannel;
+        private InputMiddleWare inputMiddleWare;
+        private Rigidbody2D rb;
 
         public DashAbility()
         {
-            name = "dash";
-            cooldownTime = 7.5f;
-            activeTime = 0f;
+            id = "dash";
+            maxCooldownTime = 7.5f;
+            maxActiveTime = 0f;
         }
 
-        public override void Init(InputChannelSO inputChannel, GameObject parentObject)
+        public override void Init(EventChannelSO eventChannelSO, GameObject parentObject, AbilityManager abilityManager)
         {
-            inputChannel.OnSkill1ButtonPressed += OnSkillButtonPressed;
-            base.parent = parentObject;
+            eventChannel = eventChannelSO;
+            eventChannelSO.InputChannel.OnSkill4ButtonPressed += OnSkillButtonPressed;
+            rb = parentObject.GetComponent<Rigidbody2D>();
+
+            inputMiddleWare = new InputMiddleWare();
+            eventChannelSO.InputChannel.InputProvider.AddMiddleWare(inputMiddleWare,1);
         }
 
         public override void Update()
         {
             State.Update();
+            if (inputMiddleWare.InputState.enabled && rb.velocity.magnitude <= eventChannel.PlayerChannel.MaxVelocity)
+            {
+                inputMiddleWare.Disable();
+                rb.drag = 0;
+            }
         }
 
         private void OnSkillButtonPressed()
@@ -32,15 +45,19 @@ namespace Gameplay.Abilities.Active.Skills
             if (State.Equals(ReadyState))
             {
                 State = ActiveState;
-                ActiveState.Activate(this);
-                Rigidbody2D rb = parent.GetComponent<Rigidbody2D>();
-                //bewegungsrichtung getten
-                Vector2 direction = rb.velocity;
-                // vector = 1
+                ActiveState.Activate();
+
+                //Calculate Direction
+                Vector2 direction = eventChannel.InputChannel.InputProvider.GetState().InputDirection.value;
                 direction.Normalize();
-                // mit dashforce multiplizieren
+
+                inputMiddleWare.InputState = new Optional<InputState>
+                {
+                    enabled = true,
+                    value = new InputState(direction, true, true, 20)
+                };
+
                 direction *= dashForce;
-                // force adden
                 rb.AddForce(direction, ForceMode2D.Impulse);
             }
         }

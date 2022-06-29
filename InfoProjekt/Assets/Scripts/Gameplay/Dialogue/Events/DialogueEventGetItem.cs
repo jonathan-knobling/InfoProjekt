@@ -1,7 +1,5 @@
 using Gameplay.Inventory;
 using Gameplay.Inventory.Items;
-using Inventory;
-using Inventory.Items;
 using UnityEngine;
 
 namespace Gameplay.Dialogue.Events
@@ -14,7 +12,7 @@ namespace Gameplay.Dialogue.Events
         
         public override void Invoke()
         {
-            InventoryManager.Instance.AddItem(item);
+            InventoryManager.ItemContainerInstance.TryAddItem(item);
         }
     }
 }

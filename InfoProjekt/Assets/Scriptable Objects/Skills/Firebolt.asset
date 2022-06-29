@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34d54fbd759b453a87be20e67442c3ac, type: 3}
+  m_Name: Firebolt
+  m_EditorClassIdentifier: 
+  id: 
+  icon: {fileID: -7008412969330441016, guid: d6b8c791d8089b44a9a8c5a7423bd180, type: 3}
+  maxCooldownTime: 3
+  maxActiveTime: 0
+  projectilePrefab: {fileID: 6679350505711597824, guid: 0d1e19c923a11bf4ca5baf595e8f7667, type: 3}
+  mpUsage: 1
+  fireboltSpeed: 15

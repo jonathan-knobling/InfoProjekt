@@ -14,9 +14,9 @@ namespace Gameplay.Dialogue
         private Util.Dialogue currentDialogue;
         private DialogueNode currentDialogueNode;
 
-        private readonly FlowChannelSO flowChannel;
+        private readonly FlowChannel flowChannel;
 
-        public DialogueSequencer(FlowChannelSO flowChannel)
+        public DialogueSequencer(FlowChannel flowChannel)
         {
             this.flowChannel = flowChannel;
         }
@@ -53,15 +53,16 @@ namespace Gameplay.Dialogue
 
         public void StartDialogueNode(DialogueNode dialogueNode)
         {
-            if (dialogueNode == null)
+            if (dialogueNode is null)
             {
                 EndDialogue(currentDialogue);
+                return;
             }
-            if (dialogueNode.Equals(currentDialogue.startNode) || currentDialogueNode.CanBeFollowedByNode(dialogueNode))
-            {
-                currentDialogueNode = dialogueNode;
-                OnStartDialogueNode?.Invoke(dialogueNode);
-            }
+            
+            if (!dialogueNode.Equals(currentDialogue.startNode) && !currentDialogueNode.CanBeFollowedByNode(dialogueNode)) return;
+            
+            currentDialogueNode = dialogueNode;
+            OnStartDialogueNode?.Invoke(dialogueNode);
         }
     }
 }

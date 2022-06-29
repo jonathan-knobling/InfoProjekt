@@ -3,6 +3,6 @@ namespace Tech.IO.Saves
     public interface ISaveable
     {
         object SerializeComponent();
-        void ApplySerializedData(object data);
+        void ApplySerializedData(object serializedData);
     }
 }

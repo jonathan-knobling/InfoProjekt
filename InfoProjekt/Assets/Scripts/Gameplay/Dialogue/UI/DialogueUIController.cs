@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Gameplay.Dialogue.Nodes;
+using Tech;
 using Tech.Flow;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -10,8 +11,7 @@ namespace Gameplay.Dialogue.UI
 {
     public class DialogueUIController : MonoBehaviour, IDialogueNodeVisitor
     {
-        [SerializeField] private DialogueChannelSO dialogueChannel;
-        [SerializeField] private FlowChannelSO flowChannel;
+        [SerializeField] private EventChannelSO eventChannel;
 
         private List<DialogueNodeButton> choiceNodeUIs;
 
@@ -33,8 +33,8 @@ namespace Gameplay.Dialogue.UI
 
             choiceNodeUIs = new List<DialogueNodeButton>(3);
 
-            sequencer = new DialogueSequencer(flowChannel);
-            dialogueChannel.OnRequestDialogue += OnDialogueRequested;
+            sequencer = new DialogueSequencer(eventChannel.FlowChannel);
+            eventChannel.DialogueChannel.OnRequestDialogue += OnDialogueRequested;
             sequencer.OnStartDialogue += OnStartDialogue;
             sequencer.OnEndDialogue += OnEndDialogue;
             sequencer.OnStartDialogueNode += OnStartDialogueNode;
@@ -42,13 +42,13 @@ namespace Gameplay.Dialogue.UI
 
         public void Visit(DialogueLinearNode node)
         {
-            //wenn es ein dialog event gibt dieses ausführen
+            //wenn es ein dialog event gibt dieses ausfï¿½hren
             if (node.dialogueEvent != null) node.dialogueEvent.Invoke();
             
             choiceNodeUIs.Clear();
             buttonContainer.Clear();
             
-            //nodebutton erstellen und die onbuttonclicked funktion dem button hinzufügen
+            //nodebutton erstellen und die onbuttonclicked funktion dem button hinzufï¿½gen
             choiceNodeUIs.Add(new DialogueNodeButton(sequencer, node.nextNode));
             Button button = new Button();
             button.clicked += choiceNodeUIs[0].OnButtonClicked;
@@ -61,7 +61,7 @@ namespace Gameplay.Dialogue.UI
 
         public void Visit(DialogeChoiceNode node)
         {
-            //wenn es ein dialog event gibt dieses ausführen
+            //wenn es ein dialog event gibt dieses ausfï¿½hren
             if (node.dialogueEvent != null) node.dialogueEvent.Invoke();
             
             //fehlermeldung wenn zu viele choices gibt
@@ -70,7 +70,7 @@ namespace Gameplay.Dialogue.UI
             choiceNodeUIs.Clear();
             buttonContainer.Clear();
             
-            //für jede option die man anklicken kann (max 3)
+            //fï¿½r jede option die man anklicken kann (max 3)
             for (var i = 0; i < node.choices.Count; i++)
             {
                 Debug.Log("Add Button");
@@ -85,7 +85,7 @@ namespace Gameplay.Dialogue.UI
             text.text = node.line.speaker.characterName + ": " + node.line.line;
         }
 
-        private void OnDialogueRequested(object o, DialogueEventArgs e)
+        private void OnDialogueRequested(DialogueEventArgs e)
         {
             sequencer.StartDialogue(e.Dialogue);
         }
@@ -93,6 +93,7 @@ namespace Gameplay.Dialogue.UI
         private void OnStartDialogue(Util.Dialogue dialogue)
         {
             screen.style.display = DisplayStyle.Flex;
+
         }
 
         private void OnEndDialogue(Util.Dialogue dialogue)

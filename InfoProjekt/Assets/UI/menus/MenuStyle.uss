@@ -1,0 +1,49 @@
+Button {
+    height: 71px;
+    width: 280px;
+    border-radius: 10px;
+    background-color: rgb(114, 193, 242);
+    color: rgb(0, 0, 0);
+    -unity-font-style: bold;
+    font-size: 25px;
+    border-left-color: rgba(114, 193, 242, 255);
+    border-right-color: rgba(114, 193, 242, 255);
+    border-top-color: rgba(114, 193, 242, 255);
+    border-bottom-color: rgba(114, 193, 242, 255);
+}
+
+Button:hover {
+    height: 71px;
+    width: 300px;
+    border-radius: 10px;
+    background-color: rgb(114, 193, 242);
+    color: rgb(0, 0, 0);
+    -unity-font-style: bold;
+    font-size: 25px;
+    border-left-color: rgba(114, 193, 242, 255);
+    border-right-color: rgba(114, 193, 242, 255);
+    border-top-color: rgba(114, 193, 242, 255);
+    border-bottom-color: rgba(114, 193, 242, 255);
+}
+
+Button:active {
+    height: 71px;
+    width: 280px;
+    border-radius: 10px;
+    background-color: rgb(114, 193, 242);
+    color: rgb(255, 255, 255);
+    -unity-font-style: bold;
+    font-size: 25px;
+    -unity-text-outline-color: rgb(0, 0, 0);
+    border-left-color: rgba(114, 193, 242, 255);
+    border-right-color: rgba(114, 193, 242, 255);
+    border-top-color: rgba(114, 193, 242, 255);
+    border-bottom-color: rgba(114, 193, 242, 255);
+}
+
+.header {
+    font-size: 70px;
+    -unity-font-style: bold;
+    position: absolute;
+    top: 25px;
+}

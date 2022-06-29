@@ -1,0 +1,70 @@
+#pragma kernel CSMain
+
+struct Boid
+{
+    float2 pos;
+    float2 rot;
+    float2 flockPos;
+    float speed;
+    float nearbyDis;
+    float boidsCount;
+};
+
+RWStructuredBuffer<Boid> boidBuffer;
+float deltaTime;
+
+
+[numthreads(128,1,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    Boid boid = boidBuffer[id.x];
+
+    const float2 pos = boid.pos;
+    const float2 rot = boid.rot;
+
+    float2 separation = float2(0.0, 0.0);
+
+    float2 alignment = float2(0.0, 0.0);
+
+    float2 cohesion = boid.flockPos;
+    float2 tempCohesion = float2(0.0, 0.0);
+
+    uint nearbyCount = 0;
+
+
+    [loop]
+    for (int i = 0; i < int(boid.boidsCount); i++)
+    {
+        //nicht der current boid
+        if (i != int(id.x))
+        {
+            const Boid tempBoid = boidBuffer[i];
+            if (length(pos - tempBoid.pos) < boid.nearbyDis)
+            {
+                separation += pos - tempBoid.pos;
+
+                alignment += tempBoid.rot;
+
+                tempCohesion += tempBoid.pos;
+
+                nearbyCount++;
+            }
+        }
+    }
+
+    if (nearbyCount > 0)
+    {
+        alignment *= 1 / nearbyCount;
+        tempCohesion *= 1 / nearbyCount;
+    }
+
+    cohesion += tempCohesion;
+
+    const float2 direction = alignment + separation + normalize(cohesion - pos);
+
+    boid.rot = lerp(rot, normalize(direction), deltaTime * 4);
+
+    boid.pos += rot * boid.speed * deltaTime;
+
+    boidBuffer[id.x] = boid;
+}

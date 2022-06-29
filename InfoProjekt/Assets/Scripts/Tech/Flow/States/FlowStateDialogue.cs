@@ -1,29 +1,27 @@
-using Environment.Actors.Player;
-using Tech.IO;
 using Tech.IO.PlayerInput;
+using Actors.Player;
 using UnityEngine;
+using Util;
 
 namespace Tech.Flow.States
 {
     public class FlowStateDialogue: IFlowState
     {
-        private readonly PlayerCombatChannelSO combatChannel;
-        private readonly PlayerMovementChannelSO movementChannel;
-        private readonly InputChannelSO inputChannel;
+        private InputMiddleWare inputMiddleWare;
         
-        public FlowStateDialogue(PlayerCombatChannelSO combatChannel, PlayerMovementChannelSO movementChannel, InputChannelSO inputChannel)
+        public FlowStateDialogue(InputChannel inputChannel)
         {
-            this.combatChannel = combatChannel;
-            this.movementChannel = movementChannel;
-            this.inputChannel = inputChannel;
+            inputMiddleWare = new InputMiddleWare();
+            inputChannel.InputProvider.AddMiddleWare(inputMiddleWare, 1);
         }
 
         public void EnterState()
         {
-            movementChannel.SetIdle();
-            movementChannel.DisablePlayerMovement();
-            combatChannel.DisablePlayerCombat();
-            InputChannelSO.Enabled = false;
+            inputMiddleWare.InputState = new Optional<InputState>()
+            {
+                enabled = true,
+                value = new InputState(new Vector2(0, 0), false)
+            };
         }
 
         public void Update()
@@ -33,9 +31,7 @@ namespace Tech.Flow.States
 
         public void LeaveState()
         {
-            combatChannel.EnablePlayerCombat();
-            movementChannel.EnablePlayerMovement();
-            InputChannelSO.Enabled = true;
+            inputMiddleWare.Disable();
         }
     }
 }

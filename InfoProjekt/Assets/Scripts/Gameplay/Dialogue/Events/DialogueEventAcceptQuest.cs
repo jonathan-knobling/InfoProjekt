@@ -1,4 +1,5 @@
 using Gameplay.Quests;
+using Tech;
 using UnityEngine;
 
 namespace Gameplay.Dialogue.Events
@@ -6,13 +7,13 @@ namespace Gameplay.Dialogue.Events
     [CreateAssetMenu(menuName = "Dialogue/Events/Accept Quest")]
     public class DialogueEventAcceptQuest: DialogueEvent
     {
-        [SerializeField] private QuestChannelSO questChannel;
+        [SerializeField] private EventChannelSO eventChannel;
         [SerializeField] public string eventName;
         [SerializeField] private Quest quest;
         
         public override void Invoke()
         {
-            questChannel.RequestAddQuest(quest);
+            eventChannel.QuestChannel.RequestAddQuest(quest);
         }
     }
 }

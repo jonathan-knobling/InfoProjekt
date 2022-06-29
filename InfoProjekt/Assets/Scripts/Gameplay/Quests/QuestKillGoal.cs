@@ -1,4 +1,4 @@
-using Environment.Actors.Player;
+using Tech;
 using UnityEngine;
 
 namespace Gameplay.Quests
@@ -8,9 +8,9 @@ namespace Gameplay.Quests
     {
         public string enemyID;
 
-        public override void Init(PlayerCombatChannelSO combatChannel)
+        public override void Init(EventChannelSO eventChannel)
         {
-            combatChannel.OnEnemyKilled += EnemyKilledListener;
+            eventChannel.PlayerChannel.OnEnemyKilled += EnemyKilledListener;
         }
 
         public override void Update()

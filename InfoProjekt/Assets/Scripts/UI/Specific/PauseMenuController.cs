@@ -1,6 +1,5 @@
+using Tech;
 using Tech.Flow;
-using Tech.IO;
-using Tech.IO.PlayerInput;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -8,79 +7,68 @@ namespace UI.Specific
 {
     public class PauseMenuController : MonoBehaviour
     {
-        [SerializeField] private FlowChannelSO flowChannel;
-        [SerializeField] private InputChannelSO inputChannel;
+        [SerializeField] private EventChannelSO eventChannel;
         
-        private VisualElement root;
-
-        private VisualElement screen;
-        private VisualElement pauseMenu;
-        private VisualElement optionsMenu;
+        [Header("UI Documents")]
+        [SerializeField] private UIDocument pauseMenu;
+        [SerializeField] private UIDocument saveMenu;
+        [SerializeField] private UIDocument settingsMenu;
 
         private Button resumeButton;
+        private Button saveButton;
         private Button optionsButton;
         private Button quitButton;
-
-        private Button optionsBackButton;
-
-        void Start()
+        
+        void Awake()
         {
-            root = GetComponent<UIDocument>().rootVisualElement;
-
-            screen = root.Q<VisualElement>("screen");
-            pauseMenu = root.Q<VisualElement>("pause_menu");
-            optionsMenu = root.Q<VisualElement>("options_menu");
-
+            var root = GetComponent<UIDocument>().rootVisualElement;
+            
             resumeButton = root.Q<Button>("resume_button");
+            saveButton = root.Q<Button>("save_button");
             optionsButton = root.Q<Button>("options_button");
             quitButton = root.Q<Button>("quit_button");
-
-            optionsBackButton = root.Q<Button>("back_button");
-
+            
             resumeButton.clicked += ResumeButtonPressed;
+            saveButton.clicked += SaveButtonPressed;
             optionsButton.clicked += OptionsButtonPressed;
             quitButton.clicked += QuitButtonPressed;
 
-            optionsBackButton.clicked += OptionsBackButtonPressed;
-
-            inputChannel.OnPauseButtonPressed += PauseButtonPressed;
+            eventChannel.InputChannel.OnEscapeButtonPressed += EscapeButtonPressed;
+            
+            pauseMenu.enabled = false;
+        }
+        
+        private void SaveButtonPressed()
+        {
+            saveMenu.enabled = true;
+            pauseMenu.enabled = false;
         }
 
-        private void PauseButtonPressed()
+        private void EscapeButtonPressed()
         {
-            if (!screen.style.display.Equals(DisplayStyle.Flex))
+            if (!pauseMenu.enabled)
             {
-                flowChannel.ChangeFlowState(FlowState.Paused);
-                screen.style.display = DisplayStyle.Flex;
+                eventChannel.FlowChannel.ChangeFlowState(FlowState.Paused);
+                pauseMenu.enabled = true;
             }
             else
             {
                 ResumeButtonPressed();
             }
         }
-
-        void ResumeButtonPressed()
+        
+        private void ResumeButtonPressed()
         {
-            flowChannel.ChangeFlowState(FlowState.Default);
-            screen.style.display = DisplayStyle.None;
-            
-            // falls man während man im options menu is esc drückt
-            OptionsBackButtonPressed(); 
+            eventChannel.FlowChannel.ChangeFlowState(FlowState.Default);
+            pauseMenu.enabled = false;
         }
-
-        void OptionsButtonPressed()
+        
+        private void OptionsButtonPressed()
         {
-            optionsMenu.style.display = DisplayStyle.Flex;
-            pauseMenu.style.display = DisplayStyle.None;
+            settingsMenu.enabled = true;
         }
-
-        void OptionsBackButtonPressed()
-        {
-            optionsMenu.style.display = DisplayStyle.None;
-            pauseMenu.style.display = DisplayStyle.Flex;
-        }
-
-        void QuitButtonPressed()
+        
+        private void QuitButtonPressed()
         {
             Application.Quit();
         }

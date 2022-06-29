@@ -1,0 +1,38 @@
+Button {
+    color: rgba(255, 255, 255, 255);
+    background-color: rgba(99, 99, 99, 255);
+    width: 750px;
+    height: 71px;
+    border-radius: 10px;
+    -unity-font-style: bold;
+    font-size: 25px;
+    border-left-color: rgba(99, 99, 99, 255);
+    border-right-color: rgba(99, 99, 99, 255);
+    border-top-color: rgba(99, 99, 99, 255);
+    border-bottom-color: rgba(99, 99, 99, 255);
+}
+
+Button:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(99, 99, 99);
+    width: 800px;
+    height: 71px;
+    border-radius: 10px;
+    -unity-font-style: bold;
+    font-size: 25px;
+    border-left-color: rgba(99, 99, 99, 255);
+    border-right-color: rgba(99, 99, 99, 255);
+    border-top-color: rgba(99, 99, 99, 255);
+    border-bottom-color: rgba(99, 99, 99, 255);
+}
+
+.header {
+    font-size: 70px;
+    -unity-font-style: bold;
+    position: absolute;
+    top: 25px;
+}
+
+VisualElement {
+    align-items: center;
+}

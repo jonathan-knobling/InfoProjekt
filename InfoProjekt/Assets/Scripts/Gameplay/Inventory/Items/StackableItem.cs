@@ -1,8 +1,7 @@
-using Gameplay.Inventory;
-using Gameplay.Inventory.Items;
+using System;
 using UnityEngine;
 
-namespace Inventory.Items
+namespace Gameplay.Inventory.Items
 {
     [CreateAssetMenu(menuName = "Items/Stackable Item")]
     public class StackableItem: Item
@@ -22,9 +21,14 @@ namespace Inventory.Items
             amount -= removeAmount;
         }
 
-        public override void RequestAddItem(IItemContainer container)
+        public override bool RequestAddItem(IItemContainer container, int slot)
         {
-            container.AddItem(this);
+            return container.TryAddItem(this, slot);
+        }
+
+        public override bool RequestAddItem(IItemContainer container)
+        {
+            return container.TryAddItem(this);
         }
 
         public override void RequestDropItem(IItemContainer container)
