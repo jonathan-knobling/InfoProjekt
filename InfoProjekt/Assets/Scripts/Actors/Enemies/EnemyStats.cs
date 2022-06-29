@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.ComponentModel;
+using System.Threading;
 using Environment;
 using Tech.IO.Saves;
 using UnityEngine;
@@ -9,8 +11,8 @@ namespace Actors.Enemies
     public class EnemyStats : MonoBehaviour, IDamagable, ISaveable
     {
         [Header("Animator")]
-        private static readonly int AnimatorHit = Animator.StringToHash("hit");
-        private static readonly int Death = Animator.StringToHash("death");
+        private static readonly int AnimatorTriggerHurt = Animator.StringToHash("hurt");
+        private static readonly int AnimatorTriggerDie = Animator.StringToHash("die");
         [SerializeField] public Animator animator;
         
         [Header("Info")]
@@ -33,8 +35,8 @@ namespace Actors.Enemies
         public bool IsDead => health <= 0;
         public int XPAmount => xpAmount;
         public float AttackDamage => HiddenAttackDamage;
-        public float Speed => (float) ((1 + 0.25 * level) * 5);
-        public float RoamingSpeed => (float) ((1 + 0.15 * level) * 5);
+        public float Speed => (float) ((1 + 0.25 * level) * 1.5f);
+        public float RoamingSpeed => (float) ((1 + 0.15 * level) * 1.4f);
         public EnemyType Type => type;
 
         private void Start()
@@ -48,23 +50,25 @@ namespace Actors.Enemies
             float actualDamage = damage * defenseMultiplier;
             health -= damage;
             
+            Debug.Log("damage dealt");
             
             if (health <= 0)
             {
-                Die();
+                StartCoroutine(Die());
                 
                 //relevant wenn health < 0
                 actualDamage -= health;
                 return actualDamage;
             }
 
-            animator.SetTrigger(AnimatorHit);
+            animator.SetTrigger(AnimatorTriggerHurt);
             return actualDamage;
         }
 
-        private void Die()
+        private IEnumerator Die()
         {
-            animator.SetTrigger(Death);
+            animator.SetTrigger(AnimatorTriggerDie);
+            yield return new WaitForSeconds(1f);
             Destroy(gameObject);
         }
 

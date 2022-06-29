@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bed29916000416bb6ae612e5ec11efb, type: 3}
   m_Name: Quest Event
   m_EditorClassIdentifier: 
-  questChannel: {fileID: 11400000, guid: f0fcfb30689430a48b968a0334c056c7, type: 2}
+  eventChannel: {fileID: 11400000, guid: 68f4d361e53e1ee4e94c67673f5e76cf, type: 2}
   eventName: Accept Quest
   quest: {fileID: 11400000, guid: e263de35a4e3c2743ac548d13e899875, type: 2}

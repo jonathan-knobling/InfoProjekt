@@ -56,7 +56,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a125e67bce614647820e924c8dda171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementChannel: {fileID: 11400000, guid: 8116edc9ec2a08541a1957278e9be3fc, type: 2}
+  eventChannel: {fileID: 11400000, guid: 68f4d361e53e1ee4e94c67673f5e76cf, type: 2}
   grassAnimator: {fileID: 4775258475654962252}
 --- !u!61 &4775258475654962241
 BoxCollider2D:

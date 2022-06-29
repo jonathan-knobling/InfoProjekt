@@ -1,33 +1,35 @@
-using Environment;
+using System;
 using Gameplay.Dialogue.Util;
 using Tech;
 using UnityEngine;
 
 namespace Actors.NPCs
 {
-    public class NPC: Actor, IInteractable
+    public class NPC: Actor
     {
         [Header("Tech Stuff")] 
-        [SerializeField]
-        private EventChannelSO eventChannel;
+        [SerializeField] private EventChannelSO eventChannel;
 
         [Header("Interaction Stuff")]
-        [SerializeField]
-        private float interactionRadius = 2f;
+        [SerializeField] private float interactionRadius = 2f;
         [SerializeField] private LayerMask interactionLayers;
+        [SerializeField] private string npcID;
+        private GameObject player;
         
         [Header("NPC Stuff")]
-        [SerializeField]
-        private Dialogue greetDialogue;
+        [SerializeField] private Dialogue greetDialogue;
 
         public void Start()
         {
+            GameObject.Find("Player");
             eventChannel.InputChannel.OnInteractButtonPressed += OnInteractButtonPressed;
         }
 
         public void Interact()
         {
+            //TurnToPlayer();
             eventChannel.DialogueChannel.RequestDialog(greetDialogue);
+    
         }
 
         private void OnInteractButtonPressed()
@@ -36,8 +38,19 @@ namespace Actors.NPCs
             {
                 Debug.Log("interact");
                 Interact();
-                //show "press f to interact" oder so ähnlich :)
+                //show "press f to interact" oder so ï¿½hnlich :)
             }
+        }
+
+        private void TurnToPlayer()
+        {
+            Vector3 relativePos = player.transform.position - transform.position;
+            transform.rotation = Quaternion.LookRotation(relativePos);
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.DrawWireSphere(transform.position, interactionRadius);
         }
     }
 }

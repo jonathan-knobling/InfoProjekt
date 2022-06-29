@@ -1,81 +1,65 @@
 using System;
-using System.ComponentModel;
-using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 namespace Actors.Enemies
 {
-    [RequireComponent(typeof(Rigidbody2D))]
-    public class EnemyMovementController : MonoBehaviour
+    public class EnemyMovementController
     {
+        private readonly GameObject enemy;
+        private readonly Animator animator;
+        private readonly Rigidbody2D rb;
+        private readonly EnemyStats stats;
 
-        [SerializeField] private Animator animator;
-        private Rigidbody2D rb;
-        private float currentVelocityX;
-        
-        private static readonly int Speed = Animator.StringToHash("speed"); // cached property
-        private bool FacingRight => Math.Abs(Mathf.Sign(transform.localScale.x) - 1) < 0.01f; // basically sign(x) == 1
-    
-        void Start()
+        private readonly NavMeshAgent agent;
+
+        public bool TargetReached => !agent.pathPending
+                                     && agent.remainingDistance <= agent.stoppingDistance
+                                     && !agent.hasPath || agent.velocity.sqrMagnitude == 0f;
+
+        //private static readonly int Speed = Animator.StringToHash("speed");
+        private bool FacingRight => Math.Abs(Mathf.Sign(enemy.transform.localScale.x) - 1) < 0.01f;
+
+        public EnemyMovementController(GameObject enemy)
         {
-            rb = GetComponent<Rigidbody2D>();
+            this.enemy = enemy;
+            rb = enemy.GetComponent<Rigidbody2D>();
+            //animator = enemy.GetComponent<Animator>();
+            stats = enemy.GetComponent<EnemyStats>();
+            
+            agent = enemy.GetComponent<NavMeshAgent>();
+            agent.updateRotation = false;
+            agent.updateUpAxis = false;
         }
 
-        private void Update()
+        public void Update()
         {
-            animator.SetFloat(Speed, math.abs(rb.velocity.x));
-            rb.velocity = new Vector2(currentVelocityX, rb.velocity.y);
+            if(rb.velocity.x > 0 && !FacingRight) Flip();
+            //animator.SetFloat(Speed, Math.Abs(rb.velocity.magnitude));
         }
 
-        [Description("Automatically determines direction (- sign is left and + sign is right)")]
-        public void Move(float speed)
+        public void Move(Vector2 destination)
         {
-            //wenn sign(direction) == 1 ; also direction == right
-            if (Math.Abs(Mathf.Sign(speed) - 1) < 0.01f)
-            {
-                MoveRight(speed);
-            }
-            else if (speed != 0)
-            {
-                MoveLeft(speed);
-            }
-            else
-            {
-                StopMoving();
-            }
-        }
-        
-        public void MoveRight(float speed)
-        {
-            //abs damit es auch auf jeden fall sich nach rechts bewegt
-            currentVelocityX = Math.Abs(speed);
-            if (!FacingRight)
-            {
-                Flip();
-            }
-        }
-
-        public void MoveLeft(float speed)
-        {
-            //abs damit es auch auf jeden fall sich nach links bewegt
-            currentVelocityX = -Mathf.Abs(speed);
-            if (FacingRight)
-            {
-                Flip();
-            }
-        }
-
-        public void StopMoving()
-        {
-            currentVelocityX = 0;
+            agent.SetDestination(destination);
         }
 
         private void Flip()
         {
-            var transform1 = transform;
+            var transform1 = enemy.transform;
             Vector3 scale = transform1.localScale;
             scale.x *= -1;
             transform1.localScale = scale;
+        }
+
+        public void MoveToRandomPosition(float walkRadius)
+        {
+            //Get Random Direction
+            var randomDirection = Random.insideUnitCircle.normalized * walkRadius;
+            //Get a valid Navmesh Position in this direction
+            NavMesh.SamplePosition(randomDirection, out var hit, walkRadius, 1);
+            //Move to the Navmesh Position
+            Move(hit.position);
         }
     }
 }

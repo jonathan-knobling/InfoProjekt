@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Actors.Player.Stats;
 using Gameplay.Abilities.Active;
@@ -99,6 +100,7 @@ namespace Gameplay.Abilities
             }
         }
 
+        [Serializable]
         private struct SaveData
         {
             public Dictionary<string, object> PassiveAbilities;

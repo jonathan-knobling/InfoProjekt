@@ -1,3 +1,4 @@
+using System;
 using Actors.Enemies;
 using Gameplay.Inventory;
 using Tech;
@@ -69,6 +70,7 @@ namespace Environment.ObjectRegister
             itemRegister.ApplySerializedData(data.ItemRegisterData);
         }
 
+        [Serializable]
         private struct SaveData
         {
             public object EnemyRegisterData;

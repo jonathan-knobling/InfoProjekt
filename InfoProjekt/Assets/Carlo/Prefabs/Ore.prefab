@@ -56,7 +56,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -116,13 +116,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a38ccc9fc177f54b98a30700107af3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputChannel: {fileID: 11400000, guid: 089b2dbb73bd38745996825d79789973, type: 2}
+  eventChannel: {fileID: 11400000, guid: 68f4d361e53e1ee4e94c67673f5e76cf, type: 2}
   interactionRadius: 2
   interactionLayer:
     serializedVersion: 2
     m_Bits: 256
   item: {fileID: 11400000, guid: 533fffe29b7e0154b93a4265777ec02e, type: 2}
-  uiChannel: {fileID: 11400000, guid: 47ac2e1314517934eb7836ccd86f9a7e, type: 2}
   pickUpEffect: {fileID: 309998296949262174, guid: 63ef591d3cb4ad640932b5b44f2966ba, type: 3}
 --- !u!114 &2000477498
 MonoBehaviour:
@@ -136,8 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fba4187397fc994db69f1659b7780d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  extent: 0.2
-  speed: 3
+  extent: 0.15
+  speed: 2.5
 --- !u!95 &1019894363
 Animator:
   serializedVersion: 4

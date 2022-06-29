@@ -9,7 +9,7 @@ namespace Tech
         public static void Initialize()
         {
             //Initialize Services and GameObjects
-            GameObject initialization = Instantiate(Resources.Load("Initialization")) as GameObject;
+            var initialization = Instantiate(Resources.Load("Initialization")) as GameObject;
             DontDestroyOnLoad(initialization);
             
             //player und enemy layers ignoren collision
